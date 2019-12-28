@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">08:18:24</span>
+            <span class="time">11:56:14</span>
           </span>
           
         </div>
@@ -125,12 +125,39 @@
 <h3 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h3><p>基础语法:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let node &#x3D;&#123;</span><br><span class="line">    type :&quot;Identifier&quot;,</span><br><span class="line">    name :&quot;foo&quot;</span><br><span class="line">&#125;</span><br><span class="line">var &#123;type , name&#125; &#x3D;node    &#x2F;&#x2F; 左边是个什么?对象还是数组?</span><br><span class="line">console.log(type)  &#x2F;&#x2F;Identifier</span><br><span class="line">console.log(name)  &#x2F;&#x2F;foo</span><br></pre></td></tr></table></figure>
 <p><strong>不要忘了初始化,既要声明也要赋值对象</strong><br>新理解:<code>解构后,获得的就是属性的值,通过键名获取对应的值,</code><br>(不是{type,name}会怎样?一定要跟属性名一样才能获取对应值吗?<em>是的</em>)<br>({type,test} 会Identifier,undefined)</p>
-<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><p><strong>利用对象同名属性,赋值给外部变量,从而批量修改的做法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type&#x3D;&quot;literals&quot;</span><br><span class="line">name&#x3D;&quot;Hello&quot;</span><br><span class="line">(&#123;type,name&#125; &#x3D; node)       &#x2F;&#x2F;必须要用小括号括住,代码块不能出现在赋值语句的左侧???!!!</span><br><span class="line">console.log(type)  &#x2F;&#x2F;Identifier</span><br><span class="line">console.log(name)  &#x2F;&#x2F;foo</span><br></pre></td></tr></table></figure>
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><ol>
+<li>对象解构</li>
+</ol>
+<p><strong>利用对象同名属性,赋值给外部变量,从而批量修改的做法</strong><br><strong>或者是<em>将对象的属性值根据属性名获取</em>的做法</strong></p>
 <p><strong>不存在的属性给它赋默认值</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;type,name,value &#x3D; true&#125; node</span><br></pre></td></tr></table></figure>
 <p><strong>将对象内的键名取别名</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;type:localType,name:localName&#125; &#x3D; node;</span><br></pre></td></tr></table></figure>
+<p><code>对象解构赋值:</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type&#x3D;&quot;literals&quot;</span><br><span class="line">name&#x3D;&quot;Hello&quot;</span><br><span class="line">(&#123;type,name&#125; &#x3D; node)       &#x2F;&#x2F;必须要用小括号括住,代码块不能出现在赋值语句的左侧???!!!</span><br><span class="line">console.log(type)  &#x2F;&#x2F;Identifier</span><br><span class="line">console.log(name)  &#x2F;&#x2F;foo</span><br></pre></td></tr></table></figure>
+<p><strong>对象迭代:属性值仍然是对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let node &#x3D; &#123;</span><br><span class="line">    loc:&#123;</span><br><span class="line">        start:&#123;</span><br><span class="line">            line:1</span><br><span class="line">            column:2</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var &#123;loc: &#123; start:localStart&#125; &#125; &#x3D;node &#x2F;&#x2F;*第一个冒号是深入,第二个是取别名*</span><br><span class="line">console.log(localStart.line)     &#x2F;&#x2F;1</span><br><span class="line">console.log(localStart.column)    &#x2F;&#x2F;2</span><br><span class="line">                            &#x2F;&#x2F;根据对象内容获取值</span><br><span class="line"></span><br><span class="line">let &#123;loc:&#123;&#125;&#125; &#x3D; node;  &#x2F;&#x2F;错误,不能不具体到对应键.不能只深入而不取值.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>数组解构</li>
+</ol>
+<p><em>根据数组中的<strong>位置</strong>对变量赋值的做法</em><br>数组可以看成对象:(近似,键名有限制)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let colors &#x3D; [&quot;red&quot;,&quot;green&quot;]</span><br><span class="line">&#x2F;*&#123;</span><br><span class="line">    0:&quot;red&quot;,</span><br><span class="line">    1:&quot;green&quot;</span><br><span class="line">&#125;*&#x2F;</span><br><span class="line">var &#123;firCo,secCo&#125; &#x3D; colors; &#x2F;&#x2F;按顺序取值而修改掉键名</span><br></pre></td></tr></table></figure>
+<p><code>数组解构赋值:</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let colors &#x3D; [&quot;red&quot;,&quot;green&quot;]</span><br><span class="line">firCo &#x3D; &quot;black&quot;</span><br><span class="line">secCo &#x3D; &quot;blue&quot;</span><br><span class="line">[firCo,secCo] &#x3D; colors   &#x2F;&#x2F;对象赋值是(&#123;xxx,ddd&#125; &#x3D; node).注意括号的区别</span><br><span class="line">console.log(firCo)     &#x2F;&#x2F;red</span><br><span class="line">&#x2F;&#x2F;*用对象的值覆盖变量的值</span><br></pre></td></tr></table></figure>
+<p><code>交换两个变量的值:</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a&#x3D;1,b&#x3D;2;</span><br><span class="line">[a,b] &#x3D; [b,a]</span><br><span class="line">         &#x2F;&#x2F;**左边是取得各自对应的值,右边是新的数组?**</span><br></pre></td></tr></table></figure>
+<p><code>克隆数组</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ES5中</span><br><span class="line">let cloned &#x3D; colors.concat()</span><br><span class="line">&#x2F;&#x2F;ES6中</span><br><span class="line">let [...cloned] &#x3D; colors</span><br></pre></td></tr></table></figure>
+<p><code>解构对象的另一种用途</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setCooie(name,value,option)&#123;&#125;   &#x2F;&#x2F;一般option是对象,提供多个boolean给使用者,但这样不知道可以有哪些选项</span><br><span class="line">setCookie(name,value,&#123;secure,path,domain,expires&#125;)&#123;&#125; &#x2F;&#x2F;解构option对象,则可明确提供有哪些选项</span><br></pre></td></tr></table></figure>
+<p><em>问题是,option为空可以,设置了解构而不传入则会报错.</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setCookie(&#39;sth&#39;,&#39;js&#39;) &#x2F;&#x2F;出错</span><br></pre></td></tr></table></figure>
+<p>*提供默认参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(name,value,&#123;</span><br><span class="line">secure &#x3D; false,</span><br><span class="line">path &#x3D; &#39;&#x2F;&#39;,</span><br><span class="line">domain &#x3D; &#39;xx.com&#39;,  &#x2F;&#x2F;有好有坏,将设置的函数独立开来,可以改那个函数从而影响当前函数默认值</span><br><span class="line">expires &#x3D; xx</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 
 

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="深入理解es6-7"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Hexo"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hexo</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">深入理解es6-7</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By John Doe</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-12-28</span>
+            <span class="time">11:56:14</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3 id="深入理解es6第七章-Set和Map"><a href="#深入理解es6第七章-Set和Map" class="headerlink" title="深入理解es6第七章 Set和Map"></a>深入理解es6第七章 Set和Map</h3><h4 id="Set-无重复值的数组"><a href="#Set-无重复值的数组" class="headerlink" title="Set:无重复值的数组"></a>Set:无重复值的数组</h4><h4 id="Map-键值对"><a href="#Map-键值对" class="headerlink" title="Map:键值对"></a>Map:键值对</h4><p><strong>所有用对象作为键名的,其实都是同一个键值对,所以会被覆盖</strong><br><em>一般的类数组:</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let key&#x3D;&#123;obj:1&#125;,key2&#x3D;&#123;sth:2&#125;</span><br><span class="line">let map &#x3D; Object.create(null)</span><br><span class="line">map[key]&#x3D;&quot;foo&quot;</span><br><span class="line">map[key2]&#x3D;&#39;oof&#39;</span><br><span class="line">console.log(map[key])   &#x2F;&#x2F;oof,对象都被转换为[object Object]作为键名</span><br></pre></td></tr></table></figure>
+<h2 id="还不能用点号引用属性-必须中括号"><a href="#还不能用点号引用属性-必须中括号" class="headerlink" title="还不能用点号引用属性!!!必须中括号"></a><em>还不能用点号引用属性!!!必须中括号</em></h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h4 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h4><p>键名不会类型转换, 两个对象两个键值对,map[5]和map[“5”]也是两对(但set中+0和-0是相等的)<br>不能按索引访问对应值,只能用has判断</p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法:"></a>方法:</h4><ol>
+<li>创建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let set &#x3D;new Set(&quot;5&quot;)  &#x2F;&#x2F;只能接受字符串或者数组,解决了new Array(5)这种创建长度为5的数组的低可读性</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>不能创建指定长度的set</strong><br>2. add()添加 / size 获取长度,是属性 / has() 检索是否存在 / delete() 删除对应值 / clear() 清空<br>3. <code>Set.forEach(value,key,ownSet)</code> 第一二个参数相同,第三个是自身全部</p>
+<h4 id="数组转set去重"><a href="#数组转set去重" class="headerlink" title="数组转set去重"></a>数组转set去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a &#x3D; [1,2,3,4,4,4,4]</span><br><span class="line">let result &#x3D; [...new Set(a)]</span><br><span class="line">console.log(result)</span><br></pre></td></tr></table></figure>
+<h5 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h5><ol>
+<li>特点:普通set都是强引用,值为对象的,指向空之后,set里面仍然保留引用 <em>存了起来,没有回收</em><pre><code>WeakSet里面不能有原始值,只能是引用类型的值,是弱引用</code></pre></li>
+</ol>
+<p><strong>都是对象的数组</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;普通set</span><br><span class="line">let set &#x3D; new Set(),</span><br><span class="line">    key &#x3D; &#123;&#125;</span><br><span class="line">set.add(key)</span><br><span class="line">key&#x3D;null       &#x2F;&#x2F;指向了空</span><br><span class="line">set.size()      &#x2F;&#x2F;1</span><br><span class="line">key &#x3D; [...set][0] &#x2F;&#x2F;从set里面重新获取引用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;WeakSet</span><br><span class="line">let set &#x3D; new WeakSet(),</span><br><span class="line">    key &#x3D; &#123;&#125;;</span><br><span class="line">set.add(key);</span><br><span class="line">key&#x3D;null;</span><br><span class="line">console.log(set.size);      &#x2F;&#x2F;0?Maybe</span><br><span class="line">key &#x3D; [...set][0]; &#x2F;&#x2F;报错,not iterable</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>方法:<br>add() / has() / delete() //只能添加对象类型,非则报错,false,false</li>
+<li>书本:<br>3.1 <em>无法通过程序本身检测自己的内容</em><br>3.2 不可迭代,不能用for … of<br>3.3 不支持forEach()方法,没有size属性</li>
+</ol>
+<hr>
+<h3 id="Map-存储多个键值对的有序列表"><a href="#Map-存储多个键值对的有序列表" class="headerlink" title="Map:存储多个键值对的有序列表"></a>Map:存储多个键值对的有序列表</h3><ol>
+<li><p>键是否相同用Object.is()来判断,极为高级准确</p>
+</li>
+<li><p><code>方法</code><br>2.1 自带方法<br>get(key) 根据键名获取值 / set(key,value) 设置 / has() 根据键名判断是否存在 / delete() 根据键名删除键值对 / clear() 清空<br><em>get方法包含了has?</em> 没有,get不到会返回undefined, has会返回false<br>2.2 初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Map([name:&quot;Li&quot;],[age:22]) &#x2F;&#x2F;一个键值对一个数组</span><br></pre></td></tr></table></figure>
+
+<p>2.3 forEach方法,同理于set的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.forEach(function(value,key,own)&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><em>可以指定第二个参数作为回调函数的this值</em></p>
+<h4 id="WeakMap-键名都是对象的键值对集合"><a href="#WeakMap-键名都是对象的键值对集合" class="headerlink" title="WeakMap:键名都是对象的键值对集合"></a>WeakMap:键名都是对象的键值对集合</h4><p><code>方法</code></p>
+<ol>
+<li>set(),get(),has(),delete()  //区别于WeakSet</li>
+<li>用途<br>2.1 存储DOM元素,页面上元素被删除,Weak Map里的引用也跟着被删(键空了,整个对都没了)<br>2.2 私有对象数据(仅用IIFE因不知何时销毁对象而一直保存数据)????</li>
+<li>选择<br>用Map:键是<em>非对象类型</em>,支持forEach,size,clear等方法属性<br>用WeakMap:只用对象作为键名,<em>及时回收,避免内存泄漏</em></li>
+</ol>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
