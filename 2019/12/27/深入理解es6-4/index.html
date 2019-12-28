@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="深入理解es6-4"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Hexo"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hexo</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">深入理解es6-4</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By John Doe</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-12-27</span>
+            <span class="time">21:37:34</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="深入理解es6第四章-对象"><a href="#深入理解es6第四章-对象" class="headerlink" title="深入理解es6第四章 对象"></a>深入理解es6第四章 对象</h2><h3 id="类别"><a href="#类别" class="headerlink" title="类别:"></a>类别:</h3><ol>
+<li>普通对象 (Ordinary Object)</li>
+<li>特异对象 (Exotic Object)</li>
+<li>标准对象 (Standard Object)</li>
+<li>内建对象</li>
+</ol>
+<p><em>关系:标准可以是普通也可以是特异,标准都是内建(奸)</em></p>
+<hr>
+<h3 id="对象语法扩展"><a href="#对象语法扩展" class="headerlink" title="对象语法扩展"></a>对象语法扩展</h3><ol>
+<li>属性简写:对象属性与本地变量同名,不必再冒号加值.会自己找同名</li>
+<li>方法简写: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sayName: function()&#123;</span><br><span class="line">    &#x2F;&#x2F;旧语法</span><br><span class="line">&#125;</span><br><span class="line">sayName()&#123;</span><br><span class="line">   &#x2F;&#x2F;简写</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>属性名可计算,属性名加空格,拼凑等操作.   [“fir” + suffix]= ‘xxx’;  //区别于点号引用属性</li>
+</ol>
+<hr>
+<h3 id="新增方法"><a href="#新增方法" class="headerlink" title="新增方法"></a>新增方法</h3><ol>
+<li>Object.is(),用于补充===的功能<br>+0与-0,NaN和NaN ,===会true,is()会false</li>
+<li>Object.assign(),第一个参数是receiver,之后的不限个数,都是suppliers对象<br><code>Object.assign(receiver,supplier1,supplier2,supplier3 ...)</code><br>如果属性方法有同名,则取后面的,前面的被覆盖<br>assign,访问器属性变数据属性,名字作key,返回的作value,<br>插曲:之前的mixin是浅复制,不能复制访问器属性,值是对象只能复制引用</li>
+</ol>
+<p><em>重复属性取最后定义的</em></p>
+<h4 id="枚举自有属性"><a href="#枚举自有属性" class="headerlink" title="枚举自有属性"></a>枚举自有属性</h4><ol start="3">
+<li>方法:<strong>=Object.getOwnProperties(obj)</strong><br>顺序:数字&gt;字符串&gt;symbol&gt;新加入<h4 id="增强原型"><a href="#增强原型" class="headerlink" title="增强原型"></a>增强原型</h4></li>
+<li>Object.getPrototypeOf()<br>Object.setPrototypeOf()    <em>后代的属性方法会实时改变</em></li>
+<li>调用并改写原型上的方法<br>不使用新特性:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let friend &#x3D; &#123;</span><br><span class="line">    getGreeting()&#123;</span><br><span class="line">        return Object.getPrototypeOf(this).getGreeting().call(this)+&quot;, hi&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+==必须使用简写的方式==<br>使用新特性:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let friend &#x3D; &#123; </span><br><span class="line">    getGreeting()&#123;</span><br><span class="line">        return super.getGreeting()+&quot;,hi&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

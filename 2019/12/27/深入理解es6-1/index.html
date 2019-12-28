@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="深入理解es6"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Hexo"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hexo</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">深入理解es6</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By John Doe</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-12-27</span>
+            <span class="time">21:37:34</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="深入理解ES6第一章"><a href="#深入理解ES6第一章" class="headerlink" title="深入理解ES6第一章"></a>深入理解ES6第一章</h1><h2 id="var-let-const"><a href="#var-let-const" class="headerlink" title="var,let,const"></a>var,let,const</h2><h3 id="1-变量提升"><a href="#1-变量提升" class="headerlink" title="1.变量提升"></a>1.变量提升</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (condition)</span><br><span class="line">&#123;var value &#x3D; &#39;blue&#39;&#125; else &#123;return null&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var value &#x2F;&#x2F;提升</span><br><span class="line">if(condition)&#123; value &#x3D; &#39;blue&#39;&#125;   else&#123;return null&#125;</span><br></pre></td></tr></table></figure>
+<p>else中可以访问value ,但值是undefined</p>
+<h3 id="2-块级作用域-函数内部-之间"><a href="#2-块级作用域-函数内部-之间" class="headerlink" title="2.块级作用域(函数内部,{}之间)"></a>2.块级作用域(函数内部,{}之间)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getValue(condition)&#123;</span><br><span class="line">if(condition)&#123; </span><br><span class="line">console.log(value);</span><br><span class="line">let value &#x3D; &#39;blue&#39;;&#125; &#x2F;&#x2F;console.log(value)</span><br><span class="line">else&#123;return null&#125;</span><br><span class="line">&#125;        &#x2F;&#x2F;报错 cannot access before initialization.    同样,else里也访问不了value值,value is not defined</span><br></pre></td></tr></table></figure>
+<p>==&gt;只有在if内能用value值,else里也用不了.<br>==&gt;尽管在同一个函数内,但也访问不了. 优先级  {}&gt;同一个函数内<br>声明 ==&gt;   var value              初始化 ==&gt; value =’blue’</p>
+<h3 id="3-禁止重声明："><a href="#3-禁止重声明：" class="headerlink" title="3.禁止重声明："></a>3.禁止重声明：</h3><p>同一作用域内用var和let声明同一个变量，const同理<br>可以在内嵌作用域中用let覆盖全局中的var声明<br><em>const必须声明时初始化,否则会报错。*即const name //错<br>                                               const maxItem = 20; //对<br>既有变量不能变为常量. 即var,let声明的,不能又用const再次声明（同理于重声明?)<br>*const声明对象可以修改对象值但不能修改对象绑定(?)</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const person &#x3D;&#123;name:&#39;Nicholas&#39;&#125;</span><br><span class="line">person.name &#x3D; &#39;Greg&#39;;      &#x2F;&#x2F;不会报错</span><br><span class="line">person &#x3D; &#123;name:&#39;Greg&#39;&#125;  &#x2F;&#x2F;报错</span><br></pre></td></tr></table></figure>
+<p>(怎么理解对象的绑定?)<br>可以改对象内容但不能重新声明一个对象 const 右边不能又是对象</p>
+<h3 id="4-循环中的变量-函数"><a href="#4-循环中的变量-函数" class="headerlink" title="4.循环中的变量,函数"></a>4.循环中的变量,函数</h3><p>变量var出了循环还能被访问，是循环结束时的值.<br>let声明的出了循环就无法被访问了</p>
+<p>立即调用函数表达式(Instant Invoke Function Expression)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">            var funcs &#x3D; []</span><br><span class="line">            for (var i &#x3D; 0 ; i&lt;10;i++)&#123;</span><br><span class="line">                funcs.push((function(value)&#123;</span><br><span class="line">                    return function()&#123;</span><br><span class="line">                        console.log(value)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;(i)))</span><br><span class="line">            &#125;</span><br><span class="line">            funcs.forEach(function(funcs)&#123;</span><br><span class="line">                funcs()</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
+<p>强制生成计数器变量的副本(?),将每次的i赋值给value(副本?闭包保护?),从而输出0-9<br>简化版:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D;0 ;i&lt;10;i++)&#123;</span><br><span class="line">console.log(i)&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>for(let key in object)遍历对象属性同理,不用let则全是最后一个属性(ccc)</em></p>
+<h3 id="5-var弊端-会覆盖全局变量"><a href="#5-var弊端-会覆盖全局变量" class="headerlink" title="5.var弊端:会覆盖全局变量"></a>5.var弊端:会覆盖全局变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var RegExp &#x3D; &#39;Hello&#39;</span><br><span class="line">var ncz &#x3D; &#39;Hi&#39; &#x2F;&#x2F;两个都是window对象原本就有的属性,但值会被覆盖</span><br><span class="line">console.log(window.RegExp) &#x3D;&#x3D;&gt;&#39;Hello&#39;</span><br></pre></td></tr></table></figure>
+<p>let和const则<em>只会遮蔽全局变量而不会覆盖</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let RegExp &#x3D; &#39;Hello&#39;</span><br><span class="line">console.log(window.RegExp &#x3D;&#x3D;&#x3D;RegExp)</span><br><span class="line">console.log(RegExp) &#x2F;&#x2F;自己声明的</span><br><span class="line">console.log(window.RegExp) &#x2F;&#x2F;全局自带的</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

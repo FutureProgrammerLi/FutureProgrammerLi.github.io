@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="深入理解es6"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Hexo"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hexo</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">深入理解es6</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By John Doe</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-12-27</span>
+            <span class="time">21:37:34</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="深入理解ES6第二章"><a href="#深入理解ES6第二章" class="headerlink" title="深入理解ES6第二章"></a>深入理解ES6第二章</h2><h3 id="字符串和正则表达"><a href="#字符串和正则表达" class="headerlink" title="字符串和正则表达"></a>字符串和正则表达</h3><p><em>BMP （Basic Multilingual Plane)基本多文种平面</em>, 16位编码表示的文字<br>普通一个16位字符表示，特殊要两个16位表示.<br>字面看length是1,实际是2，用了两个位置存储该字符<br>charCodeAt(‘’)         ==&gt;charPointAt(‘’)  用于正确识别一个超出16位字符表示的字符<br>测试是否为32位编码数   ==&gt;   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function test(c)</span><br><span class="line">&#123; return c.charPointAt(0) &gt;0xFFFF&#125;</span><br></pre></td></tr></table></figure>
+<p>  测试c字符是否为32位编码<br>相对 String.fromCodePoint(‘134071’)      ==&gt;将编码变为字符串</p>
+<p>对比字符串时，需要标准化为同一种形式.(ae和音标半个ae是等效的)     ==&gt;normalize() ==&gt;不添加参数默认为’NFC’形式</p>
+<h3 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法:"></a>字符串方法:</h3><ol>
+<li>includes()    startsWith()  endsWith()<br>两个参数,内容和索引值(搜索起始位置/endsWith则倒序（从索引值减去内容长度,正向匹配?)<br><em>内容只能传字符串，不能传正则</em><br>indexOf和lastIndexOf可以,转成字符串再搜索</li>
+<li>repeat方法<br>==&gt;”abc”.repeat(3) ==&gt;abcabcabc(用于缩进)</li>
+</ol>
+<h3 id="正则表达-修饰符"><a href="#正则表达-修饰符" class="headerlink" title="正则表达 *修饰符"></a>正则表达 *修饰符</h3><ol>
+<li>u修饰符<br>==&gt;用于填补匹配两个编码单元的字符的缺陷<br>==&gt;正确识别看上去单字符，实际length值为2的字符<br>==&gt;/^.$/u.test(text)<br>==&gt;修饰符都是可选的,initial,i,global,g,unicode,u</li>
+<li>y修饰符<br>==&gt;粘滞修饰符<br>==&gt; lastIndex和sticky属性的问题<br>==&gt;无修饰符则无视lastIndex,g和y则继续往后找,    0,7,7  ==&gt;0,14,14 ==&gt;无修饰符,g,y的结果</li>
+</ol>
+<p><em>重新找和继续找的区别</em><br>exec,test才会用到lastIndex属性<br>检测u,y修饰符 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    var pattern &#x3D; new RegExp(&#39;.&#39;,&#39;y&#39;); </span><br><span class="line">    return true</span><br><span class="line">    &#125; </span><br><span class="line">catch(ex)&#123;</span><br><span class="line">    return false</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>主要是RegExp对象的第二个参数<br>3. flags属性,直接获取修饰符。<br>即/abc/iguy         ==&gt;这里的iguy<br>ES5的做法   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text &#x3D; a.toString()  &#x2F;&#x2F;a是正则</span><br><span class="line">return text.substring(text.lastIndexOf(&quot;&#x2F;&quot;)+1,text.length)  &#x2F;&#x2F;直接取最后一个斜杠后面的字符串</span><br></pre></td></tr></table></figure>
+
+<p>substring参数(start,stop) ==&gt;stop随便整个,不超范围就行，反正修饰符肯定没有整个串长<br>ES6新增 source和flags 访问器属性,<br>source返回要匹配的正则/内容,   flags返回修饰符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var text &#x3D; &#x2F;abc&#x2F;iguy       </span><br><span class="line">console.log(text.source,text.flags)    &#x2F;&#x2F; abc iguy</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>正则复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var re1 &#x3D; &#x2F;ab&#x2F;i; </span><br><span class="line">var re2 &#x3D; new RegExp(re1,&#39;g&#39;);</span><br></pre></td></tr></table></figure>
+<p>==&gt;re2  = /ab/g        //<em>注意,修饰符会被修改</em></p>
+</li>
+<li><p>模板字面量：用反引号声明字符串，变量值      <code>Hello World</code><br>用处（1） 换行 ES5之前  字符串拼接 ==&gt;    [‘Mul’,’String’].join(“\n”)   或者 “Mul \n” + “String”<br>ES6中    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#96;Mul</span><br><span class="line">                                      String&#96;</span><br></pre></td></tr></table></figure>
+<p>   ==&gt;直接回车，而且回车之后的空格还会记入串长度length.<br>也可以直接 <code>Mul\nString</code> ,可读性不高<br>字面量中的变量 ==&gt;${name}     ==&gt;var name =’Nicholas’      ==&gt;Nicholas<br>没理解到:     message = `${count} items cost $${(count * price).toFixed(2)}<br>其中一个原型输出$,另一个为占位符${(count * price).toFixed(2)}</p>
+</li>
+<li><p>标签模板  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*var mes &#x3D; tag&#96;Hello World&#96;*</span><br></pre></td></tr></table></figure>
+<p>==&gt;定义一个函数处理字符串<br>function tag(literals,…substitutions){}<br>literals是数组,存字符串<br>substitutions存解释值(变量),但被解构,以多个参数形式传入<br>实际text=`${count} items cost $${(count * price).toFixed(2)}.`<br>literals = [“”,”items cost $”,”.”]      ==&gt;变量前中后的字符串<br>…substitutions = (10,2.50)     ==&gt;经计算后的值<br>literals总比substitutions多一个元素  literals[0]代表开头 , literals[literals.length-1]代表结尾<br>利用这两个参数可以拼凑成完整字符串,<br>默认行为可以具体在函数中写出来.<br>String.raw()方法</p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
