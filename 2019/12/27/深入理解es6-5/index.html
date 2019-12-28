@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="跨域的9种解决方案"/>
+  <meta property="og:title" content="深入理解es6-5"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Hexo"/>
   <meta property="og:type" content="article" />
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">跨域的9种解决方案</p>
+          <p class="title">深入理解es6-5</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -107,43 +107,32 @@
             <span class="time">08:18:24</span>
           </span>
           
-          <!--  Categories  -->
-            <span class="categories info">Under 
-
-<a href="/categories/Javascript/">Javascript</a>
-</span>
-          
         </div>
         <!-- Tags -->
         
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#学习笔记</a>
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域?"></a>什么是跨域?</h2><p><strong>跨域传输(非同源策略请求)</strong><br><strong>同源策略请求  ajax/fetch</strong></p>
-<hr>
-<p>前后端代码部署到同一个服务器上时，则不需要跨域（同源）<br><strong>跨域的历史:</strong><br>在过去本地开发时，修改本地服务的host，修改为目标资源的地址,模拟同源。</p>
-<hr>
-<p>服务器拆分:        不一定前后端才要跨域,单单服务器的区分都可能要跨域</p>
-<ol>
-<li>web服务器:静态资源   </li>
-<li>data服务器:业务逻辑和数据分析（包括对数据库的操作)</li>
-<li>图片服务器:存储图片，视频等较大的资源</li>
-</ol>
-<hr>
-<p><strong>区分请求是同源还是非同源：</strong></p>
-<ol>
-<li>协议  protocol</li>
-<li>域名  domain</li>
-<li>端口号  port</li>
-</ol>
-<p><em>三者都一样就是同源</em><br> http/https    123.123.123.123    8080/3000等 (举例    <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>)</p>
+          <h2 id="深入理解ES6第五章-解构"><a href="#深入理解ES6第五章-解构" class="headerlink" title="深入理解ES6第五章 解构"></a>深入理解ES6第五章 解构</h2><p><strong>问题引入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    repeat:true,</span><br><span class="line">    save: false</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;从对象中提取数据</span><br><span class="line">let repeat &#x3D; obj.repeat</span><br><span class="line">    save &#x3D; obj.save     &#x2F;&#x2F;多了会很麻烦</span><br></pre></td></tr></table></figure>
+<h3 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h3><p>基础语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let node &#x3D;&#123;</span><br><span class="line">    type :&quot;Identifier&quot;,</span><br><span class="line">    name :&quot;foo&quot;</span><br><span class="line">&#125;</span><br><span class="line">var &#123;type , name&#125; &#x3D;node    &#x2F;&#x2F; 左边是个什么?对象还是数组?</span><br><span class="line">console.log(type)  &#x2F;&#x2F;Identifier</span><br><span class="line">console.log(name)  &#x2F;&#x2F;foo</span><br></pre></td></tr></table></figure>
+<p><strong>不要忘了初始化,既要声明也要赋值对象</strong><br>新理解:<code>解构后,获得的就是属性的值,通过键名获取对应的值,</code><br>(不是{type,name}会怎样?一定要跟属性名一样才能获取对应值吗?<em>是的</em>)<br>({type,test} 会Identifier,undefined)</p>
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><p><strong>利用对象同名属性,赋值给外部变量,从而批量修改的做法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type&#x3D;&quot;literals&quot;</span><br><span class="line">name&#x3D;&quot;Hello&quot;</span><br><span class="line">(&#123;type,name&#125; &#x3D; node)       &#x2F;&#x2F;必须要用小括号括住,代码块不能出现在赋值语句的左侧???!!!</span><br><span class="line">console.log(type)  &#x2F;&#x2F;Identifier</span><br><span class="line">console.log(name)  &#x2F;&#x2F;foo</span><br></pre></td></tr></table></figure>
+<p><strong>不存在的属性给它赋默认值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;type,name,value &#x3D; true&#125; node</span><br></pre></td></tr></table></figure>
+<p><strong>将对象内的键名取别名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;type:localType,name:localName&#125; &#x3D; node;</span><br></pre></td></tr></table></figure>
+
+
 
         </div>
       </div>
