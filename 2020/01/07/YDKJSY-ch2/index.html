@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="YDKJSY-ch2"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">YDKJSY-ch2</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-01-07</span>
+            <span class="time">17:16:06</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/You-Don-t-Know-JS-Yet/">#You Don't Know JS Yet</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="Type-of-Value"><a href="#Type-of-Value" class="headerlink" title="Type of Value"></a>Type of Value</h1><ol>
+<li>Primitive value<br>Number,String,Boolean,Undefined,Null,Symbol<br>Exclusively Symbol:<br>You won’t encounter direct usage of symbols very often in typical JS programs.<br>They’re mostly used in low-level code such as in libraries and frameworks.</li>
+<li>Object<br>Array , Object</li>
+</ol>
+<p><em>Problems: typeof Array , typeof null returns object (JS bug)</em></p>
+<h2 id="Declaring-and-using-values"><a href="#Declaring-and-using-values" class="headerlink" title="Declaring and using values"></a>Declaring and using values</h2><p>Variables are just containers of values.<br>Declarations(5 ways in total)<br>var,let,const<br>function hello(name){} // try{something()}catch(err){console.log(err)} //variable <code>name</code> is the same as <code>err</code><br>“const”s cannot be re-assigned<br>If you stick to using ‘const’ only with primitive values,you’ll never have the confusion of the difference between re-assignment (not allowed) and mutation (allowed)!</p>
+<h1 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h1><h2 id="Function-Declaration-Statements-amp-amp-Function-Expressions"><a href="#Function-Declaration-Statements-amp-amp-Function-Expressions" class="headerlink" title="Function Declaration Statements &amp;&amp; Function Expressions"></a>Function Declaration Statements &amp;&amp; Function Expressions</h2><p>Different from the function declaration form, a function expression <code>is not associated with its identifier until that statement during runtime</code>.<br>JS treats functions as values<br>Since functions are values, they can be assigned as properties on objects:<br>whatToSay.greeting();</p>
+<h1 id="Comparisons"><a href="#Comparisons" class="headerlink" title="Comparisons"></a>Comparisons</h1><p>equality comparsion ===  “strictly equal”  disallow any “coercion”<br>equavalence comparsion == “broderer-ly equal”  <code>loose equality</code> <code>coercive equality</code><br>Similiarity: Both check values’ type and the value<br>Differences: “==” allows coercions while “===” doesn’t.<br>“==”: If types are the same , no coercions will be done(?)<br><em>Typical Cases</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>;   <span class="comment">//false</span></span><br><span class="line"><span class="number">0</span> === <span class="number">-0</span>;      <span class="comment">//true</span></span><br><span class="line"><span class="comment">//loose equality 'bugs'</span></span><br><span class="line"><span class="string">""</span> == <span class="number">0</span>;       <span class="comment">//true</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">false</span>;    <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>Solutions:</p>
+<ol>
+<li>Object.is() <em>suitable for both cases</em></li>
+<li>Number.isNaN() for NaN<br>Humorous understanding: Object.is() ==&gt; “quadruple-equals” ====, the really-really-strict comparison!</li>
+</ol>
+<h2 id="Object-Values-Comparisons"><a href="#Object-Values-Comparisons" class="headerlink" title="Object Values Comparisons"></a>Object Values Comparisons</h2><p>JS doesn’t provide structural equality comparison because it’s almost intractable to handle all the corner cases!<br>Consider the following case:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ];</span><br><span class="line"></span><br><span class="line"><span class="comment">// assignment is by reference-copy, so</span></span><br><span class="line"><span class="comment">// y references the *same* array as x,</span></span><br><span class="line"><span class="comment">// not another copy of it.</span></span><br><span class="line"><span class="keyword">var</span> y = x;</span><br><span class="line"></span><br><span class="line">y === x;              <span class="comment">// true</span></span><br><span class="line">y === [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ];    <span class="comment">// false ,a new Array</span></span><br><span class="line">x === [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ];    <span class="comment">// false</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] === [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]   <span class="comment">//false . two different Arrays.</span></span><br></pre></td></tr></table></figure>
+<p>Functions and objects share the same mechanism of arrays.</p>
+<h2 id="Coercion-order"><a href="#Coercion-order" class="headerlink" title="Coercion order:"></a>Coercion order:</h2><p>valueOf()==&gt; toString() =&gt; Number()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">"10"</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="string">"9"</span>; <span class="comment">//converted into ASCII? </span></span><br><span class="line">x &lt; y;      <span class="comment">// true, watch out!</span></span><br><span class="line"><span class="comment">//Coercions</span></span><br><span class="line">(<span class="literal">undefined</span> == <span class="literal">null</span>)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>); <span class="comment">//  0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">""</span>); <span class="comment">// 0</span></span><br><span class="line"><span class="comment">//anything plus NaN equals NaN</span></span><br><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    i:<span class="number">0</span>,</span><br><span class="line">    valueOf()&#123;         <span class="comment">//Key ,override</span></span><br><span class="line">        <span class="keyword">return</span> ++a.i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(a==<span class="number">1</span>&amp;&amp;a==<span class="number">2</span>&amp;&amp;a==<span class="number">3</span>)&#123;      <span class="comment">//Problem</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Empty arrays</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[]</span><br><span class="line"><span class="built_in">console</span>.log(a.valueOf()) <span class="comment">//[]</span></span><br><span class="line"><span class="built_in">console</span>.log(a.toString()) <span class="comment">//空</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a)) <span class="comment">//0 a.valueOf().toString()has already been invoked secretly</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a.valueOf().toString()))  <span class="comment">//0 </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(a))     <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(![]==<span class="number">0</span>)  <span class="comment">//true.Memory have already been distributed to the Array ,so Arrays always equals true(?)</span></span><br><span class="line">                     <span class="comment">//Mechanism is the same as empty Objects</span></span><br><span class="line"><span class="keyword">let</span> b=&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b.valueOf())  <span class="comment">//&#123;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b.toString())  <span class="comment">//[object Object]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(b))   <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<p>Summary</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([]==<span class="number">0</span>)  <span class="comment">//toString()</span></span><br><span class="line"><span class="built_in">console</span>.log(![]==<span class="number">0</span>)  <span class="comment">//Number(false)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log([]==![])  <span class="comment">//Number("") ,Number(false)</span></span><br><span class="line"><span class="built_in">console</span>.log([]==[])  </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125;==!&#123;&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125;==&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

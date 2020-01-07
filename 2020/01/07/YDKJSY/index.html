@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="YDKJSY"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">YDKJSY</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-01-07</span>
+            <span class="time">17:16:06</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/You-Don-t-Know-JS-Yet/">#You Don't Know JS Yet</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="Paradigm"><a href="#Paradigm" class="headerlink" title="Paradigm"></a>Paradigm</h2><ol>
+<li>Procedural    C(linear progression)</li>
+<li>Objected-oriented Programming  Java/C++ (together in units)</li>
+<li>Functiontional Programming  Haskell(?)<br>(ALL-OR-NOTHING)<br>JS, all the above kinds.</li>
+</ol>
+<h2 id="Backwards-amp-amp-Forwards"><a href="#Backwards-amp-amp-Forwards" class="headerlink" title="Backwards &amp;&amp; Forwards"></a>Backwards &amp;&amp; Forwards</h2><p>Javascript:<br>Backwards means once something is accepted as valid JS, there will not be a future change to the language that causes that code to become invalid JS.<br>HTML/CSS:<br>Forwards means that including a new addition to the language in a program would not cause that program to break if it were run in an older JS engine.<br>(the unrecognized CSS / HTML is skipped over, while the rest of the CSS / HTML would be processed accordingly.)<br>The reason why JS is not being forward-capability:<br>HTML&amp;CSS are declarative.<code>skipp-able,ignore the unrecognized</code><br>But for JS, it’s impossible to ensure that a subsequent part of the program wasn’t expecting the skipped over part to have been processed.</p>
+<h2 id="Jumping-the-Gap"><a href="#Jumping-the-Gap" class="headerlink" title="Jumping the Gap"></a>Jumping the Gap</h2><p>new syntax<br>the transpiler – Babel </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (something) &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//converted version</span></span><br><span class="line"><span class="keyword">var</span> x$<span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> x$<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (something) &#123;</span><br><span class="line">    x$<span class="number">0</span> = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x$<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    x$<span class="number">1</span> = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x$<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Filling-the-Gap"><a href="#Filling-the-Gap" class="headerlink" title="Filling the Gap"></a>Filling the Gap</h2><p>Provide a definition for that missing API method that stands in and acts as if the older environment had already had it natively defined.<br>new API–polyfill</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.prototype.finally) &#123;</span><br><span class="line">    <span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.then(fn,fn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
