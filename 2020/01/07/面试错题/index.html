@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Future Li">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="插曲"/>
+  <meta property="og:title" content="面试错题"/>
   <meta property="og:description" content="What is this?" />
   <meta property="og:site_name" content="Hello!"/>
   <meta property="og:type" content="article" />
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">插曲</p>
+          <p class="title">面试错题</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -103,7 +103,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-12-30</span>
+            <span class="date">2020-01-07</span>
             <span class="time">23:38:11</span>
           </span>
           
@@ -113,15 +113,27 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/You-don-t-know-JS/">#You don't know JS</a>
+<a class="tag" href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3 id="临时"><a href="#临时" class="headerlink" title="临时"></a>临时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var priString &#x3D; &#39;I am a string&#39;;</span><br><span class="line">console.log(typeof priString);            &#x2F;&#x2F;String</span><br><span class="line">console.log( priString instanceof String);  &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">var objString &#x3D; new String(&#39;I am a string&#39;);</span><br><span class="line">console.log(typeof objString);            &#x2F;&#x2F;object</span><br><span class="line">console.log( objString instanceof String);  &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
-<p><em>第一段相当于执行了toString()方法返回的结果</em></p>
+          <ol>
+<li>css属性overflow属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。<br>True<br>解析：<br>参数是scroll时候，必会出现滚动条。<br>参数是auto时候，子元素内容大于父元素时出现滚动条。<br>参数是visible时候，溢出的内容出现在父元素之外。<br>参数是hidden时候，溢出隐藏。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>function Foo() {<br> var i = 0;<br> return function() {<pre><code>console.log(i++);</code></pre> }<br>}</li>
+</ol>
+<p>var f1 = Foo(),<br>    f2 = Foo();<br>f1();<br>f1();<br>f2();<br>输出<br>0,1,0<br>两个变量f1 f2是调用foo()函数之后的结果，foo()函数返回的是创建的一个匿名函数，因此f1 f2应该是两个不同的函数对象<br><code>返回的是匿名函数,所以指向的是两个不同的函数对象?</code></p>
+<hr>
+<ol start="3">
+<li>var bb = 1;<br>function aa(bb) {<br> bb = 2;<br> alert(bb);<br>};<br>aa(bb);<br>alert(bb);<br>输出<br>2,1<br>解析:形参的问题,函数内的bb和外部的bb并没有关系<br>function aa(c){c=2;alert(c);}<br>aa(bb)<br>alert(bb)<br>其实跟原来是一样的,bb跟全局的相同只是为了考</li>
+</ol>
+<hr>
+<p>4.</p>
 
         </div>
       </div>

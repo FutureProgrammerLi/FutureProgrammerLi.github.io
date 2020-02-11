@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="YDKJSY-rest"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">YDKJSY-rest</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-01-08</span>
+            <span class="time">23:38:11</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/YDKJSY/">#YDKJSY</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h1><ol>
+<li>Iterables: Strings, Arrays, Maps, Sets and otherts.</li>
+<li>Three default iterators<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="comment">//for(i of arr.entries())  Objects/Maps default iterator.Return tuples that contain both keys and values.</span></span><br><span class="line"><span class="comment">//for(i of arr.keys())   iterates the key names. Iterating index for Arrays.</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">of</span> arr.values()) <span class="comment">//by default.Same as (i of arr)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Beware of for…of /for … in …<br>for…of can only be used on iterables, invoking its iterator repeatedly.<br>When for…in is used on an array , <em>it searches for the index.</em>If the index exists in the array, <code>it returns true.</code><br>When used in an object, <code>it returns the keys of the object.</code></li>
+</ol>
+<h1 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h1><p>Definition:</p>
+<blockquote>
+<p>Closure is the ability of a function to remember and continue to access variables defined outside its scope, even when that function is executed in a different scope.</p>
+</blockquote>
+<p>Characteristics:</p>
+<ol>
+<li>Objects do not have closures.</li>
+<li>To observe a closure, you must <code>execute a function in a different scope</code> than where that function was originally defined.<br>Consider:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">step = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">increaseCount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        count = count + step;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> incBy1 = counter(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> incBy3 = counter(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">incBy1();       <span class="comment">// 1</span></span><br><span class="line">incBy1();       <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">incBy3();       <span class="comment">// 3</span></span><br><span class="line">incBy3();       <span class="comment">// 6</span></span><br><span class="line">incBy3();       <span class="comment">// 9</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><em>incBy1 and incBy3 are two different instances.They own different inner variables.</em></p>
+<p><code>Take care</code>: It’s not necessary that the outer scope be a function.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [idx,btn] <span class="keyword">of</span> buttons.entries()) &#123;</span><br><span class="line">    btn.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">`Clicked on button (<span class="subst">$&#123; idx &#125;</span>)!`</span>);   <span class="comment">//The Inner function closes over the outer variable idx.</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><p><em>Three ways of changin the pointer of <code>this</code></em></p>
+<ol>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">classroom</span>(<span class="params">teacher</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">study</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(</span><br><span class="line">            <span class="string">`<span class="subst">$&#123; teacher &#125;</span> wants you to study <span class="subst">$&#123; <span class="keyword">this</span>.topic &#125;</span>`</span></span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> topic = someSubjects;</span><br><span class="line"><span class="keyword">var</span> assignment = classroom(<span class="string">"Kyle"</span>);  <span class="comment">//`this` refers to the global object window.</span></span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> homework = &#123;</span><br><span class="line">    topic: <span class="string">"JS"</span>,</span><br><span class="line">    assignment: assignment</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">homework.assignment();</span><br><span class="line"><span class="comment">// Kyle wants you to study JS</span></span><br><span class="line"><span class="comment">//`this` refers to the homework object</span></span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> otherHomework = &#123;</span><br><span class="line">    topic: <span class="string">"Math"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">assignment.call(otherHomework);</span><br><span class="line"><span class="comment">// Kyle wants you to study Math</span></span><br><span class="line"><span class="comment">// Only to pass the parameter topic to the assignment function</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><em>Benefits of using <code>this</code></em>compared to the closures(?):<br>The ability to more flexibly re-use a single function with data from different objects;<br>Dynamic-context;<br>A function that closes over a scope can never reference a different scope or set of variables.<br>Better re-use in prototype chains.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

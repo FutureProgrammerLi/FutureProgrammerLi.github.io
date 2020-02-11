@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="YDKJSY-book2"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">YDKJSY-book2</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-01-11</span>
+            <span class="time">23:38:11</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/book2/">#book2</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="State"><a href="#State" class="headerlink" title="State"></a>State</h1><h2 id="Storing-values-in-variables-and-retrieving-them-later"><a href="#Storing-values-in-variables-and-retrieving-them-later" class="headerlink" title="Storing values in variables and retrieving them later."></a><code>Storing values in variables and retrieving them later.</code></h2><h1 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h1><p>Functions are values,meaning they can be assigned and passed around like strings and values.<br>Since <em>these functions hold and access variables, they maintain their original scope</em> no matter where in the program the functions are eventually executed.</p>
+<ol>
+<li>Tokenizing/Lexing</li>
+<li>Parsing (Abstract Syntax Tree)<br>var a =2;<br>Variation Declaration ,Identifier , Assignment Expression , Numeric Liberal</li>
+<li>Code Generation</li>
+</ol>
+<h1 id="Parsing-Compilation-before-execution"><a href="#Parsing-Compilation-before-execution" class="headerlink" title="Parsing/Compilation before execution"></a>Parsing/Compilation before execution</h1><p>Three observable facts：</p>
+<ol>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greeting = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(greeting);  <span class="comment">//Syntax Error with no greeting being consoled.</span></span><br><span class="line">greeting = .<span class="string">"Hi"</span>;</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"Howdy"</span>);</span><br><span class="line">saySomething(<span class="string">"Hello"</span>,<span class="string">"Hi"</span>);    <span class="comment">//Same that no Howdy is consoled</span></span><br><span class="line"><span class="comment">// Uncaught SyntaxError: Duplicate parameter name not allowed in this context</span></span><br><span class="line"><span class="comment">//Knowing duplciated parameters which are constrained by the inner strict mode , before execution,</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saySomething</span>(<span class="params">greeting,greeting</span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;                 </span><br><span class="line">    <span class="built_in">console</span>.log(greeting);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saySomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> greeting = <span class="string">"Hello"</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        greeting = <span class="string">"Howdy"</span>;   <span class="comment">//knowing there will be a 'let' declaration though no hoisting  is in the scope here.</span></span><br><span class="line">        <span class="keyword">let</span> greeting = <span class="string">"Hi"</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(greeting);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//What's being indicated is that the greeting variable for that statement is the one from the next line,let greeting = "Hi",</span></span><br><span class="line"><span class="comment">//  rather than from the previous statement var greeting = "Hello".</span></span><br><span class="line">saySomething();</span><br><span class="line"><span class="comment">// ReferenceError: Cannot access 'greeting' before initialization</span></span><br></pre></td></tr></table></figure>
+An evidence protests the idea that ‘let’ does not hoist the declaration.Otherwise, no error would be thrown.</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
