@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Vue-Router"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Vue-Router</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-04-28</span>
+            <span class="time">23:25:11</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Vue/">Vue</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vue-Router/">#Vue-Router</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          
+        <h3><span id="vue-router">
+          vue-router</span></h3>
+      <ol>
+<li>Dynamic Route Matching<br>Dynamic Route Matching ==&gt;      { path:/user/:id , component:User}<br>both /user/foo and /user/bar  will map to the same route.</li>
+</ol>
+<p><strong>No component reloaded=&gt; No component life cycle called.</strong><br>e.g.  from /user/foo to /user/bar     =&gt; more efficiently but have to use other methods to detect the params changes.</p>
+<p>Two methods to detect&amp;react to route params changes:<br>(1) watch: { $route(to,from) { … //react to route changes }  }<br>(2) beforeRouteUpdate(to , from , next ){ .. }        //always remember to call the next() function</p>
+<p>All matched parts will turned to be the value of this.$route.params  ==&gt;     { id:’foo’}         {id:’bar’}<br>*Allows multiple dynamic segments</p>
+<p>Using asterisk * to <code>match all / catch 404 error</code> { path:’<em>‘ }       || { path:’/user-</em>‘}<br>A param named pathMatch will be automatically added to  this.$route to tell the matching part.</p>
+<ul>
+<li>ROUTES RUN IN DEFINIED ORDER. (MATCHING PRIORITY)</li>
+<li>ALWAYS PUT THE ERROR MATCHING ROUTE AT THE END OF THE WHOLE APP.<br>e.g /user-halo      ==&gt; and the value of ‘this.$route.params.pathMatch’ is ‘halo’ ;        *=&gt;halo<br>(Internal: using path-to-regexp module, for more matching patterns, check out its docs.)<br>More:  Make the params optional by adding a questionmark ? =&gt; /optional/foo?  or       /optional/(foo/)?bar<br>Matched only if ids are numbers  =&gt; /foo/:id(\d+)</li>
+</ul>
+<ol start="2">
+<li><p>Nested Routing<br>Nested path that starts with ‘/‘ will be treated as the root path. Therefore, <strong>there is no need to redeclare the root path.</strong><br>Not clear: { path:’/user/:id’ , component:User, children:[ { path:’’, component: Userhome }]}<br>When we visit /user/foo,  components User and Userhome will both be rendered  ==&gt;User for /user/foo and Userhome for /user/ ??usage?</p>
+</li>
+<li><p>Programmatic Navigations<br>Declarative                                                      Programmatic<br><router-link :to="...">                                 this.$router.push( … )<br><router-link :to="..." replace>                         this.$route.replace( … )</router-link></router-link></p>
+</li>
+</ol>
+<ul>
+<li>DIFFERENCES:  ‘push’ <em>pushes</em> a new entry into the history stack while ‘replace’ navigates without pushing a new history entry–it <em>replaces</em> the current entry.</li>
+</ul>
+<p>Params: push/replace(location, onComplete? , onAbort?)<br>e.g this.$router.push({ path:’/home’})    push({name:’pathName’ , params:{ userId:123}})   push({ path:’/pathName’ , query:{plan:’private’}})<br>names  =&gt; params   //using post method?<br>path =&gt; query         //get method? Params are ignored if used in this case.</p>
+<ul>
+<li>SAME RULES APPLY TO <route-link :to="..."> and replace(…) METHOD</route-link></li>
+</ul>
+<p>onComplete/ onAbort : Called when the navigation either <em>successfully completed or aborted</em>.(Can be ommited)</p>
+<ol start="4">
+<li>Named Routes / Named Views </li>
+</ol>
+<p><strong>To identify a route / view with a name</strong> </p>
+<p>Named views are needed when multiple views are shown at the same time.<br>(To show multiple views, multiple <router-view> -s are needed)<br>A view without a name will be given <code>default</code> as its name.</router-view></p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- template --&gt;</span><br><span class="line">&lt;router-view <span class="class"><span class="keyword">class</span></span>=<span class="string">"view one"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span>  <span class="comment">//default</span></span><br><span class="line">&lt;router-view <span class="class"><span class="keyword">class</span></span>=<span class="string">"view two"</span> name=<span class="string">"a"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span> <span class="comment">//a=&gt;component Bar</span></span><br><span class="line">&lt;router-view <span class="class"><span class="keyword">class</span></span>=<span class="string">"view three"</span> name=<span class="string">"b"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span> <span class="comment">//b=&gt;component Baz</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//vue</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,</span><br><span class="line">      components: &#123;</span><br><span class="line">        <span class="keyword">default</span>: Foo,</span><br><span class="line">        a: Bar,</span><br><span class="line">        b: Baz</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<ol start="5">
+<li>Redirect &amp; Alias<br>Property ‘redirect’ receives a(n) path / object or even a function:<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">routes:[&#123;</span><br><span class="line">        path:<span class="string">'/a'</span>, <span class="attr">redirect</span>:<span class="string">'/b'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path:<span class="string">'/c'</span>, <span class="attr">redirect</span>:&#123; <span class="attr">name</span>:<span class="string">'whatever'</span> &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        path:<span class="string">'/d'</span>, <span class="attr">redirect</span>: <span class="function">(<span class="params">to</span>)=&gt;</span> &#123; ... &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br></pre></td></tr></table></div></figure>
+</li>
+</ol>
+<ul>
+<li>Navigation Guards are not applied on the redirect routes.</li>
+</ul>
+<ul>
+<li>An alias of /a as /b means when the user visits /b, the URL remains /b, but it will be matched as if the user is visiting /a.<br>To reach the same route with different path ?</li>
+</ul>
+<ol start="6">
+<li>Passing props to Route Components</li>
+</ol>
+<p><strong>To decouple $route with props</strong></p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//before</span></span><br><span class="line"><span class="keyword">const</span> User = &#123;</span><br><span class="line">    template:<span class="string">`&lt;div&gt; &#123;&#123;$route.params.id&#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//after</span></span><br><span class="line"><span class="keyword">const</span> Client = &#123;</span><br><span class="line">    props:[<span class="string">'id'</span>],</span><br><span class="line">    template:<span class="string">`&lt;div&gt;&#123;&#123;id&#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//by setting:</span></span><br><span class="line">routes = [</span><br><span class="line">    &#123;</span><br><span class="line">        path:<span class="string">'/user/:id'</span> , <span class="attr">component</span>:A , <span class="attr">props</span>:<span class="literal">true</span></span><br><span class="line">    &#125;, <span class="comment">//Boolean mode</span></span><br><span class="line"><span class="comment">//MIND: you have to define the 'props' for each named view</span></span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/user/:id'</span>,</span><br><span class="line">      components: &#123; <span class="attr">default</span>: User, <span class="attr">sidebar</span>: Sidebar &#125;,</span><br><span class="line">      props: &#123; <span class="attr">default</span>: <span class="literal">true</span>, <span class="attr">sidebar</span>: <span class="literal">false</span> &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123; </span><br><span class="line">        path: <span class="string">'/promotion/from-newsletter'</span>, </span><br><span class="line">        component: Promotion, </span><br><span class="line">        props: &#123; <span class="attr">newsletterPopup</span>: <span class="literal">false</span> &#125; </span><br><span class="line">    &#125;, <span class="comment">//Object mode . To keep the prop as-is.(?)</span></span><br><span class="line">    &#123; </span><br><span class="line">        path: <span class="string">'/search'</span>, </span><br><span class="line">        component: SearchUser, </span><br><span class="line">        props: <span class="function">(<span class="params">route</span>) =&gt;</span> (&#123; <span class="attr">query</span>: route.query.q &#125;) </span><br><span class="line">    &#125; <span class="comment">//Function mode.</span></span><br><span class="line">    <span class="comment">//e.g the URL /search?q=vue will pass object &#123;query:vue&#125; to the component SearchUser</span></span><br><span class="line">]</span><br></pre></td></tr></table></div></figure>
+
+<ol start="7">
+<li>Modes of vue-router<ul>
+<li>All three modes : Hash mode , HTML5 Histroy mode, Abstract mode</li>
+<li>Using Hash mode by default. To change, add the statement : <code>mode:history</code>.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Hash mode will <code>only change the value of hash</code>.<br>Process: $router.push() <pre><code>--&gt;HashHistory.push() 
+--&gt;History.transitionTo() 
+--&gt;History.updateRoute() 
+--&gt;{app._route = route} 
+--&gt;vm.render()</code></pre></li>
+<li>HTML5 Histroy mode will change the request path,the value of location.pathname.</li>
+</ul>
+<p><strong>Problem: users will get a 404 error if they access a non-exist page.</strong><br>To avoid that, add a catch-all route to show a 404 page:</p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">routes = [</span><br><span class="line">    &#123;</span><br><span class="line">        path:* , <span class="attr">component</span>:ErrorPage</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></div></figure>
+
+<ol start="8">
+<li>Advanced: Navigation Guards<br>Usage: To guard navigations either by redirecting it or canceling it.<br>Three scopes: globally / per-route / in-component<br>Use <code>beforeRouteUpdate</code> or <code>watch:{$route(to,from){...}}</code> object to observe the changes of params and query(They will not trigger enter/leave guards)
+        <h4><span id="globally-routerbeforeeachtofromnextgt-routeraftereach-routerbeforeresolve">
+          Globally :router.beforeEach((to,from,next)=&gt;{…}) / router.afterEach() / router.beforeResolve()</span></h4>
+      </li>
+<li>1 beforeEach()  //No state detect<br>Timing: all navigations will be considered <code>pending</code> state before all hooks have been resovled (component hooks or what else?)<br>Params: (1) to /from : The target / current route , the route navigating to / navigated from . <pre><code>(2) next : the function must be called to resolve the hook(?)
+ (2.1) next(): move to the next hook.If no hooks are left , `confirms` the nav.
+ (2.2) next(&apos;/&apos;) or next({path:&apos;/&apos;}): redirect to the root path defined in the routes.
+ (2.3) next(false) :abort(deny) the navigation.
+ (2.4) next(error) : The error will be passed to router.onError(error). A function defined by user. (vue2.4+)</code></pre>Make sure the next() function is called only once,otherwise it will be considered as <code>BAD</code>.</li>
+</ol>
+<p>8.2 afterEach((to,from)=&gt;{ … })</p>
+<ul>
+<li>Called after navigating away</li>
+</ul>
+<p>8.3 beforeResolve()</p>
+<ul>
+<li>It will be called once any navigation is going to be resolved. (Only resovled/confirmed navs)</li>
+</ul>
+
+        <h4><span id="per-route-guard-beforeenter">
+          Per-Route Guard: beforeEnter()</span></h4>
+      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/foo'</span>,</span><br><span class="line">      component: Foo,</span><br><span class="line">      beforeEnter: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4><span id="in-component-guards">
+          In-Component Guards</span></h4>
+      <ul>
+<li>beforeRouteEnter  <code>Called before the route that renders this component is confirmed</code><pre><code>**`this` does not refer to the component, which is not even created!**
+**DIFFERS FROM THE OTHER TWO**
+SOLUTION: By passing it a third params *next*.
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteEnter (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</span><br><span class="line"><span class="comment">// access to component instance via `vm`</span></span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></code></pre></li>
+<li>beforeRouteUpdate  <code>Called when the route changes , but the component is reused</code><pre><code>e.g:For a route with dynamic params `/foo/:id`, when we
+ navigate between `/foo/1` and `/foo/2`, the same `Foo` component instance
+ will be reused, and this hook will be called when that happens.</code></pre></li>
+<li>beforeRouteLeave  <code>Called when the route is about to be navigated away from</code><pre><code>*Used to avoid leaving with not saving any edit info.*</code></pre></li>
+</ul>
+<p>The full flow of navigation (C+V , In-component level first , global guards follow)</p>
+<ol>
+<li><p>Navigation triggered.</p>
+</li>
+<li><p>Call <code>beforeRouteLeave</code> guards in deactivated components.</p>
+</li>
+<li><p>Call global <code>beforeEach</code> guards.</p>
+</li>
+<li><p>Call beforeRouteUpdate guards in reused components.</p>
+</li>
+<li><p>Call beforeEnter in route configs.</p>
+</li>
+<li><p>Resolve async route components.</p>
+</li>
+<li><p>Call beforeRouteEnter in activated components.</p>
+</li>
+<li><p>Call global beforeResolve guards.</p>
+</li>
+<li><p>Navigation confirmed.</p>
+</li>
+<li><p>Call global afterEach hooks.</p>
+</li>
+<li><p>DOM updates triggered.</p>
+</li>
+<li><p>Call callbacks passed to next in beforeRouteEnter guards with instantiated instances.</p>
+</li>
+</ol>
+<p>Self-memorize: in=&gt;glo=&gt;in=&gt;per=&gt;in=&gt;glo=&gt;glo=&gt;in</p>
+<p>TO-DOS: transitions &amp; data fetching &amp; scroll behavior &amp; lazy loading</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

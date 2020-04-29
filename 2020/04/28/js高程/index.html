@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="BOM"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">BOM</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-04-28</span>
+            <span class="time">23:25:11</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E4%B9%A6%E6%9C%AC/">书本</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">#Javascript高级程序设计</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2><span id="location对象">location对象</span></h2><ul>
+<li>提供与当前窗口加载的文档有关的信息</li>
+<li>URL解析, 导航功能</li>
+<li>window.location , document.location 引用的是同一个对象</li>
+</ul>
+<p>属性列举(由长到短,由左到右)</p>
+<ol>
+<li>href: 返回<code>完整URL</code>,包括哈希值. location.toString方法也返回这个值</li>
+<li>origin: 协议名和主机名 (<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>)</li>
+<li>protocol: 页面使用的协议, 一般为http / https</li>
+<li>host: 主机名和端口号(如果有的话,否则仅返回主机名)</li>
+<li>hostname: 主机名</li>
+<li>port: 端口号</li>
+<li>pathname: 请求路径 /user/xxx</li>
+<li>search: 请求参数, 包括问号</li>
+<li>hash: 哈希值, 包括井号</li>
+</ol>
+<p><strong>修改任意一个值都可以实际操作URL,发出HTTP请求</strong></p>
+<p>方法列举:</p>
+<ol>
+<li>assign([URL])  <strong>必须有http, www可以没有</strong></li>
+</ol>
+<ul>
+<li>location.assign(“<a href="http://baidu.com&quot;" target="_blank" rel="noopener">http://baidu.com&quot;</a>)<br>等价于: window.location = “<a href="http://baidu.com&quot;" target="_blank" rel="noopener">http://baidu.com&quot;</a><pre><code>location.href = &quot;http://baidu.com&quot;</code></pre></li>
+</ul>
+<ol start="2">
+<li><p>replace([URL])<br>位置改变而不生成新纪录,无法后退到被替代的页面.</p>
+</li>
+<li><p>reload() 接收true/false为参数,默认为false<br>重新加载当前页面. 设置为true,则强制从服务器重新加载.</p>
+<pre><code>设置为false,则可能会从缓存中重新加载(没有变化的情况下)</code></pre></li>
+</ol>
+<h2><span id="history对象">History对象</span></h2><p>属性: </p>
+<ul>
+<li>length: 历史记录的数量,是个number.</li>
+</ul>
+<p>方法:<br>1.go([String/Number]): </p>
+<ul>
+<li>Number: 正数是向前,负数是向后退</li>
+<li>String: <strong>跳转到历史记录中包含该字符串的第一个位置</strong> </li>
+</ul>
+<p><em>Chrome里面字符串无效?(用的H5 history)</em><br>2.forward() / back() 向前进或后退. 接受负数,但自动转为正数(?)</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
