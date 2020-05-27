@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-04-29</span>
-            <span class="time">22:04:40</span>
+            <span class="time">12:28:28</span>
           </span>
           
           <!--  Categories  -->
@@ -126,78 +126,50 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="html"> HTML</span></h2>
-<ol>
-<li>HTML语义化的好处?<br>
-(1) 页面结构清晰,可读性高. 便于团队的维护和开发<br>
-(2) 有利于SEO (Search Engine Optimization),提高网页流量(?)<br>
-(3) 能提高页面渲染速度(DOM Tree渲染), 浏览器不用花时间判断标签名是否符合W3C标准.(老熟人了)</li>
+          <h2><span id="html">HTML</span></h2><ol>
+<li>HTML语义化的好处?<br> (1) 页面结构清晰,可读性高. 便于团队的维护和开发<br> (2) 有利于SEO (Search Engine Optimization),提高网页流量(?)<br> (3) 能提高页面渲染速度(DOM Tree渲染), 浏览器不用花时间判断标签名是否符合W3C标准.(老熟人了)</li>
 </ol>
-<p>(TODO 浏览器页面渲染过程)<br>
-===</p>
-<h2><span id="css"> CSS</span></h2>
-<ol>
-<li>清除浮动的方法:<br>
-(1)父元素中设置 overflow:hidden;<br>
-(2)浮动元素结尾增加空标签(或空的块元素). 样式设置clear:both;<br>
-(3)父元素中设置: .clearfix:after{content:’’; display:table; clear:both;}</li>
-<li>隐藏一个元素的方法:<br>
-(1)display: none;<br>
-(2)visibility:hidden; <em>visibility:collapse,一般元素,等价于visibility:hidden.table相关元素则会与display:none效果一样.</em></li>
-</ol>
-<ul>
-<li>区别是(1)不会分配空间,(2)会<br>
-(3)opacity:0;</li>
+<p>(TODO 浏览器页面渲染过程)<br>    ===</p>
+<h2><span id="css">CSS</span></h2><ol>
+<li>清除浮动的方法:<br> (1)父元素中设置 overflow:hidden;<br> (2)浮动元素结尾增加空标签(或空的块元素). 样式设置clear:both;<br> (3)父元素中设置: .clearfix:after{content:’’; display:table; clear:both;}</li>
+<li>隐藏一个元素的方法:<br> (1)display: none;<br> (2)visibility:hidden; <em>visibility:collapse,一般元素,等价于visibility:hidden.table相关元素则会与display:none效果一样.</em><ul>
+<li>区别是(1)不会分配空间,(2)会<br>(3)opacity:0;</li>
 </ul>
-<ol start="3">
-<li>元素置中的方法:<br>
-3.1 水平居中</li>
+</li>
+<li>元素置中的方法:</li>
+<li>1 水平居中<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 方法一 */</span></span><br><span class="line"><span class="comment">/* 块元素 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;  <span class="comment">/* 宽度是必须的 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 行内元素 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 或者强行改display属性,再对应使用(?意义呢?) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 方法二 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex; </span><br><span class="line">    <span class="attribute">justify-content</span>:center; <span class="comment">/*元素自身样式上*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 方法一 */</span></span><br><span class="line"><span class="comment">/* 块元素 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;  <span class="comment">/* 宽度是必须的 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 行内元素 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 或者强行改display属性,再对应使用(?意义呢?) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 方法二 */</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex; </span><br><span class="line">    <span class="attribute">justify-content</span>:center; <span class="comment">/*元素自身样式上*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.2 水平垂直居中</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 方法一、 flex布局 */</span></span><br><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">justify-content</span>:center;</span><br><span class="line">    <span class="attribute">align-items</span>:center;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 方法二、父相子绝 */</span></span><br><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">translate</span>(-<span class="number">50%</span>,-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 方法三、同理于2 */</span></span><br><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>:auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 方法四、table */</span></span><br><span class="line"><span class="selector-class">.parent</span>&#123; </span><br><span class="line">    <span class="attribute">display</span>:table-cell;</span><br><span class="line">    <span class="attribute">vertical-align</span>:center;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="4">
-<li>
-<p>选择符有哪些?优先级如何?权重计算又是怎样的?<br>
-ID选择器,类/伪类选择器,属性选择器,元素/伪元素选择器,通配符选择器<br>
-#id,.class/:pseudoClass  [attribute]  div,         *<br>
-!important &gt; 行内样式 &gt; # &gt; . &gt; element &gt; *<br>
-最大           1000    100 10    1        0<br>
-例如 body #darkside .sith p {}     权重(1+100+10+1=112)<br>
-li.red.level{}      权重(1+10+10=21)<br>
-延申用法:<br>
-4.1 div.container=&gt; container类里的div<br>
-4.2 .container div {} =&gt; 空格用法.container里面的所有div.<strong>与上面的区别是不包括container本身</strong><br>
-4.3 .container &gt; div =&gt; container里面<strong>第一层</strong>的所有div<br>
-4.4 .container + div =&gt; <code>与container同一层的,紧接着的那一个div</code>, 如果紧跟的不是div元素,则该样式会被忽略<br>
-4.5 .container ~ div =&gt; 与container同一层的,后面所有的div.<code>紧跟的可以不是div,样式也不会被忽略</code><br>
-4.6 属性选择器 a[title=“sth”]{} =&gt; 带有属性title=sth的a标签</p>
+<li><p>选择符有哪些?优先级如何?权重计算又是怎样的?<br>ID选择器,类/伪类选择器,属性选择器,元素/伪元素选择器,通配符选择器<br>#id,.class/:pseudoClass  [attribute]  div,         *<br>!important &gt; 行内样式 &gt; # &gt; . &gt; element &gt; *<br>最大           1000    100 10    1        0<br>例如 body #darkside .sith p {}     权重(1+100+10+1=112)<br>  li.red.level{}      权重(1+10+10=21)<br>延申用法:</p>
 </li>
-<li>
-<p>盒子模型都有哪些?<br>
-(1)标准盒模型(content-box)<br>
-(2)IE盒子模型(border-box)<br>
-<strong>区别是(1)按内容大小计算盒子大小,内容改变会把盒子撑大. (2)设置的宽高就是盒子的大小,不随内容改变.</strong></p>
+<li><p>1 div.container=&gt; container类里的div</p>
 </li>
-<li>
-<p>常见属性取值:<br>
-display: block / inline / inline-block / flex / none (/ list-item / table / inline-table)<br>
-(<strong>inline元素无法设定宽高.inline-block既可以设定元素宽高,又可以与其它元素并排</strong>)<br>
-position: static(默认) / relative / absolute / fixed / sticky / inherit (page?)</p>
+<li><p>2 .container div {} =&gt; 空格用法.container里面的所有div.<strong>与上面的区别是不包括container本身</strong></p>
+</li>
+<li><p>3 .container &gt; div =&gt; container里面<strong>第一层</strong>的所有div</p>
+</li>
+<li><p>4 .container + div =&gt; <code>与container同一层的,紧接着的那一个div</code>, 如果紧跟的不是div元素,则该样式会被忽略</p>
+</li>
+<li><p>5 .container ~ div =&gt; 与container同一层的,后面所有的div.<code>紧跟的可以不是div,样式也不会被忽略</code></p>
+</li>
+<li><p>6 属性选择器 a[title=”sth”]{} =&gt; 带有属性title=sth的a标签</p>
+</li>
+<li><p>盒子模型都有哪些?<br> (1)标准盒模型(content-box)<br> (2)IE盒子模型(border-box)</p>
 </li>
 </ol>
+<p><strong>区别是(1)按内容大小计算盒子大小,内容改变会把盒子撑大. (2)设置的宽高就是盒子的大小,不随内容改变.</strong><br>6. 常见属性取值:<br>display: block / inline / inline-block / flex / none (/ list-item / table / inline-table)<br>            (<strong>inline元素无法设定宽高.inline-block既可以设定元素宽高,又可以与其它元素并排</strong>)<br>position: static(默认) / relative / absolute / fixed / sticky / inherit (page?)</p>
 <ul>
-<li>定位原点:relative相对自身本应的位置.<br>
-absolute相对父元素(?向上最近一级position为relative或absolute的父元素)的左上角.<br>
-box-sizing: content-box(默认) / border-box</li>
+<li>定位原点:relative相对自身本应的位置.<pre><code>absolute相对父元素(?向上最近一级position为relative或absolute的父元素)的左上角.</code></pre>box-sizing: content-box(默认) / border-box</li>
 </ul>
 <ol start="7">
-<li>为什么要初始化CSS样式?<br>
-浏览器兼容问题,某些标签的默认值会因浏览器不同而不同.</li>
+<li>为什么要初始化CSS样式?<br>浏览器兼容问题,某些标签的默认值会因浏览器不同而不同.</li>
 </ol>
 <p>===</p>
-<h2><span id="js"> JS</span></h2>
-<p>一句总结一份题</p>
+<h2><span id="js">JS</span></h2><p>一句总结一份题</p>
 <ul>
 <li>箭头函数总是指向上一层的非箭头函数且不可改变, obj = {a:1 , prop:function return ()=&gt;{console.log(this.a)} } //解决方法</li>
 <li>实例无法调用静态方法;</li>
@@ -205,36 +177,85 @@ box-sizing: content-box(默认) / border-box</li>
 <li>数组push方法返回数组长度length;</li>
 <li>对象[Symbol]属性不可枚举,可用Object.getOwnPropertiesSymbols()列举.</li>
 </ul>
-<h2><span id="vue"> Vue</span></h2>
-<ol>
-<li>组件传值<br>
-1.1父传子:<br>
-父组件 <son :sondata="parentData"> ;<br>
-子组件 props:{sonData:{type:Number, required:true , default:10}} //props:[‘parentData’]<br>
-或不用在props注册,直接$attrs.sonData==&gt;值则为parentData<br>
-// props / $attrs / $refs  / $children<br>
-1.2子传父:<br>
-子组件: this.emit(‘sonFunc’,sonData);<br>
-父组件 &lt;son @sonFunc=parentFunc(sonData)&gt; 在parentFunc里面就可以获取子组件的值<br>
-1.3 兄弟组件</son></li>
+<h2><span id="vue">Vue</span></h2><ol>
+<li>组件传值</li>
+<li>1父传子:<br>父组件 <son :sondata="parentData"> ;<br>子组件 props:{sonData:{type:Number, required:true , default:10}} //props:[‘parentData’]<br>或不用在props注册,直接$attrs.sonData==&gt;值则为parentData<br>// props / $attrs / $refs  / $children</son></li>
+<li>2子传父:<br>子组件: this.emit(‘sonFunc’,sonData);<br>父组件 &lt;son @sonFunc=parentFunc(sonData)&gt; 在parentFunc里面就可以获取子组件的值</li>
+<li>3 兄弟组件</li>
 </ol>
 <ul>
-<li>emit也适用<br>
-$parent / $root 借助祖先组件通信<br>
-provide(){<br>
-return {prop}<br>
-}<br>
-inject:[‘prop’]  //所有后代都可以获取</li>
+<li>emit也适用<br>$parent / $root 借助祖先组件通信<br>provide(){<br>  return {prop}<br>}<br>inject:[‘prop’]  //所有后代都可以获取</li>
 </ul>
 <ol start="2">
-<li>v-slot<br>
-匿名插槽 <component-a v-slot:default> ==&gt; <slot></slot><br>
-具名插槽 <template v-slot:content>… </template>  ==&gt; <slot name="content"></slot><br>
-作用域插槽: 子组件的数据经父组件处理输出最终结果<br>
-子组件<slot name="sth" :xx="xx">   父组件 <component-a v-slot:sth="props_slot">  </component-a><br>
-(第一个xx是子组件的数据,第二个呢?)(props_slot是个对象)<br>
-第一个是给props_slot对象添加属性的键,第二个是子组件的值?<br>
-如果:abc = “xx” 则props_slot.abc =  子组件xx的值</slot></component-a></li>
+<li><p>v-slot<br> 匿名插槽 <component-a v-slot:default> ==&gt; <slot></slot><br> 具名插槽 <template v-slot:content>… </template>  ==&gt; <slot name="content"></slot><br> 作用域插槽: 子组件的数据经父组件处理输出最终结果<br> 子组件<slot name="sth" :xx="xx">   父组件 <component-a v-slot:sth="props_slot">  </component-a><br> (第一个xx是子组件的数据,第二个呢?)(props_slot是个对象)<br> 第一个是给props_slot对象添加属性的键,第二个是子组件的值?<br> 如果:abc = “xx” 则props_slot.abc =  子组件xx的值</slot></component-a></p>
+</li>
+<li><p>v-if 和 v-show的区别?</p>
+<p>相同: 都是控制元素是否显示     </p>
+<p>不同: 1.v-if根据条件选择性渲染,DOM树上甚至可能不出现该元素.</p>
+<p>​             v-show修改display的值为none.</p>
+<p>​        2.因此: v-if有<strong>更高的切换成本</strong>,适合改变可能性小的场景;v-show<strong>重复切换成本较低,初次渲染成本高</strong>,适合重复切换的场景</p>
+<p>​        3.v-if组件会有挂载/卸载过程,数据不会保留(?) v-show明显不会不保存数据</p>
+</li>
+<li><p>vue如何获取DOM?</p>
+<p>document.getElementById / ByClass / ByTagName      …</p>
+<p>给元素添加ref , Vue2.x     this.$refs.refName      ||    Vue3.0  同样是ref , 但在setup中创建同名的空ref之后导出该ref</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Vue2.0</span></span><br><span class="line"><span class="keyword">this</span>.$refs.formRef</span><br><span class="line"><span class="comment">//Vue3.0</span></span><br><span class="line">setup()&#123;</span><br><span class="line">    <span class="keyword">const</span> formRef = ref()  <span class="comment">//常量名必须跟DOM中ref的值相同</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        formRef</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>vue常用指令</p>
+<p>v-on/v-bind/v-model/v-show/v-if/v-else/v-for/v-html/v-text/v-cloak/v-once/v-pre</p>
+</li>
+</ol>
+<p>​       v-cloak用来防止闪烁!!!??</p>
+<p>​       v-on绑定多个方法:</p>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> </span><br><span class="line">v-on=<span class="string">"&#123;</span></span><br><span class="line"><span class="string">input:"</span>inputMethod<span class="string">",</span></span><br><span class="line"><span class="string">blur:"</span>blurMethod<span class="string">",</span></span><br><span class="line"><span class="string">focus:"</span>focusMethod<span class="string">"</span></span><br><span class="line"><span class="string">&#125;"</span></span><br><span class="line"><span class="comment">//或者@input...@keyup ...@focus</span></span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputMethod</span>/<span class="title">blurMethod</span>/<span class="title">focusMethod</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>v-for 为什么要使用key?</p>
+<p>给节点添加一个唯一标识,避免在添加或删除时出现错误</p>
+<blockquote>
+<p>Usage 1:A hint for Vue’s virtual DOM algorithm to identify VNodes when diffing the new list of nodes againt old lists.</p>
+<p>Usage 2:It can also be used to force replacement of an element/component instead of reusing it.(?)</p>
+<p>Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible.</p>
+</blockquote>
+</li>
+</ol>
+<p>​      不用key,li可能会被直接重用.例子</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3973616-ff6a298524fd39dc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp" alt="img"></p>
+<p>​        添加之后:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3973616-281b0c8ae857f17f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/534/format/webp" alt="img"></p>
+<ol start="7">
+<li><p>data里面为什么必须是一个函数?</p>
+<p>Vue2 中不return一个函数,多个组件共用同一个状态,任意组件修改了data里的值,所有组件的对应值也会被改变.       //<strong>保护状态,确保每个组件都必须有自己的状态而不被其它组件修改</strong></p>
+<p>Vue3 中同理,不return连自己都用不了.(????笑)</p>
+</li>
+<li><p>assets和static的区别?</p>
+<p>相同:都是存放静态资源的目录</p>
+<p>不同:assets里的资源会被打包压缩格式化,之后放到static里一同上传?!(存放组件资源)</p>
+<p>​         static里的资源不被打包,直接跟其它打包好的目录上传到服务器中.打包效率高,但占用资源.(非组件资源?)路径下的文件不会被webpack处理,统一在dist/static下(默认配置)</p>
+<p>所以: <strong>衡量资源需不需要,可不可以压缩.需要的(如css)就放asset,要原样输出的图片/其它资源就放static</strong></p>
+</li>
+<li><p>delete和Vue.$delete的区别?</p>
+<p>delete只是将对应项设为empty/undefined(视环境而定)</p>
+<p>Vue.$delete更符合逻辑,会改变数组长度和数组的下标</p>
+<p>(???下标1直接没了?)</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2367697-254e790bea2c187b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/721/format/webp" alt="img"></p>
+</li>
+<li><p>SPA首屏优化</p>
+<p>(1)异步加载路由/组件/资源</p>
+<p>(2)不打包库文件,把库文件单独拿出来加载,然后配合webpack打包</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--index.html--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Pragma"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Cache-Control"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Expires"</span> <span class="attr">content</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span> <span class="attr">href</span>=<span class="string">"/static/favicon.ico"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/common/css/base.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"margin:0;background:#f2f2f2;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/polyfill.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--vue--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/vue.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--vue-router--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/vue-router.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--axios--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--element-ui--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/static/common/js/element-ui/lib/theme-chalk/index.css"</span>          <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/element-ui/lib/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--echarts--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/common/js/echarts.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- built files will be auto injected --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.base.conf.js</span></span><br><span class="line">externals: &#123;</span><br><span class="line">    <span class="string">'element-ui'</span>: <span class="string">'ELEMENT'</span>,</span><br><span class="line">    <span class="string">'vue'</span>: <span class="string">'Vue'</span>,</span><br><span class="line">    <span class="string">'axios'</span>: <span class="string">'axios'</span>,</span><br><span class="line">    <span class="string">'echarts'</span>: <span class="string">'echarts'</span>,</span><br><span class="line">    <span class="string">'vue-router'</span>: <span class="string">'VueRouter'</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>(不会用不了吗?)</p>
+<p>(3) 添加loading效果</p>
+<p>(4) 单独首页用服务器渲染(nuxt)</p>
+</li>
 </ol>
 
         </div>

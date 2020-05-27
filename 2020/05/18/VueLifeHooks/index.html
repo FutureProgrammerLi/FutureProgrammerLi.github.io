@@ -104,13 +104,13 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-18</span>
-            <span class="time">22:04:40</span>
+            <span class="time">12:28:28</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/VueMastery/">VueMastery</a>
+<a href="/categories/VueMastery/">VueMastery</a> / <a href="/categories/VueMastery/Vue/">Vue</a>
 </span>
           
         </div>
@@ -126,28 +126,16 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>title: VueLifeHooks<br>
-date: 2020-05-18 16:42:34<br>
-tags: Vue<br>
-categories:</p>
-<p>VueMastery</p>
-<p>excerpt: Vue Lifehooks , Render Functions,DIFF algorithm</p>
-<h3><span id="1lifehooks-overview"> 1.LifeHooks OverView</span></h3>
-<h4><span id="vue2x"> vue2.x</span></h4>
-<ol>
-<li>
-<p>beforeCreate =&gt; created =&gt; beforeMount =&gt; mounted =&gt; beforeDestroy =&gt; destroyed</p>
+          <h3><span id="1lifehooks-overview">1.LifeHooks OverView</span></h3><h4><span id="vue2x">vue2.x</span></h4><ol>
+<li><p>beforeCreate =&gt; created =&gt; beforeMount =&gt; mounted =&gt; beforeDestroy =&gt; destroyed</p>
 <p>​                                                                                             (beforeUpdate =&gt; updated)</p>
 </li>
-<li>
-<p>keep-alive组件特有: activated , deactivated</p>
+<li><p>keep-alive组件特有: activated , deactivated</p>
 </li>
-<li>
-<p>errorCaptured</p>
+<li><p>errorCaptured</p>
 </li>
 </ol>
-<h4><span id="vue-30"> vue 3.0</span></h4>
-<ol>
+<h4><span id="vue-30">vue 3.0</span></h4><ol>
 <li>setup() =&gt; onBeforeMount =&gt; onMounted =&gt; onBeforeDestroy =&gt; onDestroyed</li>
 </ol>
 <p>​                                                               (onBeforeUpdate=&gt;onUpdated)</p>
@@ -157,46 +145,42 @@ categories:</p>
 <li><strong>Use setup() to take place of beforeCreate and created</strong></li>
 <li>Setup() is invoked after beforeCreate () , and right before created()</li>
 </ol>
-<h3><span id="2-from-vue-mastery-courses"> 2. From Vue Mastery Courses:</span></h3>
-<p><img src="C:%5CUsers%5Clwj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200518185508254.png" alt="image-20200518185508254"></p>
+<h3><span id="2-from-vue-mastery-courses">2. From Vue Mastery Courses:</span></h3><p><img src="/.com//lifehooks.png" alt="lifehooks"></p>
 <p>Vue 2 already uses proxy to detect whether the property exists in current component in development mode.</p>
 <p>And <strong>we can use this.somthingindata instead of this._data.somthingindata</strong> all because of <code>proxies</code>.</p>
 <p>(To improve developers experiences ?) (Works only for browser supporing proxies)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">InitState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    initLifecycle(vm)     <span class="comment">//setup and teardown doms?</span></span><br><span class="line">    initEvents(vm)       <span class="comment">//like what? $on,$emit , methods on Vue instance</span></span><br><span class="line">    initRender(vm)       <span class="comment">//setup the render and update methods</span></span><br><span class="line">    callHooks(vm,beforeCreate)</span><br><span class="line">    initInjections()</span><br><span class="line">    initState()</span><br><span class="line">    initProvide()</span><br><span class="line">    callHooks(vm,created)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    initProps();</span><br><span class="line">    initMethods();            <span class="comment">//记住这个顺序!</span></span><br><span class="line">    initData();</span><br><span class="line">    initComputed();</span><br><span class="line">    initWatch();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>
-<p><strong>Plugins like vuex and vue-router inject their properties inside the method beforeCreate(), meaning that those injections (like $store.state) can be used in components data and methods(?)</strong></p>
+<li><p><strong>Plugins like vuex and vue-router inject their properties inside the method beforeCreate(), meaning that those injections (like $store.state) can be used in components data and methods(?)</strong> </p>
 </li>
-<li>
-<p>You can use props inside the data function ,but you can’ t use the way around.e.g. You can not use data in props’ default functions. Same as data and comptued. Use data in computed but not use the computed functions in data(?)</p>
+<li><p>You can use props inside the data function ,but you can’ t use the way around.e.g. You can not use data in props’ default functions. Same as data and comptued. Use data in computed but not use the computed functions in data(?)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">props:&#123;</span><br><span class="line">    propsA:&#123;</span><br><span class="line">        type:<span class="built_in">Number</span>,</span><br><span class="line">        <span class="keyword">default</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> SomethingInData      <span class="comment">//wrong</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">data:&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        SomthingInData:<span class="string">'22'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<h4><span id="mounting-process"> Mounting Process</span></h4>
-<p>templates ===&gt; render functions ===&gt; VNodes    ===&gt; Browsers</p>
+<h4><span id="mounting-process">Mounting Process</span></h4><p>templates ===&gt; render functions ===&gt; VNodes    ===&gt; Browsers</p>
 <p>​        (Happen on server / client side )               (Only on client side )</p>
 <p>When you use Vue-cli2.x to build a project, you can choose:</p>
 <p>runtime-with-compiler: larger in size (32kb)</p>
 <p>runtime-only (22kb)</p>
 <p><code>If I pick runtime-only , I must put all my templates in .vue files.</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(vm.$options.el)&#123;</span><br><span class="line">    vm.$mount(vm.$options.el)  <span class="comment">//$mount method may be different based on the running env.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//inside the $mount function</span></span><br><span class="line"><span class="keyword">const</span> options = <span class="keyword">this</span>.$options</span><br><span class="line"><span class="comment">//if there's no render functions, check if there a template exists.</span></span><br><span class="line"><span class="keyword">if</span>(!options.render)&#123;              </span><br><span class="line">    <span class="keyword">if</span>(template)&#123;</span><br><span class="line">        <span class="comment">//If it does, then compile the template into render functions</span></span><br><span class="line">        <span class="keyword">const</span> &#123;render , staticRenderFns&#125; = compileToFunctions(...)            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> VNode = render() <span class="comment">//Render functions return VNodes</span></span><br></pre></td></tr></table></figure>
-<p>“<strong>Pseudo Procedure</strong>”</p>
+
+<p>“<strong>Pseudo Procedure</strong>“</p>
 <ol>
-<li>
-<p><strong>Compile templates to render functions</strong></p>
+<li><p><strong>Compile templates to render functions</strong></p>
 </li>
-<li>
-<p>beforeMount()</p>
+<li><p>beforeMount()</p>
 </li>
-<li>
-<p><strong>Execute render functions and load VNodes on the browser。（Where the DIFF Algorithm starts）</strong></p>
+<li><p><strong>Execute render functions and load VNodes on the browser。（Where the DIFF Algorithm starts???No, first time rendering）</strong></p>
 </li>
-<li>
-<p>mounted()</p>
+<li><p>mounted()</p>
 </li>
 </ol>
-<h4><span id="question-why-we-use-virtual-dom"> Question: Why we use Virtual DOM?</span></h4>
-<p>Answer: First compare ,then update the difference withe least cost</p>
+<h4><span id="question-why-we-use-virtual-dom">Question: Why we use Virtual DOM?</span></h4><p>Answer: First compare ,then update the difference with least cost</p>
 <p>Abstraction of DOM , render function =&gt; virtual DOM =&gt; Browser(Or Android/Weex)</p>
 <p>​                                      Components               VDOM                   Platform</p>
 <p>VDOM requires some real DOM manipulations to load nodes on platform pages</p>
@@ -204,19 +188,18 @@ categories:</p>
 <p>网上看得懂的答案:</p>
 <p>1.真实DOM属性比较多,创建成本高.VDOM只创建一些必要的属性,不影响使用且降低了成本</p>
 <p>2.可以用DIFF算法先对比差异,再更新差异之处,减少重绘/回流</p>
-<p>oldDOMTree &lt; == &gt; newDOMTree          --&gt; DIFF算法找出区别      --&gt;精准更新实际DOMTree</p>
+<p>oldDOMTree &lt; == &gt; newDOMTree          –&gt; DIFF算法找出区别      –&gt;精准更新实际DOMTree</p>
 <p>3.将DOM抽象成JS对象,操作成本降低,跨平台能力强.</p>
 <p>大佬回答:</p>
 <p>“May find certain things that are awkward to  do only with  templates.”</p>
-<p>“To fully get the power of render functions, and build complex large/ functional components.”</p>
-<p>大佬直接能&quot;extract _<em>patch_</em>  functions to get the really extra power&quot;</p>
-<h4><span id="question-what-does-mount-do"> Question: What does mount do?</span></h4>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> updateComponent = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    vm._update(vm._render(),hydrating)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//_render() return VNodes, and _update() load VNodes on browser page.(?)</span></span><br><span class="line"><span class="comment">//First time rendering on website.</span></span><br><span class="line"><span class="keyword">new</span> Watcher(vm.updateComponent,noop,<span class="literal">null</span>,<span class="literal">true</span>)  <span class="comment">//?</span></span><br><span class="line"><span class="comment">//Create a watcher to detect and update it once the DOM is changed.?</span></span><br></pre></td></tr></table></figure>
+<p>“To fully get the power of render functions, and build complex large/ functional components.” </p>
+<p>大佬直接能”extract _<em>patch_</em>  functions to get the really extra power”</p>
+<h4><span id="question-what-does-mount-do">Question: What does mount do?</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> updateComponent = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    vm._update(vm._render(),hydrating)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//_render() return VNodes, and _update() load VNodes on browser page.(?)</span></span><br><span class="line"><span class="comment">//First time rendering on website.</span></span><br><span class="line"><span class="keyword">new</span> Watcher(vm.updateComponent,noop,<span class="literal">null</span>,<span class="literal">true</span>)  <span class="comment">//?</span></span><br><span class="line"><span class="comment">//Create a watcher to detect and update it once the DOM is changed.?</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">callHooks(vm,beforeUpdate)</span><br><span class="line"><span class="comment">//Then compare the old VNode to new Vnode        COLLECTING/COMPARING DIFFERENCES</span></span><br><span class="line"><span class="comment">//updating ...          patch pieces of DOM that changed   EXECUTING/PUTTING INTO EFFECT</span></span><br><span class="line">callHooks(vm,updated)</span><br></pre></td></tr></table></figure>
-<h3><span id="3-diff算法1"> 3. DIFF算法[1]</span></h3>
-<ul>
-<li>
-<ol>
+
+<h3><span id="3-diff算法1">3. DIFF算法[1]</span></h3><ul>
+<li><ol>
 <li>父节点相同的节点才会比较</li>
 </ol>
 </li>
@@ -224,36 +207,31 @@ categories:</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/9/9/16d13b729b2efd26?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="公众号"></p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/9/9/16d13b729a2979c2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="公众号"></p>
 <ul>
-<li>
-<ol start="2">
+<li><ol start="2">
 <li>父节点相同的节点才会被复用</li>
 </ol>
 </li>
 </ul>
 <p><img src="https://user-gold-cdn.xitu.io/2019/9/9/16d13b729b29fd03?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="公众号"></p>
 <ul>
-<li>
-<ol start="3">
-<li>
-<p>比较逻辑: 先找不需要移动的 , 再找相同但需要移动的, 最后找不到,就去创建和删除节点</p>
+<li><ol start="3">
+<li><p>比较逻辑: 先找不需要移动的 , 再找相同但需要移动的, 最后找不到,就去创建和删除节点</p>
 <p>​                (消耗由小到大)</p>
 </li>
 </ol>
 </li>
-<li>
-<ol start="4">
-<li>
-<p>三种树, 页面DOM树, 旧VNode树, 新VNode树</p>
+</ul>
+<ul>
+<li><ol start="4">
+<li><p>三种树, 页面DOM树, 旧VNode树, 新VNode树</p>
 <p>当前页面DOM树与旧VNode树一一对应</p>
 <p>新VNode树(Blueprint)是页面DOM树更新后该有的样子</p>
 <p>先找出不同再投入实际操作,而不是整个重建.</p>
 </li>
 </ol>
 </li>
-<li>
-<ol start="5">
-<li>
-<p>例子:</p>
+<li><ol start="5">
+<li><p>例子:</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/9/9/16d13b72a1b29a34?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="公众号"></p>
 <p>第一步比较:成本最低的开始.实际DOM树该节点不变</p>
 </li>

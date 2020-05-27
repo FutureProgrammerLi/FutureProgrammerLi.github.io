@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Future Li">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="面试错题"/>
+  <meta property="og:title" content="Vue修饰符"/>
   <meta property="og:description" content="What is this?" />
   <meta property="og:site_name" content="Hello!"/>
   <meta property="og:type" content="article" />
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">面试错题</p>
+          <p class="title">Vue修饰符</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -103,14 +103,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2020-01-07</span>
+            <span class="date">2020-05-19</span>
             <span class="time">12:28:28</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+<a href="/categories/Vue/">Vue</a>
 </span>
           
         </div>
@@ -119,27 +119,40 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+<a class="tag" href="/tags/Vue/">#Vue</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <ol>
-<li>css属性overflow属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。<br>True<br>解析：<br>参数是scroll时候，必会出现滚动条。<br>参数是auto时候，子元素内容大于父元素时出现滚动条。<br>参数是visible时候，溢出的内容出现在父元素之外。<br>参数是hidden时候，溢出隐藏。</li>
+          <h3><span id="1修饰符">1.修饰符</span></h3><ol>
+<li><p>.lazy,懒修改(?).</p>
+<p>VueData里的值不立刻随着template里的值改变。失去焦点或按下回车键才更新Data里的值</p>
+</li>
+<li><p>.trim , 删除开头和结尾的空格键,只取有效的输入值部分</p>
+</li>
+<li><p>.number, 第一次输入数字后,后面也只允许输入数字. (若第一次输入非数字,则该修饰符无效(?))</p>
+</li>
+<li><p>.stop, 对应原生的event.stopPropagation事件. 防止冒泡</p>
+</li>
+<li><p>.prevent 对应 event.preventDefault, 阻止默认事件(常见表单提交按钮)</p>
+</li>
+<li><p>.capture 捕获事件.例子:父子都绑定了同样事件,触发子组件事件:不用capture则先触发子再触发父.用capture则先父后子.</p>
+</li>
+<li><p><strong>.native 子组件触发父组件的事件(!!!????)</strong>  Vue 3子组件直接就能在父组件中触发父组件的事件阿?没区别?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父组件中</span></span><br><span class="line">&lt;my @click=<span class="string">"test"</span> /&gt;</span><br><span class="line">&lt;my @click.native=<span class="string">"test"</span>      <span class="comment">//???没有区别</span></span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">111</span>)</span><br><span class="line">&#125;</span><br><span class="line">components:&#123;        <span class="comment">//发现vue3 import Vue from 'vue'</span></span><br><span class="line">    my              <span class="comment">//Vue -&gt; undefined !!! 方法去哪了?用不了Vue.component()</span></span><br><span class="line">&#125;</span><br><span class="line">..</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.left /  .middle / .right     鼠标左中右键时才触发(可能很有用?)</p>
+</li>
+<li><p>.enter / .shift / .ctrl  / .delete / .alt     ….等等  可以用e.keyCode 获取对应键码( 其实与9同理, .keyCode)</p>
+</li>
+<li><p>.exact  当且只有按下该按钮时才触发事件</p>
+</li>
+<li><p>.sync  子组件能修改父组件传进来的prop?  Vue3.0  props are immutable  所以还有什么用? 不会破坏单向流动吗?</p>
+<p>原做法是子组件修改props时通知(:update)父组件更新对应值,.sync是个语法糖?</p>
+</li>
 </ol>
-<hr>
-<ol start="2">
-<li>function Foo() {<br> var i = 0;<br> return function() {<pre><code>console.log(i++);</code></pre> }<br>}</li>
-</ol>
-<p>var f1 = Foo(),<br>    f2 = Foo();<br>f1();<br>f1();<br>f2();<br>输出<br>0,1,0<br>两个变量f1 f2是调用foo()函数之后的结果，foo()函数返回的是创建的一个匿名函数，因此f1 f2应该是两个不同的函数对象<br><code>返回的是匿名函数,所以指向的是两个不同的函数对象?</code></p>
-<hr>
-<ol start="3">
-<li>var bb = 1;<br>function aa(bb) {<br> bb = 2;<br> alert(bb);<br>};<br>aa(bb);<br>alert(bb);<br>输出<br>2,1<br>解析:形参的问题,函数内的bb和外部的bb并没有关系<br>function aa(c){c=2;alert(c);}<br>aa(bb)<br>alert(bb)<br>其实跟原来是一样的,bb跟全局的相同只是为了考</li>
-</ol>
-<hr>
-<p>4.</p>
 
         </div>
       </div>
