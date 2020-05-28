@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="webpack-notes"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">webpack-notes</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-05-28</span>
+            <span class="time">23:28:49</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/webpack/">webpack</a> / <a href="/categories/webpack/%E6%95%B4%E7%90%86/">整理</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/webpack/">#webpack</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2><span id="1html和压缩">1.html和压缩</span></h2><h3><span id="html-webpack-plugin">html-webpack-plugin</span></h3><p>基本配置:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">   plugins:[</span><br><span class="line">       <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">           template:<span class="string">'./src/index.html'</span>,</span><br><span class="line">           filename:<span class="string">'outputFileName'</span>,</span><br><span class="line">           hash:<span class="literal">true</span>,      <span class="comment">//添加到html文件的js/css文件会有哈希值结尾，防止缓存？</span></span><br><span class="line">           minify:&#123;     <span class="comment">//pass boolean to enable or disable </span></span><br><span class="line">              collapseWhiteSpace :<span class="literal">true</span>, <span class="comment">//pass object to specify configurations</span></span><br><span class="line">              removeComments:<span class="literal">true</span>,</span><br><span class="line">              removeAttributeQuotes:<span class="literal">true</span>,</span><br><span class="line">              minifyCSS:<span class="literal">true</span>,</span><br><span class="line">              minifyJS:<span class="literal">true</span>,     <span class="comment">//压缩&lt;style&gt;和&lt;script&gt; 没看到区别!?</span></span><br><span class="line">              removeReduncdantAttributes:<span class="literal">true</span>,</span><br><span class="line">              useShrotDoctype:<span class="literal">true</span>,</span><br><span class="line">              removeScriptTypeAttributes:<span class="literal">true</span>,</span><br><span class="line">              removeStyleLinkTypeAttributes:<span class="literal">true</span></span><br><span class="line">           &#125;   <span class="comment">//前三个可能更常用       </span></span><br><span class="line">       &#125;)</span><br><span class="line">   ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line">plugins:[</span><br><span class="line">    <span class="keyword">new</span> CleanWebapckPlugin()  <span class="comment">//不用传参,默认清除的是output里面的path</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2><span id="css加载和压缩">CSS加载和压缩</span></h2><h3><span id="加载-style-loadercss-loader">加载: style-loader,css-loader</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    <span class="built_in">module</span>:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test:<span class="regexp">/\.css$/</span>,</span><br><span class="line">                loader:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//问题:用styleloader会覆盖自己写的,在head标签的style(style-loader加在了head最后)</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="处理urlurl-loader">处理url:url-loader</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            test:<span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">            loader:<span class="string">'url-loader'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="行内css的提取mini-css-extract-plugin">行内CSS的提取:mini-css-extract-plugin</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    <span class="built_in">module</span>:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test:<span class="regexp">/\.css/</span>,</span><br><span class="line">                use:[</span><br><span class="line">                    MiniCssExtractPlugin.loader,</span><br><span class="line">                    <span class="string">'css-loader'</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugin:[</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            filename:<span class="string">'main.css'</span>     <span class="comment">//指定抽取后的css文件名称</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>跟style-loader的区别是这个变成了link使用,而style-loader以Style标签添加到了html文件中.</p>
+</li>
+<li><p>既要在module.rules里使用,也要在plugin里面new一个实例.</p>
+<p>???打包一次出一个新的css文件!?</p>
+</li>
+</ul>
+<h3><span id="css样式添加前缀以适应浏览器-postcss-loaderautoprefixer">CSS样式添加前缀以适应浏览器 postcss-loader,autoprefixer</span></h3><ul>
+<li>仅用于低版本使用CSS3特性. 就是加了个前缀</li>
+<li>package.json里面用browserslist指明浏览器版本号, 或者 postcss.config.js里面require(‘autoprefixer’)({“browsers”:[/** 浏览器 **/]}) //都是数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            test:<span class="regexp">/\.(css|scss)/</span>,</span><br><span class="line">            loader:[</span><br><span class="line">                <span class="string">'style-loader'</span>,</span><br><span class="line">                <span class="string">'css-loader'</span>,</span><br><span class="line">                <span class="string">'sass-loader'</span>,</span><br><span class="line">                <span class="string">'postcss-loader'</span>    <span class="comment">//注意顺序post-&gt;pre-&gt;css</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//postcss.config.js      与webpack.config.js同级</span></span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    plugins:[</span><br><span class="line">        <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//package.json</span></span><br><span class="line"><span class="string">"browserslist"</span>: [</span><br><span class="line">    <span class="string">"defaults"</span>,</span><br><span class="line">    <span class="string">"not ie &lt; 11"</span>,</span><br><span class="line">    <span class="string">"last 2 versions"</span>,</span><br><span class="line">    <span class="string">"&gt; 1%"</span>,</span><br><span class="line">    <span class="string">"iOS 7"</span>,</span><br><span class="line">    <span class="string">"last 3 iOS versions"</span></span><br><span class="line">  ],     <span class="comment">//...  browserslist 在最后说明</span></span><br><span class="line"><span class="comment">//设计2-3个文件</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="css文件压缩optimize-css-assets-webpack-plugin">CSS文件压缩:optimize-css-assets-webpack-plugin</span></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> OpitimizeCss = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    plugins:[</span><br><span class="line">        <span class="keyword">new</span> OptimizeCss(&#123; <span class="comment">/**options **/</span>&#125;)      <span class="comment">//官方推荐用法.也可以配合uglifyjs使用</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="es678910语法转es5-babel">ES678910语法转ES5 babel</span></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在webpack中使用</span></span><br><span class="line">npm i -D @babel/cli @babel/core @babel/preset-env babel-loader</span><br></pre></td></tr></table></figure>
+
+<p>配置:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//另起文件 .babelrc</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"presets"</span>:[</span><br><span class="line">        <span class="string">"@babel/preset-env"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者在package.json里面</span></span><br><span class="line"><span class="string">"babel"</span>:&#123;</span><br><span class="line">    <span class="string">"presets"</span>:[</span><br><span class="line">        <span class="string">"@babel/preset-env"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;,     <span class="comment">//之后的html文件好像有点问题?collapseWhiteSpace呢?</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            test:<span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude:<span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader:<span class="string">'babel-loader'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>//TODO 图片处理？ base64？ img-loader？ </p>
+<h2><span id="browserslist说明">browserslist说明</span></h2><p>例子                       说明  </p>
+<p> <code>&gt; 1%</code> 全球超过1%人使用的浏览器  </p>
+<p><code>&gt; 5% in US</code> 指定国家使用率覆盖  </p>
+<p><code>last 2 versions</code> 所有浏览器兼容到最后两个版本根据CanIUse.com追踪的版本 </p>
+<p> <code>Firefox ESR</code> 火狐最新版本  </p>
+<p><code>Firefox &gt; 20</code> 指定浏览器的版本范围 </p>
+<p> <code>not ie &lt;=8</code> 方向排除部分版本  </p>
+<p><code>Firefox 12.1</code> 指定浏览器的兼容到指定版本  </p>
+<p><code>unreleased versions</code> 所有浏览器的beta测试版本  </p>
+<p><code>unreleased Chrome versions</code> 指定浏览器的测试版本  </p>
+<p><code>since 2013</code> 2013年之后发布的所有版本</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

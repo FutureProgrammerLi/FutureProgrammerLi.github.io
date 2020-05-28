@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="随记"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">随记</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-05-27</span>
+            <span class="time">23:28:49</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E6%95%B4%E7%90%86/">整理</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2><span id="arrayprototypemap">Array.prototype.map()</span></h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.map(function callback(currentValue[, index[, array]]) &#123;</span><br><span class="line"> &#x2F;&#x2F; Return element for new_array </span><br><span class="line">&#125;[, thisArg])</span><br><span class="line">Array.prototype.map(cb,thisArg)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>外层2,内层3</p>
+</li>
+<li><p>接受<strong>两个</strong>参数,一个callbackFunction,一个this指向</p>
+<ol>
+<li><p>callbackFunction又接受三个参数: 当前遍历的值,索引以及数组全部.</p>
+</li>
+<li><p>this用于修改callbackFunction里面的this指向(?).不传这个值<code>this</code>就为undefined.</p>
+<blockquote>
+<p>执行callback函数时值被用作this</p>
+<p>Value to use as <code>this</code> when executing <code>callback</code></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>数组中undefined的值也会执行callback, 而empty的不会(使用了delete的结果)</p>
+</li>
+<li><p>处理的是调用map时, arr的一个snapshot, arr之后的改变都不会影响map的结果(?说了跟没说一样?)</p>
+</li>
+</ul>
+<h2><span id="map和foreach的区别">map和forEach的区别</span></h2><p>同:</p>
+<ol>
+<li><p>都会遍历数组</p>
+</li>
+<li><p><strong>接收的参数一样!!!!Array.prototype.forEach(callback,thisArg),     callback(currentValue,index,self)</strong></p>
+</li>
+</ol>
+<p>不同:</p>
+<ol>
+<li><p>map会返回一个经遍历处理的数组,forEach返回undefined(map 备份修改, forEach可以直接修改本体)</p>
+</li>
+<li><p>map不会修改原数组,forEach可以 , 在callback里面 arr[index] = currentValue / 2 =&gt; arr的每个元素就会缩小一倍.</p>
+</li>
+</ol>
+<hr>
+<h2><span id="arrayprototypereduce">Array.prototype.reduce()</span></h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>外层2,内层4,内层多了个base</p>
+</li>
+<li><p>接受<strong>两个</strong>参数: reducerFunction,initialValue/base</p>
+<ol>
+<li><p>reducerFunction接受<strong>四个</strong>参数:累加器/初始值, 当前遍历的值,索引值,数组本身</p>
+<p>​                                                 (accumulator/base  currentValue currentIndex     Source Array)</p>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><p>initialValue: 累加器一开始的值,</p>
+<p> 如果设置了.reducerFunction里的accumulator就为它,currentValue就为数组的第一个值;</p>
+<p>如果没设置,reducerFunction第一次accumulator就为数组第一个值(0为特殊情况),currentValue就为数组第二个值.</p>
+<p><strong>0作为第一个值的时候好像有点问题?</strong></p>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li><em>accumulator只会在第一次中不为undefined(initialValue或为数组第一个值) , 之后都为undefined</em></li>
+</ol>
+</li>
+</ul>
+<h3><span id="问题引入万恶之源">问题引入(万恶之源)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">acc,item</span>)=&gt;</span>acc?(acc.toString()+item.toString()):item.toString();</span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer))   <span class="comment">//数组的第一项0没有参加运算</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer,<span class="number">0</span>)) <span class="comment">//这里的initialValue 没参加reducer</span></span><br><span class="line"><span class="comment">//arr.reduce(reducer) ==&gt;</span></span><br><span class="line"><span class="comment">//const anotherArr = [1,2,3,4]</span></span><br><span class="line"><span class="comment">//anotherArr.reduce(reducer,0)</span></span><br></pre></td></tr></table></figure>
+
+<p>错误答案:  01234,001234</p>
+<p>正确答案:1234,01234</p>
+<p>0作为acc/数组第一项的时候是不是有点问题??</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr1.reduce(reducer))     <span class="comment">//21234    (???)</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1.reduce(reducer,<span class="number">0</span>))   <span class="comment">//21234</span></span><br></pre></td></tr></table></figure>
+
+<p>摘自MDN:</p>
+<blockquote>
+<p><strong>Note:</strong> If <code>initialValue</code> is not provided, <code>reduce()</code> will execute the callback function starting at index <code>1</code>, skipping the first index. If <code>initialValue</code> is provided, it will start at index <code>0</code>.</p>
+</blockquote>
+<h2><span id="null和undefined的区别">null和undefined的区别</span></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
