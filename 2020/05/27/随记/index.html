@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-27</span>
-            <span class="time">23:28:49</span>
+            <span class="time">00:11:56</span>
           </span>
           
           <!--  Categories  -->
@@ -201,7 +201,25 @@
 <blockquote>
 <p><strong>Note:</strong> If <code>initialValue</code> is not provided, <code>reduce()</code> will execute the callback function starting at index <code>1</code>, skipping the first index. If <code>initialValue</code> is provided, it will start at index <code>0</code>.</p>
 </blockquote>
-<h2><span id="null和undefined的区别">null和undefined的区别</span></h2>
+<h2><span id="null和undefined的区别">null和undefined的区别</span></h2><ol>
+<li><p>typeof undefined   =&gt; undefined</p>
+<p>typeof null =&gt; object</p>
+</li>
+<li><p>undefined == null     =&gt;true     都被转换成0</p>
+<p>undefined === null =&gt;false</p>
+</li>
+<li><p>​    5+undefined         ==&gt; NaN           Number(undefined) -&gt; NaN</p>
+<p>​    5+ null                   ==&gt; 0                    Number(null)=&gt;0</p>
+</li>
+<li><p>undefined == null == false</p>
+</li>
+<li><p>undefined 代表此处可以有值但还未定义</p>
+<p>null代表此处不应该有值</p>
+</li>
+<li><p>默认参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">num=<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> num)</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="literal">undefined</span>)      <span class="comment">//number ,num is set to 1</span></span><br><span class="line">test(<span class="literal">null</span>)           <span class="comment">//object, num is set to null</span></span><br><span class="line"><span class="comment">//如何不使用默认参数</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
         </div>
       </div>
     </div>
