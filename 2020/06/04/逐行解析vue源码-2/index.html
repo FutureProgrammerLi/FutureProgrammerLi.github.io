@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="逐行解析vue源码-2"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">逐行解析vue源码-2</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-06-04</span>
+            <span class="time">00:13:12</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Vue/">Vue</a> / <a href="/categories/Vue/%E4%B9%A6%E6%9C%AC/">书本</a> / <a href="/categories/Vue/%E4%B9%A6%E6%9C%AC/%E6%95%B4%E7%90%86/">整理</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vue/">#Vue</a> <a class="tag" href="/tags/%E6%BA%90%E7%A0%81/">#源码</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3><span id="看完书后自己理解的内容记忆">看完书后自己理解的内容记忆:</span></h3><h4><span id="虚拟dom篇">虚拟DOM篇</span></h4><blockquote>
+<p>为什么需要Virtual DOM？</p>
+</blockquote>
+<ol>
+<li><p>真实DOM属性十分之多,抽象成Virtual DOM,取一些必要的属性能简化操作,以JS计算性能换取DOM操作性能</p>
+</li>
+<li><p>VNode实际渲染需要对应环境操作,为此可以针对不同环境设置一套真实挂载的操作,从而提高代码的兼容性</p>
+</li>
+<li><p>渲染优化,标记静态节点,在下次遍历时直接跳过静态节点(isStatic)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如在H5中创建元素</span></span><br><span class="line"><span class="keyword">let</span> VNode = nodeOps.createEle(...);</span><br><span class="line"><span class="comment">//这里的nodeOps对应的就是document.createElement()</span></span><br><span class="line"><span class="comment">//更换环境就可以引另一套nodeOps, 编程wx/uni....createElement()</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>VNode种类有哪些?</p>
+</blockquote>
+<ol>
+<li>文本节点(只有text?)</li>
+<li>注释节点(isComment+text)</li>
+<li>元素节点(tag)</li>
+<li>组件节点</li>
+<li>函数组件节点</li>
+<li>克隆节点(isCloned)</li>
+</ol>
+<p>各种节点的特有属性:</p>
+<p>文本节点只有text属性, 注释节点特有的(isComment),元素节点特有的tag.</p>
+<p>组件节点componentOptions/componentInstance.  </p>
+<p>函数式组件节点fnOptions/fnContext(组件节点有的它也有,但这两个属性是函数式组件节点特有的)</p>
+<p>克隆节点:isCloned</p>
+<hr>
+<p><strong>主要渲染的节点只有三种: 文本节点,注释节点和元素节点. (绝大多数是元素节点)</strong></p>
+<blockquote>
+<p>DIF算法及优化(?)</p>
+</blockquote>
+<p>理解上可以有3种DOM树.  oldTree,newTree,以及真实的DOMTree.</p>
+<p>(oldTree和真实DOM区别是节点的真假,结构一样吧?)</p>
+<ul>
+<li><p>先修改oldTree,之后一顿操作,变成newTree结构之后,实际渲染到DOMTree.       </p>
+</li>
+<li><p>oldTree和newTree的作用是找出区别,DIF完成后,newTree和DOMTree结构一样.</p>
+</li>
+<li><p>节点操作主要有4种:创建新节点,删除旧节点,更新节点,移动节点位置(后两种好像一样?)</p>
+</li>
+<li><p><strong>在所有未处理的节点前插入/创建新节点,而不是在所有已经处理的节点后插入/创建新节点</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>以下是子节点更新操作</p>
+</blockquote>
+<p>优化之前,两重循环: newChildren外层循环,oldChildren内层循环.效率明显不够.</p>
+<p>优化策略:用四个关键位置,newStartIndex,newEndIndex  ||  oldStartIndex,           oldEndIndex.</p>
+<p>​            分别表示 新树开始索引(新开)   新树结束索引(新尾)   旧树开始索引(旧开)    旧树结束索引(旧尾)</p>
+<p>对比策略: 先新开和旧开对比,之后新尾和旧尾,新尾和旧开,新开和旧尾按顺序来.最后都找不到,就双重循环.</p>
+<p>(建议复习,自己都不知道在说什么)</p>
+<p><strong>总之就是两边向中间靠拢,开始的只会往后,结尾的只会往前.</strong></p>
+<p>StartIndex&gt;EndIndex 表明遍历完毕.</p>
+<p>新树先遍历完毕,则旧树oldStartIndex到oldEndIndex的节点都删除.</p>
+<p>旧树先遍历完,则新树newStartIndex到newEndIndex的节点都添加.</p>
+<hr>
+<h4><span id="模板编译篇">模板编译篇</span></h4><ol>
+<li><p>生成语法抽象树,优化编译,生成render函数.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ast = parse(template,options)  <span class="comment">//生成抽象语法树</span></span><br><span class="line"><span class="keyword">if</span>(!options.optimize)&#123;               <span class="comment">//以下两个的操作对象都是AST</span></span><br><span class="line">    optimize(ast,options)            <span class="comment">//节点优化</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> code = generate(ast,options)   <span class="comment">//生成渲染函数</span></span><br><span class="line"><span class="keyword">return</span>&#123;</span><br><span class="line">   ast, <span class="comment">//抽象树</span></span><br><span class="line">   render:code.render,</span><br><span class="line">   staticRenderFns:code.staticRenderFns</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>?三种解析器,HTML parser&gt;文本解析器(parseText)&gt; 过滤器解析器(parseFilter)</p>
+<p>HTML中有文本         -&gt;               文本中有过滤器      -&gt;  </p>
+<p>(真的吗? 源码里parseText和parseFilter好像没关系呀?)</p>
+</li>
+</ol>
+<p>HTML解析模板时,怎么区分标签是真正的开始,而不是嵌套的开始?结尾怎么区分是真正的结尾,而不是子元素结尾? 怎么分辨是不是用户语法出错? (以<template> 和</template> 作为最后底线?)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">parseHTML(template,&#123;</span><br><span class="line">    <span class="comment">// ... static options</span></span><br><span class="line">    <span class="comment">//解析到开始标签时执行start</span></span><br><span class="line">    start(tag,attrs,unary)&#123;  <span class="comment">//tag标签名称start[1],attrs标签属性,如class/id/src等</span></span><br><span class="line">                             <span class="comment">//unary是否为自闭和标签,&lt;div&gt;&lt;/div&gt; | &lt;img src="..."/&gt;</span></span><br><span class="line">        <span class="keyword">let</span> element = createASTElement(tag,attrs,currentParent) <span class="comment">//?</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到结束标签</span></span><br><span class="line">    end()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到文本</span></span><br><span class="line">    chars(text)&#123;</span><br><span class="line">        <span class="comment">//分动态文本和静态文本.动态文本就是包含变量的文本内容. </span></span><br><span class="line">        <span class="comment">//  动态文本:Hello, &#123;&#123;name&#125;&#125; |静态文本:Hello</span></span><br><span class="line">        <span class="comment">//动态文本的NodeType为2.  静态纯文本的type为3 (元素节点的type为1?)</span></span><br><span class="line">        <span class="keyword">if</span>(动态文本)&#123;</span><br><span class="line">*******************************************************************************</span><br><span class="line">            <span class="keyword">let</span> element = &#123;   <span class="comment">//动态文本的结构.记住有助于后续理解</span></span><br><span class="line">                type:<span class="number">2</span>,</span><br><span class="line">                expression:<span class="string">'我的年龄是'</span>+_s(...) +<span class="string">'我的姓名是:'</span> + _s(...),</span><br><span class="line">                tokens:[<span class="string">'我的年龄是'</span>,<span class="string">'@binding=age'</span>,<span class="string">'我的姓名是:'</span>,<span class="string">'@binding=name'</span>],</span><br><span class="line">                text</span><br><span class="line">            &#125;   *******************************************************************************</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> element = &#123;</span><br><span class="line">                type:<span class="number">3</span>,</span><br><span class="line">                text</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到注释</span></span><br><span class="line">    comment(text)&#123;</span><br><span class="line">        <span class="keyword">let</span> element = &#123;</span><br><span class="line">            type:<span class="number">3</span>,</span><br><span class="line">            text,</span><br><span class="line">            isComment:<span class="literal">true</span>    <span class="comment">//与文本节点的差别就是isComment.参考VNode种类</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//四个钩子用于生成具体的AST(start,end,chars,comment)</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>实际parse的过程:</p>
+<p>主要解析的内容主要有三类:</p>
+<p>(1) &lt;!–   开头的: </p>
+<p>自定义注释(<!--这是注释-->,   &lt;!–开头,–&gt;结尾</p>
+<p>条件注释<!--[if !IE]> <h1>这不是IE浏览器</h1>  <![endif]--> &lt;!–[,   ]–&gt;结尾</p>
+<p>//自定义注释和条件注释是否有关系?判断自定义注释的时候不就包括了条件注释了吗?</p>
+<p>(2)DOCTYPE,  <!DOCTYPE html></p>
+<p>(3)开始和结束标签..</p>
+<p>(4)文本.(绝大多数)</p>
+</li>
+</ol>
+<ul>
+<li><p>上面(1)所述操作有优化点,options.shouldKeepComment,为false的话则不为注释创建节点,直接advance(commentEnd +3).</p>
+</li>
+<li><p>&lt;template comments&gt; &lt;/template&gt;可以设置是否保留注释.默认true还是false?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义注释的正则</span></span><br><span class="line"><span class="keyword">const</span> comment = <span class="regexp">/^&lt;!\--/</span> <span class="comment">//   &lt;!--我是注释--&gt;</span></span><br><span class="line"><span class="comment">//条件注释的正则</span></span><br><span class="line"><span class="keyword">const</span> conditionalComment = <span class="regexp">/^&lt;!\[/</span>    <span class="comment">//??? &lt;!--[if IE] ...  &lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">//DOCTYPE的正则</span></span><br><span class="line"><span class="keyword">const</span> doctype = <span class="regexp">/^&lt;!DOCTYPE [^&gt;]+&gt;/i</span></span><br><span class="line">----</span><br><span class="line"><span class="comment">//解析开始</span></span><br><span class="line"><span class="keyword">const</span> ncname = <span class="string">'[a-zA-Z_][\\w\\-\\.]*'</span></span><br><span class="line"><span class="keyword">const</span> qnameCapture = <span class="string">`((?:<span class="subst">$&#123;ncname&#125;</span>\\:)?<span class="subst">$&#123;ncname&#125;</span>)`</span></span><br><span class="line"><span class="keyword">const</span> startTagOpen = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`^&lt;<span class="subst">$&#123;qnameCapture&#125;</span>`</span>)</span><br><span class="line"><span class="comment">//返回结果的样子,符合就从下标1取tagName,不符合就返回null</span></span><br><span class="line"><span class="comment">//&lt;div&gt;&lt;/div&gt; =&gt; ['&lt;div','div',index:0,input:'&lt;div&gt;&lt;/div&gt;']</span></span><br><span class="line"><span class="comment">//sth&lt;/p&gt;     =&gt; null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//除了tagName,start函数还需要attrs和unary参数.需要分别解析,判断</span></span><br></pre></td></tr></table></figure>
+
+<p>//TODO 解析标签属性(attrs)</p>
+</li>
+</ul>
+<blockquote>
+<p>怎么截掉已经解析了的字符串?</p>
+</blockquote>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
