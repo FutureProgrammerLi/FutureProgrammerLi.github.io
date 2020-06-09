@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-06-08</span>
-            <span class="time">01:20:06</span>
+            <span class="time">14:00:33</span>
           </span>
           
           <!--  Categories  -->
@@ -119,43 +119,80 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Vue/">#Vue</a> <a class="tag" href="/tags/%E6%BA%90%E7%A0%81/">#源码</a> <a class="tag" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">#生命周期</a>
+<a class="tag" href="/tags/Vue/">#Vue</a> <a class="tag" href="/tags/%E6%BA%90%E7%A0%81/">#源码</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="1数据相关"> 1.数据相关</span></h3>
-<ol>
-<li>
-<p>Vue.watch(target,callback,options)</p>
+          <h3><span id="1数据相关">1.数据相关</span></h3><ol>
+<li><p>Vue.watch(target,callback,options)</p>
 <p>target为数组或对象,不能是原始值、vue实例或vue根数据(?)</p>
 <p>callback和options可以整合成对象</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    handler:<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">    immediate:<span class="literal">true</span>,</span><br><span class="line">    deep:<span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//内部会自动将其抽离(可以同时传两个option吗?)</span></span><br></pre></td></tr></table></figure>
+
 <p>immediate实现就是立即利用callback,call(vm,watcher.value)</p>
 <p>deep深度遍历每个属性值,触发每个属性值的get(),从而将这个watcher添加到每个值的dep里面.某个值变化之后就会通知这个watcher.</p>
 </li>
-<li>
-<p>Vue.set(target,propertyName/index,value)</p>
+<li><p>Vue.set(target,propertyName/index,value)</p>
 <p>判断:target为原生值/vue实例/vue根数据? 警告.返回</p>
 <p>​        target为数组?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">target.length=<span class="built_in">Math</span>.max(target.length,key) <span class="comment">//用户传进来的index小于数组原长度,则数组长度+1.index大于原长度,则修改总长度为key.</span></span><br><span class="line">target.splice(key,<span class="number">1</span>,val)              <span class="comment">//在index处插入一个val项</span></span><br><span class="line"><span class="comment">//splice方法已被截取,所以它是可被观测的.</span></span><br></pre></td></tr></table></figure>
+
 <p>​      target为对象?</p>
 <p>​      该属性已存在? 直接修改值</p>
 <p>​      该属性不存在?对象是响应式的吗?是,defineReactive; 不是,直接修改值</p>
 </li>
-<li>
-<p>Vue.delete(target,propertyName/index)</p>
+<li><p>Vue.delete(target,propertyName/index)</p>
 <p>与set相似.为数组且索引有效? target.splice(index,1)</p>
 <p>为对象? delete target[key] 可观察对象,(有__ob__属性??target.dep.notify()    : 不是?直接return.</p>
 <p>原生的delete用在数组上,为将该项设置为empty. 而Vue.delete用的是splice,被劫持过的方法,所以结果比较符合预期.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">delete</span> a[<span class="number">1</span>]   <span class="comment">//[1,empty,3] 实际只有两项,但length仍为3.且a[2]仍然为3</span></span><br><span class="line">Vue.delete(b,<span class="number">1</span>)   <span class="comment">//[4,6]   b.length为2</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <p>//TODO 事件相关方法和生命周期相关方法</p>
 <p>on/emit/off/once</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">mount/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord">/</span></span></span></span>forceUpdate/<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi><mi>T</mi><mi>i</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">nextTick/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord">/</span></span></span></span>destroy</p>
+<p>$mount/$forceUpdate/$nextTick/$destroy</p>
+<h3><span id="2事件相关方法">2.事件相关方法</span></h3><ol>
+<li><p>vm.$on()</p>
+<p>接受两个参数,事件名称,回调函数.</p>
+<p>事件名称可是字符串,可是字符串数组,表示多个事件触发同一个回调函数.</p>
+<p>vm._events管理,on就是往里添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.events=&#123;</span><br><span class="line">    eventName:[cb1,cb2,cb3]  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vm.$emit(eventName:string , […args]) </p>
+<p>第一个参数是事件名,第二个开始是传给该事件的参数.</p>
+<p>坑:$emit传输3/4/5个参数给事件池.官方介绍是封装成对象.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> args = toArray(<span class="built_in">arguments</span>,<span class="number">1</span>)</span><br><span class="line">cbs[i].apply(vm,args)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'test'</span>,<span class="keyword">this</span>.param1,<span class="keyword">this</span>.param2,<span class="keyword">this</span>.param3)</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line">&lt;child @test=<span class="string">"test($event,userDefined)"</span></span><br><span class="line">test(e,userDefined)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(userDefined[<span class="number">0</span>],userDefined[<span class="number">1</span>],userDefined[<span class="number">2</span>])  <span class="comment">//对应param1/2/3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vm.$off([event,callback])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vm._events =&#123;       <span class="comment">//举例,可能不准确</span></span><br><span class="line">    event1:[<span class="string">'f1'</span>,<span class="string">'f2'</span>]</span><br><span class="line">    event2:<span class="string">'f3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三种传参形式:</p>
+<p>不传,清空_events.全部删除.</p>
+<p>仅传event,删除对应属性,即删event1或event2这些属性名.对应删除.</p>
+<p>两个都传,删除对应event下的callback.精准删除.</p>
+</li>
+<li><p>vm.$once(event,callback)</p>
+<p>$on的一次性版本.</p>
+<p>原理:劫持了原来的callback.once内部使用了$on, 但这个$on方法是在内部重新定义过的,跟全局的on不一样.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$once = <span class="function"><span class="keyword">function</span>(<span class="params">event,callback</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">on</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        vm.$off(event,callback)   <span class="comment">//用一次就删.还先删后用(!??)</span></span><br><span class="line">        callback.apply(vm,<span class="built_in">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    on.fn = fn</span><br><span class="line">    vm.$on(event,on)</span><br><span class="line">    <span class="keyword">return</span> vm</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3><span id="3生命周期相关方法">3.生命周期相关方法</span></h3><ol>
+<li><p>vm.$forceUpdate()</p>
+<p>迫使当前实例更新.仅影响当前实例及有slot的子组件.并不是所有子组件都会被更新.</p>
+<p>原理: 一般的数据变化导致实例刷新过程: 1. 收集依赖 2.触发watcher的update方法.</p>
+<p>$forceUpdate就是直接拿第二个步骤来用.直接触发watcher的update方法.(vm._watcher.update())</p>
+</li>
+<li><p>$mount,$nextTick,$destroy 见其它章节.</p>
+</li>
+</ol>
 
         </div>
       </div>
