@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="freecodecamp"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">freecodecamp</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-06-25</span>
+            <span class="time">23:39:00</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/js/">#js</a> <a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2><span id="1sumall">1.sumAll</span></h2><p>给一个含两项的数组,计算这个闭区间的和</p>
+<ol>
+<li><p>for循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> min = <span class="built_in">Math</span>.min(...arr);</span><br><span class="line">    <span class="keyword">let</span> max = <span class="built_in">Math</span>.max(...arr);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = min;i&lt;= max;i++)&#123;</span><br><span class="line">        res += i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>高斯公式, 等差数列 (a0+an)*n/2 = sum</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (arr[<span class="number">0</span>]+arr[<span class="number">1</span>])*(<span class="built_in">Math</span>.abs(arr[<span class="number">0</span>]-arr[<span class="number">1</span>])+<span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2><span id="2diffarray">2.diffArray</span></h2><p>给两个数组,取差集</p>
+<p>利用filter实现数组去重:</p>
+<p>arr1.filter((item,index,arr)=&gt;{</p>
+<p> arr.indexOf(item) === index</p>
+<p>})</p>
+<p>//利用indexOf找到第一个就会停止并返回该索引的特性</p>
+<ol>
+<li><p>抽离for循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffArray</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getDiffOf(arr1,arr2).concat(getDiffOf(arr2,arr1))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDiffOf</span>(<span class="params">res,target</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;res.length;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!target.includes(res[i]))&#123;</span><br><span class="line">      result.push(res[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一行搞定(思路:先连接数组,再找. 或者先找区别,再连接起来)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先找区别再连接</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffArray</span>(<span class="params">arr1,arr2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr1.filter(<span class="function"><span class="params">i</span>=&gt;</span>!arr2.includes(i)).concat(arr2.filter(<span class="function"><span class="params">i</span>=&gt;</span>!arr1.includes(i)))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用filter代替了for</span></span><br><span class="line"><span class="comment">//先连接再找区别</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffArr</span>(<span class="params">arr1,arr2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr1.concat(arr2).filter(<span class="function"><span class="params">i</span>=&gt;</span>!arr1.includes(i) || !arr2.includes(i))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffArr2</span>(<span class="params">arr1,arr2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr1.concat(arr2))].filter(<span class="function"><span class="params">i</span>=&gt;</span>!arr1.includes(i) || !arr2.includes(i))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//去重,影响可能不大.针对单个数组内的重复元素</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2><span id="3aim-and-destroy">3.Aim and Destroy</span></h2><p>给一个数组和不定个要删除的数, 返回已经删掉要求数的数组</p>
+<p>destroyer(arr,arg1,arg2,arg3){}</p>
+<ul>
+<li>取到要删除的元素,arguments.</li>
+<li>for-if 循环判断(!?) 或者filter</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//朴素解法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">destroyer</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">let</span> toDelete = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>).slice(<span class="number">1</span>)  </span><br><span class="line">    <span class="comment">//或者[...new Set(argument)].splice(1)或者Array.prototype.splice.call(arguments).splice(1)</span></span><br><span class="line">    <span class="comment">//或者[].splice.call(arguments,1)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!toDelete.includes(arr[i]))&#123;</span><br><span class="line">            result.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//简单解法,思路是一样的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">destroyer2</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> toDelete = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>).splice(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="params">item</span>=&gt;</span>!toDelete.includes(item))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="whatisinname">WhatIsInName</span></h2><p>给个对象数组,和一个对象x作为参数, 找出数组内包含对象x所有属性和值的对象</p>
+<p>例如:[{“name”:”what”,”age”:”22”},</p>
+<p>​          {“name”:”the”,”age”:”30”},</p>
+<p>​          {“name”:”hell”,”age”:”40”}]</p>
+<p>找出{“age”:”40”}的对应对象</p>
+<p>whatIsInName(collection,source){//…}</p>
+<p>思路:1.循环collection</p>
+<ol start="2">
+<li><p>根据source的键,去对比collection每个对象和source的值 //这里自动去除了collection对象有而source对象没有的属性.因为key都是source的</p>
+</li>
+<li><p><strong>设置一个flag,判断是否全部键/值完全相等, 一遇到值不相等的就将它设置为false</strong></p>
+</li>
+<li><p>第二层循环完了,shouldPush没被设置为false,则将该对象放进结果数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">whatIsInName</span>(<span class="params">collection,source</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;collection.length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> shouldPush = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> source)&#123;        <span class="comment">//可以抽出来, return false, true</span></span><br><span class="line">            <span class="keyword">if</span>(collection[i][key] !== source[key])&#123;</span><br><span class="line">                shouldPush = <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(shouldPush)&#123;</span><br><span class="line">            arr.push(collection[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">whatIsInAName</span>(<span class="params">collection,source</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> collection.filter(<span class="function"><span class="params">item</span>=&gt;</span><span class="built_in">Object</span>.keys(source).every(<span class="function"><span class="params">key</span>=&gt;</span>item[key] === source[key]))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//绝了</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
