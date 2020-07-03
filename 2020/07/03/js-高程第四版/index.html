@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="js-高程第四版"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">js-高程第四版</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-07-03</span>
+            <span class="time">09:25:42</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E4%B9%A6%E6%9C%AC/">书本</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1><span id="what-is-javascript">What is JavaScript?</span></h1><p>A round-up trip to server was needed for just simple input validations.</p>
+<p>Brendan Eich, 10days of development , 25years of impression.</p>
+<p>Slow speed (Network), large size (webpage)</p>
+<p>Netscape-&gt;Brendan Eich -&gt; Mocha -&gt; LiveScript -&gt; JavaScript</p>
+<p>NetScape Navigator   &lt; vs &gt;    Internet Explorer 3 August,1996  “INFAMY” for NetScapce</p>
+<p> JavaScript                   &lt;  vs &gt;              JScript</p>
+<p><strong>TC39</strong>(Technical Committee #39) was assigned to standardize the syntax in JavaScript, (DEFINITION)</p>
+<p>ECMAScript , a new scripting language. (Relations between TC39 and ECMA?) </p>
+<p><strong>Javascript is more than what just defined in ECMA-262. It is made up of three parts</strong></p>
+<ul>
+<li>The Core (ECMAScript)   //BASE</li>
+<li>The Document Object Model (DOM)   //EXTENSION</li>
+<li>The Browser Object Model (BOM)       //EXTENSION</li>
+</ul>
+<p>ES1,ES3,ES5,ES6.  (ES2无改变,所以不常见; ES4变化过大,被改为ES3.1. <strong>ES3.1最终被变为ES5;</strong>)</p>
+<p>ES5: December,2009 ; Strongly typed variables,classes/new statements and data structure …</p>
+<p>ES6:June 2015, ES2015,ES Harmony: class/modules/iterators/generators/arrow functions/promises/reflection/proxies/new data types</p>
+<hr>
+<p>Dynamic HTML,allows developers to alter content of page without reloading it.</p>
+<p><em>BUT</em> NetScape and IE implemented it in different ways.</p>
+<p><strong>W3C</strong> ,the one who rein in to stop web developing into two different factions.(in DHTML)</p>
+<hr>
+<p>BOM,  HTML5 made it standardized.Different browsers implement it differently.</p>
+<p>Summary: ECMAScript, core functionalities.</p>
+<p>DOM, methods and interfaces for working with the content of web page.</p>
+<p>BOM, methods and interfaces for working with the browser</p>
+<h1><span id="how-to-make-javascript-coexist-in-html">How to make JavaScript coexist in HTML?</span></h1><p>script attributes:</p>
+<ol>
+<li><p><code>async</code> , immediately download scripts but not prevent other actions on the page(?)</p>
+</li>
+<li><p><code>defer</code>, IE7 or earlier allow inline scripts.Defered until DOM content was completely parsed and displayed</p>
+</li>
+<li><p><code>src</code>,<code>type</code>(replaces the <code>language</code> option,type/javascript or module)</p>
+</li>
+<li><p><code>charset</code>,<code>crossorigin</code>,(anonymous/use-credentials)<code>integrity</code>(to ensure CDN,like a key to use CDN)</p>
+</li>
+</ol>
+<p><strong>TWO WAYS TO USE &lt;script&gt; ELEMENT</strong></p>
+<ol>
+<li><p>Inline scripting &lt;script&gt; function hi(){console.log(“hi”)}&lt;/script&gt; (avod using &lt;/script&gt;in code)</p>
+</li>
+<li><p>From external JS files &lt;script src=”sth.js” &gt;&lt;/script&gt;</p>
+<p>If both provided , inline scripts will be ignored and external files will be downloaded.</p>
+</li>
+</ol>
+<p>Powerful but controversal: src attribute can be set to a URL , which is not subject to cross-origin restrictions, but those JS returned and executed will be. </p>
+<p>Use attr <code>integrity</code> to limit a bit of the capability of &lt;script&gt; (Acts like a key)</p>
+<p>**Rendering begins when browser parses the tag &lt;body&gt;, DON’T place script tags in &lt;head&gt;,DOM will be displayed only after all scripts are excuted.DO put them before the end tag of body &lt;/body&gt;.</p>
+<p><strong>Defer scripts</strong></p>
+<p>Begin downloading immediately , but execution should be deferred.</p>
+<ol>
+<li><p>Scripts WILL NOT CHANGE THE STRUCTURE of the page as it executes.</p>
+</li>
+<li><p>Executed in defer order, before <code>DOMContentLoaded</code> event.</p>
+</li>
+</ol>
+<p><strong>Asynchronorous scripts</strong></p>
+<ol>
+<li><p>Not guaranteed to executed in scripts order.</p>
+</li>
+<li><p>NO SCRIPTS DEPENDENCIES</p>
+</li>
+<li><p>Guaranteed to be executed before <code>load</code> event and before/after <code>DOMContentLoaded</code></p>
+</li>
+</ol>
+<p><strong>Dynamic scripts</strong></p>
+<ol>
+<li><pre><code class="js"><span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
+script.src = <span class="string">'sth.js'</span>;
+script.async = <span class="literal">false</span>;  <span class="comment">//Set async to false.</span>
+<span class="built_in">document</span>.head.appendChild(script)
+&lt;!--￼<span class="number">0</span>--&gt;
+</code></pre>
+</li>
+</ol>
+<p><strong>Linking external JS files is considered the best pratice compared to inline scripts.</strong></p>
+<ol>
+<li><p>Maintainability(Put all JS files in a directory for maintainability)</p>
+</li>
+<li><p>Caching(Files downloaded will be cached by browser)</p>
+</li>
+<li><p>Future-proof(Same syntax to include files for XHTML and HTML)</p>
+</li>
+</ol>
+<p><strong>Document Modes</strong></p>
+<p>Quirk Mode(Omit the doctype) and Standards Mode(Use the doctype exclamation)</p>
+<p><strong>Use &lt;noscript&gt; element to provide content for browsers that do not support or disable JS.</strong></p>
+<p>It can contain any HTML element aside from &lt;script&gt; tag</p>
+<h1><span id="basic-syntax-of-ecmascript">Basic syntax of ECMAScript</span></h1><p>typeof cannot be a variable name , but can be a function name.!!!??</p>
+<p>Identifiers can only be started with <strong>letter , underscore(_),or dollar($) sign</strong></p>
+<h3><span id="three-ways-to-declare-variables-var-let-const">Three ways to declare variables: var / let /const</span></h3><ol>
+<li>var (function scoped)</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> msg = <span class="string">'hi'</span>  <span class="comment">//a local variable to the function scope.</span></span><br><span class="line">&#125;</span><br><span class="line">test()             <span class="comment">//after this , msg is destroyed.</span></span><br><span class="line"><span class="built_in">console</span>.log(msg)   <span class="comment">//error</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    msg2 = <span class="string">'what'</span> <span class="comment">//create a global variable</span></span><br><span class="line">                  <span class="comment">//Reference Error will be thrown in strict mode.</span></span><br><span class="line">                  <span class="comment">//hard maintainability</span></span><br><span class="line">&#125;</span><br><span class="line">test2()</span><br><span class="line"><span class="built_in">console</span>.log(msg2)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>let (block scoped)</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">'hi'</span></span><br><span class="line">    <span class="built_in">console</span>.log(name)  <span class="comment">//'hi'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name)     <span class="comment">//'hi'</span></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> age = <span class="string">'26'</span></span><br><span class="line">    <span class="built_in">console</span>.log(age)  <span class="comment">//26</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(age)      <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="differences-between-var-and-let">Differences between var and let</span></h4><ol>
+<li><p><strong>BLOCK SCOPED VS FUNCTION SCOPED</strong></p>
+<p>The former is strictly a subset of the latter one.</p>
+</li>
+<li><p><strong>Redundant Declaration</strong></p>
+<p><code>let</code> is not allowed to declare variables repeatly while using <code>var</code> can .(except for nested cases)</p>
+</li>
+<li><p>No coexistence</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a</span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b</span><br><span class="line"><span class="keyword">let</span> b <span class="comment">//Both throw error "xxx has been declared"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Temporal Dead Zone: </p>
+<p>The segment of execution that occurs before the declaration is referred to.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(name)              <span class="comment">//TDZ</span></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">'hh'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Variables declared with ‘let’ will not attached to window, while those with ‘var’ will.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a)  <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.b)  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>let variables redeclarations will throw errors even they were declared in different &lt;script&gt; tags.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;scirpt&gt;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line">&lt;<span class="regexp">/scirpt&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    let a = 2           /</span><span class="regexp">/Throw error</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>let variables disadvantage(Conditional Declaration)</strong></p>
+<p>Use try/catch block scoped to deal with the problem.</p>
+</li>
+<li><p><code>const</code> ,acts identically with that of <code>let</code>,</p>
+<p>But it has to be initialized when declared , and cannot be redefined anywhere else.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">2</span></span><br><span class="line"><span class="comment">//const a</span></span><br><span class="line"><span class="comment">//const a = 3  </span></span><br><span class="line"><span class="comment">//a = 4</span></span><br><span class="line"><span class="comment">//will both throw errors.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3><span id="data-types">Data Types</span></h3><p>Six simple data types: null , undefined , number , string ,boolean, symbol , (bigint)</p>
+<p>One complex data type : Object.</p>
+<h4><span id="typeof-operator">typeof operator</span></h4><p>Function can be detected by typeof operator</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> test)    <span class="comment">//"function"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">NaN</span>)     <span class="comment">//"number"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Symbol</span>(<span class="string">'1'</span>)) <span class="comment">//"symbol"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//confusing cases</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>)  <span class="comment">//"object"</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="undefined-type">Undefined type</span></h4><p>The value of undefined is falsy.</p>
+<p><strong>Undeclared vs Uninitialized</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//operator typeof can be used on an undeclared variable,</span></span><br><span class="line"><span class="comment">//which can be confusing, unable to differentiate from those uninitialized.</span></span><br><span class="line"><span class="keyword">let</span> msg                 <span class="comment">//uninitialized variable</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> msg)   <span class="comment">//"undefined"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> age)   <span class="comment">//"undefined"   undeclared variable</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="null-type">Null type</span></h4><p>It is advisable to initialize a value of null for variables that later hold an object.</p>
+<h4><span id="differences-between-null-and-undefined">Differences between null and undefined</span></h4><ol>
+<li>null == undefined     //true , undefined is a derivative of null.</li>
+<li>Do not explictly assign undefined to a variable ,but you can do with null for different purpose.</li>
+</ol>
+<h4><span id="boolean-type">Boolean type</span></h4><p>Literal values: true  false</p>
+<p>Automatic conversions</p>
+<p>​                  true                                                                                   false</p>
+<p>String      nonempty string                                                     “”(empty string)</p>
+<p>Number      nonezero number(including Infinity)                      0,NaN</p>
+<p>Object          any object                                                                    null</p>
+<p>Undefined        n/a                                                                          undefined</p>
+<h4><span id="number-type">Number type</span></h4><p>Octal literals are invalid in strict mode.</p>
+<p>Octal/Hexadecimal numbers will treated as decimal numbers in arithmetic operations.</p>
+<p>0.05+0.25 == 0.15+0.15 == 0.3      //true</p>
+<p>0.1+0.2 == 0.3       //false</p>
+<p>Biggest num / Smallest num      Number.MAX_VALUE/Number.MIN_VALUE</p>
+<p>Infinity cannot be calculated later in the programer, therefore, use isFinite() to test whether to continue.</p>
+<h4><span id="nan">NaN</span></h4><p>Any operation involves NaN returns NaN, AND NaN is not equal to any value,including NaN </p>
+<p>Use isNaN() to test an identifier whether equals to NaN.</p>
+<h4><span id="three-ways-to-convert-variables-into-number">Three ways to convert variables into number</span></h4><ol>
+<li><p>Number(),     null-&gt;0 undefined-&gt;NaN      Strings=&gt;(“-011”)-&gt;-11</p>
+<p>When used on an object , the order is valueOf() , toString() , Number()</p>
+</li>
+<li><p>parseInt() ,always use the second param, which means the radix(0 or default,takes the number as a decimal.)</p>
+</li>
+<li><p>parseFloat()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Differences </span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'1234blue'</span>) <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'1234blue'</span>)  <span class="comment">//1234</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">011</span>,<span class="number">0</span>)  <span class="comment">//11</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">111</span>,<span class="number">2</span>)  <span class="comment">//7</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'AF'</span>)   <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'AF'</span>,<span class="number">16</span>)  <span class="comment">//175  this is why you should use the radix parameter.</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'22.34.5'</span>)  <span class="comment">//22.34 ,see the second decimal point as an invalid character</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4><span id="string-type">String type</span></h4><p>Strings are immutable. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lang = <span class="string">'Java'</span></span><br><span class="line">lang = lang + <span class="string">'Script'</span></span><br></pre></td></tr></table></figure>
+
+<p>Behind the scenes , a new space to stored 10 characters is created for lang .And the old lang, with the value of ‘Java’ , and the string,”Script” are detroyed after the concatenation. //The reason why old browsers may run slow doing strings concatenation.</p>
+<p><strong>Two ways to convert to a String</strong></p>
+<ol>
+<li><p>toString() , when used on a number , a param meaning raidx is accepted , which turns the value to the radix base.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">10</span></span><br><span class="line">a.toString(<span class="number">2</span>)  <span class="comment">//3</span></span><br><span class="line">a.toString(<span class="number">8</span>)  <span class="comment">//12</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>String() .For cases like <code>undefined</code> and <code>null</code>. If the value has the method toString(), call it; Otherwise ,return ‘undefined’ or ‘null’</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>)  <span class="comment">//undefined</span></span><br><span class="line"><span class="literal">undefined</span>.toString()   <span class="comment">//cannot read property 'toString' of undefined</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4><span id="template-literals">Template literals</span></h4><p>Interpolations will be coerced into a string using the toString() method, which can be overwrited.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = &#123;</span><br><span class="line">    toString()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'World'</span></span><br><span class="line">&#125;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Hello , <span class="subst">$&#123;foo&#125;</span>!`</span>)  <span class="comment">//Hello , World!</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123; word[<span class="number">0</span>].toUpperCase() &#125;</span><span class="subst">$&#123;word.slice(<span class="number">1</span>)&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;capitalize(<span class="string">'hello'</span>)&#125;</span>, <span class="subst">$&#123;capitalize(<span class="string">'world'</span>)<span class="string">`)</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>Tag function    P52 <strong>NEW</strong></p>
+<p>parmas: (strings , …expressions) // strings is an array consisted of those not expressions.expressions are corresponding <em>values</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span> , b =<span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">simpleTag</span>(<span class="params">strings,...expressions</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(strings)</span><br><span class="line">    <span class="built_in">console</span>.log(...expressions)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result = simpleTag<span class="string">`<span class="subst">$&#123;a&#125;</span>+<span class="subst">$&#123;b&#125;</span>=<span class="subst">$&#123;a+b&#125;</span>`</span></span><br><span class="line"><span class="comment">//["","+","=",""]     //why 2 empty items?</span></span><br><span class="line"><span class="comment">//1,2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.raw<span class="string">`\u00A9`</span>      <span class="comment">//\u00A9   ???What is this??</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="symbol-type">Symbol Type</span></h4><p>Usage: For not property collision in an object. Every symbol instances is <code>unique and immutable</code></p>
+<p>Two ways to create Symbol,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> basic = <span class="built_in">Symbol</span>(<span class="string">'desc'</span>)</span><br><span class="line"><span class="keyword">let</span> globalSymbol = <span class="built_in">Symbol</span>.for(<span class="string">'desc'</span>)  </span><br><span class="line"><span class="keyword">typeof</span> basic      <span class="comment">//symbol</span></span><br><span class="line"><span class="keyword">typeof</span> globalSymbol <span class="comment">//symbol</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Two totally different symbols</strong></p>
+<p>The second way registration is for reuse, and the description parameter is required.</p>
+<p><em>Symbol.for(‘desc’)*will create a symbol and register it on a global ‘list’, and *Symbol.keyFor(‘desc’)</em> will return the symbol which description is desc.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(o)    <span class="comment">//return regular property names in an array</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(o)  <span class="comment">//return symbol properties</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptors(o)</span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(o)             <span class="comment">//These two are the same , both will return regular and symbol properties descriptors.</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="object-type">Object Type</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span></span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="keyword">new</span> <span class="built_in">Object</span>()  <span class="comment">//valid in both ways</span></span><br></pre></td></tr></table></figure>
+
+<p>Properties in Object</p>
+<ul>
+<li><p>constructor / isPrototypeOf(object) / hasOwnProperty /propertyIsEnumerable / toLocaleString  / toString  / valueOf</p>
+<p>toLocaleString will return a string that is appropriate for the locale of execution environment while toString will not.</p>
+</li>
+</ul>
+<p>DOM / BOM’s behavior are considered <code>host objects</code> ,which are not governed by ECMAscript.</p>
+<h3><span id="operators">Operators</span></h3><h4><span id="unary-operators">Unary operators</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//        ++ /  --</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line"><span class="keyword">let</span> b = a-- + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> c = ++a + <span class="number">2</span>;</span><br><span class="line"><span class="comment">//the same as following</span></span><br><span class="line"><span class="keyword">let</span> b = a + <span class="number">1</span></span><br><span class="line">a = a <span class="number">-1</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">a = a + <span class="number">1</span></span><br><span class="line">c = a + <span class="number">2</span></span><br><span class="line"><span class="comment">//Therefore , let b = a-- + 1     --&gt; b = 21 , a = 19</span></span><br><span class="line"><span class="comment">//let c = ++a + 2 --&gt; a = 19 + 1 ; c = 20 + 2 = 22</span></span><br><span class="line"><span class="comment">//****PRE AND POST ****</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="bitwise-operators">Bitwise operators</span></h3><p>Values operated by bitwise operators are stored in 64-bits format , converted into 32-bits to calculate, and converted back into 64-bits.</p>
+<p>31bits represent the value and the 32 th bit represents the type of the value.<code>0 for Positive and 1 for Negative</code></p>
+<p><strong>Only for storage view</strong></p>
+<p>Positive 18: 00000000000000000000000000010010 -&gt; 10010</p>
+<p>Negative 18 : 1111111111111111111111101110    -&gt;Two’s complement.</p>
+<p>*<em>Get the binary representation of its absolute value . Convert 0 to 1 , 1 to 0 , plus 1 *</em></p>
+<h4><span id="bitwise-not-and-or-xor">Bitwise NOT / AND / OR / XOR</span></h4><p>~ / &amp; / | / ^</p>
+<p>XOR’s value is one less than OR’s value(? really?)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">25</span>  <span class="comment">//11001</span></span><br><span class="line"><span class="keyword">let</span> num2 = ~num <span class="comment">//111111111111 00110        //not 00111 ,no plus 1, not the two complement?</span></span><br><span class="line"><span class="comment">//equals to let num2 = -num - 1</span></span><br><span class="line"><span class="comment">//but the Bitwise operator is faster.</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="signed-shift">Signed Shift</span></h4><p>&gt;&gt;  / &lt;&lt;  , ignores the 32th bit ,filled the moved bits with 0.</p>
+<h4><span id="unsigned-shift">Unsigned Shift</span></h4><p>&gt;&gt;&gt; / &lt;&lt;&lt; ,using on negative numbers may turn it into a positive one.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">-64</span></span><br><span class="line">a &gt;&gt;&gt; <span class="number">5</span>          <span class="comment">//1342177226</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="boolean-operators">Boolean operators</span></h4><p><strong>!!sth is equal to Boolean(sth) , ++string is equal to Number(sth)</strong></p>
+<p>Logical AND (Short-circuited.)</p>
+<ul>
+<li>If the first operand is an object , return the second operand</li>
+<li><strong>Return the second operand if the first operand evaluates to true</strong></li>
+<li>If both are objects , return the second object.</li>
+<li>If <strong>either(one or two</strong> operand is null/NaN/undefined,    return null/NaN/undefined.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Consider the case</span></span><br><span class="line"><span class="keyword">let</span> result = (<span class="literal">true</span> &amp;&amp; somethingUndeclared)</span><br><span class="line"><span class="built_in">console</span>.log(result)       <span class="comment">//Error occurs</span></span><br><span class="line"><span class="keyword">let</span> result2 = (<span class="literal">false</span> &amp;&amp; somethingError)</span><br><span class="line"><span class="built_in">console</span>.log(result2)     <span class="comment">//This will be executed</span></span><br></pre></td></tr></table></figure>
+
+<p>Logical OR</p>
+<ul>
+<li>If the first operand evaluates to false , then the second operand is returned.</li>
+<li>If both are objects, return the first object.</li>
+<li>If both are null/NaN/undefined , return null/NaN/undefined</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = (<span class="literal">true</span> || somethingUndeclared)</span><br><span class="line"><span class="built_in">console</span>.log(result)    <span class="comment">//no error</span></span><br><span class="line"><span class="comment">//Frequently used case:</span></span><br><span class="line"><span class="keyword">let</span> myObject = preferredObject || backupObject</span><br><span class="line"><span class="comment">//assign the former one if available, otherwise , assign the backupObject to myObject</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="multiplicative-operators">Multiplicative operators</span></h3><h4><span id="multiply">Multiply *</span></h4><ul>
+<li>Either operand is NaN , returns NaN</li>
+<li>Infinity * 0     -&gt; NaN , Infinity / 0     -&gt; Infinity</li>
+<li>Infinity * any other value except 0 , Infinity or -Infinity , depending on the sign of second operand</li>
+<li>Infinity * Infinity = Infinity</li>
+</ul>
+<h4><span id="divide">Divide /</span></h4><ul>
+<li>Either operand is NaN, returns NaN</li>
+<li>0/0 -&gt; NaN ,     finite Number / 0 -&gt; Infinity or -Infinity</li>
+<li>Infinity / Infinity -&gt; NaN , Infinity / any number -&gt; Infinity or -Infinity (Infinity / 0 =&gt; Infinity)</li>
+</ul>
+<h4><span id="remaindermodulus">Remainder(Modulus) %</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">26</span> % <span class="number">5</span> ) <span class="comment">//1</span></span><br><span class="line"><span class="literal">Infinity</span> % <span class="number">2</span>    <span class="comment">//NaN</span></span><br><span class="line"><span class="number">2</span> % <span class="number">0</span>           <span class="comment">//NaN</span></span><br><span class="line"><span class="literal">Infinity</span> % <span class="literal">Infinity</span> <span class="comment">//NaN</span></span><br><span class="line"><span class="number">2</span> % <span class="literal">Infinity</span>    <span class="comment">// 2</span></span><br><span class="line"><span class="number">0</span> % <span class="number">2</span>           <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="exponential">Exponential **</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line">a **<span class="number">2</span>        <span class="comment">//both are 9</span></span><br><span class="line">a **= <span class="number">2</span>      <span class="comment">//a = a ** 2 = 9</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">16</span></span><br><span class="line">b **= <span class="number">0.5</span>   <span class="comment">// b = b ** 0.5 = 4</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="additive-operators">Additive Operators</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Infinity</span> + -<span class="literal">Infinity</span>  <span class="comment">//NaN   SPECIAL CASE</span></span><br><span class="line"><span class="literal">Infinity</span> + <span class="literal">Infinity</span>  <span class="comment">//Inifnity</span></span><br><span class="line">-<span class="literal">Infinity</span> + -<span class="literal">Infinity</span> <span class="comment">//-Infinity</span></span><br><span class="line">+<span class="number">0</span> + <span class="number">-0</span>            <span class="comment">//+0</span></span><br><span class="line"><span class="keyword">let</span> result = <span class="number">5</span> + <span class="string">"5"</span></span><br><span class="line"><span class="comment">//result -&gt; 55</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>If only one operand is a string, the other operand is converted to a string</strong> and the result is </p>
+<p>the concatenation of the two strings.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Common Error,String(the sum is) convert num1 to a string , and the string (the sum is 5) convert num2 into a string too</span></span><br><span class="line"><span class="comment">//Each addition is done separately.</span></span><br><span class="line"><span class="keyword">let</span> num1 = <span class="number">5</span> , num2 = <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"The sum is "</span> + num1 + num2)    <span class="comment">//The sum is 510</span></span><br><span class="line"><span class="comment">//Solution</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"The sum is "</span> + (num1 + num2))</span><br></pre></td></tr></table></figure>
+
+<h4><span id="relational-compare">Relational Compare</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">"Brick"</span> &lt; <span class="string">"alphabet"</span>     <span class="comment">//true,True answer but wrong process</span></span><br><span class="line"><span class="string">"Brick"</span>.toLowerCase() &lt; <span class="string">"alphabet"</span>    <span class="comment">//false. Same start up.  b compares with a , which means 98 &lt; 97 is false.</span></span><br><span class="line"><span class="comment">//All the same with strings</span></span><br><span class="line"><span class="keyword">let</span> result2 = <span class="string">"23"</span> &lt; <span class="string">"3"</span>        <span class="comment">//true. Because 3 is greater than 2.</span></span><br><span class="line"><span class="keyword">let</span> result3 = <span class="string">"23"</span> &lt; <span class="number">3</span>          <span class="comment">//false,which is the right answer.</span></span><br><span class="line"><span class="keyword">let</span> result4 = <span class="string">"a"</span> &lt; <span class="number">3</span>           <span class="comment">//NaN, "a" can't be converted into a number.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Whenever a number is compared with a string , the string will be converted into number.</strong></p>
+<h4><span id="equality-operators">Equality Operators</span></h4><p>Equal and not equal , perform type conversion before doing comparisons</p>
+<p>Identically equal and identically not equal, no types conversions performed.</p>
+<p>Boolean / String  -&gt;converted into a number </p>
+<p>Object, valueOf() / toString() / Numebr()</p>
+<p><code>If both operands are objects , check if they point to the same object (same space storing the object)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>)    <span class="comment">//num =4 , always return the last value in the set</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="statements">Statements</span></h3><p>do-while , post-test loop , the body of loop is at least executed once.</p>
+<p>while, pre-test loop. The body of loop may never be executed.</p>
+<p>for , combination of pre and post - test loop.</p>
+<p>for(initialization ; expression ; <code>post-loop-expression</code>) { statement }</p>
+<p>Question: Why you have to use variable declaration keyword inside the for loop,even it’s not useful outside the loop?</p>
+<p>Answer:To limit the iterator to only ‘for’ loop scope itself.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;&#125;  <span class="comment">//this is valid even i is not declared</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;<span class="number">5</span>;j++)&#123;&#125;      <span class="comment">//This is recommended.</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//for in statement: to enumerate non-symbol keyed properties of an object.Orders are unpredictable.</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> property <span class="keyword">in</span> someObject)&#123;<span class="built_in">console</span>.log(property)&#125;</span><br><span class="line"><span class="comment">//for of statement:to enumerate values of sth.</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> values <span class="keyword">of</span> someArray)&#123;<span class="built_in">console</span>.log(values)&#125;</span><br><span class="line"><span class="comment">//in for index</span></span><br><span class="line"><span class="comment">//of for values</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>for in enumerate properties/index,types are string</strong> </p>
+<p><strong>for of enumerate values</strong></p>
+<p><em>for of cannot be used on an object, objects’ values cannot be iterated directly.</em></p>
+<h4><span id="label-statements">Label statements</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start: <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ;i&lt;<span class="number">5</span>;i++)&#123;&#125;</span><br><span class="line"><span class="comment">//start can be refered later by break or continue (??)</span></span><br><span class="line"><span class="comment">//typically used on nested loops.</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="loops-operators">Loops operators.</span></h4><p>break : exit the whole loop.</p>
+<p>continue: exit the loop immediately , but will continue executing the loop from top</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    num1++</span><br><span class="line">&#125;  <span class="comment">//num1=4</span></span><br><span class="line"><span class="keyword">let</span> num2 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    num2++</span><br><span class="line">&#125; <span class="comment">//num2=8</span></span><br><span class="line"><span class="keyword">let</span> num3 = <span class="number">0</span>;</span><br><span class="line">outermost:</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span> ; i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">5</span>&amp;&amp;j==<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span> outermost</span><br><span class="line">        &#125;</span><br><span class="line">        num3++</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">//55</span></span><br><span class="line"><span class="keyword">let</span> num4 = <span class="number">0</span>;</span><br><span class="line">outermost:</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span> ; i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">5</span>&amp;&amp;j==<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">continue</span> outermost</span><br><span class="line">        &#125;</span><br><span class="line">        num4++</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">//95</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="with-statement">with statement</span></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span>(location)&#123;</span><br><span class="line">    <span class="keyword">var</span> qs = search.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> hostName = hostname;</span><br><span class="line">    <span class="keyword">var</span> url = href;</span><br><span class="line">&#125;<span class="comment">//let is not recommended using here</span></span><br><span class="line"><span class="comment">//same as the following</span></span><br><span class="line"><span class="keyword">let</span> qs = location.search.substring(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> hostName = location.hostname;</span><br><span class="line"><span class="keyword">let</span> url = location.href;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="switch-statement">switch statement</span></h4><ul>
+<li><p>no value constrains for cases.</p>
+</li>
+<li><p>Using identically equal , meaning that </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(<span class="string">"55"</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">55</span>: </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'matched!'</span>)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'not matched!'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//this will output not matched, for "55" === 55 returns false.</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="primitive-and-reference-values-execution-context-garbage-collection">Primitive and reference values / Execution context / Garbage collection</span></h3><p><strong>A variable is literally just a name for a particular value at a particular time</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"This is a String"</span></span><br><span class="line">a.name = <span class="string">"test"</span> </span><br><span class="line"><span class="built_in">console</span>.log(a.name)       <span class="comment">//no error, but this will output undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"A second string"</span>)</span><br><span class="line">b.name = <span class="string">"test2"</span></span><br><span class="line"><span class="built_in">console</span>.log(b.name)  <span class="comment">//test2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>When an argument is passed by reference, the location of the value in memory is stored into a local variable, which means that changes to the local variable are reflected outside the function</strong></p>
+<p>local variable is also called “named parameters”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    obj.name = <span class="string">"Nicholas"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">setName(person)</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">//"Nicholas"</span></span><br></pre></td></tr></table></figure>
+
+<p>When person is passed into the function , it may look the same like the following:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj = person  <span class="comment">//person is the global object outside the function scope.For understanding reason.</span></span><br><span class="line">obj.name = <span class="string">"Nicholas"</span></span><br></pre></td></tr></table></figure>
+
+<p>Passing person as a parameter means obj and person point to the same object that exists globally on the heap.</p>
+<p>To prove objects are passed by value, consider the case:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    obj.name = <span class="string">"Nicholas"</span></span><br><span class="line">    obj = <span class="keyword">new</span> <span class="built_in">Object</span>()   <span class="comment">// Relations between obj and person  are broken in this line.</span></span><br><span class="line">    obj.name = <span class="string">"Greg"</span></span><br><span class="line">&#125;</span><br><span class="line">setName(person)</span><br><span class="line"><span class="built_in">console</span>.log(person.name)  <span class="comment">//Output Nicholas but not Greg.</span></span><br><span class="line"><span class="comment">//obj is reassigned to the other object in the funcion.</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="determining-types">Determining types</span></h4><p>Use <code>typeof</code> to differentiate primitive types, and use <code>instanceof</code> to concretely differ types of objects.</p>
+<p>typeof -&gt; “string” , “number” , “boolean” ,”undefined” , “function” , “object”</p>
+<p>Using typeof on null will return “object” , and RegExp objs / arrays / Dates … will all return “object”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">colors <span class="keyword">instanceof</span> <span class="built_in">Array</span></span><br><span class="line">pattern <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>     <span class="comment">//Get concrete types of object</span></span><br><span class="line"><span class="comment">//Other ways to dectect data types:</span></span><br><span class="line"><span class="comment">//Object.prototype.toString.call()</span></span><br><span class="line"><span class="comment">//sth.constructor === Array</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="execution-context">Execution Context</span></h4><blockquote>
+<p>The execution context of a variable or function defines what other data it has access to, as well as how it should behave.</p>
+</blockquote>
+<ul>
+<li><p>Variable Object:Scope Chain , Activation Object</p>
+</li>
+<li><p>Global Context</p>
+</li>
+<li><p>Functions Context  , using stack for maintenance</p>
+</li>
+<li><p>Scope Chain. This is a variable object.</p>
+</li>
+<li><p>Activation Object, This is a variable object too, if the context is a function.This starts with a single defined variable <code>arguments</code></p>
+<blockquote>
+<p>The next variable object in the chain is from the containing context, and the next after that is from the next containing context(??)</p>
+</blockquote>
+</li>
+</ul>
+<h4><span id="scope-chain-aumentation">Scope Chain Aumentation</span></h4><p>Using catch and with statements. </p>
+<p><code>catch</code> will create a new variable object to the front of the scope chain.</p>
+<p><code>with</code> will add the specified variable object to the front of the scope chain.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> qs = <span class="string">"?debug=true"</span>;</span><br><span class="line">    <span class="keyword">with</span>(location)&#123;</span><br><span class="line">        <span class="keyword">var</span> url = href + qs  <span class="comment">//'let' is used in the book, which outputs an error,cannot get reference to the "url"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> url</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Here, specified variable object location is added to the scope chain.</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="garbage-collection">Garbage Collection</span></h4><p><strong>Two ways:</strong></p>
+<ol>
+<li><p>“mark-and sweep”: mark the in-scope variables , sweep them once the function is finished</p>
+</li>
+<li><p>“Reference Counting”:Keep track of how many references are made to the value, once count is zero , collect it.</p>
+<p><strong>Problem: Circular Reference</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">problem</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">    <span class="keyword">let</span> b = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">    a.sth = b</span><br><span class="line">    b.sth = a</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//This will never be collected once ran, and memory may be filled up if run it for countless times</span></span><br><span class="line"><span class="comment">//Solution: clean the circular reference:</span></span><br><span class="line">a.sth = <span class="literal">null</span>;</span><br><span class="line">b.sth = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3><span id="three-ways-to-use-undeclared-variables">Three ways to use undeclared variables</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> sthUndeclared     <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">let</span> result = (<span class="literal">false</span> &amp;&amp; sthUndecalred) <span class="comment">//no error, short-circuited.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sthUndeclared = <span class="number">2</span>        <span class="comment">//Not in strict mode , this will be automatically added to window, window.sthUndeclared.</span></span><br><span class="line">&#125;                       <span class="comment">//?undefined?</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
