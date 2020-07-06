@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="7-6日记"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">7-6日记</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-07-07</span>
+            <span class="time">01:23:09</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vue/">#Vue</a> <a class="tag" href="/tags/JavaScript/">#JavaScript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1><span id="1-reduce的一些用法">1. reduce的一些用法</span></h1><blockquote>
+<p>Array.prototype.reduce((acc,cur,index,array)=&gt;{}, base)</p>
+<p>acc累加器 / cur 正在执行的值 / index 正在执行的值在数组中的索引 / array 整个数组</p>
+<p>base, 基值, 亦为initialValue</p>
+<p>提供base, 则第一次执行时,acc则为base, cur则为数组第一个值(索引为0)</p>
+<p>不提供base, 则第一次执行数组下标0的值作为acc, 下标1的值为cur</p>
+<p>数组为空,且base也不提供,则TyepError</p>
+<p>数组只有一个元素, 或者数组为空,只提供base,则不执行callback, 直接返回那个值.</p>
+<p>Always provide the base/ initial value for safety purpose.</p>
+</blockquote>
+<p>(摘自MDN)</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce</a></p>
+<h2><span id="examples">Examples</span></h2><h3><span id="1sumall求和">1.sumAll(求和)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sum = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>acc+cur,<span class="number">0</span>)     <span class="comment">//15</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="2-sum-of-values-in-object-array对对象数组的某个属性值求和">2. sum of values in object array(对对象数组的某个属性值求和)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objArr = [</span><br><span class="line">    &#123;<span class="attr">x</span>:<span class="number">0</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">x</span>:<span class="number">2</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">x</span>:<span class="number">3</span>&#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> sum = objArr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">acc,cur</span>)</span>&#123;</span><br><span class="line">   acc + cur.x           <span class="comment">//注意这里是acc,不是acc.x,因为acc一开始就是0</span></span><br><span class="line">&#125;,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h3><span id="3flatten-an-array-二维数组转为一维">3.Flatten an array (二维数组转为一维)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flattened = [[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>]].reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> acc.concat(cur)</span><br><span class="line">&#125;,[])       <span class="comment">//利用了concat, 当前只能将二维数组转为一维</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="4counting-times-of-a-value-in-an-objectarray统计元素属性在数组对象中出现的次数">4.Counting times of a value in an object/array(统计元素/属性在数组/对象中出现的次数)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(cur <span class="keyword">in</span> acc)&#123;</span><br><span class="line">        acc[cur]++</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        acc[cur] = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> acc</span><br><span class="line">&#125;,&#123;&#125;)   <span class="comment">//是对象不是数组, 元素本身作为属性名,出现次数作为值</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="5grouping-objects-by-a-property根据某一属性值分类对象">5.Grouping objects by a property(根据某一属性值分类对象)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> people = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Alice'</span>, <span class="attr">age</span>: <span class="number">21</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Max'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Jane'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;</span><br><span class="line">];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">groupBy</span>(<span class="params">objectArr,property</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> objectArr.reduce(<span class="function">(<span class="params">acc,obj</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> key = obj[property];  <span class="comment">//属性值</span></span><br><span class="line">        <span class="keyword">if</span>(!acc[key])&#123;</span><br><span class="line">            acc[key] = []        <span class="comment">//20:[], 21:[]</span></span><br><span class="line">        &#125;</span><br><span class="line">        acc[key].push(obj)       </span><br><span class="line">        <span class="keyword">return</span> acc</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(groupBy(people,<span class="string">'age'</span>))</span><br><span class="line"><span class="comment">//&#123;20:Array(2),21:Array(1)&#125;</span></span><br><span class="line"><span class="comment">//思路,将需要分类的属性值(20,21)作为属性名,属性值是数组. </span></span><br><span class="line"><span class="comment">//似乎跟累加无关? 更像遍历,acc只不过负责凑成整体</span></span><br></pre></td></tr></table></figure>
+
+<p>//More ..</p>
+<h1><span id="两道算法题">两道算法题</span></h1><h2><span id="找出数组中第k大小的元素">找出数组中第k大/小的元素</span></h2><p>思路: 不可能遍历排序之后再找,效率极低.</p>
+<ol>
+<li><p>创建一个大小为k的数组result,遍历,</p>
+</li>
+<li><p>一开始将原数组前k个元素全部push到新数组result中,</p>
+</li>
+<li><p>指针寻找下一个,比较下一元素与数组中的所有值(?),找出最大或者最小的将其替代</p>
+</li>
+<li><p>之后指针再指向下一个元素,重复第三步</p>
+</li>
+</ol>
+<p>如果要找第k大的,指针元素比result数组中的都大,则用指针元素替换result数组中最小的元素</p>
+<p>(每次找出result数组中的最大或最小元素是否能避免,指针元素跟result数组每个元素比较这一步?)</p>
+<hr>
+<h2><span id="计算路径动态规划">计算路径(动态规划)</span></h2><p>机器人在n*m矩阵行走,左上走到右下, 设置障碍,计算可行路径有多少条</p>
+<p>没有障碍的情况下,当前所在位置相当于走到左边位置的路径数加上走到上边位置的路径数之和.</p>
+<p>设置障碍,相当于走到当前位置的左侧或者上侧数字为0(走不到有障碍的路径)</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
