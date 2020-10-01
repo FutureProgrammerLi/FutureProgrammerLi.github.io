@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="react-hooks"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">react-hooks</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-07-12</span>
+            <span class="time">15:58:13</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/React-Hooks/">React Hooks</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/react/">#react</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1><span id="hooks的用途">Hooks的用途</span></h1><p>react 16.8的新特性。</p>
+<p>允许函数式(无状态)组件使用state，生命周期等功能。</p>
+<h2><span id="1-usestateinitialvalue">1. useState(initialValue)</span></h2><p>自我理解: (可以实现类似Vue中的watch, setXXX中接受参数,就是对应的更新前的XXX</p>
+<p>const [count, setCount] = useState(initialValue)</p>
+<p>[变量名,设置变量的方法] = useState(变量初始值)</p>
+<blockquote>
+<p>惰性更新</p>
+</blockquote>
+<p><strong>useState传个函数进去, 可以对initialValue进行一些运算,返回值就是initialValue</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state,setState] = useState(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> initialValue = ExpensiveComputation()</span><br><span class="line">    <span class="keyword">return</span> initialValue</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>函数式更新</p>
+</blockquote>
+<p><strong>setXXX传一个参数进去, 就是之前的对应值oldValue,类似watch(oldValue,newValue)</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span>setCount(prevCount=&gt;prevCount+1)&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不同于类组件的setState,useState不会自动合并更新对象(!?)</span></span><br><span class="line"><span class="comment">//使用setXXX的参数类似实现对象合并</span></span><br><span class="line">setCount(<span class="function"><span class="params">prevState</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;...prevState,...updatedState&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果初始值是一个对象,则不能局部更新</li>
+<li>useState传个函数进去是什么意思?Initial State Computations.函数返回什么,什么就当初始值.</li>
+</ul>
+<h2><span id="2-useeffectdidupdate">2. useEffect(didUpdate)</span></h2><p>接受一个函数作为参数,可以实现类似Vue中的computed</p>
+<ul>
+<li><p>didUpdate代替了类组件的componentDidMount和componentDidUpdate两个生命周期函数</p>
+</li>
+<li><p>return 一个函数,该函数相当于componentWillUnmount内调用</p>
+</li>
+<li><p>可传第二个参数,是个数组.表示第一个函数中的依赖项. </p>
+<ol>
+<li><p><strong>传个空数组,函数仅在渲染完成后执行,相当于仅在componentDidMount中调用</strong></p>
+<blockquote>
+<p>effect的条件执行:</p>
+</blockquote>
+</li>
+<li><p>传非空数组,表示第一个函数中的依赖项, 当依赖项发生改变时重新执行第一个参数函数.(<strong>类似于computed?</strong>)</p>
+<p>会对比函数依赖项和数组的项, 如果全都没有改变才不执行第一个参数的函数.</p>
+</li>
+</ol>
+</li>
+<li><p>useEffect顺序执行. 执行下一个effect之前,上一个(如果有return)effect已经被清除</p>
+</li>
+<li><p><strong>useEffect在浏览器完成布局和渲染之后,延时调用传入的函数(!!!???)</strong>,想在渲染前调用,则用useLayoutEffect</p>
+</li>
+</ul>
+<p><strong>使用useEffect请求数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React , &#123; useEffect , useState&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> userList = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [list , setList ] = useState(<span class="literal">null</span>);</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        ajax(<span class="string">'/list'</span>).then(<span class="function"><span class="params">list</span>=&gt;</span>&#123;</span><br><span class="line">            setList(list)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,[])       <span class="comment">//传个空数组确保仅在componentDidMount调用一次</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        list,</span><br><span class="line">        setList</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在组件内调用获取数据hook</span></span><br><span class="line"><span class="keyword">import</span> &#123;userList&#125; <span class="keyword">from</span> <span class="string">'user.js'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;list , setList&#125; = userList();</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">        &#123;list?(</span><br><span class="line">        &lt;ol&gt;</span><br><span class="line">        &#123;list.map(<span class="function"><span class="params">item</span>=&gt;</span>(</span><br><span class="line">               &lt;li key=&#123;item.id&#125;&gt;&#123;item.name&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        )</span></span><br><span class="line"><span class="regexp">               )&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>ol&gt;</span><br><span class="line">        ):(<span class="string">"加载中..."</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2><span id="3usecontext">3.useContext</span></h2><p>接受一个context对象(React.createContext的返回值)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = useContext(MyContext)</span><br><span class="line"><span class="keyword">const</span> MyContext = React.createContext(defaultValue)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
