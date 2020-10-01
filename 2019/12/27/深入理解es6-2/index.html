@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">16:26:47</span>
+            <span class="time">16:29:38</span>
           </span>
           
           <!--  Categories  -->
@@ -126,15 +126,15 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2 id="深入理解ES6第二章"><a href="#深入理解ES6第二章" class="headerlink" title="深入理解ES6第二章"></a>深入理解ES6第二章</h2><h3 id="字符串和正则表达"><a href="#字符串和正则表达" class="headerlink" title="字符串和正则表达"></a>字符串和正则表达</h3><p><em>BMP （Basic Multilingual Plane)基本多文种平面</em>, 16位编码表示的文字<br>普通一个16位字符表示，特殊要两个16位表示.<br>字面看length是1,实际是2，用了两个位置存储该字符<br>charCodeAt(‘’)         ==&gt;charPointAt(‘’)  用于正确识别一个超出16位字符表示的字符<br>测试是否为32位编码数   ==&gt;   </p>
+          <h2><span id="深入理解es6第二章">深入理解ES6第二章</span></h2><h3><span id="字符串和正则表达">字符串和正则表达</span></h3><p><em>BMP （Basic Multilingual Plane)基本多文种平面</em>, 16位编码表示的文字<br>普通一个16位字符表示，特殊要两个16位表示.<br>字面看length是1,实际是2，用了两个位置存储该字符<br>charCodeAt(‘’)         ==&gt;charPointAt(‘’)  用于正确识别一个超出16位字符表示的字符<br>测试是否为32位编码数   ==&gt;   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function test(c)</span><br><span class="line">&#123; return c.charPointAt(0) &gt;0xFFFF&#125;</span><br></pre></td></tr></table></figure>
 <p>  测试c字符是否为32位编码<br>相对 String.fromCodePoint(‘134071’)      ==&gt;将编码变为字符串</p>
 <p>对比字符串时，需要标准化为同一种形式.(ae和音标半个ae是等效的)     ==&gt;normalize() ==&gt;不添加参数默认为’NFC’形式</p>
-<h3 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法:"></a>字符串方法:</h3><ol>
+<h3><span id="字符串方法">字符串方法:</span></h3><ol>
 <li>includes()    startsWith()  endsWith()<br>两个参数,内容和索引值(搜索起始位置/endsWith则倒序（从索引值减去内容长度,正向匹配?)<br><em>内容只能传字符串，不能传正则</em><br>indexOf和lastIndexOf可以,转成字符串再搜索</li>
 <li>repeat方法<br>==&gt;”abc”.repeat(3) ==&gt;abcabcabc(用于缩进)</li>
 </ol>
-<h3 id="正则表达-修饰符"><a href="#正则表达-修饰符" class="headerlink" title="正则表达 *修饰符"></a>正则表达 *修饰符</h3><ol>
+<h3><span id="正则表达-修饰符">正则表达 *修饰符</span></h3><ol>
 <li>u修饰符<br>==&gt;用于填补匹配两个编码单元的字符的缺陷<br>==&gt;正确识别看上去单字符，实际length值为2的字符<br>==&gt;/^.$/u.test(text)<br>==&gt;修饰符都是可选的,initial,i,global,g,unicode,u</li>
 <li>y修饰符<br>==&gt;粘滞修饰符<br>==&gt; lastIndex和sticky属性的问题<br>==&gt;无修饰符则无视lastIndex,g和y则继续往后找,    0,7,7  ==&gt;0,14,14 ==&gt;无修饰符,g,y的结果</li>
 </ol>

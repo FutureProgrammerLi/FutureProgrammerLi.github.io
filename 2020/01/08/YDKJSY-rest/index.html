@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-01-08</span>
-            <span class="time">16:26:47</span>
+            <span class="time">16:29:38</span>
           </span>
           
           <!--  Categories  -->
@@ -126,12 +126,12 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h1><ol>
+          <h1><span id="iterators">Iterators</span></h1><ol>
 <li>Iterables: Strings, Arrays, Maps, Sets and otherts.</li>
 <li>Three default iterators<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="comment">//for(i of arr.entries())  Objects/Maps default iterator.Return tuples that contain both keys and values.</span></span><br><span class="line"><span class="comment">//for(i of arr.keys())   iterates the key names. Iterating index for Arrays.</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">of</span> arr.values()) <span class="comment">//by default.Same as (i of arr)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>Beware of for…of /for … in …<br>for…of can only be used on iterables, invoking its iterator repeatedly.<br>When for…in is used on an array , <em>it searches for the index.</em>If the index exists in the array, <code>it returns true.</code><br>When used in an object, <code>it returns the keys of the object.</code></li>
 </ol>
-<h1 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h1><p>Definition:</p>
+<h1><span id="closures">Closures</span></h1><p>Definition:</p>
 <blockquote>
 <p>Closure is the ability of a function to remember and continue to access variables defined outside its scope, even when that function is executed in a different scope.</p>
 </blockquote>
@@ -144,7 +144,7 @@
 <p><code>Take care</code>: It’s not necessary that the outer scope be a function.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [idx,btn] <span class="keyword">of</span> buttons.entries()) &#123;</span><br><span class="line">    btn.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">`Clicked on button (<span class="subst">$&#123; idx &#125;</span>)!`</span>);   <span class="comment">//The Inner function closes over the outer variable idx.</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><p><em>Three ways of changin the pointer of <code>this</code></em></p>
+<h1><span id="this">this</span></h1><p><em>Three ways of changin the pointer of <code>this</code></em></p>
 <ol>
 <li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">classroom</span>(<span class="params">teacher</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">study</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(</span><br><span class="line">            <span class="string">`<span class="subst">$&#123; teacher &#125;</span> wants you to study <span class="subst">$&#123; <span class="keyword">this</span>.topic &#125;</span>`</span></span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> topic = someSubjects;</span><br><span class="line"><span class="keyword">var</span> assignment = classroom(<span class="string">"Kyle"</span>);  <span class="comment">//`this` refers to the global object window.</span></span><br></pre></td></tr></table></figure></li>
 <li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> homework = &#123;</span><br><span class="line">    topic: <span class="string">"JS"</span>,</span><br><span class="line">    assignment: assignment</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">homework.assignment();</span><br><span class="line"><span class="comment">// Kyle wants you to study JS</span></span><br><span class="line"><span class="comment">//`this` refers to the homework object</span></span><br></pre></td></tr></table></figure></li>

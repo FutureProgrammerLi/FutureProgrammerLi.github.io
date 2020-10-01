@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-07-07</span>
-            <span class="time">16:26:47</span>
+            <span class="time">16:29:38</span>
           </span>
           
         </div>
@@ -120,8 +120,7 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1><span id="1-flex属性"> 1. Flex属性</span></h1>
-<blockquote>
+          <h1><span id="1-flex属性">1. Flex属性</span></h1><blockquote>
 <p>flex属性是flex-grow,flex-shrink, flex-basis的缩写</p>
 <p>flex-grow,子元素总宽度比父元素宽度小时有效;</p>
 <p>flex-shrink,父元素宽度小于子元素总宽度时有效;</p>
@@ -134,6 +133,7 @@
 <li>设置flex:none, 0 0 auto</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**宽度计算题**/</span></span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">1</span> <span class="number">1.5</span> <span class="number">0%</span>;      <span class="comment">/**原题似乎是1 1.5 auto, 但1 1.5 0%似乎更便于计算**/</span></span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">2</span> <span class="number">3</span> auto;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">1</span> <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>flex-basis, 只有center有, 所以flex-basis取300px;</p>
 <p>container width = 500px</p>
 <p>剩余空间为500-300=200px;</p>
@@ -144,13 +144,9 @@
 <hr>
 <p>如果将left的flex设置为 flex:1 1.5 auto;</p>
 <p>则直接200px left + 300px center ,不显示right(flex-basis:0%的问题)</p>
-<h1><span id="pro-4th-edtion"> Pro 4th edtion</span></h1>
-<p>Function</p>
-<p>Closure , IIFE , Module /Augmented Module pattern</p>
-<h1><span id="算法题"> 算法题</span></h1>
-<h2><span id="括号匹配"> 括号匹配</span></h2>
-<h2><span id="使用两个栈实现队列"> 使用两个栈实现队列</span></h2>
-
+<h1><span id="pro-4th-edtion">Pro 4th edtion</span></h1><p>Function</p>
+<p>Closure , IIFE , Module /Augmented Module pattern </p>
+<h1><span id="算法题">算法题</span></h1><h2><span id="括号匹配">括号匹配</span></h2><h2><span id="使用两个栈实现队列">使用两个栈实现队列</span></h2>
         </div>
       </div>
     </div>

@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-01-11</span>
-            <span class="time">16:26:47</span>
+            <span class="time">16:29:38</span>
           </span>
           
           <!--  Categories  -->
@@ -126,27 +126,27 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="数据共享-Vuex"><a href="#数据共享-Vuex" class="headerlink" title="数据共享 Vuex"></a>数据共享 Vuex</h1><h3 id="组件间传值"><a href="#组件间传值" class="headerlink" title="组件间传值"></a>组件间传值</h3><p>父传子 v-bind<br>子传父 v-on<br>兄弟组件,或没相连的,用Eventbus?</p>
+          <h1><span id="数据共享-vuex">数据共享 Vuex</span></h1><h3><span id="组件间传值">组件间传值</span></h3><p>父传子 v-bind<br>子传父 v-on<br>兄弟组件,或没相连的,用Eventbus?</p>
 <ul>
 <li>$on (subscriber)</li>
 <li>$emit (publisher)</li>
 </ul>
-<h2 id="小范围使用-大范围关系复杂-—-Vuex状态管理"><a href="#小范围使用-大范围关系复杂-—-Vuex状态管理" class="headerlink" title="小范围使用,大范围关系复杂 — Vuex状态管理"></a><em>小范围使用,大范围关系复杂 — Vuex状态管理</em></h2><h3 id="好处"><a href="#好处" class="headerlink" title="好处:"></a>好处:</h3><ol>
+<h2><span id="小范围使用大范围关系复杂-vuex状态管理"><em>小范围使用,大范围关系复杂 — Vuex状态管理</em></span></h2><h3><span id="好处">好处:</span></h3><ol>
 <li>集中管理(store)</li>
 <li>共享(shareable)</li>
-<li>同步更新,不用逐个改(updated)<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3>需要共享的数据,存Vuex;私有数据,存data里(具体看情况,可以全部放vuex里)<figure>
- <img src="fig1.png" width="650" alt="Interpreting a script to execute it" align="center">
+<li>同步更新,不用逐个改(updated)<h3><span id="场景">场景</span></h3>需要共享的数据,存Vuex;私有数据,存data里(具体看情况,可以全部放vuex里)<figure>
+ <img src="/.com//fig1.png" width="650" alt="Interpreting a script to execute it" align="center">
 </figure>
 
 </li>
 </ol>
-<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="vue-add-vuex完成了以下四个步骤"><a href="#vue-add-vuex完成了以下四个步骤" class="headerlink" title="vue add vuex完成了以下四个步骤"></a>vue add vuex完成了以下四个步骤</h2><ol>
+<h1><span id="基本使用">基本使用</span></h1><h2><span id="vue-add-vuex完成了以下四个步骤">vue add vuex完成了以下四个步骤</span></h2><ol>
 <li>npm install vuex –save</li>
 <li>import Vuex from ‘vuex’     //store.js</li>
 <li>const store = new Vuex.Store({     //store.js<br> state:{},<br> mutations:{},<br> actions:{},<br> modules:{}<br>})</li>
 <li>import store from ‘./store’       //main.js<br>new Vue({          //<br> store,<br> render: h =&gt; h(app)<br> /<em>…</em>/<br>})</li>
 </ol>
-<h1 id="State-Mutations-Actions"><a href="#State-Mutations-Actions" class="headerlink" title="State Mutations Actions"></a>State Mutations Actions</h1><ol>
+<h1><span id="state-mutations-actions">State Mutations Actions</span></h1><ol>
 <li><p>定义和调用state里面的值的两种方法<br>1.1 $store.state.count(变量名)<br>1.2 import mapState from ‘vuex’<br>  computed里面,<br>  …mapState([count])<br>  template里面</p>
      </li>
 <li><p>怎么使用Mutations<br>2.1 为什么要用Mutations<br>方便集中管理,如果直接在vue里面修改,容易找不到哪个页面修改了store里的值<br>2.2 Mutations里面函数的参数?<br>第一个必须为state对象,之后可以传入自定义参数.<br>mutations:{<br> add(state,a,b,c){}<br>}<br>2.3 触发Mutations的两种方法  //hint:同理于state,为什么解构之后还要this.sub()?<br>2.3.1 this.$store.commit(‘functionName’,para1,para2,para3)<br>2.3.2 import mapMutations from ‘vuex’</p>
@@ -166,12 +166,12 @@
 </ol>
 </li>
 </ol>
-<p>** Antd 的list 数据源用 :dataSource**<br>  <a-list-item slot="renderItem" slot-scope="item"><br>  意义不明,用于循环? renderItem是什么</p>
+<p>** Antd 的list 数据源用 :dataSource**<br>  <a-list-item slot="renderItem" slot-scope="item"><br>  意义不明,用于循环? renderItem是什么</a-list-item></p>
 <ol start="5">
 <li><p>文本框和state里的数据实现双向绑定</p>
 <ol>
 <li>input显示store里的值<br><input :value="$store.state.inputValue">    //此时输入框无法被修改</li>
-<li>允许修改:<br>vue里面:<br>input绑定onchange=”handleChange”<br>handleChange(e){<br>this.$store.commit(‘setInputVal’,e.target.value)       //setInputVal是mutations里的函数,<em>e.target.value</em>是输入框的内容!!可变!!<br>}<br>vuex里面:<br>mutations:{<br>setInputVal(state,val){<br>state.inputValue = val;<br>}<br>},<br>state:{<br>inputValue:’aaa’<h1 id=""><a href="#" class="headerlink" title="}"></a>}</h1>DONE<br>重点是e.target.value动态获取输入框内容</li>
+<li>允许修改:<br>vue里面:<br>input绑定onchange=”handleChange”<br>handleChange(e){<br>this.$store.commit(‘setInputVal’,e.target.value)       //setInputVal是mutations里的函数,<em>e.target.value</em>是输入框的内容!!可变!!<br>}<br>vuex里面:<br>mutations:{<br>setInputVal(state,val){<br>state.inputValue = val;<br>}<br>},<br>state:{<br>inputValue:’aaa’<h1><span id>}</span></h1>DONE<br>重点是e.target.value动态获取输入框内容</li>
 </ol>
 </li>
 <li><p>添加item<br>@click ,commit触发mutations<br>mutations方法里面定义<br>const obj={</p>
@@ -181,7 +181,7 @@ done:&quot;false&quot;</code></pre><p>   }<br>   state.list.push(obj)       //<s
 </li>
 <li><p>删除item ,传id,找,触发删除splice<br>@click=”delItem(item.id)”      //将对应的id传给函数,注意是item.id<br>delItem(id){<br>this.$store.commit(‘remove’,id)<br>}<br>mutations里:<br>remove(state,id){<br>const i = state.list.findIndex(x=&gt;x.id === id)<br>if( i !== -1){<br> state.list.splice(i,1)<br>}<br>}</p>
 <a-list-item slot="renderItem" slot-scope="item">
-:checked="item.done"  //renderItem是什么?</li>
+:checked="item.done"  //renderItem是什么?</a-list-item></li>
 </ol>
 <p><strong>改变选中状态</strong><br>@change=”(e)=&gt;{handle(e)}”     //?????<br><strong>传两个参就不行，整合成一个对象就可以？</strong><br>为什么不可以changeState(state,bool,id){<br>const i =state.list.findIndex(x=&gt;x.id === id)<br>      if(i !==-1){<br>        state.list[i].done = bool;<br>    }<br>}<br>handle(e,id){<br>      const obj ={<br>        id:id,<br>        status: e.target.checked<br>      }<br>      this.$store.commit(‘changeState’,obj)<br>    }</p>
 

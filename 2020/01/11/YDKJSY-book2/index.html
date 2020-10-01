@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-01-11</span>
-            <span class="time">16:26:47</span>
+            <span class="time">16:29:38</span>
           </span>
           
           <!--  Categories  -->
@@ -126,13 +126,13 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="State"><a href="#State" class="headerlink" title="State"></a>State</h1><h2 id="Storing-values-in-variables-and-retrieving-them-later"><a href="#Storing-values-in-variables-and-retrieving-them-later" class="headerlink" title="Storing values in variables and retrieving them later."></a><code>Storing values in variables and retrieving them later.</code></h2><h1 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h1><p>Functions are values,meaning they can be assigned and passed around like strings and values.<br>Since <em>these functions hold and access variables, they maintain their original scope</em> no matter where in the program the functions are eventually executed.</p>
+          <h1><span id="state">State</span></h1><h2><span id="storing-values-in-variables-and-retrieving-them-later"><code>Storing values in variables and retrieving them later.</code></span></h2><h1><span id="closures">Closures</span></h1><p>Functions are values,meaning they can be assigned and passed around like strings and values.<br>Since <em>these functions hold and access variables, they maintain their original scope</em> no matter where in the program the functions are eventually executed.</p>
 <ol>
 <li>Tokenizing/Lexing</li>
 <li>Parsing (Abstract Syntax Tree)<br>var a =2;<br>Variation Declaration ,Identifier , Assignment Expression , Numeric Liberal</li>
 <li>Code Generation</li>
 </ol>
-<h1 id="Parsing-Compilation-before-execution"><a href="#Parsing-Compilation-before-execution" class="headerlink" title="Parsing/Compilation before execution"></a>Parsing/Compilation before execution</h1><p>Three observable facts：</p>
+<h1><span id="parsingcompilation-before-execution">Parsing/Compilation before execution</span></h1><p>Three observable facts：</p>
 <ol>
 <li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greeting = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(greeting);  <span class="comment">//Syntax Error with no greeting being consoled.</span></span><br><span class="line">greeting = .<span class="string">"Hi"</span>;</span><br></pre></td></tr></table></figure></li>
 <li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"Howdy"</span>);</span><br><span class="line">saySomething(<span class="string">"Hello"</span>,<span class="string">"Hi"</span>);    <span class="comment">//Same that no Howdy is consoled</span></span><br><span class="line"><span class="comment">// Uncaught SyntaxError: Duplicate parameter name not allowed in this context</span></span><br><span class="line"><span class="comment">//Knowing duplciated parameters which are constrained by the inner strict mode , before execution,</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saySomething</span>(<span class="params">greeting,greeting</span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;                 </span><br><span class="line">    <span class="built_in">console</span>.log(greeting);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
