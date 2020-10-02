@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="JavaScript是怎么组成的"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">JavaScript是怎么组成的</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-10-02</span>
+            <span class="time">23:08:25</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>原文地址：<a href="https://overreacted.io/what-is-javascript-made-of/" target="_blank" rel="noopener">https://overreacted.io/what-is-javascript-made-of/</a></p>
+<p>作者：Dan Abramov</p>
+<p>译者：Li</p>
+<p>ps: 日常翻译，原文似乎跟框架无关，跟闭包相关.(还是希望有一点点提升啦~)</p>
+</blockquote>
+<h1><span id="javascript到底是什么">Javascript到底是什么？</span></h1><p>在我接触Javascript这门语言的前几年，我就像无头苍蝇（fraud）一样，尽管我可以使用框架来搭建网页，但心里感觉还是缺少了一些东西。我很害怕面试前端的工作，因为我觉得自己的JS基础并不牢固。</p>
+<p>渐渐地，我形成了自己的JS知识系统（mental model），这也给我了很大的信心来面对开发时遇到的困难。我在此想简要地介绍一下。尽管有的知识点只是简短几句的描述，但它还是系统化得跟字典一样。</p>
+<p>在你阅读这篇文章的时候，试试在自己心里评下分，对我所列举的知识点掌握了多少吧。无论你评分多少我都不会说什么。只希望你通过这篇文章可以对自己的知识体系可以有更清晰的了解。</p>
+<hr>
+<ul>
+<li><p><strong>值(Value)</strong>：值的概念有一点抽象。它是一件事物。值对于Javascript的而言，就像数学中的数字，几何学的点一样，意义非凡。程序的世界里面到处都是值。1,2,420是值，像’cows go moo’这样的，也是值。不过又不是所有都是值（？），一个数字是值，<code>if</code>语句就不是了。我们来看看一些不同类型的值吧~</p>
+<ul>
+<li><p><strong>值的类型</strong>：值有几种不同的类型。比如数字420，字符串’cows go moo‘，对象，以及一些其它类型。你可以用<code>typeof</code>来检测一下某个值到底是什么类型。比如<code>console.log(typeof 2)</code>会输出字符串’number’</p>
+</li>
+<li><p><strong>原始值</strong>：有些值得类型是’原始’的，包括数字、字符串、布尔值、null、undefined。原始值有点奇怪的是，你不能同时创建多个(more of them)或者修改它们。比如说，每次你赋值时是2，那你就会得到同一个值2。但是你就不能‘创建’另一个2了，或者把2这个值’变成’3。对于字符串而言也是一样的。</p>
+<p>（2不能变成3比较好理解：2= 3是不可以的；另一个2意思是%……&amp;*）</p>
+</li>
+<li><p><strong>null和undefined</strong>：这两个是特殊的值，因为有很多操作都是不能在这两个值上进行的–不然就会报错。<code>null</code>通常代表故意腾出空间，给未来可能赋的值，而<code>undefined</code>则说明这个值不经意间忘记赋值了(missing unintentionally).不过用哪个值还是有开发者来决定的。与其让程序运行的时候出现未定义的值，不如直接让程序报错。这样来看它们的存在还是很有意义的。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>相等</strong>：和值一样，“相等”的概念在Javascript中也是十分基础的。我们所说的两个值相等..额，我不会说两个值是相等的。<strong>如果两个值相等，说明它们的值是相同的</strong>。不是两个不同的值，而是只有一个值！比如，’Cows go moo’ === ‘Cows go moo’ 和 2 === 2。因为2的值就是2.注意一下，这里我用全等号(===)来说明JS中相等这个概念。</p>
+<ul>
+<li>严格相等，就是全等啦（===）</li>
+<li>指示相等（Referential Equality) （比如Object和Array、Function用栈管理的值/地址）</li>
+<li>弱相等（Loose Equality）：它有点不一样，就是用==来表示。尽管两个不同的值看起来是相似的，比如2和“2”，用==来判断的话，它们是相等的。它为开发者带来了无数困惑，不过它是早期为了方便而加进JS的一个特性，所以，理解一下啦。虽然这个概念不算太基础，但它确实是万恶之源(bugs)。你可以去学学里面的机制，不过大多数人还是选择不用比较直接。（嘻嘻嘻）</li>
+</ul>
+</li>
+<li><p><strong>字面量（literal）</strong>：字面量就是程序里你指向的那个值（值的本身）。比如，2就是数字的一个字面量，’Banana’是字符串的字面量。</p>
+</li>
+<li><p><strong>变量</strong>：变量可以让你用某个名字去指向某个值。比如，<code>let message = &#39; Cows go moo&#39;</code>.之后在你的代码中就可以直接用message来代替整个字符串了。你可能之后会改变message的指向，<code>message = &#39;I am the walrus&#39;</code>。注意这里并不会改变值得本身，只会把message指到另一个值。之前这个变量指向’Cows go moo’，后来它就指到’I am the walrus’了。</p>
+<ul>
+<li><strong>作用域</strong>：如果整个程序只有一个变量<code>message</code>,那这真能叫程序吗？当你定义一个变量的时候，那么它就会在一定的范围内起作用（能够访问到）。这个范围就叫“作用域”。作用域的工作机制还是有不少的，不过最直接，通常情况下都有用的是找它最近的{}，这个大括号内的就很可能是作用域了。（var例外）</li>
+<li><strong>赋值</strong>：<code>message = &#39;I am the walrus&#39;</code>，我们让message指向’I am the walrus’这个值。这就是赋值。</li>
+<li><strong>let &amp; const &amp; var</strong>：多数情况下用<code>let</code>更能符合你的要求。如果你不想某个变量被重新赋值，你可以用<code>const</code>来声明。有些代码库或者同事可能会强制你使用<code>const</code>来避免后来一些问题。尽可能少用<code>var</code>，因为它的作用域经常会让你的程序出bug.</li>
+</ul>
+</li>
+<li><p><strong>对象</strong>：在JS中，对象是一种特殊的值。不过好的点是，对象可以跟其它值建立起关系（？）。比如，{flavor:’vanilla’}这个对象有个flavor的属性指向’vanilla’这个值。你可以把对象看成两个值间有根线连着，放在一个容器内，这个容器就是对象。(poor)</p>
+<ul>
+<li><strong>属性</strong>:属性就像对象内伸出的一根线，这根线又可以连起某个值。这时你可能会想起变量：它有一个名字（比如flavor)，然后会指向某个值(比如’vanilla’)。不过它们并不相同，属性是存在在对象当中的而不是在某个作用域中。属性是对象的一部分–不过它指向的值并不是。</li>
+<li><strong>对象字面量</strong>：对象字面量就是直接通过书写的方式创建对象，比如{}和{flavor：’vanilla’}。在{}里面，我可以创建多个键值对，用逗号分开就行。就是指明在对象内我们的属性要指向哪些值。</li>
+<li><strong>对象标识</strong>：先前我们提过，<code>2</code>和<code>2</code>是相等的（换句话说, 2 === 2)，我们敲2的时候不过是调用(summon)了同一个值而已。不过敲{}的时候就不同了,{}和{}在JS中它们总是不相等的。试下打印{} === {}吧，它总会返回false。计算机内部遇到值2的时候总会返回相同的值。但对象字面量就不同了：每次遇到{}的时候它都会创建一个新的对象，这也意味着这是一个新的值。所以对象的标识是什么呢？就是另一种形式上的相等或者值相同了。我们说的a和b有着相同的标识，意思是a和b指向了相同的值(a === b)。当我们说a和b有不同的标识的时候，说明a和b指向了不同的值(a !== b).</li>
+<li><strong>点语法(.)</strong>:当你想读对象的值或者赋值给对象属性时，你可以用点语法来实现。比如iceCream这个对象有个flavor属性，值时chocalate，那用iceCream.flavor就能读到chocalate这个值。</li>
+<li><strong>中括号语法[]</strong>:有时你并不能提前知道对象的某个属性名是什么。比如，你可能有时要访问iceCream.flavor这个属性，有时要读iceCream.taste这个属性。中括号语法就可以让你在属性名是变量时获取不同的值。比如<code>let ourProperty =  &#39;flavor&#39;</code>。然后<code>iceCream[ourProperty]</code>就可以返回chocolate这个值。而且你还可以用它来创建对象，{[ourProperty]:’vanilla’}。</li>
+<li><strong>变异/变化(Mutation)</strong>：我们说对象变异了，是说它的某个属性指向了其它的值。比如，声明一个对象let iceCream = {flavor:’vanilla’},之后我们就可以改变它: iceCream.flavor = ‘chocolate’。注意，如果我们用const来声明这个对象，它的属性值还是可以被改变的。因为const声明的常量只会阻止你重新赋值给iceCream这个变量名，而我们改变的是它的属性flavor所指向的值。（你抓周树人跟我鲁迅有什么关系？）。有些人直接不用const来声明对象，因为太容易被误解了。</li>
+<li><strong>数组</strong>：数组是列举一系列东西的对象。用字面量写[‘banana’,’chocolate’,’vanilla’]，实际上就是创建了一个属性名为0,值是banana；名为1,值为chocolate；名为2，值为vanilla的对象。如果你用对象的写法来写，也不是不可以，有多麻烦自己知道{0:… , 1:… , 2: …}.所以说数组还是很有用的。数组也自带了一些可以操作数组的方法，比如<code>map</code>,<code>filter</code>,<code>reduce</code>等等。reduce很难，但请不要绝望–每个人几乎都被折磨过。</li>
+<li><strong>原型</strong>：如果我们访问一个对象不存在的属性时会发生什么？比如iceCream.taste(iceCream实际只有flavor属性).undefined可能是一个答案。不过不一定。因为JS中大多数的对象都有一个“原型”。你可以认为原型是每个对象的一个隐藏属性，当前对象找不到属性了，就去这个原型上找。所以说，如果JS在iceCream上找不到taste这个属性，它就会找iceCream的原型，直到Object上.（原型的终点是Object）如果都找不到就会返回undefined。你很少会直接接触到这种机制，不过它可以解释我们的iceCream对象上为什么会有toString这个方法，尽管我们并没有定义这个方法–原型上来的。</li>
+</ul>
+</li>
+<li><p><strong>函数</strong>：函数是一个特别的值，它代表了在你程序中的一段代码。（console.log(fnName时输出这段代码)。如果你不想重复写某段代码，函数是很有用的。像sayHi()这样调用函数，实际就是告诉你的电脑运行sayHi里的代码段，运行完后又回到进来前的地方继续往下执行。JS中定义函数的方式有很多种，它们内部实现上有些许的不同。</p>
+<ul>
+<li><strong>参数（Parameters：形参；Arguments：实参）</strong>：在你调用函数的时候，可以把一些必要的信息传递给这个参数，比如<code>sayHi(&#39;Amelie&#39;)</code>。在函数内部,它们的行为跟变量的差不多.参数叫形参还是叫实参取决于你从哪个角度看这个函数:在函数定义时这些参数叫形参；在函数调用时这些参数就叫实参。它们在学术上的意义还是很不一样的，而且在实际运用中实参和形参这两个术语也不能混着用，是两个完全不同的东西。</li>
+<li><strong>函数表达式</strong>：之前我们将一个字符串赋值给了一个变量：<code>let message = &#39;I am the walrus&#39;</code>。同样地，我们也可以将一个函数赋值给一个变量：<code>let sayHi = function (){}</code>。等号后面的东西就叫函数表达式。其实它就是一个值，不过这个值是由一个代码段组成的，我们之后也可以调用这个代码段。</li>
+<li><strong>函数声明</strong>：每次都写函数表达式可能会让人觉得无聊，厌倦，所以我们可以直接用更简短的方式来代替一下（这是什么理由！？）：<code>function sayHi(){}</code>。这种方式不用在左边声明一个变量，直接在function关键字后面写出函数的名称。函数声明和函数表达式在大多数情况下是等价的。</li>
+<li><strong>函数提升</strong>：一般来说，用<code>let</code>或者<code>const</code>声明的变量，必须要在声明之后才能使用这个变/常量。如果函数也是这样的话有点不太好，因为它们函数之间有可能会互相调用，而且也很难找出哪些函数是嵌到了别的函数中，很难决定要先写哪一个函数。为了方便，用函数声明定义的函数是不需要关心哪个先被定义的，因为它们会被’提升’（表达式不会）。理解上你甚至可以认为它们会被自动移动到作用域的顶端。只要你在这个函数的作用域内调用，就不用关心它们是否已经被定义了。</li>
+<li><strong><code>this</code>关键字</strong>:<code>this</code>可以说是JS中最容易让人误解的一个概念了。它就像函数中的一个特殊参数。你不需要把它传入到函数，JS自己就会把这个参数给到函数内部。至于指向了哪里那就要看你怎么调用的这个函数了。比如用点语法调一个方法：iceCream.eat()，<code>this</code>的值就会指向点符号前面的这个对象,这里就是iceCream。函数的<code>this</code>指向取决于这个函数是怎么被调用的，而不是取决于函数在哪里被定义。一些辅助函数比如<code>.bind</code>,<code>.call</code>,<code>.apply</code>可以让你更好的控制<code>this</code>的指向。</li>
+<li><strong>箭头函数</strong>：箭头函数跟函数表达式差不多。定义的形式可以是:<code>let sayHi = () =&gt; {};</code>.这种形式很是精简，很多都是直接一行就定义完了。不过箭头函数比普通的函数还是多一些使用的约束的。比如箭头函数自身是没有<code>this</code>这个概念的。当你在箭头函数中调用<code>this</code>时，它总是指向最靠近它的，外层的普通函数。就像你在一个作用域中找不到某个变量，JS就会自动往外层找一样。在实际应用上，这意味着人们使用箭头函数时<code>this</code>指向总是不会变的。</li>
+<li><strong>函数绑定</strong>：将函数f的<code>this</code>绑定到某个特定对象，并带上一些参数，意味着一个新的、带着一些已被定义的值的函数被创建了（？我在说什么 fn.bind(obj,pre1,pre2)）。JS内部自带了一个辅助函数<code>.bind</code>,不过你也可以自己实现这个方法。函数绑定是一种常用的方式，它可以让嵌套的函数的<code>this</code>指向变得跟外部得函数一样，看到(see)同样的作用域。不过现在这种使用场景大部分用箭头函数就能解决了，改变函数绑定也没有用得那么多了。</li>
+<li><strong>调用栈</strong>：调用函数就跟你走进了一间房间一样。每次你调用函数的时候，里面的所有变量都会被重新初始化。所以说，每一次的函数调用就像建起了一间用代码构成的新房子，然后进入到这个房间内。我们的函数变量就被安置在这小空间里。当我们从函数中返回(return)时，整个房间就塌了（什么！？我家房子塌了？！），里面的东西（变量）自然也会消失掉了。你可以把这些房间想象成一个个垂直搭建起来的房间–这就是调用栈。当我们从一个函数中退出(exit)时，我们就会回到这个栈的底下的那个房间（2楼完了去1楼）。</li>
+<li><strong>递归</strong>：递归就是在函数内部调用它自己。如果你想重复你这个函数所做的东西，那递归就是你想要的操作。不过传递到函数的参数可能会有些许不同。比如你写了个爬取网站的函数（？）<code>collectLinks(url)</code>，一开始会爬到页面内的所有链接，之后它就要递归的调用自己，直到爬取到所有的链接。递归的缺点是人们经常意识不到自己写的递归函数没有终点（终止条件），然后就死循环了。JS遇到死循环的代码就会报’stack overflow’栈溢出这个错误。顾名思义，就是函数把栈占满了，然后就运行不了了。</li>
+<li><strong>高阶函数</strong>：高阶函数也是函数，不过它的参数一般是函数，或者它的返回值是函数。这看起来很奇怪，不过稍微理解一下，函数也是值，值可以传递这个概念，也就不会认为奇怪了。它跟数字，值，对象类型也是一样的。偶尔用一下高阶函数还是不错的。</li>
+<li><strong>回调函数</strong>：回调函数其实不只是JS的一种术语，它更像是一种模式。当你把函数1传给另一个函数2，希望执行完函数2之后再执行函数1，那么这个函数1就叫回调函数。比方说，<code>setTimeout</code>第一个参数就是接受一个回调函数，然后一段时间后就会执行这个函数。回调函数其实没有什么特别的，它们也只是普通的函数，只不过它是在我们想它被调用的时候才会被调用。（讲究，timing）</li>
+<li><strong>闭包</strong>：一般来说，当你退出(exit)了一个函数，那么房子就该塌了（空间就会被回收），变量也就没了。因为我们也不再需要这些空间和变量。不过你在函数中又定义了一个函数会发生什么？内部的函数之后还可以被调用，而且它还能访问包裹它的那个外层函数的变量。在实践中这其实很有用。不过为了外部函数的变量能够持续被内部函数访问到，外部函数变量会在某个地方被保存了起来。这样的话，JS就是把变量保持(stick around)了，变得持续可访问了，而不是被’遗忘’了。这就是闭包。尽管JS中的闭包概念经常会被人们误解，不过更有可能的是，你已经用过闭包很多此了，你不知道罢了。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>(广告时间)</p>
+<p>JavaScript里的概念大概就上面那么多了，或许还是有补充的。在我没有建成正确的知识体系、心智模型之前，我对JS的一切都感到非常的焦虑。不过我希望我所列举的这些知识点能够帮助新的开发者们尽快的形成体系，减少遇到JS困难时的焦虑。</p>
+<p>如果你想深入地了解这些知识点，我给你准备了点好东西。<a href="https://justjavascript.com/" target="_blank" rel="noopener">Just JavaScript</a>，这是我知识体系的精髓，它阐述了JS是怎么运行的，而且还会有一些棒极了的视图来帮助学习(<a href="https://maggieappleton.com/" target="_blank" rel="noopener">Maggie Appleton</a>)。</p>
+<p>这个项目还是刚起的，只有email符合一定条件的才能参与。如果你对它很感兴趣，你可以在<a href="https://justjavascript.com/" target="_blank" rel="noopener">这里</a>注册。谢谢！</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
