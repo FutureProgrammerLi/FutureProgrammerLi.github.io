@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="react-hooks概要"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">react-hooks概要</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-10-04</span>
+            <span class="time">18:33:55</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/react/">react</a> / <a href="/categories/react/hooks/">hooks</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/react/">#react</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>原文地址：<a href="https://juejin.im/post/6847902224144662541" target="_blank" rel="noopener">https://juejin.im/post/6847902224144662541</a></p>
+<p>作者：Marica(掘金id)</p>
+<p>PS:日常挖掘金挖到好的hooks的文章，有些hooks看官方文档不太懂，这篇文章我觉得比官方文档更好理解，所以就想总结（甚者copy）下来。</p>
+<p>就当重新学习一下hooks吧，不停留在只会用useState和useEffect上。后续也想翻译一下用hooks替代redux的文章~欢迎留意一下啦。</p>
+</blockquote>
+<h1><span id="概要">概要</span></h1><ul>
+<li>使用hooks必须遵从的一些原则(rules)(好像有点离题，但你用hooks就必须遵守这些规则,否则很可能出错)</li>
+<li>状态类<ul>
+<li>useState</li>
+<li>useReducer</li>
+<li>useContext</li>
+</ul>
+</li>
+<li>副作用类<ul>
+<li>useEffect</li>
+<li>useLayoutEffect</li>
+</ul>
+</li>
+<li>记忆类<ul>
+<li>useMemo</li>
+<li>useCallback</li>
+</ul>
+</li>
+<li>引用类<ul>
+<li>useRef</li>
+<li>useImperativeHandle</li>
+<li>React.forwardRef</li>
+</ul>
+</li>
+<li>自定义hooks</li>
+</ul>
+<hr>
+<h1><span id="rules-of-hooks">Rules of Hooks</span></h1><p><a href="https://reactjs.org/docs/hooks-rules.html" target="_blank" rel="noopener">原文地址</a></p>
+<p><strong>1. 只在最外层的函数中使用hooks。不要在循环、条件语句或者嵌套函数中使用hooks</strong></p>
+<p><strong>2.只在React的函数组件或者自定义的hooks中调用hooks。不要在一般的Javascript函数中使用hooks</strong></p>
+<p>(hooks的调用是依赖数组实现的,每次调用的hooks顺序必须一致)(←只解释了不要在条件语句中调用吧？)</p>
+<p>(能用hooks的不只有函数组件，还可以是自定义的hooks(custom hooks))(有点啰嗦了)</p>
+<hr>
+<h2><span id="1状态类">1.状态类</span></h2><h3><span id="usestate">useState</span></h3><p>函数组件的状态。跟类组件的this.state相似。</p>
+<p><strong>基本用法</strong>:<strong>const [x , setX] = React.useState(initialValue);</strong></p>
+<p>(个人习惯直接import的时候从react里解构出来,不然每个hooks都要前缀React有点麻烦。)</p>
+<p>import React, { useState } from ‘react’;</p>
+<ol>
+<li>x就是状态名称,setX就是专门设置这个状态值的函数。initialValue是状态的初始值，可以是函数返回的值。</li>
+<li>状态名称和设置状态的函数名是自定义的.一般规则是状态名为XXX,设置的函数名为setXXX.</li>
+</ol>
+<p><strong>局部更新</strong></p>
+<p>设置新值时都需要解构，将之前的解构到新对象上再考虑新增的属性或者设置新的属性值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class component</span></span><br><span class="line"><span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    ...state,</span><br><span class="line">    ...newState</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//function component</span></span><br><span class="line"><span class="keyword">const</span> [x,setX] = useState(&#123;</span><br><span class="line">    a:<span class="number">1</span>,</span><br><span class="line">    b:<span class="number">2</span></span><br><span class="line">&#125;);</span><br><span class="line">&lt;button onClick=&#123;()=&gt;<span class="function">(<span class="params">newContent</span>)=&gt;</span>setX(<span class="function"><span class="params">pre</span>=&gt;</span>(&#123; </span><br><span class="line">        ...pre,</span><br><span class="line">        ...newContent</span><br><span class="line">    &#125;))&gt;<span class="built_in">Set</span> X&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/oneliner好难懂 建议抽出来</span></span><br><span class="line"><span class="regexp">function updateState(newContent)&#123;   </span></span><br><span class="line"><span class="regexp">    return setX(pre =&gt; &#123;  </span></span><br><span class="line"><span class="regexp">        ...pre,</span></span><br><span class="line"><span class="regexp">        ...newContent</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">&#125;；</span></span><br><span class="line"><span class="regexp">onClick=&#123;()=&gt;updateState(&#123;c:3,d:4&#125;)&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/setX也可以抽出来(?)</span></span><br><span class="line"><span class="regexp">function updateState1(setFn,newContent)&#123;</span></span><br><span class="line"><span class="regexp">    return setFn(pre=&gt;&#123;</span></span><br><span class="line"><span class="regexp">        ...pre,</span></span><br><span class="line"><span class="regexp">        ...newContent</span></span><br><span class="line"><span class="regexp">    &#125;)</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">const updateState2 = (setFn,newContent) =&gt; setFn(pre=&gt;&#123;...pre,...newContent&#125;);</span></span><br><span class="line"><span class="regexp">onClick=&#123;()=&gt;updateState1(setX,&#123;e:5,f:6&#125;)&#125; /</span><span class="regexp">/works!</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="usereducer">useReducer</span></h3><p><strong>基本用法</strong>：<strong>const [store,dispatch] = useReducer(reducer, initial)</strong></p>
+<p>(参数多到人傻了..) (原文store用的是state,但我觉得dispatch操作store好像更好理解一点)</p>
+<p>store和dispatch是读和写的操作,initial,初始的store.</p>
+<p>reducer(store,action):是个函数,接受store和操作他的参数名.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initial = &#123;</span><br><span class="line">    n:<span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">store,action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type === <span class="string">'add'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">n</span>: store.n + action.number&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type === <span class="string">'multi'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">n</span>: store.n * action.number&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'Unknown Type!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [store,dispatch] = useReducer(reducer,initial);</span><br><span class="line">    <span class="keyword">const</span> &#123; n &#125; = store;</span><br><span class="line">    <span class="keyword">const</span> multi2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        dispatch(&#123; <span class="attr">type</span>:<span class="string">'multi'</span>,<span class="attr">number</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">const</span> plus3 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        dispatch(&#123; <span class="attr">type</span>: <span class="string">'add'</span>, <span class="attr">number</span>:<span class="number">3</span>&#125;)</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">        &#123;n&#125;</span><br><span class="line">        &lt;button onClick=&#123;()=&gt;multi2()&#125;&gt;*<span class="number">2</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;()=&gt;plus3()&#125;&gt;+3&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/&gt;  </span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<p>个人认为重点是reducer和dispatch.</p>
+<p><strong>reducer定义允许对store进行怎样的操作,dispatch是实际对store进行操作的行为.</strong></p>
+<p>reducer也有用switch风格的,看个人习惯.</p>
+<p>dispatch函数接收一个对象,必须有type属性指定进行何种操作,而payload(如上的number)可有可无(一般也要按reducer来操作,不然得到结果可能会是错的.)</p>
+<p>dispatch里的对象就是action.</p>
+<p><strong>用useState还是用useReducer?</strong>:</p>
+<p>setXXX的操作复杂且多次调用就用useReducer,否则一般用useState.</p>
+<p>useState:小仓库; useReducer:大仓库.</p>
+<h3><span id="usecontext">useContext</span></h3><p><strong>基本用法</strong>:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useContext, useState, createContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">const</span> Context = createContext(&#123; <span class="attr">defaultValue</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [v, setV] = useState(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Context.Provider value=&#123;&#123; v, setV &#125;&#125;&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;v&#125;</span><br><span class="line">                &lt;B&gt;</span><br><span class="line">                    &lt;C /&gt;</span><br><span class="line">                &lt;<span class="regexp">/B&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/Context.Provider&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">function B(&#123; children &#125;) &#123; /</span><span class="regexp">/不解构出来就显示不了C.</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            工具人parent</span></span><br><span class="line"><span class="regexp">            &#123;children&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; v, setV &#125; = useContext(Context);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            这里是C： &#123;v&#125;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; setV(<span class="function"><span class="params">v</span> =&gt;</span> v + <span class="number">1</span>)&#125;&gt;在C里设置A的v&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> A;</span><br><span class="line"><span class="comment">//上下文是组件,所以注意用大写Context.Provider</span></span><br><span class="line"><span class="comment">//决定传什么值给Provider内的组件是value决定的. value=&#123;&#123;&#125;&#125;</span></span><br><span class="line"><span class="comment">//createContext(defaultValue);defaultValue不知道怎么用..</span></span><br></pre></td></tr></table></figure>
+
+<p>透传状态. 某个状态需要在某些父子组件中都用到的话,直接<strong>用useContext代替一层一层传下去.</strong></p>
+<p>例子:X状态,有三个组件:祖父组件A,父组件B,子组件C, AC需要X, B不需要.</p>
+<p>不用Context的话,A必须把X传给B(尽管B不需要)之后才能传给C.</p>
+<p>用Context包裹, 哪个组件需要,直接拿.  </p>
+<p>类似Vue2.x中的provide/inject. 需要某状态的组件才inject.</p>
+<p><strong>局部的全局变量</strong></p>
+<blockquote>
+<p>(?)”useContext的更新机制不是响应式的,而是重新渲染,从根组件到子组件逐层通知的过程”</p>
+</blockquote>
+<hr>
+<h1><span id="2副作用类">2.副作用类</span></h1><h3><span id="useeffect">useEffect</span></h3><p><strong>基本用法</strong>:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  <span class="comment">//以获取数据为例</span></span><br><span class="line">    <span class="keyword">if</span>(condition)&#123;</span><br><span class="line">        <span class="keyword">const</span> fetchData = <span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">await</span> API.someInterface();</span><br><span class="line">    &#125;;</span><br><span class="line">        fetchData();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Im unmounted!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,[condition]);</span><br></pre></td></tr></table></figure>
+
+<p>跟useState同样重要,不会这两个你还说你会hooks?(嚣张———-虽然但是,我自己也不太熟(跑))</p>
+<p>依靠第二个参数数组来模拟类组件的三个生命周期:</p>
+<ol>
+<li><p>第二个参数为空数组[]: 模拟componentDidMount.只在组件挂载后执行一次.</p>
+</li>
+<li><p>第二个参数表明依赖项[condition,otherCondition]:模拟componentDidUpdate.当依赖项发生改变时执行这个effect.(内部用every来实现)</p>
+</li>
+<li><p>在useEffect里return一个函数:模拟componentDidUnmount.当组件被卸载之后执行这一函数.</p>
+</li>
+</ol>
+<p><strong>如果要条件执行这个effect,千万不要抽风把这个effect放在if里面,不然就违背thumb rules了,把if放在effect里面吧.</strong></p>
+<p><strong>不传第二个参数数组,默认componentDidUpdate的时候执行这个effect.</strong></p>
+<p>(差点忘了)跟Vue的watchEffect对比,React的useState依赖项是由开发者决定的,所以,”Always be honest with your effects~”;而Vue中是会先执行这个函数,自动收集你这个函数的依赖项的.是好是坏自己决定吧.</p>
+<h3><span id="uselayouteffect">useLayoutEffect</span></h3><p>类似useEffect,不过执行时机是这个先.除非迫不得已,否则官方还是推荐使用useEffect比较好.</p>
+<p>useEffect在浏览器<strong>渲染完成后</strong>执行;useLayoutEffect在浏览器<strong>渲染前</strong>执行,你可以把一些影响页面布局的操作放在这里.</p>
+<hr>
+<h1><span id="3记忆类">3.记忆类</span></h1><blockquote>
+<p> 问题引出: 在React中,父组件状态n更新了,子组件尽管不依赖n,它也是会被刷新的.</p>
+</blockquote>
+<h3><span id="usememo">useMemo</span></h3><p>组件层面的memo,可以实现useCallback.</p>
+<p><strong>基本用法</strong>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function"><span class="params">()</span>=&gt;</span>computeExpensiveValue(a,b),[a,b]);</span><br></pre></td></tr></table></figure>
+
+<p>跟useEffect很像,跟vue的computed更像,不过这个借着JSX更厉害,能缓存组件.</p>
+<h3><span id="usecallback">useCallback</span></h3><p>如果value是一个函数,那么你需要这样:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = useMemo(<span class="function"><span class="params">()</span>=&gt;</span> <span class="function">(<span class="params">x</span>) =&gt;</span> <span class="built_in">console</span>.log(x));</span><br></pre></td></tr></table></figure>
+
+<p>如果真要这样,建议直接使用useCallback: </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = useCallback(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(x),[dependencies]);</span><br></pre></td></tr></table></figure>
+
+<p>函数版的useMemo就是useCallback,后者就是个语法糖.</p>
+<hr>
+<h1><span id="引用类">引用类</span></h1><h3><span id="useref">useRef</span></h3><p>就是个box,可以引用几乎所有的东西,DOM,函数,对象,值等等等等.DOM而言是直接拿到最新的东西</p>
+<p>个人经验是取代了class的React.createRef.在form组件/input/selector上使用.拿到最新的值.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class component:</span></span><br><span class="line"><span class="keyword">this</span>.formRef = React.createRef();</span><br><span class="line">&lt;Form ref=&#123;<span class="keyword">this</span>.formRef&#125;&gt;&lt;<span class="regexp">/Form&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/拿值</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/formRef.current.xxx</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/function component</span></span><br><span class="line"><span class="regexp">const formRef = useRef(null); /</span><span class="regexp">/在表单上进行了操作这个值才不为null.</span></span><br><span class="line"><span class="regexp">&lt;Form ref=&#123;formRef&#125;&gt;&lt;/</span>Form&gt;</span><br><span class="line"><span class="comment">//拿值</span></span><br><span class="line"><span class="comment">//formRef.current.state.xxx</span></span><br></pre></td></tr></table></figure>
+
+<p>具体差别可以看看<a href="https://codingliveli.netlify.app/2020/10/01/%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%92%8Chooks%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">另一篇</a>~</p>
+<h3><span id="useimperativehandle">useImperativeHandle</span></h3><p><strong>基本用法</strong>:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useImperativeHandle(ref, createHandle, [deps]);</span><br><span class="line"><span class="comment">//"可以让你在使用ref时自定义暴露给父组件的实例值".应与forwardRef一起使用</span></span><br><span class="line"><span class="comment">//向父组件暴露自己想暴露的属性</span></span><br><span class="line"><span class="comment">//ref:定义current的ref</span></span><br><span class="line"><span class="comment">//createHandle:返回的具体current对象,就是暴露的具体东西</span></span><br><span class="line"><span class="comment">//[deps]:当依赖项发生变化时才向父组件暴露属性.为空则只暴露一次.</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FancyInput</span>(<span class="params">props,ref</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> inputRef = useRef();</span><br><span class="line">    useImperativeHandle(ref, () =&gt; (&#123;</span><br><span class="line">        focus: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            inputRef.current.focus();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;));</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;inputRef&#125;</span> /&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//父组件中调用:</span></span><br><span class="line">&lt;FancyInput ref=&#123;inputRef&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>与useRef比较,useRef是直接转发ref,引用的是同一个ref的current.不过官方不建议这样做.</p>
+<p>用useImperativeHandle和forwardRef则更安全,更遵从子组件的意愿,想暴露给父组件的才暴露.</p>
+<hr>
+<h1><span id="自定义hooks">自定义hooks</span></h1><p>只向外暴露数据及对数据的增删改查操作而不关心内部具体实现.类似其它hooks,如useState,只暴露读写.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> useList = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> [list,setList] = useState();</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        ajax(<span class="string">'/list'</span>).then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">            setList(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,[]);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        list,</span><br><span class="line">        setList</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; list, setList &#125; = useList();</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &#123;list.map(<span class="function">(<span class="params">item,index</span>)=&gt;</span><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;)</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="离题-stale-closure">离题: Stale Closure</span></h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">WatchCount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        setInterval(<span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`Count is: <span class="subst">$&#123;count&#125;</span>`</span>);</span><br><span class="line">        &#125;, <span class="number">2000</span>);</span><br><span class="line">    &#125;, []);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &#123;count&#125;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; setCount(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>)&#125;&gt; Increase &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>问题: console出来的count总是0.</p>
+<p>解决方法,在useEffect的依赖项里加上count:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">`Count is: <span class="subst">$&#123;count&#125;</span>`</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;, [count]);</span><br></pre></td></tr></table></figure>
+
+<p>最后,感谢原作者Marica!</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
