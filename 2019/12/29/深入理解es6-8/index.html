@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-29</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,70 +126,96 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="深入理解es6第八章-迭代器和生成器">深入理解es6第八章 迭代器和生成器</span></h3><h4><span id="1迭代器">1.迭代器:</span></h4><p><code>问题引入</code>:</p>
+          <h3><span id="深入理解es6第八章-迭代器和生成器"> 深入理解es6第八章 迭代器和生成器</span></h3>
+<h4><span id="1迭代器"> 1.迭代器:</span></h4>
+<p><code>问题引入</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;]</span><br><span class="line">for(var i &#x3D;0,len &#x3D; arr.length;i&lt;length;i++)&#123;</span><br><span class="line">    console.log(arr[i])          &#x2F;&#x2F;循环数组的传统做法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>需要追踪多个变量</em><br><strong>迭代器旨在消除这种复杂性,减少循环中的错误</strong></p>
-<h5><span id="特点">特点:</span></h5><ol>
+<p><em>需要追踪多个变量</em><br>
+<strong>迭代器旨在消除这种复杂性,减少循环中的错误</strong></p>
+<h5><span id="特点"> 特点:</span></h5>
+<ol>
 <li>有一个value,一个done,以及一个next()方法</li>
 <li>每次执行next()方法都会读一个值value,一个boolean值done.表示当前位置以及读完整个数组没有</li>
-<li>遍历完的特征是done:true, (value是函数调用过程中最后一次给调用者传递信息的方法?<br><em>三个元素的数组执行4次next(),  第三次done为false, 第四次value为undefined,done为true</em><br>用ES5语法编写一个迭代器:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function createIterator(items)&#123;</span><br><span class="line">    var i &#x3D; 0;</span><br><span class="line">    return&#123;</span><br><span class="line">        next: function()&#123;        &#x2F;&#x2F;es5语法,所以不能简写为next()&#123;&#125;</span><br><span class="line">        var done &#x3D; (i&gt;&#x3D;items.length?)</span><br><span class="line">        var value &#x3D; !done?items[i++]:undefined;</span><br><span class="line">        return &#123;</span><br><span class="line">            done:done,            &#x2F;&#x2F;同样是因为es5语法所以还是要写两个</span><br><span class="line">            value:value           &#x2F;&#x2F;返回的是一个对象</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>遍历完的特征是done:true, (value是函数调用过程中最后一次给调用者传递信息的方法?<br>
+<em>三个元素的数组执行4次next(),  第三次done为false, 第四次value为undefined,done为true</em><br>
+用ES5语法编写一个迭代器:</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function createIterator(items)&#123;</span><br><span class="line">    var i &#x3D; 0;</span><br><span class="line">    return&#123;</span><br><span class="line">        next: function()&#123;        &#x2F;&#x2F;es5语法,所以不能简写为next()&#123;&#125;</span><br><span class="line">        var done &#x3D; (i&gt;&#x3D;items.length?)</span><br><span class="line">        var value &#x3D; !done?items[i++]:undefined;</span><br><span class="line">        return &#123;</span><br><span class="line">            done:done,            &#x2F;&#x2F;同样是因为es5语法所以还是要写两个</span><br><span class="line">            value:value           &#x2F;&#x2F;返回的是一个对象</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h4><span id="2生成器返回迭代器的函数就是上面那段东西">2.生成器:返回迭代器的函数(就是上面那段东西)</span></h4><ol>
-<li>创建:*与普通函数不同的只是星号<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator()&#123;</span><br><span class="line">    yield 1;</span><br><span class="line">    yield 2;                 </span><br><span class="line">    yield 3;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">let iter &#x3D; function *(items)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var iterator &#x3D; createIterator();     &#x2F;&#x2F;还是像正常函数一样执行</span><br></pre></td></tr></table></figure></li>
+<h4><span id="2生成器返回迭代器的函数就是上面那段东西"> 2.生成器:返回迭代器的函数(就是上面那段东西)</span></h4>
+<ol>
+<li>创建:*与普通函数不同的只是星号</li>
 </ol>
-<p><strong>yield语法相当于往里面塞东西,类比数组的push方法</strong><br><strong>yield只能在生成器内部使用,生成器里面再有函数,在该函数内也是用不了yield的</strong><br>上面的就像一个<code>断续创建</code>的数组[1,2,3],而且自己可以遍历<br>断续创建是因为<code>每次执行一条yield语句函数就不再执行其它任何语句</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator()&#123;</span><br><span class="line">    yield 1;</span><br><span class="line">    yield 2;                 </span><br><span class="line">    yield 3;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">let iter &#x3D; function *(items)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var iterator &#x3D; createIterator();     &#x2F;&#x2F;还是像正常函数一样执行</span><br></pre></td></tr></table></figure>
+<p><strong>yield语法相当于往里面塞东西,类比数组的push方法</strong><br>
+<strong>yield只能在生成器内部使用,生成器里面再有函数,在该函数内也是用不了yield的</strong><br>
+上面的就像一个<code>断续创建</code>的数组[1,2,3],而且自己可以遍历<br>
+断续创建是因为<code>每次执行一条yield语句函数就不再执行其它任何语句</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator()&#123;</span><br><span class="line">				 yield 1;       &#x2F;&#x2F;[1]</span><br><span class="line">				 console.log(&#39;哈哈&#39;);</span><br><span class="line">				 yield 2;         &#x2F;&#x2F;[1,2]</span><br><span class="line">			 &#125;</span><br><span class="line">			 var iter &#x3D; createIterator();</span><br><span class="line">			 console.log(iter.next());</span><br><span class="line">			 console.log(iter.next()); &#x2F;&#x2F;哈哈和一个Object&#123;value:2,done:false&#125;</span><br></pre></td></tr></table></figure>
-
 <p>将数组变成迭代器(?):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator(items)&#123;</span><br><span class="line">    for (let i &#x3D; 0 ; i&lt;items.length;i++)&#123;</span><br><span class="line">        yield items[i]</span><br><span class="line">    &#125;                                   &#x2F;&#x2F;给数组添加遍历的方法,主要是利用yield可以间断执行吗?forEach不好吗?</span><br><span class="line">&#125;</span><br><span class="line">let iterator &#x3D; createIterator([1,2,3]);</span><br><span class="line">console.log(iterator.next());    &#x2F;&#x2F;&#123;value:1,done:false&#125;</span><br></pre></td></tr></table></figure>
-
-<h5><span id="可迭代对象和for-of">可迭代对象和for-of</span></h5><p>所有的<code>集合对象</code>和<code>字符串</code>都是可迭代对象（数组,Map,Set)<br>用于可迭代对象的特殊循环, <strong>只能用于可迭代对象</strong>.</p>
+<h5><span id="可迭代对象和for-of"> 可迭代对象和for-of</span></h5>
+<p>所有的<code>集合对象</code>和<code>字符串</code>都是可迭代对象（数组,Map,Set)<br>
+用于可迭代对象的特殊循环, <strong>只能用于可迭代对象</strong>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var nums &#x3D; [1,2,3]</span><br><span class="line">for (let num of nums)&#123;      &#x2F;&#x2F;for-of语法</span><br><span class="line">    console.log(num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>迭代器是可迭代对象里的一个对象还是方法?</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var nums &#x3D; [1,2,3]</span><br><span class="line">var iter &#x3D; nums[Symbol.iterator](); &#x2F;&#x2F;执行对象里的方法?symbol属性怎么理解? 类比Array[push]?执行该方法返回的是一个迭代器?</span><br><span class="line">console.log(iter.next())</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums &#x3D; &#123;</span><br><span class="line">    Symbol.iterator: function()&#123;</span><br><span class="line">        &#x2F;&#x2F; ....将数组看成对象,里面有一个属性,返回一个迭代器,可以调用next()方法</span><br><span class="line">        return iterator</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>检测是否为可迭代对象:检查Symbol.iterator是否是函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isIterable(obj)&#123;</span><br><span class="line">    return typeof obj[Symbol.iterator] &#x3D;&#x3D;&#x3D; &#39;function&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4><span id="内建迭代器">内建迭代器</span></h4><h5><span id="集合对象的迭代器数组setmap-都有三种">集合对象的迭代器(数组,set,map) 都有三种</span></h5><ol>
-<li>entries() </li>
+<h4><span id="内建迭代器"> 内建迭代器</span></h4>
+<h5><span id="集合对象的迭代器数组setmap-都有三种"> 集合对象的迭代器(数组,set,map) 都有三种</span></h5>
+<ol>
+<li>entries()</li>
 <li>values()</li>
-<li>keys()<br><code>entries</code>,都是返回数组:</li>
+<li>keys()<br>
+<code>entries</code>,都是返回数组:<br>
+<strong>数组返回下标和对应值</strong><br>
+<strong>Set返回的都是值</strong><br>
+<strong>Map返回的是键名和值</strong></li>
 </ol>
-<p><strong>数组返回下标和对应值</strong><br><strong>Set返回的都是值</strong><br><strong>Map返回的是键名和值</strong></p>
 <hr>
-<p><code>values</code>,返回值<br><code>keys</code>,返回键名<br><em>访问方法</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var nums &#x3D; [1,2,3]</span><br><span class="line">for(let num of nums.entries())&#123; &#x2F;&#x2F;num of nums.values()|| num of nums.keys()</span><br><span class="line">    console.log(num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>默认使用的迭代器: 数组和Set是 values(); Map是 entries()</code><br>直接for (let item of nums)</p>
-<hr>
-<h4><span id="展开运算符和可迭代对象">展开运算符和可迭代对象</span></h4><p>典型形式<br>var newArray = […set];<br>    newArray2 = […map];</p>
+<p><code>values</code>,返回值<br>
+<code>keys</code>,返回键名<br>
+<em>访问方法</em></p>
+<h2><span id="1234var-nums-x3d-123forlet-num-of-numsentries123-x2fx2fnum-of-numsvalues-num-of-numskeys-consolelognum125默认使用的迭代器-数组和set是-values-map是-entries直接for-let-item-of-nums"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var nums &#x3D; [1,2,3]</span><br><span class="line">for(let num of nums.entries())&#123; &#x2F;&#x2F;num of nums.values()|| num of nums.keys()</span><br><span class="line">    console.log(num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>
+<code>默认使用的迭代器: 数组和Set是 values(); Map是 entries()</code><br>
+直接for (let item of nums)</span></h2>
+<h4><span id="展开运算符和可迭代对象"> 展开运算符和可迭代对象</span></h4>
+<p>典型形式<br>
+var newArray = […set];<br>
+newArray2 = […map];</p>
 <ol>
 <li>Set集合展开后用数组存储,变成<em>全是值的数组</em>(因为默认迭代器返回的就是值,迭代器和展开运算符的联系?(values()))</li>
-<li>Map集合展开后用数组存储,变成<em>值是数组的数组</em>(数组里面套数组) (entries()返回的是键值对) [[“name”:”Nicholas”],[“title”:”ES6”]]</li>
+<li>Map集合展开后用数组存储,变成<em>值是数组的数组</em>(数组里面套数组) (entries()返回的是键值对) [[“name”:“Nicholas”],[“title”:“ES6”]]</li>
 </ol>
 <hr>
-<h4><span id="高级迭代功能">高级迭代功能</span></h4><ol>
-<li>给next()传参:</li>
+<h4><span id="高级迭代功能"> 高级迭代功能</span></h4>
+<ol>
+<li>给next()传参:<br>
+<strong>第一次执行next(),给它传参是无用的.</strong><br>
+每一条yield语句都会返回一个值,而给next()传参相当于修改对应yield语句返回的值</li>
 </ol>
-<p><strong>第一次执行next(),给它传参是无用的.</strong><br>每一条yield语句都会返回一个值,而给next()传参相当于修改对应yield语句返回的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator()&#123;</span><br><span class="line">    let first &#x3D; yield 1;</span><br><span class="line">    let second&#x3D; yiled first+2;       &#x2F;&#x2F;可以将yield类比成 return一个表达式吗?</span><br><span class="line">    yield second+3;</span><br><span class="line">&#125;</span><br><span class="line">let iterator &#x3D; createIterator()</span><br><span class="line">console.log(iterator.next());  &#x2F;&#x2F;1</span><br><span class="line">console.log(iterator.next(4));  &#x2F;&#x2F;6</span><br></pre></td></tr></table></figure>
-<p>执行到yield程序就终止,等待下次next(),所以<em>赋值语句在第一次执行next()时不会执行?</em><br>first其实等于4,而不等于1<br>用到yield语句的,可以利用next()和throw()方法控制执行过程.</p>
-<hr>
+<h2><span id="12345678function-createiterator123-let-first-x3d-yield-1-let-secondx3d-yiled-first2-x2fx2f可以将yield类比成-return一个表达式吗-yield-second3125let-iterator-x3d-createiteratorconsolelogiteratornext-x2fx2f1consolelogiteratornext4-x2fx2f6执行到yield程序就终止等待下次next所以赋值语句在第一次执行next时不会执行first其实等于4而不等于1用到yield语句的可以利用next和throw方法控制执行过程"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function *createIterator()&#123;</span><br><span class="line">    let first &#x3D; yield 1;</span><br><span class="line">    let second&#x3D; yiled first+2;       &#x2F;&#x2F;可以将yield类比成 return一个表达式吗?</span><br><span class="line">    yield second+3;</span><br><span class="line">&#125;</span><br><span class="line">let iterator &#x3D; createIterator()</span><br><span class="line">console.log(iterator.next());  &#x2F;&#x2F;1</span><br><span class="line">console.log(iterator.next(4));  &#x2F;&#x2F;6</span><br></pre></td></tr></table></figure><br>
+执行到yield程序就终止,等待下次next(),所以<em>赋值语句在第一次执行next()时不会执行?</em><br>
+first其实等于4,而不等于1<br>
+用到yield语句的,可以利用next()和throw()方法控制执行过程.</span></h2>
 <ol start="2">
-<li>生成器里的return语句<br>遇见return整个函数就终止,可以指定return一个值,但只会在next()方法中出现一次,是done刚变回true的那一次next(),之后的value都会变undefined <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;value:42,done:true&#125; &#x2F;&#x2F;return 42;</span><br></pre></td></tr></table></figure></li>
+<li>生成器里的return语句<br>
+遇见return整个函数就终止,可以指定return一个值,但只会在next()方法中出现一次,是done刚变回true的那一次next(),之后的value都会变undefined</li>
 </ol>
-<h2><span id="for-of循环不会打印return的值done一变true就推出"><em>for-of循环不会打印return的值,done一变true就推出</em></span></h2><p>3.委托生成器<br><strong>重点:COMBINED</strong><br>整合,每次next()就按所在生成器内执行yield.<br>==&gt;it1==&gt;it1==&gt;it1==&gt;it2==&gt;it2==&gt;it2==&gt;itCombined</p>
+<h2><span id="1123value42donetrue125-x2fx2freturn-42for-of循环不会打印return的值done一变true就推出"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;value:42,done:true&#125; &#x2F;&#x2F;return 42;</span><br></pre></td></tr></table></figure><br>
+<em>for-of循环不会打印return的值,done一变true就推出</em></span></h2>
+<p>3.委托生成器<br>
+<strong>重点:COMBINED</strong><br>
+整合,每次next()就按所在生成器内执行yield.<br>
+<mark>&gt;it1</mark>&gt;it1==&gt;it1==&gt;it2==&gt;it2==&gt;it2==&gt;itCombined</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function createCombinedIterator()&#123;</span><br><span class="line">    yield *createIterator1();</span><br><span class="line">    yield *createIterator2();</span><br><span class="line">    yield true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function *createNumberIterator()&#123;</span><br><span class="line">    yield 1;</span><br><span class="line">    yield 2;</span><br><span class="line">    return 3;</span><br><span class="line">&#125;</span><br><span class="line">function *createCombiendIterator()&#123;</span><br><span class="line">    let result &#x3D; yield *createNumberIterator();     &#x2F;&#x2F;result是生成器返回的值.如果不return是否就等于undefined了?</span><br><span class="line">    &#x2F;&#x2F;yield result;                                  &#x2F;&#x2F;打印return的值</span><br><span class="line">    yield *createRepeatIterator(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3><span id="生成器的异步应用">生成器的异步应用</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function run(taskDef)&#123;</span><br><span class="line">    let task &#x3D; taskDef(); </span><br><span class="line">    &#x2F;&#x2F;传入的是一个生成器的定义</span><br><span class="line">    &#x2F;&#x2F;类似就是 function *createIterator()&#123;&#125;</span><br><span class="line">    &#x2F;&#x2F;let iter &#x3D; createIterator() </span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;开始执行第一个任务,返回一个对象&#123;value: xxx, done:true&#x2F;false&#125;</span><br><span class="line">    let result &#x3D;task.next();</span><br><span class="line"></span><br><span class="line">    function step()&#123;</span><br><span class="line">        if(!result.done)&#123;</span><br><span class="line">            &#x2F;&#x2F;检测yield后面是不是函数,是就去执行函数</span><br><span class="line">            if(typeof result.value &#x3D;&#x3D;&#x3D; &quot;function&quot;)&#123;</span><br><span class="line">                result.value(function (err,data)&#123;</span><br><span class="line">                    if(err)&#123;</span><br><span class="line">                        result &#x3D; task.throw(err)</span><br><span class="line">                        return</span><br><span class="line">                    &#125;</span><br><span class="line">            &#x2F;&#x2F;将函数的执行结果传递给下一个任务</span><br><span class="line">                    result &#x3D; task.next(data)</span><br><span class="line">                    step()</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                &#x2F;&#x2F;不是就直接下一个任务</span><br><span class="line">                result &#x3D; task.next(result.value)</span><br><span class="line">                step()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;开始迭代执行</span><br><span class="line">    step()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="总结">总结:</span></h2><ol>
+<h2><span id="12345678910function-createnumberiterator123-yield-1-yield-2-return-3125function-createcombienditerator123-let-result-x3d-yield-createnumberiterator-x2fx2fresult是生成器返回的值如果不return是否就等于undefined了-x2fx2fyield-result-x2fx2f打印return的值-yield-createrepeatiteratorresult125"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function *createNumberIterator()&#123;</span><br><span class="line">    yield 1;</span><br><span class="line">    yield 2;</span><br><span class="line">    return 3;</span><br><span class="line">&#125;</span><br><span class="line">function *createCombiendIterator()&#123;</span><br><span class="line">    let result &#x3D; yield *createNumberIterator();     &#x2F;&#x2F;result是生成器返回的值.如果不return是否就等于undefined了?</span><br><span class="line">    &#x2F;&#x2F;yield result;                                  &#x2F;&#x2F;打印return的值</span><br><span class="line">    yield *createRepeatIterator(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span></h2>
+<h3><span id="生成器的异步应用"> 生成器的异步应用</span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function run(taskDef)&#123;</span><br><span class="line">    let task &#x3D; taskDef(); </span><br><span class="line">    &#x2F;&#x2F;传入的是一个生成器的定义</span><br><span class="line">    &#x2F;&#x2F;类似就是 function *createIterator()&#123;&#125;</span><br><span class="line">    &#x2F;&#x2F;let iter &#x3D; createIterator() </span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;开始执行第一个任务,返回一个对象&#123;value: xxx, done:true&#x2F;false&#125;</span><br><span class="line">    let result &#x3D;task.next();</span><br><span class="line"></span><br><span class="line">    function step()&#123;</span><br><span class="line">        if(!result.done)&#123;</span><br><span class="line">            &#x2F;&#x2F;检测yield后面是不是函数,是就去执行函数</span><br><span class="line">            if(typeof result.value &#x3D;&#x3D;&#x3D; &quot;function&quot;)&#123;</span><br><span class="line">                result.value(function (err,data)&#123;</span><br><span class="line">                    if(err)&#123;</span><br><span class="line">                        result &#x3D; task.throw(err)</span><br><span class="line">                        return</span><br><span class="line">                    &#125;</span><br><span class="line">            &#x2F;&#x2F;将函数的执行结果传递给下一个任务</span><br><span class="line">                    result &#x3D; task.next(data)</span><br><span class="line">                    step()</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                &#x2F;&#x2F;不是就直接下一个任务</span><br><span class="line">                result &#x3D; task.next(result.value)</span><br><span class="line">                step()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;开始迭代执行</span><br><span class="line">    step()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="总结"> 总结:</span></h2>
+<ol>
 <li>判断是否为可迭代对象 (xxx[Symbol.iterator] === “function”) true则是可迭代</li>
 <li>for-of跟传统for相比,不用追踪值在集合中的位置,不需要控制循环结束的时机</li>
 </ol>

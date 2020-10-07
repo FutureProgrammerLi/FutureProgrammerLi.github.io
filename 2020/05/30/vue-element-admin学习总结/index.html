@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-30</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,19 +126,23 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="vue-router">Vue-router</span></h3><p>模块化： 将router按模块分开，导出。之后再index里面的route结合起来</p>
+          <h3><span id="vue-router"> Vue-router</span></h3>
+<p>模块化： 将router按模块分开，导出。之后再index里面的route结合起来</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//router/modules/table.js</span></span><br><span class="line"><span class="keyword">const</span> tableRouter =&#123;</span><br><span class="line">    path:<span class="string">'/table'</span>,</span><br><span class="line">    component:Layout,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> tableRouter</span><br><span class="line"></span><br><span class="line"><span class="comment">//router/index.js</span></span><br><span class="line"><span class="keyword">import</span> tableRouter <span class="keyword">from</span> <span class="string">'./modules/table.js'</span></span><br><span class="line"><span class="keyword">export</span> asyncRoutes = [</span><br><span class="line">    tableRouter</span><br><span class="line">]</span><br><span class="line"><span class="comment">//怎么整合的asyncRoutes和constantRoutes?</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>给router-view 添加一个key，可以在每次切换组件的时候都触发生命周期函数。解决路径不同，组件相同而不触发生命周期的问题</p>
+<li>
+<p>给router-view 添加一个key，可以在每次切换组件的时候都触发生命周期函数。解决路径不同，组件相同而不触发生命周期的问题</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-view :key=<span class="string">"key"</span> /&gt;</span><br><span class="line">computed()&#123;</span><br><span class="line">    key()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$route.fullPath  <span class="comment">//唯一即可</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>路由里的redirect:’noDirect’  表示面包屑的导航不可用</p>
+<li>
+<p>路由里的redirect:‘noDirect’  表示面包屑的导航不可用</p>
 </li>
-<li><p>路由中的children大于一个，自动嵌套</p>
+<li>
+<p>路由中的children大于一个，自动嵌套</p>
 </li>
-<li><p>基本上index里每个一级path的component都是Layout.(必须的吧?)</p>
-<p>用的meta:{title:”Table”,icon:’table}来控制菜单标题和图标</p>
+<li>
+<p>基本上index里每个一级path的component都是Layout.(必须的吧?)</p>
+<p>用的meta:{title:“Table”,icon:'table}来控制菜单标题和图标</p>
 </li>
 </ul>
 

@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,29 +126,33 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="jquery">jquery</span></h2><ol>
-<li>$符号相当于jQuery对象, $.get / $.ajax 等相当于jquery.get / jquery.ajax </li>
+          <h2><span id="jquery"> jquery</span></h2>
+<ol>
+<li>$符号相当于jQuery对象, $.get / $.ajax 等相当于jquery.get / jquery.ajax</li>
 </ol>
 <p>就是调用jquery这个对象的方法.</p>
 <p>$(‘h1’),将选择器传给jquery.  相当于将被选择的元素(?)加工成jquery对象</p>
 <ol start="2">
-<li><p>$(document).ready(fn)和$(window).on(“load”,fn)</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>d</mi><mi>o</mi><mi>c</mi><mi>u</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>y</mi><mo stretchy="false">(</mo><mi>f</mi><mi>n</mi><mo stretchy="false">)</mo><mi mathvariant="normal">和</mi></mrow><annotation encoding="application/x-tex">(document).ready(fn)和</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord cjk_fallback">和</span></span></span></span>(window).on(“load”,fn)</p>
 <p>$(document).ready(fn)可以缩写成(fn)</p>
 <p>先执行ready,再执行onload</p>
 <p>ready对应原生DOMContentLoaded事件. onload对应load事件.</p>
 <p><strong>ready代表仅DOM渲染完成,load代表DOM,CSS,JS都加载完成.</strong></p>
 </li>
-<li><p>Alias for jQuery to avoid  same meanings for $</p>
+<li>
+<p>Alias for jQuery to avoid  same meanings for $</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将$让给其它框架</span></span><br><span class="line"><span class="keyword">var</span> j = jQuery.noConflict();</span><br><span class="line">$j(<span class="built_in">document</span>).ready(fn)</span><br><span class="line"><span class="comment">//强行要用</span></span><br><span class="line">jQuery.noConflict();</span><br><span class="line">jQuery(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//这里可以用$代表jQuery,出去了就不行了.</span></span><br><span class="line">&#125;)</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//...       同理</span></span><br><span class="line">&#125;)(jQuery)</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//... $代表jQuery,外面可能不是</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>attr()既是getter也是setter,一个值为getter, 属性名+值或者对象则为setter(可以同时获取多个属性吗?)  <strong>仅针对attr()这个方法,区别于其它方法</strong></p>
+<li>
+<p>attr()既是getter也是setter,一个值为getter, 属性名+值或者对象则为setter(可以同时获取多个属性吗?)  <strong>仅针对attr()这个方法,区别于其它方法</strong></p>
 </li>
-<li><p>选择器</p>
-<p>ID,类,属性,复合CSS选择器(用CSS选择器的写法传给$(‘’))</p>
+<li>
+<p>选择器</p>
+<p>ID,类,属性,复合CSS选择器(用CSS选择器的写法传给$(’’))</p>
 <p>CSS里面能用的,jq基本都能</p>
 <p>判断选择器是否包含元素</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误</span></span><br><span class="line"><span class="keyword">if</span>($(<span class="string">'div.foo'</span>))&#123;</span><br><span class="line">    <span class="comment">//..           //无论如何都会被执行,$返回一个对象.对象转Boolean类型不为空.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="keyword">if</span>($(<span class="string">'div.foo'</span>).length)&#123;</span><br><span class="line">    <span class="comment">//...          //正确的判断</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> divs = $(<span class="string">"div"</span>)     <span class="comment">//获取执行这条语句时页面上的所有div,</span></span><br><span class="line">                        <span class="comment">//在这句之后新增的div不包含在divs里面(doesn't magically update.)</span></span><br></pre></td></tr></table></figure>
-
 <p>获取表单元素:</p>
 <p>$(‘form :checked’) ==&gt;获取被选取的项</p>
 <p>Works for checked checkboxes /checked radios / &lt;select&gt; element</p>
@@ -159,31 +163,31 @@
 <p>​              $(‘form :selected’) =&gt;获取&lt;select&gt;里被选择的option</p>
 <p>​             也可以按类型获取$(‘form :password/:file/:image…’)</p>
 <ol start="6">
-<li><p>.html()方法不传值就是getter获取值,传字符串就是设置选择的所有的元素InnerHTMLText为该值</p>
+<li>
+<p>.html()方法不传值就是getter获取值,传字符串就是设置选择的所有的元素InnerHTMLText为该值</p>
 <p>getter时,只返回选择到的第一个元素;setter时,设置所有选到的元素</p>
 <ul>
-<li><p>get就get第一个的值,set就set所有</p>
+<li>
+<p>get就get第一个的值,set就set所有</p>
 <p>类似还有.width/.height()/.position()  <em>getterOnly</em>    /.val()</p>
 </li>
 </ul>
 </li>
-<li><p>移动元素:insertAfter() / insertBefore() / appendTo() / prependTo()  去掉介词也有对应方法,主宾不同而已.</p>
+<li>
+<p>移动元素:insertAfter() / insertBefore() / appendTo() / prependTo()  去掉介词也有对应方法,主宾不同而已.</p>
 <p>复制元素: .clone()       //.clone(true)深复制? 数据和对应事件也会被复制</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copy the first list item to the end of the list:</span></span><br><span class="line">$( <span class="string">"#myList li:first"</span> ).clone().appendTo( <span class="string">"#myList"</span> );</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <p>​      删除元素: .remove() / .detach()      保不保留数据和事件的区别,前者不会,后者会.用于restore.</p>
 <p>​                      (empty()方法将元素InnerHTML内容清空.)</p>
 <p>​      创建元素:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Creating a new element with an attribute object.</span></span><br><span class="line">$( <span class="string">"&lt;a/&gt;"</span>, &#123;</span><br><span class="line">    html: <span class="string">"This is a &lt;strong&gt;new&lt;/strong&gt; link"</span>,</span><br><span class="line">    <span class="string">"class"</span>: <span class="string">"new"</span>,</span><br><span class="line">    href: <span class="string">"foo.html"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//创建了不代表在页面上就能看见 还要append/insert等操作dom</span></span><br><span class="line"><span class="keyword">var</span> myNewElement = $( <span class="string">"&lt;p&gt;New element&lt;/p&gt;"</span> );</span><br><span class="line">myNewElement.appendTo( <span class="string">"#content"</span> );</span><br><span class="line">myNewElement.insertAfter( <span class="string">"ul:last"</span> );</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>不要多次适用append,insert等操作,性能极差.</li>
 </ul>
 <p>做法:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myItems = [];</span><br><span class="line"><span class="keyword">var</span> myList = $( <span class="string">"#myList"</span> );</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++ ) &#123;</span><br><span class="line">    myItems.push( <span class="string">"&lt;li&gt;item "</span> + i + <span class="string">"&lt;/li&gt;"</span> );</span><br><span class="line">&#125;<span class="comment">//Concatenate all the HTML into a single string, and then append that string to the container</span></span><br><span class="line">myList.append( myItems.join( <span class="string">""</span> ) );</span><br></pre></td></tr></table></figure>
-
 <p><strong>TODO: The jQuery Object</strong></p>
 
         </div>

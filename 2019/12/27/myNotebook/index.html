@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,13 +126,15 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="什么是跨域">什么是跨域?</span></h2><p><strong>跨域传输(非同源策略请求)</strong><br><strong>同源策略请求  ajax/fetch</strong></p>
-<hr>
-<p>前后端代码部署到同一个服务器上时，则不需要跨域（同源）<br><strong>跨域的历史:</strong><br>在过去本地开发时，修改本地服务的host，修改为目标资源的地址,模拟同源。</p>
-<hr>
+          <h2><span id="什么是跨域"> 什么是跨域?</span></h2>
+<h2><span id="跨域传输非同源策略请求同源策略请求-ajaxfetch"> <strong>跨域传输(非同源策略请求)</strong><br>
+<strong>同源策略请求  ajax/fetch</strong></span></h2>
+<h2><span id="前后端代码部署到同一个服务器上时则不需要跨域同源跨域的历史在过去本地开发时修改本地服务的host修改为目标资源的地址模拟同源"> 前后端代码部署到同一个服务器上时，则不需要跨域（同源）<br>
+<strong>跨域的历史:</strong><br>
+在过去本地开发时，修改本地服务的host，修改为目标资源的地址,模拟同源。</span></h2>
 <p>服务器拆分:        不一定前后端才要跨域,单单服务器的区分都可能要跨域</p>
 <ol>
-<li>web服务器:静态资源   </li>
+<li>web服务器:静态资源</li>
 <li>data服务器:业务逻辑和数据分析（包括对数据库的操作)</li>
 <li>图片服务器:存储图片，视频等较大的资源</li>
 </ol>
@@ -141,9 +143,10 @@
 <ol>
 <li>协议  protocol</li>
 <li>域名  domain</li>
-<li>端口号  port</li>
+<li>端口号  port<br>
+<em>三者都一样就是同源</em><br>
+http/https    123.123.123.123    8080/3000等 (举例    <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>)</li>
 </ol>
-<p><em>三者都一样就是同源</em><br> http/https    123.123.123.123    8080/3000等 (举例    <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>)</p>
 
         </div>
       </div>

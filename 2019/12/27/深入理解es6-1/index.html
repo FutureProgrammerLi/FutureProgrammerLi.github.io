@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,26 +126,40 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1><span id="深入理解es6第一章">深入理解ES6第一章</span></h1><h2><span id="varletconst">var,let,const</span></h2><h3><span id="1变量提升">1.变量提升</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (condition)</span><br><span class="line">&#123;var value &#x3D; &#39;blue&#39;&#125; else &#123;return null&#125;</span><br></pre></td></tr></table></figure>
+          <h1><span id="深入理解es6第一章"> 深入理解ES6第一章</span></h1>
+<h2><span id="varletconst"> var,let,const</span></h2>
+<h3><span id="1变量提升"> 1.变量提升</span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (condition)</span><br><span class="line">&#123;var value &#x3D; &#39;blue&#39;&#125; else &#123;return null&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var value &#x2F;&#x2F;提升</span><br><span class="line">if(condition)&#123; value &#x3D; &#39;blue&#39;&#125;   else&#123;return null&#125;</span><br></pre></td></tr></table></figure>
 <p>else中可以访问value ,但值是undefined</p>
-<h3><span id="2块级作用域函数内部之间">2.块级作用域(函数内部,{}之间)</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getValue(condition)&#123;</span><br><span class="line">if(condition)&#123; </span><br><span class="line">console.log(value);</span><br><span class="line">let value &#x3D; &#39;blue&#39;;&#125; &#x2F;&#x2F;console.log(value)</span><br><span class="line">else&#123;return null&#125;</span><br><span class="line">&#125;        &#x2F;&#x2F;报错 cannot access before initialization.    同样,else里也访问不了value值,value is not defined</span><br></pre></td></tr></table></figure>
-<p>==&gt;只有在if内能用value值,else里也用不了.<br>==&gt;尽管在同一个函数内,但也访问不了. 优先级  {}&gt;同一个函数内<br>声明 ==&gt;   var value              初始化 ==&gt; value =’blue’</p>
-<h3><span id="3禁止重声明">3.禁止重声明：</span></h3><p>同一作用域内用var和let声明同一个变量，const同理<br>可以在内嵌作用域中用let覆盖全局中的var声明<br><em>const必须声明时初始化,否则会报错。*即const name //错<br>                                               const maxItem = 20; //对<br>既有变量不能变为常量. 即var,let声明的,不能又用const再次声明（同理于重声明?)<br>*const声明对象可以修改对象值但不能修改对象绑定(?)</em></p>
+<h3><span id="2块级作用域函数内部之间"> 2.块级作用域(函数内部,{}之间)</span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getValue(condition)&#123;</span><br><span class="line">if(condition)&#123; </span><br><span class="line">console.log(value);</span><br><span class="line">let value &#x3D; &#39;blue&#39;;&#125; &#x2F;&#x2F;console.log(value)</span><br><span class="line">else&#123;return null&#125;</span><br><span class="line">&#125;        &#x2F;&#x2F;报错 cannot access before initialization.    同样,else里也访问不了value值,value is not defined</span><br></pre></td></tr></table></figure>
+<p>==&gt;只有在if内能用value值,else里也用不了. <br>
+==&gt;尽管在同一个函数内,但也访问不了. 优先级  {}&gt;同一个函数内<br>
+声明 ==&gt;   var value              初始化 ==&gt; value =‘blue’</p>
+<h3><span id="3禁止重声明"> 3.禁止重声明：</span></h3>
+<p>同一作用域内用var和let声明同一个变量，const同理<br>
+可以在内嵌作用域中用let覆盖全局中的var声明<br>
+*const必须声明时初始化,否则会报错。*即const name //错<br>
+                                               const maxItem = 20; //对<br>
+既有变量不能变为常量. 即var,let声明的,不能又用const再次声明（同理于重声明?)<br>
+<em>const声明对象可以修改对象值但不能修改对象绑定(?)</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const person &#x3D;&#123;name:&#39;Nicholas&#39;&#125;</span><br><span class="line">person.name &#x3D; &#39;Greg&#39;;      &#x2F;&#x2F;不会报错</span><br><span class="line">person &#x3D; &#123;name:&#39;Greg&#39;&#125;  &#x2F;&#x2F;报错</span><br></pre></td></tr></table></figure>
-<p>(怎么理解对象的绑定?)<br>可以改对象内容但不能重新声明一个对象 const 右边不能又是对象</p>
-<h3><span id="4循环中的变量函数">4.循环中的变量,函数</span></h3><p>变量var出了循环还能被访问，是循环结束时的值.<br>let声明的出了循环就无法被访问了</p>
+<p>(怎么理解对象的绑定?)<br>
+可以改对象内容但不能重新声明一个对象 const 右边不能又是对象</p>
+<h3><span id="4循环中的变量函数"> 4.循环中的变量,函数</span></h3>
+<p>变量var出了循环还能被访问，是循环结束时的值.<br>
+let声明的出了循环就无法被访问了</p>
 <p>立即调用函数表达式(Instant Invoke Function Expression)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">            var funcs &#x3D; []</span><br><span class="line">            for (var i &#x3D; 0 ; i&lt;10;i++)&#123;</span><br><span class="line">                funcs.push((function(value)&#123;</span><br><span class="line">                    return function()&#123;</span><br><span class="line">                        console.log(value)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;(i)))</span><br><span class="line">            &#125;</span><br><span class="line">            funcs.forEach(function(funcs)&#123;</span><br><span class="line">                funcs()</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
-<p>强制生成计数器变量的副本(?),将每次的i赋值给value(副本?闭包保护?),从而输出0-9<br>简化版:</p>
+<p>强制生成计数器变量的副本(?),将每次的i赋值给value(副本?闭包保护?),从而输出0-9<br>
+简化版:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D;0 ;i&lt;10;i++)&#123;</span><br><span class="line">console.log(i)&#125;</span><br></pre></td></tr></table></figure>
-
 <p><em>for(let key in object)遍历对象属性同理,不用let则全是最后一个属性(ccc)</em></p>
-<h3><span id="5var弊端会覆盖全局变量">5.var弊端:会覆盖全局变量</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var RegExp &#x3D; &#39;Hello&#39;</span><br><span class="line">var ncz &#x3D; &#39;Hi&#39; &#x2F;&#x2F;两个都是window对象原本就有的属性,但值会被覆盖</span><br><span class="line">console.log(window.RegExp) &#x3D;&#x3D;&gt;&#39;Hello&#39;</span><br></pre></td></tr></table></figure>
+<h3><span id="5var弊端会覆盖全局变量"> 5.var弊端:会覆盖全局变量</span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var RegExp &#x3D; &#39;Hello&#39;</span><br><span class="line">var ncz &#x3D; &#39;Hi&#39; &#x2F;&#x2F;两个都是window对象原本就有的属性,但值会被覆盖</span><br><span class="line">console.log(window.RegExp) &#x3D;&#x3D;&gt;&#39;Hello&#39;</span><br></pre></td></tr></table></figure>
 <p>let和const则<em>只会遮蔽全局变量而不会覆盖</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let RegExp &#x3D; &#39;Hello&#39;</span><br><span class="line">console.log(window.RegExp &#x3D;&#x3D;&#x3D;RegExp)</span><br><span class="line">console.log(RegExp) &#x2F;&#x2F;自己声明的</span><br><span class="line">console.log(window.RegExp) &#x2F;&#x2F;全局自带的</span><br></pre></td></tr></table></figure>
-
-
 
         </div>
       </div>

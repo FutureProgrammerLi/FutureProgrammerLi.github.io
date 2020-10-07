@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-28</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,37 +126,39 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="amd">AMD</span></h2><p>异步模块加载规范(AMD,Asynchronorous Module Definition);</p>
+          <h2><span id="amd"> AMD</span></h2>
+<p>异步模块加载规范(AMD,Asynchronorous Module Definition);</p>
 <p>浏览器端模块化开发规范;典型的是Require.js</p>
 <p>基本语法<code>require([module],callback)</code></p>
 <p>module是需要加载的模块,是个数组;callback是等该模块加载成功后执行的回调函数.</p>
 <p>require([‘math’],function(math){ math.add(2,3) } )</p>
-<h2><span id="cmd">CMD</span></h2><p>通用模块加载规范(CMD,Common Module Definition)</p>
+<h2><span id="cmd"> CMD</span></h2>
+<p>通用模块加载规范(CMD,Common Module Definition)</p>
 <p>浏览器环境模块加载;典型的是Sea.js</p>
-<p>基本语法<code>var module = require(&#39;module-name&#39;)</code></p>
-<h3><span id="amd和cmd的异同">AMD和CMD的异同</span></h3><p>相同: </p>
+<p>基本语法<code>var module = require('module-name')</code></p>
+<h3><span id="amd和cmd的异同"> AMD和CMD的异同</span></h3>
+<p>相同:</p>
 <ol>
 <li>都是异步加载</li>
-<li>都是模块加载规范(!????)</li>
+<li>都是模块加载规范(???)</li>
 </ol>
 <p>不同:</p>
 <ol>
-<li><p>AMD加载模块完成后就会执行该模块,所有模块加载完后执行callback函数;(完成后打开)更符合浏览器端.强调依赖前置.用户体验更好;</p>
+<li>
+<p>AMD加载模块完成后就会执行该模块,所有模块加载完后执行callback函数;(完成后打开)更符合浏览器端.强调依赖前置.用户体验更好;</p>
 <p>CMD加载后遇到require语句才会执行对应的模块;(仅下载,暂不打开).更符合服务器端.强调依赖延迟;性能更好</p>
 </li>
 </ol>
-<h2><span id="commonjs">CommonJS</span></h2><p>同步加载模块,不加载完下面的代码都执行不了</p>
+<h2><span id="commonjs"> CommonJS</span></h2>
+<p>同步加载模块,不加载完下面的代码都执行不了</p>
 <p>Node.js用的规范.关键是<strong>一个js文件就是一个模块</strong>.</p>
-<h3><span id="moduleexports-exports的区别">module.exports ,exports的区别</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = exports = &#123;&#125;</span><br><span class="line"><span class="comment">//exports是module.exports的一个引用</span></span><br><span class="line"><span class="comment">//类比于</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br></pre></td></tr></table></figure>
-
+<h3><span id="moduleexports-exports的区别"> module.exports ,exports的区别</span></h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = exports = &#123;&#125;</span><br><span class="line"><span class="comment">//exports是module.exports的一个引用</span></span><br><span class="line"><span class="comment">//类比于</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以对象的形式导出多个变量或函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//一个模块仅导出一个变量/函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = test</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>区分函数/变量是以单个导出的方式导出的还是以对象形式导出的.</p>
+<li>
+<p>区分函数/变量是以单个导出的方式导出的还是以对象形式导出的.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.以单个形式导出的</span></span><br><span class="line"><span class="comment">//index.js   单个文件就导出一个函数?!会覆盖码?相当于exports这个属性的值是一个函数(方法)</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Single output'</span>)&#125;</span><br><span class="line"><span class="comment">//引用</span></span><br><span class="line"><span class="keyword">var</span> sth = <span class="built_in">require</span>(<span class="string">'./index.js'</span>)</span><br><span class="line">sth()</span><br><span class="line"><span class="comment">//可能等价于</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    exports: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Single output'</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.以对象形式导出的,相当于给exports对象添加了一个方法</span></span><br><span class="line">exports.something = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Object Form '</span>)&#125;</span><br><span class="line">exports.a = <span class="number">1</span></span><br><span class="line"><span class="comment">//引用</span></span><br><span class="line"><span class="keyword">var</span> sth = <span class="built_in">require</span>(<span class="string">'./index.js'</span>)</span><br><span class="line">sth.somthing()</span><br><span class="line"><span class="comment">//可能等价于</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    exports:&#123;</span><br><span class="line">        something:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Object Form '</span>)&#125;,</span><br><span class="line">        a:<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <p>module.exports 可以单独范围某一个数据类型</p>
@@ -164,23 +166,26 @@
 <p>所以不能让exports指向一个值(???)</p>
 <p>exports.functionName = (req,res,next)=&gt;{…}</p>
 <p>module.exports = [functionName]</p>
-<h3><span id="exportexport-default-是es6规范区别于moduleexports和exports的commonjs规范">export,export default 是ES6规范,区别于module.exports和exports的CommonJS规范</span></h3><p>基本用法: </p>
+<h3><span id="exportexport-default-是es6规范区别于moduleexports和exports的commonjs规范"> export,export default 是ES6规范,区别于module.exports和exports的CommonJS规范</span></h3>
+<p>基本用法:</p>
 <ul>
-<li><p>import/export /export default</p>
+<li>
+<p>import/export /export default</p>
 </li>
-<li><p>export let a = 1 ,export function test(){//…}</p>
+<li>
+<p>export let a = 1 ,export function test(){//…}</p>
 </li>
-<li><p>export default {  a,test }</p>
+<li>
+<p>export default {  a,test }</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导出 index.js</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;  <span class="comment">//注意，export default 整个文件只能使用一次,单独使用export可以多次</span></span><br><span class="line">  a,</span><br><span class="line">  test</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//导入</span></span><br><span class="line"><span class="keyword">import</span> sth <span class="keyword">from</span> <span class="string">'./index.js'</span></span><br><span class="line"><span class="comment">//import * from './index.js'     //这样引入怎么用?必须要用as吧?</span></span><br><span class="line"><span class="comment">//import * as alias from './index.js'  //alias.sthfrommodule</span></span><br><span class="line"><span class="built_in">console</span>.log(sth) </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    a:<span class="number">1</span>,</span><br><span class="line">    test:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//类似于module.exports.a = 1</span></span><br><span class="line"><span class="comment">//module.exports.test = function()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按需导出与导入</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入</span></span><br><span class="line"><span class="keyword">import</span> &#123;a, show &#125; <span class="keyword">from</span> <span class="string">'./index.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line">show()</span><br><span class="line"></span><br><span class="line"><span class="comment">//动态导入</span></span><br><span class="line"><span class="keyword">import</span>(<span class="string">'/module'</span>).then(<span class="function"><span class="params">module</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//do something with the module</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">import</span> [<span class="built_in">module</span>] <span class="keyword">from</span> <span class="string">'./index.js'</span></span><br><span class="line"><span class="keyword">import</span> [<span class="built_in">module</span>] <span class="keyword">as</span> Alias <span class="keyword">from</span> <span class="string">'./index.js'</span></span><br><span class="line"><span class="comment">//这里的module不是自定义的吗? 为什么还要用as另起别名?</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>是否还要注意导出文件导出的是单个函数还是整个对象?</p>
+<li>
+<p>是否还要注意导出文件导出的是单个函数还是整个对象?</p>
 </li>
-<li><p>不需要.无论是否为单个导出都要解构.所有的单个export语句都会整合成一个对象(?)</p>
+<li>
+<p>不需要.无论是否为单个导出都要解构.所有的单个export语句都会整合成一个对象(?)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a+b&#125;</span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./index.js'</span></span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 </li>

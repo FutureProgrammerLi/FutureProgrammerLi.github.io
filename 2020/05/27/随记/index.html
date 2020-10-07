@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,17 +126,22 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="arrayprototypemap">Array.prototype.map()</span></h2><blockquote>
+          <h2><span id="arrayprototypemap"> Array.prototype.map()</span></h2>
+<blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.map(function callback(currentValue[, index[, array]]) &#123;</span><br><span class="line"> &#x2F;&#x2F; Return element for new_array </span><br><span class="line">&#125;[, thisArg])</span><br><span class="line">Array.prototype.map(cb,thisArg)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
-<li><p>外层2,内层3</p>
+<li>
+<p>外层2,内层3</p>
 </li>
-<li><p>接受<strong>两个</strong>参数,一个callbackFunction,一个this指向</p>
+<li>
+<p>接受<strong>两个</strong>参数,一个callbackFunction,一个this指向</p>
 <ol>
-<li><p>callbackFunction又接受三个参数: 当前遍历的值,索引以及数组全部.</p>
+<li>
+<p>callbackFunction又接受三个参数: 当前遍历的值,索引以及数组全部.</p>
 </li>
-<li><p>this用于修改callbackFunction里面的this指向(?).不传这个值<code>this</code>就为undefined.</p>
+<li>
+<p>this用于修改callbackFunction里面的this指向(?).不传这个值<code>this</code>就为undefined.</p>
 <blockquote>
 <p>执行callback函数时值被用作this</p>
 <p>Value to use as <code>this</code> when executing <code>callback</code></p>
@@ -144,79 +149,99 @@
 </li>
 </ol>
 </li>
-<li><p>数组中undefined的值也会执行callback, 而empty的不会(使用了delete的结果)</p>
+<li>
+<p>数组中undefined的值也会执行callback, 而empty的不会(使用了delete的结果)</p>
 </li>
-<li><p>处理的是调用map时, arr的一个snapshot, arr之后的改变都不会影响map的结果(?说了跟没说一样?)</p>
+<li>
+<p>处理的是调用map时, arr的一个snapshot, arr之后的改变都不会影响map的结果(?说了跟没说一样?)</p>
 </li>
 </ul>
-<h2><span id="map和foreach的区别">map和forEach的区别</span></h2><p>同:</p>
+<h2><span id="map和foreach的区别"> map和forEach的区别</span></h2>
+<p>同:</p>
 <ol>
-<li><p>都会遍历数组</p>
+<li>
+<p>都会遍历数组</p>
 </li>
-<li><p><strong>接收的参数一样!!!!Array.prototype.forEach(callback,thisArg),     callback(currentValue,index,self)</strong></p>
+<li>
+<p><strong>接收的参数一样!!!Array.prototype.forEach(callback,thisArg),     callback(currentValue,index,self)</strong></p>
 </li>
 </ol>
 <p>不同:</p>
 <ol>
-<li><p>map会返回一个经遍历处理的数组,forEach返回undefined(map 备份修改, forEach可以直接修改本体)</p>
+<li>
+<p>map会返回一个经遍历处理的数组,forEach返回undefined(map 备份修改, forEach可以直接修改本体)</p>
 </li>
-<li><p>map不会修改原数组,forEach可以 , 在callback里面 arr[index] = currentValue / 2 =&gt; arr的每个元素就会缩小一倍.</p>
+<li>
+<p>map不会修改原数组,forEach可以 , 在callback里面 arr[index] = currentValue / 2 =&gt; arr的每个元素就会缩小一倍.</p>
 </li>
 </ol>
 <hr>
-<h2><span id="arrayprototypereduce">Array.prototype.reduce()</span></h2><blockquote>
+<h2><span id="arrayprototypereduce"> Array.prototype.reduce()</span></h2>
+<blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
-<li><p>外层2,内层4,内层多了个base</p>
+<li>
+<p>外层2,内层4,内层多了个base</p>
 </li>
-<li><p>接受<strong>两个</strong>参数: reducerFunction,initialValue/base</p>
+<li>
+<p>接受<strong>两个</strong>参数: reducerFunction,initialValue/base</p>
 <ol>
-<li><p>reducerFunction接受<strong>四个</strong>参数:累加器/初始值, 当前遍历的值,索引值,数组本身</p>
+<li>
+<p>reducerFunction接受<strong>四个</strong>参数:累加器/初始值, 当前遍历的值,索引值,数组本身</p>
 <p>​                                                 (accumulator/base  currentValue currentIndex     Source Array)</p>
 </li>
 </ol>
 </li>
-<li><ol start="2">
-<li><p>initialValue: 累加器一开始的值,</p>
-<p> 如果设置了.reducerFunction里的accumulator就为它,currentValue就为数组的第一个值;</p>
+<li>
+<ol start="2">
+<li>
+<p>initialValue: 累加器一开始的值,</p>
+<p>如果设置了.reducerFunction里的accumulator就为它,currentValue就为数组的第一个值;</p>
 <p>如果没设置,reducerFunction第一次accumulator就为数组第一个值(0为特殊情况),currentValue就为数组第二个值.</p>
 <p><strong>0作为第一个值的时候好像有点问题?</strong></p>
 </li>
 </ol>
 </li>
-<li><ol start="3">
+<li>
+<ol start="3">
 <li><em>accumulator只会在第一次中不为undefined(initialValue或为数组第一个值) , 之后都为undefined</em></li>
 </ol>
 </li>
 </ul>
-<h3><span id="问题引入万恶之源">问题引入(万恶之源)</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">acc,item</span>)=&gt;</span>acc?(acc.toString()+item.toString()):item.toString();</span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer))   <span class="comment">//数组的第一项0没有参加运算</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer,<span class="number">0</span>)) <span class="comment">//这里的initialValue 没参加reducer</span></span><br><span class="line"><span class="comment">//arr.reduce(reducer) ==&gt;</span></span><br><span class="line"><span class="comment">//const anotherArr = [1,2,3,4]</span></span><br><span class="line"><span class="comment">//anotherArr.reduce(reducer,0)</span></span><br></pre></td></tr></table></figure>
-
+<h3><span id="问题引入万恶之源"> 问题引入(万恶之源)</span></h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">acc,item</span>)=&gt;</span>acc?(acc.toString()+item.toString()):item.toString();</span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer))   <span class="comment">//数组的第一项0没有参加运算</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.reduce(reducer,<span class="number">0</span>)) <span class="comment">//这里的initialValue 没参加reducer</span></span><br><span class="line"><span class="comment">//arr.reduce(reducer) ==&gt;</span></span><br><span class="line"><span class="comment">//const anotherArr = [1,2,3,4]</span></span><br><span class="line"><span class="comment">//anotherArr.reduce(reducer,0)</span></span><br></pre></td></tr></table></figure>
 <p>错误答案:  01234,001234</p>
 <p>正确答案:1234,01234</p>
 <p>0作为acc/数组第一项的时候是不是有点问题??</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr1.reduce(reducer))     <span class="comment">//21234    (???)</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1.reduce(reducer,<span class="number">0</span>))   <span class="comment">//21234</span></span><br></pre></td></tr></table></figure>
-
 <p>摘自MDN:</p>
 <blockquote>
 <p><strong>Note:</strong> If <code>initialValue</code> is not provided, <code>reduce()</code> will execute the callback function starting at index <code>1</code>, skipping the first index. If <code>initialValue</code> is provided, it will start at index <code>0</code>.</p>
 </blockquote>
-<h2><span id="null和undefined的区别">null和undefined的区别</span></h2><ol>
-<li><p>typeof undefined   =&gt; undefined</p>
+<h2><span id="null和undefined的区别"> null和undefined的区别</span></h2>
+<ol>
+<li>
+<p>typeof undefined   =&gt; undefined</p>
 <p>typeof null =&gt; object</p>
 </li>
-<li><p>undefined == null     =&gt;true     都被转换成0</p>
+<li>
+<p>undefined == null     =&gt;true     都被转换成0</p>
 <p>undefined === null =&gt;false</p>
 </li>
-<li><p>​    5+undefined         ==&gt; NaN           Number(undefined) -&gt; NaN</p>
+<li>
+<p>​    5+undefined         ==&gt; NaN           Number(undefined) -&gt; NaN</p>
 <p>​    5+ null                   ==&gt; 0                    Number(null)=&gt;0</p>
 </li>
-<li><p>undefined == null == false</p>
+<li>
+<p>undefined == null == false</p>
 </li>
-<li><p>undefined 代表此处可以有值但还未定义</p>
+<li>
+<p>undefined 代表此处可以有值但还未定义</p>
 <p>null代表此处不应该有值</p>
 </li>
-<li><p>默认参数</p>
+<li>
+<p>默认参数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">num=<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> num)</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="literal">undefined</span>)      <span class="comment">//number ,num is set to 1</span></span><br><span class="line">test(<span class="literal">null</span>)           <span class="comment">//object, num is set to null</span></span><br><span class="line"><span class="comment">//如何不使用默认参数</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 

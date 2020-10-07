@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-06-04</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,17 +126,21 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="看完书后自己理解的内容记忆">看完书后自己理解的内容记忆:</span></h3><h4><span id="虚拟dom篇">虚拟DOM篇</span></h4><blockquote>
+          <h3><span id="看完书后自己理解的内容记忆"> 看完书后自己理解的内容记忆:</span></h3>
+<h4><span id="虚拟dom篇"> 虚拟DOM篇</span></h4>
+<blockquote>
 <p>为什么需要Virtual DOM？</p>
 </blockquote>
 <ol>
-<li><p>真实DOM属性十分之多,抽象成Virtual DOM,取一些必要的属性能简化操作,以JS计算性能换取DOM操作性能</p>
+<li>
+<p>真实DOM属性十分之多,抽象成Virtual DOM,取一些必要的属性能简化操作,以JS计算性能换取DOM操作性能</p>
 </li>
-<li><p>VNode实际渲染需要对应环境操作,为此可以针对不同环境设置一套真实挂载的操作,从而提高代码的兼容性</p>
+<li>
+<p>VNode实际渲染需要对应环境操作,为此可以针对不同环境设置一套真实挂载的操作,从而提高代码的兼容性</p>
 </li>
-<li><p>渲染优化,标记静态节点,在下次遍历时直接跳过静态节点(isStatic)</p>
+<li>
+<p>渲染优化,标记静态节点,在下次遍历时直接跳过静态节点(isStatic)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如在H5中创建元素</span></span><br><span class="line"><span class="keyword">let</span> VNode = nodeOps.createEle(...);</span><br><span class="line"><span class="comment">//这里的nodeOps对应的就是document.createElement()</span></span><br><span class="line"><span class="comment">//更换环境就可以引另一套nodeOps, 编程wx/uni....createElement()</span></span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <blockquote>
@@ -152,7 +156,7 @@
 </ol>
 <p>各种节点的特有属性:</p>
 <p>文本节点只有text属性, 注释节点特有的(isComment),元素节点特有的tag.</p>
-<p>组件节点componentOptions/componentInstance.  </p>
+<p>组件节点componentOptions/componentInstance.</p>
 <p>函数式组件节点fnOptions/fnContext(组件节点有的它也有,但这两个属性是函数式组件节点特有的)</p>
 <p>克隆节点:isCloned</p>
 <hr>
@@ -163,13 +167,17 @@
 <p>理解上可以有3种DOM树.  oldTree,newTree,以及真实的DOMTree.</p>
 <p>(oldTree和真实DOM区别是节点的真假,结构一样吧?)</p>
 <ul>
-<li><p>先修改oldTree,之后一顿操作,变成newTree结构之后,实际渲染到DOMTree.       </p>
+<li>
+<p>先修改oldTree,之后一顿操作,变成newTree结构之后,实际渲染到DOMTree.</p>
 </li>
-<li><p>oldTree和newTree的作用是找出区别,DIF完成后,newTree和DOMTree结构一样.</p>
+<li>
+<p>oldTree和newTree的作用是找出区别,DIF完成后,newTree和DOMTree结构一样.</p>
 </li>
-<li><p>节点操作主要有4种:创建新节点,删除旧节点,更新节点,移动节点位置(后两种好像一样?)</p>
+<li>
+<p>节点操作主要有4种:创建新节点,删除旧节点,更新节点,移动节点位置(后两种好像一样?)</p>
 </li>
-<li><p><strong>在所有未处理的节点前插入/创建新节点,而不是在所有已经处理的节点后插入/创建新节点</strong></p>
+<li>
+<p><strong>在所有未处理的节点前插入/创建新节点,而不是在所有已经处理的节点后插入/创建新节点</strong></p>
 </li>
 </ul>
 <blockquote>
@@ -185,40 +193,40 @@
 <p>新树先遍历完毕,则旧树oldStartIndex到oldEndIndex的节点都删除.</p>
 <p>旧树先遍历完,则新树newStartIndex到newEndIndex的节点都添加.</p>
 <hr>
-<h4><span id="模板编译篇">模板编译篇</span></h4><ol>
-<li><p>生成语法抽象树,优化编译,生成render函数.</p>
+<h4><span id="模板编译篇"> 模板编译篇</span></h4>
+<ol>
+<li>
+<p>生成语法抽象树,优化编译,生成render函数.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ast = parse(template,options)  <span class="comment">//生成抽象语法树</span></span><br><span class="line"><span class="keyword">if</span>(!options.optimize)&#123;               <span class="comment">//以下两个的操作对象都是AST</span></span><br><span class="line">    optimize(ast,options)            <span class="comment">//节点优化</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> code = generate(ast,options)   <span class="comment">//生成渲染函数</span></span><br><span class="line"><span class="keyword">return</span>&#123;</span><br><span class="line">   ast, <span class="comment">//抽象树</span></span><br><span class="line">   render:code.render,</span><br><span class="line">   staticRenderFns:code.staticRenderFns</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>?三种解析器,HTML parser&gt;文本解析器(parseText)&gt; 过滤器解析器(parseFilter)</p>
-<p>HTML中有文本         -&gt;               文本中有过滤器      -&gt;  </p>
+<p>HTML中有文本         -&gt;               文本中有过滤器      -&gt;</p>
 <p>(真的吗? 源码里parseText和parseFilter好像没关系呀?)</p>
 </li>
 </ol>
 <p>HTML解析模板时,怎么区分标签是真正的开始,而不是嵌套的开始?结尾怎么区分是真正的结尾,而不是子元素结尾? 怎么分辨是不是用户语法出错? (以<template> 和</template> 作为最后底线?)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">parseHTML(template,&#123;</span><br><span class="line">    <span class="comment">// ... static options</span></span><br><span class="line">    <span class="comment">//解析到开始标签时执行start</span></span><br><span class="line">    start(tag,attrs,unary)&#123;  <span class="comment">//tag标签名称start[1],attrs标签属性,如class/id/src等</span></span><br><span class="line">                             <span class="comment">//unary是否为自闭和标签,&lt;div&gt;&lt;/div&gt; | &lt;img src="..."/&gt;</span></span><br><span class="line">        <span class="keyword">let</span> element = createASTElement(tag,attrs,currentParent) <span class="comment">//?</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到结束标签</span></span><br><span class="line">    end()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到文本</span></span><br><span class="line">    chars(text)&#123;</span><br><span class="line">        <span class="comment">//分动态文本和静态文本.动态文本就是包含变量的文本内容. </span></span><br><span class="line">        <span class="comment">//  动态文本:Hello, &#123;&#123;name&#125;&#125; |静态文本:Hello</span></span><br><span class="line">        <span class="comment">//动态文本的NodeType为2.  静态纯文本的type为3 (元素节点的type为1?)</span></span><br><span class="line">        <span class="keyword">if</span>(动态文本)&#123;</span><br><span class="line">*******************************************************************************</span><br><span class="line">            <span class="keyword">let</span> element = &#123;   <span class="comment">//动态文本的结构.记住有助于后续理解</span></span><br><span class="line">                type:<span class="number">2</span>,</span><br><span class="line">                expression:<span class="string">'我的年龄是'</span>+_s(...) +<span class="string">'我的姓名是:'</span> + _s(...),</span><br><span class="line">                tokens:[<span class="string">'我的年龄是'</span>,<span class="string">'@binding=age'</span>,<span class="string">'我的姓名是:'</span>,<span class="string">'@binding=name'</span>],</span><br><span class="line">                text</span><br><span class="line">            &#125;   *******************************************************************************</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> element = &#123;</span><br><span class="line">                type:<span class="number">3</span>,</span><br><span class="line">                text</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//解析到注释</span></span><br><span class="line">    comment(text)&#123;</span><br><span class="line">        <span class="keyword">let</span> element = &#123;</span><br><span class="line">            type:<span class="number">3</span>,</span><br><span class="line">            text,</span><br><span class="line">            isComment:<span class="literal">true</span>    <span class="comment">//与文本节点的差别就是isComment.参考VNode种类</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//四个钩子用于生成具体的AST(start,end,chars,comment)</span></span><br></pre></td></tr></table></figure>
-
 <ol start="2">
-<li><p>实际parse的过程:</p>
+<li>
+<p>实际parse的过程:</p>
 <p>主要解析的内容主要有三类:</p>
-<p>(1) &lt;!–   开头的: </p>
+<p>(1) &lt;!--   开头的:</p>
 <p>自定义注释(<!--这是注释-->,   &lt;!–开头,–&gt;结尾</p>
 <p>条件注释<!--[if !IE]> <h1>这不是IE浏览器</h1>  <![endif]--> &lt;!–[,   ]–&gt;结尾</p>
 <p>//自定义注释和条件注释是否有关系?判断自定义注释的时候不就包括了条件注释了吗?</p>
 <p>(2)DOCTYPE,  <!DOCTYPE html></p>
-<p>(3)开始和结束标签..</p>
+<p>(3)开始和结束标签…</p>
 <p>(4)文本.(绝大多数)</p>
 </li>
 </ol>
 <ul>
-<li><p>上面(1)所述操作有优化点,options.shouldKeepComment,为false的话则不为注释创建节点,直接advance(commentEnd +3).</p>
+<li>
+<p>上面(1)所述操作有优化点,options.shouldKeepComment,为false的话则不为注释创建节点,直接advance(commentEnd +3).</p>
 </li>
-<li><p>&lt;template comments&gt; &lt;/template&gt;可以设置是否保留注释.默认true还是false?</p>
+<li>
+<p>&lt;template comments&gt; &lt;/template&gt;可以设置是否保留注释.默认true还是false?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//(1)自定义注释的正则</span></span><br><span class="line"><span class="keyword">const</span> comment = <span class="regexp">/^&lt;!\--/</span> <span class="comment">//   &lt;!--我是注释--&gt;</span></span><br><span class="line"><span class="comment">//(1)条件注释的正则</span></span><br><span class="line"><span class="keyword">const</span> conditionalComment = <span class="regexp">/^&lt;!\[/</span>    <span class="comment">//??? &lt;!--[if IE] ...  &lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">//(2)DOCTYPE的正则</span></span><br><span class="line"><span class="keyword">const</span> doctype = <span class="regexp">/^&lt;!DOCTYPE [^&gt;]+&gt;/i</span></span><br><span class="line">----</span><br><span class="line"><span class="comment">//(3)解析开始</span></span><br><span class="line"><span class="keyword">const</span> ncname = <span class="string">'[a-zA-Z_][\\w\\-\\.]*'</span></span><br><span class="line"><span class="keyword">const</span> qnameCapture = <span class="string">`((?:<span class="subst">$&#123;ncname&#125;</span>\\:)?<span class="subst">$&#123;ncname&#125;</span>)`</span></span><br><span class="line"><span class="keyword">const</span> startTagOpen = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`^&lt;<span class="subst">$&#123;qnameCapture&#125;</span>`</span>)</span><br><span class="line"><span class="comment">//返回结果的样子,符合就从下标1取tagName,不符合就返回null           //第一个参数,是字符串</span></span><br><span class="line"><span class="comment">//&lt;div&gt;&lt;/div&gt; =&gt; ['&lt;div','div',index:0,input:'&lt;div&gt;&lt;/div&gt;']</span></span><br><span class="line"><span class="comment">//sth&lt;/p&gt;     =&gt; null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//除了tagName,start函数还需要attrs和unary参数.需要分别解析,判断</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 属性是一个个被截取出来放到attrs数组里的.有多少个属性就要匹配多少次.</span></span><br><span class="line"><span class="keyword">const</span> attribute = <span class="regexp">/^\s*([^\s"'&lt;&gt;\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=&lt;&gt;`]+)))?/</span></span><br><span class="line"><span class="keyword">while</span> (!(end = html.match(startTagClose)) &amp;&amp; (attr = html.match(attribute))) &#123;</span><br><span class="line"> advance(attr[<span class="number">0</span>].length) </span><br><span class="line"> match.attrs.push(attr)          <span class="comment">//第二个参数,是数组</span></span><br><span class="line"> <span class="comment">//attr长这样:</span></span><br><span class="line"> <span class="comment">//["class="a"", "class", "=", "a", undefined, undefined, index: 0, input: "class="a" id="b"&gt;&lt;/div&gt;", groups: undefined]</span></span><br><span class="line"> <span class="comment">//遇到动态绑定的需要传给parseText吧?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否为自闭和</span></span><br><span class="line"><span class="keyword">const</span> startTagClose = <span class="regexp">/^\s*(\/?)&gt;/</span></span><br><span class="line"><span class="keyword">let</span> end = html.match(startTagClose)</span><br><span class="line"><span class="keyword">if</span> (end) &#123;            <span class="comment">//第三个参数,boolean?</span></span><br><span class="line"> match.unarySlash = end[<span class="number">1</span>]  </span><br><span class="line"> advance(end[<span class="number">0</span>].length)</span><br><span class="line"> match.end = index</span><br><span class="line"> <span class="keyword">return</span> match</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//示例</span></span><br><span class="line"><span class="string">'&gt;&lt;/div&gt;'</span>.match(startTagClose) <span class="comment">// ["&gt;", "", index: 0, input: "&gt;&lt;/div&gt;", groups: undefined]</span></span><br><span class="line"><span class="string">'/&gt;'</span>.match(startTagClose) <span class="comment">// ["/&gt;", "/", index: 0, input: "/&gt;&lt;div&gt;&lt;/div&gt;", groups: undefined]</span></span><br><span class="line"><span class="comment">//区别是end[1],为空则非自闭合,为/则是自闭合</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>解析结束标签和解析开始标签类似,是正则表达式startTagOpen变化成另一个正则endTag.截到则返回整个结束标签,截不到就返回null</li>
 <li>都不是直接调取start和end钩子函数,调用的是handleStartTag和parseEndTag,在里面再调取start和end函数</li>

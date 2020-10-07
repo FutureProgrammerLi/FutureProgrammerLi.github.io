@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,73 +126,98 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="深入理解es6第三章-函数">深入理解ES6第三章 函数</span></h2><h3><span id="1-默认参数">1. 默认参数</span></h3><p>ES5==&gt;      </p>
+          <h2><span id="深入理解es6第三章-函数"> 深入理解ES6第三章 函数</span></h2>
+<h3><span id="1-默认参数"> 1. 默认参数</span></h3>
+<p>ES5==&gt;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time &#x3D; params || 200</span><br></pre></td></tr></table></figure>
-
-<p>==&gt;params是传入的,没传进来就用200<br>ES6 ==&gt;      </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function test(params&#x3D;200)</span><br><span class="line">&#123; var time &#x3D; params&#125;</span><br></pre></td></tr></table></figure>
-<p>区别 function test(url, time=200,callback){}     ==&gt; <strong>默认参数不一定要摆在最后.   !区别于展开运算符…arg作参数</strong><br>==&gt;function test(‘/foo’,undefined)     ==&gt;time = 200<br>==&gt;function test(‘/foo’,null)               ==&gt;<strong>不使用默认值</strong></p>
-<hr>
-<h3><span id="2-arguments">2. arguments</span></h3><p>ES5非严格模式,arguments数组会因变量变而变 arguments[0]  arguments[1] 4个true<br>                             严格模式 变量改变,arguments不会变          2true 2false<br>                      <strong>ES6用默认参数, 行为类似ES5的严格模式,默认参数不在arguments中,变量变了arguments内容也不会变,保存刚传进来的,实际的参数（不包括默认参数）</strong></p>
+<p>==&gt;params是传入的,没传进来就用200<br>
+ES6 ==&gt;</p>
+<h2><span id="12function-testparamsx3d200123-var-time-x3d-params125区别-function-testurl-time200callback-gt-默认参数不一定要摆在最后-区别于展开运算符arg作参数gtfunction-testfooundefined-gttime-200gtfunction-testfoonull-gt不使用默认值"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function test(params&#x3D;200)</span><br><span class="line">&#123; var time &#x3D; params&#125;</span><br></pre></td></tr></table></figure><br>
+区别 function test(url, time=200,callback){}     ==&gt; <strong>默认参数不一定要摆在最后.   !区别于展开运算符…arg作参数</strong><br>
+==&gt;function test(’/foo’,undefined)     ==&gt;time = 200<br>
+==&gt;function test(’/foo’,null)               ==&gt;<strong>不使用默认值</strong></span></h2>
+<h3><span id="2-arguments"> 2. arguments</span></h3>
+<p>ES5非严格模式,arguments数组会因变量变而变 arguments[0]  arguments[1] 4个true<br>
+严格模式 变量改变,arguments不会变          2true 2false<br>
+<strong>ES6用默认参数, 行为类似ES5的严格模式,默认参数不在arguments中,变量变了arguments内容也不会变,保存刚传进来的,实际的参数（不包括默认参数）</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function mixArgs(fir,sec)&#123;</span><br><span class="line">    &quot;use strict&quot; </span><br><span class="line">    console.log(fir &#x3D;&#x3D;&#x3D;arguments[0]) &#x2F;&#x2F;true</span><br><span class="line">    console.log(sec &#x3D;&#x3D;&#x3D; arguments[1]) &#x2F;&#x2F;true</span><br><span class="line">    fir &#x3D; &quot;c&quot;</span><br><span class="line">    sec &#x3D; &quot;d&quot;</span><br><span class="line">    console.log(fir &#x3D;&#x3D;&#x3D;arguments[0]) &#x2F;&#x2F;false</span><br><span class="line">    console.log(sec &#x3D;&#x3D;&#x3D; arguments[1]) &#x2F;&#x2F;false</span><br><span class="line">&#125;</span><br><span class="line">mixArgs(&quot;a&quot;,&quot;b&quot;)   &#x2F;&#x2F;说明arguments[]的内容没有改变</span><br></pre></td></tr></table></figure>
-
-<p><strong>arguments数组内容总是存储传进来的实际的参数,并不是固定的</strong><br><strong>有默认参数,实际没传进来的,argument.length不把那个算入</strong></p>
-<p>function add(first, second=getValue()){}<br>                                        getValue只有在add不传入第二个参数时才被调用<br>(first , second = first)           ==&gt;对</p>
-<p>(first=second, second)         ==&gt;错  //顺序问题<br>add(1,1) 不报错,没有用默认值   add(undefined,1)报错    ??!!用了默认值?</p>
-<p>函数的length属性统计函数命名参数的数量               //命名参数和不定参数是两个东西<br><code>function fn(命名参数\*n,不定参数\*1)</code><br>不定参数不包括在length属性中<br>pick(object,…arg)   ==&gt;pick.length = 1<br>不定参数限制:</p>
+<p><strong>arguments数组内容总是存储传进来的实际的参数,并不是固定的</strong><br>
+<strong>有默认参数,实际没传进来的,argument.length不把那个算入</strong></p>
+<p>function add(first, second=getValue()){}<br>
+getValue只有在add不传入第二个参数时才被调用<br>
+(first , second = first)           ==&gt;对</p>
+<p>(first=second, second)         ==&gt;错  //顺序问题<br>
+add(1,1) 不报错,没有用默认值   add(undefined,1)报错    ??!!用了默认值?</p>
+<p>函数的length属性统计函数命名参数的数量               //命名参数和不定参数是两个东西<br>
+<code>function fn(命名参数\*n,不定参数\*1)</code><br>
+不定参数不包括在length属性中<br>
+pick(object,…arg)   ==&gt;pick.length = 1<br>
+不定参数限制:</p>
 <ol>
 <li>一个函数只能有一个展开运算符, 而且<strong>必须放在所有参数的末尾</strong></li>
-<li>setter中不能用…运算符( 传多个给set，setter会蒙)元操作你给我宏数据??!!</li>
+<li>setter中不能用…运算符( 传多个给set，setter会蒙)元操作你给我宏数据!!!</li>
 </ol>
-<p>展开运算符 :例子    Math.max(…values)       &lt;==&gt;     Math.max.apply(Math,values) //利用apply将this指向Math,将values传入???还不是传了个数组进去？<br>apply不能传数组??将数组解构了??<br><code>apply第二个参数有解构功能,是展开运算符的祖先</code></p>
-<p>Math.max(…values,0)     ==&gt;不会报错,是展开运算符<br>展开运算符,默认参数不一定要放在所有参数后面<br>不定参数必须放在所有参数后面！！！</p>
-<hr>
-<h3><span id="3-函数的name属性">3. 函数的name属性</span></h3><ol>
-<li>函数声明和函数表达式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var announce &#x3D; function exp()&#123;</span><br><span class="line">         &#x2F;&#x2F;announce是声明的名字,exp是表达式名字,表达式的比声明的权重大.</span><br><span class="line">         &#x2F;&#x2F;同时有,name取exp,只有annouce,name值为annouce</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-对象方法,getter和setter函数会有get functionName 和set functionName<br>bind生成的有bound,匿名的有anonymous前缀</li>
+<p>展开运算符 :例子    Math.max(…values)       &lt;==&gt;     Math.max.apply(Math,values) //利用apply将this指向Math,将values传入???还不是传了个数组进去？<br>
+apply不能传数组??将数组解构了??<br>
+<code>apply第二个参数有解构功能,是展开运算符的祖先</code></p>
+<h2><span id="mathmaxvalues0-gt不会报错是展开运算符展开运算符默认参数不一定要放在所有参数后面不定参数必须放在所有参数后面"> Math.max(…values,0)     ==&gt;不会报错,是展开运算符<br>
+展开运算符,默认参数不一定要放在所有参数后面<br>
+不定参数必须放在所有参数后面！！！</span></h2>
+<h3><span id="3-函数的name属性"> 3. 函数的name属性</span></h3>
+<ol>
+<li>函数声明和函数表达式</li>
 </ol>
-<p><strong>所以name的值并不准确</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var announce &#x3D; function exp()&#123;</span><br><span class="line">         &#x2F;&#x2F;announce是声明的名字,exp是表达式名字,表达式的比声明的权重大.</span><br><span class="line">         &#x2F;&#x2F;同时有,name取exp,只有annouce,name值为annouce</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象方法,getter和setter函数会有get functionName 和set functionName<br>
+bind生成的有bound,匿名的有anonymous前缀<br>
+<strong>所以name的值并不准确</strong></p>
 <hr>
-<h3><span id="4-函数的call和construct">4. 函数的[[CALL]]和[[CONSTRUCT]]</span></h3><ol>
-<li><p>不是所有函数都有[[CONSTRUCT]]方法,具有[[CONSTRUCT]]方法的都叫做<code>构造函数</code><br>能new的,都先[[CONSTRUCT]]再执行[[CALL]]</p>
+<h3><span id="4-函数的call和construct"> 4. 函数的[[CALL]]和[[CONSTRUCT]]</span></h3>
+<ol>
+<li>不是所有函数都有[[CONSTRUCT]]方法,具有[[CONSTRUCT]]方法的都叫做<code>构造函数</code><br>
+能new的,都先[[CONSTRUCT]]再执行[[CALL]]</li>
+<li>判断是否用某个构造函数创建实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    if(typeof new.target &#x3D;&#x3D;&#x3D; Person)&#123;   &#x2F;&#x2F;不是用new创建,new.target的值会为undefined</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        throw new Error(&#39;必须通过Person来创建实例!&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>判断是否用某个构造函数创建实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    if(typeof new.target &#x3D;&#x3D;&#x3D; Person)&#123;   &#x2F;&#x2F;不是用new创建,new.target的值会为undefined</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        throw new Error(&#39;必须通过Person来创建实例!&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>偏题,块级函数</p>
-<p>同理于let和const,出了块就访问不到了.<br>ES5的严格模式下:<br>不同的是,<em>let不会提升,块级函数会提升至块的顶部</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;</span><br><span class="line">if(condition)&#123;</span><br><span class="line">    console.log(typeof doSomething)</span><br><span class="line">    let doSomething &#x3D; function()&#123;</span><br><span class="line">        &#x2F;&#x2F;..</span><br><span class="line">    &#125;</span><br><span class="line">&#125;     &#x2F;&#x2F;*抛出错误*</span><br></pre></td></tr></table></figure>
-<p><strong>ES6中,块级函数会被提升到全局作用域下</strong></p>
-</li>
+<li>偏题,块级函数</li>
 </ol>
-<hr>
-<h3><span id="5箭头函数">5.箭头函数</span></h3><ol>
-<li><p>书本内容:<br> 1.1 this,super,arguments,new.target的值由外围最近一层非箭头函数决定<br> 1.2 不能通过new调用 <em>即用即弃</em><br> 1.3 没有原型<br> 1.4 this只能指向最近外围函数,不能改变绑定<br> 1.5 只能命名参数和不定参数,arguments<code>不是函数自身的</code>,总能获取最近一层非箭头函数的arguments对象.<br> 1.6 不支持重复的命名参数 //普通函数非严格模式可以</p>
-</li>
-<li><p>一般语法 </p>
+<p>同理于let和const,出了块就访问不到了.<br>
+ES5的严格模式下:<br>
+不同的是,<em>let不会提升,块级函数会提升至块的顶部</em></p>
+<h2><span id="1234567quotuse-strictquotifcondition123-consolelogtypeof-dosomething-let-dosomething-x3d-function123-x2fx2f-125125-x2fx2f抛出错误es6中块级函数会被提升到全局作用域下"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;</span><br><span class="line">if(condition)&#123;</span><br><span class="line">    console.log(typeof doSomething)</span><br><span class="line">    let doSomething &#x3D; function()&#123;</span><br><span class="line">        &#x2F;&#x2F;..</span><br><span class="line">    &#125;</span><br><span class="line">&#125;     &#x2F;&#x2F;*抛出错误*</span><br></pre></td></tr></table></figure><br>
+<strong>ES6中,块级函数会被提升到全局作用域下</strong></span></h2>
+<h3><span id="5箭头函数"> 5.箭头函数</span></h3>
+<ol>
+<li>书本内容:<br>
+1.1 this,super,arguments,new.target的值由外围最近一层非箭头函数决定<br>
+1.2 不能通过new调用 <em>即用即弃</em><br>
+1.3 没有原型<br>
+1.4 this只能指向最近外围函数,不能改变绑定<br>
+1.5 只能命名参数和不定参数,arguments<code>不是函数自身的</code>,总能获取最近一层非箭头函数的arguments对象.<br>
+1.6 不支持重复的命名参数 //普通函数非严格模式可以</li>
+<li>一般语法</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let arrFun &#x3D; () &#x3D;&gt; &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-
 <p>返回对象:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let getTem &#x3D; id &#x3D;&gt; (&#123; id:id,name:&quot;Temp&quot;&#125;) *括起返回的那个对象*</span><br></pre></td></tr></table></figure>
-
-<p>立即执行函数 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">((arg)&#x3D;&gt;&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">        getName:function()&#123;</span><br><span class="line">            return name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(&quot;Nicholas&quot;)      &#x2F;&#x2F;小区别于普通函数创建的</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>怎么识别是箭头函数?<br>typeof instanceof Function bind,call,apply都可以用<br><strong>为了简写而不是区别</strong></p>
-<h3><span id="6尾调用优化">6.尾调用优化</span></h3><ol>
-<li>条件:<br>1.1 不访问当前栈帧的变量(即不可是闭包)<br>1.2 函数内部,尾调用是最后一条语句<br>1.3 尾调用的结果作为函数值返回 (<em>返回一个函数?</em>)</li>
-<li>案例<br>成功案例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function factorial(n,p&#x3D;1)&#123;</span><br><span class="line">    if(n&lt;&#x3D;1&gt;)&#123;</span><br><span class="line">        return 1*p</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        let result &#x3D; n*p</span><br><span class="line">        return factorial(n-1,result)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    return anotherFn() &#x2F;&#x2F;无返回</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let getTem &#x3D; id &#x3D;&gt; (&#123; id:id,name:&quot;Temp&quot;&#125;) *括起返回的那个对象*</span><br></pre></td></tr></table></figure>
+<p>立即执行函数</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">((arg)&#x3D;&gt;&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">        getName:function()&#123;</span><br><span class="line">            return name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(&quot;Nicholas&quot;)      &#x2F;&#x2F;小区别于普通函数创建的</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>怎么识别是箭头函数?<br>
+typeof instanceof Function bind,call,apply都可以用<br>
+<strong>为了简写而不是区别</strong></li>
 </ol>
+<h3><span id="6尾调用优化"> 6.尾调用优化</span></h3>
+<ol>
+<li>条件:<br>
+1.1 不访问当前栈帧的变量(即不可是闭包)<br>
+1.2 函数内部,尾调用是最后一条语句<br>
+1.3 尾调用的结果作为函数值返回 (<em>返回一个函数?</em>)</li>
+<li>案例<br>
+成功案例</li>
+</ol>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function factorial(n,p&#x3D;1)&#123;</span><br><span class="line">    if(n&lt;&#x3D;1&gt;)&#123;</span><br><span class="line">        return 1*p</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        let result &#x3D; n*p</span><br><span class="line">        return factorial(n-1,result)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    return anotherFn() &#x2F;&#x2F;无返回</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>失败案例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">     anotherFn() &#x2F;&#x2F;无返回</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    return 1+anotherFn() &#x2F;&#x2F;执行了其它操作</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    var result &#x3D;  anotherFn()</span><br><span class="line">    return result     &#x2F;&#x2F;调用不在尾部(?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">闭包</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ol>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">     anotherFn() &#x2F;&#x2F;无返回</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    return 1+anotherFn() &#x2F;&#x2F;执行了其它操作</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    var result &#x3D;  anotherFn()</span><br><span class="line">    return result     &#x2F;&#x2F;调用不在尾部(?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">闭包</span><br></pre></td></tr></table></figure>
 
         </div>
       </div>

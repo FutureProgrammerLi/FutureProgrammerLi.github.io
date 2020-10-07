@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-12-27</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,40 +126,83 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="深入理解es6第二章">深入理解ES6第二章</span></h2><h3><span id="字符串和正则表达">字符串和正则表达</span></h3><p><em>BMP （Basic Multilingual Plane)基本多文种平面</em>, 16位编码表示的文字<br>普通一个16位字符表示，特殊要两个16位表示.<br>字面看length是1,实际是2，用了两个位置存储该字符<br>charCodeAt(‘’)         ==&gt;charPointAt(‘’)  用于正确识别一个超出16位字符表示的字符<br>测试是否为32位编码数   ==&gt;   </p>
+          <h2><span id="深入理解es6第二章"> 深入理解ES6第二章</span></h2>
+<h3><span id="字符串和正则表达"> 字符串和正则表达</span></h3>
+<p><em>BMP （Basic Multilingual Plane)基本多文种平面</em>, 16位编码表示的文字<br>
+普通一个16位字符表示，特殊要两个16位表示.<br>
+字面看length是1,实际是2，用了两个位置存储该字符<br>
+charCodeAt(’’)         ==&gt;charPointAt(’’)  用于正确识别一个超出16位字符表示的字符<br>
+测试是否为32位编码数   ==&gt;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function test(c)</span><br><span class="line">&#123; return c.charPointAt(0) &gt;0xFFFF&#125;</span><br></pre></td></tr></table></figure>
-<p>  测试c字符是否为32位编码<br>相对 String.fromCodePoint(‘134071’)      ==&gt;将编码变为字符串</p>
+<p>测试c字符是否为32位编码<br>
+相对 String.fromCodePoint(‘134071’)      ==&gt;将编码变为字符串</p>
 <p>对比字符串时，需要标准化为同一种形式.(ae和音标半个ae是等效的)     ==&gt;normalize() ==&gt;不添加参数默认为’NFC’形式</p>
-<h3><span id="字符串方法">字符串方法:</span></h3><ol>
-<li>includes()    startsWith()  endsWith()<br>两个参数,内容和索引值(搜索起始位置/endsWith则倒序（从索引值减去内容长度,正向匹配?)<br><em>内容只能传字符串，不能传正则</em><br>indexOf和lastIndexOf可以,转成字符串再搜索</li>
-<li>repeat方法<br>==&gt;”abc”.repeat(3) ==&gt;abcabcabc(用于缩进)</li>
+<h3><span id="字符串方法"> 字符串方法:</span></h3>
+<ol>
+<li>includes()    startsWith()  endsWith()<br>
+两个参数,内容和索引值(搜索起始位置/endsWith则倒序（从索引值减去内容长度,正向匹配?)<br>
+<em>内容只能传字符串，不能传正则</em><br>
+indexOf和lastIndexOf可以,转成字符串再搜索</li>
+<li>repeat方法<br>
+==&gt;“abc”.repeat(3) ==&gt;abcabcabc(用于缩进)</li>
 </ol>
-<h3><span id="正则表达-修饰符">正则表达 *修饰符</span></h3><ol>
-<li>u修饰符<br>==&gt;用于填补匹配两个编码单元的字符的缺陷<br>==&gt;正确识别看上去单字符，实际length值为2的字符<br>==&gt;/^.$/u.test(text)<br>==&gt;修饰符都是可选的,initial,i,global,g,unicode,u</li>
-<li>y修饰符<br>==&gt;粘滞修饰符<br>==&gt; lastIndex和sticky属性的问题<br>==&gt;无修饰符则无视lastIndex,g和y则继续往后找,    0,7,7  ==&gt;0,14,14 ==&gt;无修饰符,g,y的结果</li>
+<h3><span id="正则表达-修饰符"> 正则表达 *修饰符</span></h3>
+<ol>
+<li>u修饰符<br>
+==&gt;用于填补匹配两个编码单元的字符的缺陷<br>
+==&gt;正确识别看上去单字符，实际length值为2的字符<br>
+==&gt;/^.$/u.test(text)<br>
+==&gt;修饰符都是可选的,initial,i,global,g,unicode,u</li>
+<li>y修饰符<br>
+==&gt;粘滞修饰符<br>
+==&gt; lastIndex和sticky属性的问题<br>
+==&gt;无修饰符则无视lastIndex,g和y则继续往后找,    0,7,7  ==&gt;0,14,14 ==&gt;无修饰符,g,y的结果<br>
+<em>重新找和继续找的区别</em><br>
+exec,test才会用到lastIndex属性<br>
+检测u,y修饰符</li>
 </ol>
-<p><em>重新找和继续找的区别</em><br>exec,test才会用到lastIndex属性<br>检测u,y修饰符 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    var pattern &#x3D; new RegExp(&#39;.&#39;,&#39;y&#39;); </span><br><span class="line">    return true</span><br><span class="line">    &#125; </span><br><span class="line">catch(ex)&#123;</span><br><span class="line">    return false</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>主要是RegExp对象的第二个参数<br>3. flags属性,直接获取修饰符。<br>即/abc/iguy         ==&gt;这里的iguy<br>ES5的做法   </p>
+<p>主要是RegExp对象的第二个参数<br>
+3. flags属性,直接获取修饰符。<br>
+即/abc/iguy         ==&gt;这里的iguy<br>
+ES5的做法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text &#x3D; a.toString()  &#x2F;&#x2F;a是正则</span><br><span class="line">return text.substring(text.lastIndexOf(&quot;&#x2F;&quot;)+1,text.length)  &#x2F;&#x2F;直接取最后一个斜杠后面的字符串</span><br></pre></td></tr></table></figure>
-
-<p>substring参数(start,stop) ==&gt;stop随便整个,不超范围就行，反正修饰符肯定没有整个串长<br>ES6新增 source和flags 访问器属性,<br>source返回要匹配的正则/内容,   flags返回修饰符</p>
+<p>substring参数(start,stop) ==&gt;stop随便整个,不超范围就行，反正修饰符肯定没有整个串长<br>
+ES6新增 source和flags 访问器属性,<br>
+source返回要匹配的正则/内容,   flags返回修饰符</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var text &#x3D; &#x2F;abc&#x2F;iguy       </span><br><span class="line">console.log(text.source,text.flags)    &#x2F;&#x2F; abc iguy</span><br></pre></td></tr></table></figure>
-
 <ol start="4">
-<li><p>正则复制</p>
+<li>正则复制</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var re1 &#x3D; &#x2F;ab&#x2F;i; </span><br><span class="line">var re2 &#x3D; new RegExp(re1,&#39;g&#39;);</span><br></pre></td></tr></table></figure>
 <p>==&gt;re2  = /ab/g        //<em>注意,修饰符会被修改</em></p>
-</li>
-<li><p>模板字面量：用反引号声明字符串，变量值      <code>Hello World</code><br>用处（1） 换行 ES5之前  字符串拼接 ==&gt;    [‘Mul’,’String’].join(“\n”)   或者 “Mul \n” + “String”<br>ES6中    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#96;Mul</span><br><span class="line">                                      String&#96;</span><br></pre></td></tr></table></figure>
-<p>   ==&gt;直接回车，而且回车之后的空格还会记入串长度length.<br>也可以直接 <code>Mul\nString</code> ,可读性不高<br>字面量中的变量 ==&gt;${name}     ==&gt;var name =’Nicholas’      ==&gt;Nicholas<br>没理解到:     message = `${count} items cost $${(count * price).toFixed(2)}<br>其中一个原型输出$,另一个为占位符${(count * price).toFixed(2)}</p>
-</li>
-<li><p>标签模板  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*var mes &#x3D; tag&#96;Hello World&#96;*</span><br></pre></td></tr></table></figure>
-<p>==&gt;定义一个函数处理字符串<br>function tag(literals,…substitutions){}<br>literals是数组,存字符串<br>substitutions存解释值(变量),但被解构,以多个参数形式传入<br>实际text=`${count} items cost $${(count * price).toFixed(2)}.`<br>literals = [“”,”items cost $”,”.”]      ==&gt;变量前中后的字符串<br>…substitutions = (10,2.50)     ==&gt;经计算后的值<br>literals总比substitutions多一个元素  literals[0]代表开头 , literals[literals.length-1]代表结尾<br>利用这两个参数可以拼凑成完整字符串,<br>默认行为可以具体在函数中写出来.<br>String.raw()方法</p>
-</li>
+<ol start="5">
+<li>模板字面量：用反引号声明字符串，变量值      <code>Hello World</code><br>
+用处（1） 换行 ES5之前  字符串拼接 ==&gt;    [‘Mul’,‘String’].join(&quot;\n&quot;)   或者 “Mul \n” + “String”<br>
+ES6中</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#96;Mul</span><br><span class="line">                                      String&#96;</span><br></pre></td></tr></table></figure>
+<pre><code>  ==&gt;直接回车，而且回车之后的空格还会记入串长度length.
+</code></pre>
+<p>也可以直接 <code>Mul\nString</code> ,可读性不高<br>
+字面量中的变量 ==&gt;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow><mo>=</mo><mo>=</mo><mo>&gt;</mo><mi>v</mi><mi>a</mi><mi>r</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><msup><mo>=</mo><mo mathvariant="normal">′</mo></msup><mi>N</mi><mi>i</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>l</mi><mi>a</mi><msup><mi>s</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mo>=</mo><mo>&gt;</mo><mi>N</mi><mi>i</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi mathvariant="normal">没</mi><mi mathvariant="normal">理</mi><mi mathvariant="normal">解</mi><mi mathvariant="normal">到</mi><mo>:</mo><mi>m</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>a</mi><mi>g</mi><mi>e</mi><mo>=</mo><mi mathvariant="normal">‘</mi></mrow><annotation encoding="application/x-tex">{name}     ==&gt;var name =&#x27;Nicholas&#x27;      ==&gt;Nicholas
+没理解到:     message = `</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">没</span><span class="mord cjk_fallback">理</span><span class="mord cjk_fallback">解</span><span class="mord cjk_fallback">到</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">‘</span></span></span></span>{count} items cost $${(count * price).toFixed(2)}<br>
+其中一个原型输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo separator="true">,</mo><mi mathvariant="normal">另</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">为</mi><mi mathvariant="normal">占</mi><mi mathvariant="normal">位</mi><mi mathvariant="normal">符</mi></mrow><annotation encoding="application/x-tex">,另一个为占位符</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">另</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">占</span><span class="mord cjk_fallback">位</span><span class="mord cjk_fallback">符</span></span></span></span>{(count * price).toFixed(2)}</p>
+<ol start="6">
+<li>标签模板</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*var mes &#x3D; tag&#96;Hello World&#96;*</span><br></pre></td></tr></table></figure>
+<p>==&gt;定义一个函数处理字符串<br>
+function tag(literals,…substitutions){}<br>
+literals是数组,存字符串<br>
+substitutions存解释值(变量),但被解构,以多个参数形式传入<br>
+实际text=`${count} items cost $${(count * price).toFixed(2)}.`<br>
+literals = [&quot;&quot;,“items cost $”,&quot;.&quot;]      ==&gt;变量前中后的字符串<br>
+…substitutions = (10,2.50)     ==&gt;经计算后的值<br>
+literals总比substitutions多一个元素  literals[0]代表开头 , literals[literals.length-1]代表结尾<br>
+利用这两个参数可以拼凑成完整字符串,<br>
+默认行为可以具体在函数中写出来.<br>
+String.raw()方法</p>
 
         </div>
       </div>

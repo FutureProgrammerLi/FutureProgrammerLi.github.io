@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-20</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,20 +126,25 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="1浏览器">1.浏览器</span></h3><h4><span id="事件三个阶段">事件三个阶段</span></h4><p>事件触发： 捕获=》元素本身触发事件 =》 冒泡</p>
+          <h3><span id="1浏览器"> 1.浏览器</span></h3>
+<h4><span id="事件三个阶段"> 事件三个阶段</span></h4>
+<p>事件触发： 捕获=》元素本身触发事件 =》 冒泡</p>
 <p>element.addEventListener(‘click’,callback, false/true)  //第三个参数表示是否捕获事件,默认为false</p>
 <p>event.stopPropagation 阻止事件冒泡(stopImmediatePropagation不仅能,还能阻止同一目标注册的其它事件)</p>
 <p>event.preventDefault 阻止默认事件</p>
-<h4><span id="注册事件的方法">注册事件的方法</span></h4><ol>
+<h4><span id="注册事件的方法"> 注册事件的方法</span></h4>
+<ol>
 <li>DOM2:addEventListener 可以绑定多个事件. 旧版IE对应attachEvent()</li>
 <li>DOM0: element.onclick(fn) / onblur() / onfocus() 等等</li>
-<li>行内绑定: &lt;button onclick=”dialogVis = false”&gt;Click&lt;/button&gt;  </li>
+<li>行内绑定: &lt;button onclick=“dialogVis = false”&gt;Click&lt;/button&gt;</li>
 </ol>
 <p>移除事件:removeEventListener(),detachEventListener()</p>
 <p>capture:捕获事件  // once: 事件只触发一次  // passive:永不调用preventDefault(?)</p>
-<h4><span id="事件代理">事件代理</span></h4><p>常见用于ul,ol标签上.   避免将事件添加到每个li上,于是直接把事件绑定在ul标签上</p>
+<h4><span id="事件代理"> 事件代理</span></h4>
+<p>常见用于ul,ol标签上.   避免将事件添加到每个li上,于是直接把事件绑定在ul标签上</p>
 <p>优点: 节省内存. 子节点不需要取消绑定事件,变得更加灵活.</p>
-<h4><span id="存储">存储</span></h4><p>四巨头: cookie, localStorage , sessionStorage , indexDB</p>
+<h4><span id="存储"> 存储</span></h4>
+<p>四巨头: cookie, localStorage , sessionStorage , indexDB</p>
 <ul>
 <li>cookie:一般由服务器生成,且之后每次请求都绑定在请求头上.可以设置过期时间.最大4K</li>
 <li>localStorage: 一般是常用的数据信息,不参与请求.除非并清理,否则不会被删除.最大5M</li>
@@ -153,26 +158,30 @@
 <p>same-site:有跨域,无cookie. 减少CSRF攻击.(Cross-Site Request Forgery)</p>
 <p><code>Service Worker</code>:(在BOM的navigator上)</p>
 <p>充当浏览器和服务器的代理,必要时可以缓存资源,判断是否向服务器请求,提高离线体验.</p>
-<h3><span id="2安全">2.安全</span></h3><p>*<em>主要Cross-Site Scripting (XSS). Cross-Site Request Forgery(CSRF) *</em></p>
-<h4><span id="一-xss-利用用户对服务器的信任-改htmldom-based反射性改script存储型">一、XSS: 利用用户对服务器的信任. (改HTML(DOM-Based/反射性),改script(存储型))</span></h4><p>“服务器传回来的JS文件和HTML内容都是安全的,那就都执行了吧.”</p>
-<p>​    防御: </p>
+<h3><span id="2安全"> 2.安全</span></h3>
+<p>**主要Cross-Site Scripting (XSS). Cross-Site Request Forgery(CSRF) **</p>
+<h4><span id="一-xss-利用用户对服务器的信任-改htmldom-based反射性改script存储型"> 一、XSS: 利用用户对服务器的信任. (改HTML(DOM-Based/反射性),改script(存储型))</span></h4>
+<p>“服务器传回来的JS文件和HTML内容都是安全的,那就都执行了吧.”</p>
+<p>​    防御:</p>
 <ol>
-<li><p>转义: 将可能是被修改了的script文本转义(黑名单)</p>
+<li>
+<p>转义: 将可能是被修改了的script文本转义(黑名单)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>(<span class="string">'&lt;script&gt;alert(1)&lt;/script&gt;'</span>)<span class="comment">// &lt;&gt;号编程了&amp;lt,&amp;gt</span></span><br><span class="line"><span class="comment">// -&gt; &amp;lt;script&amp;gt;alert(1)&amp;lt;&amp;#x2F;script&amp;gt;</span></span><br></pre></td></tr></table></figure>
-
 </li>
-</ol>
-<ol start="2">
-<li><p>添加白名单:</p>
+<li>
+<p>添加白名单:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xss = <span class="built_in">require</span>(<span class="string">'xss'</span>)</span><br><span class="line"><span class="keyword">var</span> html = xss(<span class="string">'&lt;h1 id="title"&gt;XSS Demo&lt;/h1&gt;&lt;script&gt;alert("xss");&lt;/script&gt;'</span>)</span><br><span class="line"><span class="comment">// -&gt; &lt;h1&gt;XSS Demo&lt;/h1&gt;&amp;lt;script&amp;gt;alert("xss");&amp;lt;/script&amp;gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(html)</span><br></pre></td></tr></table></figure>
-
 <p>其实两个方法一样,一个黑名单,一个白名单.白名单借助了xss模块.</p>
 </li>
-<li><p>Content-Safety-Policy:</p>
+<li>
+<p>Content-Safety-Policy:</p>
 <p>在HTTP请求中设置Content-Safety-Policy可以选择:只加载本站资源/https协议的图片/全部资源</p>
-<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: <span class="keyword">default</span>-src ‘self’</span><br><span class="line">Content-Security-Policy: img-src https:<span class="comment">//*</span></span><br><span class="line">Content-Security-Policy: child-src <span class="string">'none'</span></span><br></pre></td></tr></table></figure></code></pre></li>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: <span class="keyword">default</span>-src ‘self’</span><br><span class="line">Content-Security-Policy: img-src https:<span class="comment">//*</span></span><br><span class="line">Content-Security-Policy: child-src <span class="string">'none'</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
 </ol>
-<h4><span id="二-csrfcross-site-request-forgery-跨网站伪造请求-利用服务器对用户浏览器的信赖">二、CSRF（Cross-Site Request Forgery） 跨网站伪造请求(?) 利用服务器对用户浏览器的信赖</span></h4><p>“客户的请求都是安全的,没有恶意的,那就都回复吧.”</p>
+<h4><span id="二-csrfcross-site-request-forgery-跨网站伪造请求-利用服务器对用户浏览器的信赖"> 二、CSRF（Cross-Site Request Forgery） 跨网站伪造请求(?) 利用服务器对用户浏览器的信赖</span></h4>
+<p>“客户的请求都是安全的,没有恶意的,那就都回复吧.”</p>
 <p>概括的说: 假装请求这个,实则请求服务器上另外的不允许访问的资源/甚者破坏服务器.</p>
 <p>防御:</p>
 <ol>
@@ -181,13 +190,15 @@
 <li>referer 判断是否为第三方网站请求</li>
 <li>token,验证码等验证信息.</li>
 </ol>
-<h3><span id="3-缓存强缓存协商缓存">3. 缓存:强缓存,协商缓存</span></h3><h4><span id="强缓存本地用">强缓存(本地用)</span></h4><p>通过设置响应头Expires<strong>或者</strong>Cache-Control</p>
+<h3><span id="3-缓存强缓存协商缓存"> 3. 缓存:强缓存,协商缓存</span></h3>
+<h4><span id="强缓存本地用"> 强缓存(本地用)</span></h4>
+<p>通过设置响应头Expires<strong>或者</strong>Cache-Control</p>
 <p>Expires是到期日期,Cache-Control是时长.</p>
 <p><strong>Cache-Control(HTTP 1.1协议)优先级比Expires(HTTP 1.0协议)高</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Expires: Wed, 22 Oct 2018 08:41:00 GMT      </span><br><span class="line">Cache-control: max-age&#x3D;30</span><br></pre></td></tr></table></figure>
-
 <p>有效期间返回状态码200</p>
-<h4><span id="协商缓存强缓存过期了吗过了就要再请求了">协商缓存(强缓存过期了吗?过了就要再请求了)</span></h4><ul>
+<h4><span id="协商缓存强缓存过期了吗过了就要再请求了"> 协商缓存(强缓存过期了吗?过了就要再请求了)</span></h4>
+<ul>
 <li>方法1.Last-Modified和If-Modified-Since</li>
 </ul>
 <p>If-Modified-Since将Last-Modified的值发给服务器,如果服务器在该值之后对应资源有修改,则返回新的资源.</p>

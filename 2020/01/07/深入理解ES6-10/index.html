@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-01-07</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,22 +126,32 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1><span id="深入理解es6第十章-数组">深入理解ES6第十章 数组</span></h1><p>问题引入:</p>
+          <h1><span id="深入理解es6第十章-数组"> 深入理解ES6第十章 数组</span></h1>
+<p>问题引入:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>); <span class="comment">//长度为2的,undefined*2的数组</span></span><br><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"2"</span>); <span class="comment">//长度为1的，arr1[0]=2的数组</span></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>,<span class="string">"3"</span>);<span class="comment">//长度为2的,arr2[0]=2,arr2[1]="3"的数组</span></span><br></pre></td></tr></table></figure>
-<h3><span id="新方法-arrayof">新方法 Array.of()</span></h3><p>传入的参数<code>必然成为数组的元素</code>,而<code>不再可以创建指定长度的数组</code>.</p>
-<h3><span id="arrayfromargumentsfunctionthis指向">Array.from(arguments,function(){},[this指向])</span></h3><p>第一个参数是需要变为数组的类数组,第二个是类似Filter的函数,第三个是修改this的指向.</p>
+<h3><span id="新方法-arrayof"> 新方法 Array.of()</span></h3>
+<p>传入的参数<code>必然成为数组的元素</code>,而<code>不再可以创建指定长度的数组</code>.</p>
+<h3><span id="arrayfromargumentsfunctionthis指向"> Array.from(arguments,function(){},[this指向])</span></h3>
+<p>第一个参数是需要变为数组的类数组,第二个是类似Filter的函数,第三个是修改this的指向.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> helper = &#123;</span><br><span class="line">    diff:<span class="number">1</span>,</span><br><span class="line">    add(value)&#123;</span><br><span class="line">        <span class="keyword">return</span> value+<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">translate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>,helper.add,helper)  <span class="comment">//因为add方法里用了this,所以需要修改this的指向</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> numbers = translate([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">console</span>.log(numbers) <span class="comment">//[2,3,4]</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="find和findindex">find()和findIndex()</span></h3><p>之前的indexOf每次只能查找一个值.<br>接受两个参数,一个回调函数和可选参数,用于指定回调函数中this的值(跟filter差不多?)</p>
+<h3><span id="find和findindex"> find()和findIndex()</span></h3>
+<p>之前的indexOf每次只能查找一个值.<br>
+接受两个参数,一个回调函数和可选参数,用于指定回调函数中this的值(跟filter差不多?)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numbers.find(<span class="function"><span class="params">value</span>=&gt;</span>value&gt;<span class="number">30</span>)  <span class="comment">//返回numbers数组里大于30的值</span></span><br></pre></td></tr></table></figure>
 <p>?和indexOf的区别是能否返回符合条件的,<code>第一个值或该值的索引</code>.indexOf只能是索引?</p>
-<h3><span id="fill">fill()</span></h3><p>接受3个参数,后两个可选<br>将数组填充成某个元素,从某个位置开始(包括该位置)填充该元素,到某个位置结束不填充该元素(不包括该索引)</p>
+<h3><span id="fill"> fill()</span></h3>
+<p>接受3个参数,后两个可选<br>
+将数组填充成某个元素,从某个位置开始(包括该位置)填充该元素,到某个位置结束不填充该元素(不包括该索引)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr.fill(<span class="number">2</span>)    <span class="comment">//[2,2,2,2,2]</span></span><br><span class="line"><span class="comment">//*会修改原数组,所以不能连续调用fill*</span></span><br><span class="line">arr.fill(<span class="number">2</span>,<span class="number">3</span>)  <span class="comment">//[2,3,4,2,2]</span></span><br><span class="line">arr.fill(<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>) <span class="comment">//[2,2,2,5,6]</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="copywithin">copyWithin()</span></h2><p>接受三个参数,都是索引值<br>开始粘贴的索引值,开始复制的索引值,当索引值为x的时候停止复制</p>
+<h2><span id="copywithin"> copyWithin()</span></h2>
+<p>接受三个参数,都是索引值<br>
+开始粘贴的索引值,开始复制的索引值,当索引值为x的时候停止复制</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr2.copyWithin(<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>)) <span class="comment">//[23436]? [23346]</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="定型数组-new-arraybufferlength-参数是长度注意区别于arrayofele1ele2的参数即元素">定型数组   new ArrayBuffer(length) 参数是长度,注意区别于Array.of(ele1,ele2)的参数即元素</span></h2><p><em>是一种用于处理数值类型数据的专用数组,将任何数字转换为一个包含数字比特的数组</em><br>类型: int8,uint8,int16,uint16,int32,unit32,float32,float64<br><em>根基:数组缓冲区,就是数组本身</em><br><em>操作根基的工具:视图</em></p>
+<h2><span id="定型数组-new-arraybufferlength-参数是长度注意区别于arrayofele1ele2的参数即元素"> 定型数组   new ArrayBuffer(length) 参数是长度,注意区别于Array.of(ele1,ele2)的参数即元素</span></h2>
+<p><em>是一种用于处理数值类型数据的专用数组,将任何数字转换为一个包含数字比特的数组</em><br>
+类型: int8,uint8,int16,uint16,int32,unit32,float32,float64<br>
+<em>根基:数组缓冲区,就是数组本身</em><br>
+<em>操作根基的工具:视图</em></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">10</span>),</span><br><span class="line">    view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)  <span class="comment">//绑定需要操作的数组缓冲区</span></span><br><span class="line">    view2 = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer,<span class="number">5</span>,<span class="number">2</span>) <span class="comment">//从索引值5开始的两个比特单位</span></span><br></pre></td></tr></table></figure>
 <p>视图信息:</p>
 <ol>
@@ -149,25 +159,35 @@
 <li>byteOffset  偏移量,默认是0</li>
 <li>byteLength  可操作的缓冲区的长度</li>
 </ol>
-<p><code>读取,写入数据</code><br>getInt8(byteOffset,littleEndian)<br>setInt8(byteOffset,value,littleEndian)<br>方法名根据对应类型修改, 参数的含义都是相同的.</p>
+<p><code>读取,写入数据</code><br>
+getInt8(byteOffset,littleEndian)<br>
+setInt8(byteOffset,value,littleEndian)<br>
+方法名根据对应类型修改, 参数的含义都是相同的.</p>
 <p><em>视图是独立的. 数据就在那存着,就看你用什么操作</em></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>),</span><br><span class="line">    view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)</span><br><span class="line">view.setInt8(<span class="number">0</span>,<span class="number">5</span>)     <span class="comment">//索引值,元素值</span></span><br><span class="line">view.setInt8(<span class="number">1</span>,<span class="number">-1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt16(<span class="number">0</span>))</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">0</span>))</span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-<h3><span id="定型数组是视图所以数组缓冲区还是要另外创建">定型数组是视图,所以数组缓冲区还是要另外创建.</span></h3><p>创建定型数组的三种方法</p>
+<h3><span id="定型数组是视图所以数组缓冲区还是要另外创建"> 定型数组是视图,所以数组缓冲区还是要另外创建.</span></h3>
+<p>创建定型数组的三种方法</p>
 <ol>
 <li>let view = new Int8Array(buffer)</li>
 <li>let view2 = new Int8Array(2)</li>
-<li>let ints1 = new Int16Array([25,50]),<br>view3 = new Int32Array(ints1)</li>
+<li>let ints1 = new Int16Array([25,50]),<br>
+view3 = new Int32Array(ints1)<br>
+<em>只是创建视图时传入的参数不一样</em><br>
+第一种缓冲区是已经创建好的,第二种根据指定长度创建缓冲区,第三种是在已有视图上,作为参数传给另一种类型的定型数组.</li>
 </ol>
-<p><em>只是创建视图时传入的参数不一样</em><br>第一种缓冲区是已经创建好的,第二种根据指定长度创建缓冲区,第三种是在已有视图上,作为参数传给另一种类型的定型数组.</p>
-<h3><span id="定型数组和普通数组的同与不同">定型数组和普通数组的同与不同</span></h3><p><code>相同:</code><br>可访问length属性,copyWithin,map,find等等方法<br>迭代器相同<br>Int16Array.of()和Int16Array.from()方法也是有的.<br><code>不同:</code><br>定型数组不是普通数组,不可用instanceof或者Array.isArray()来判定.<br><em>length不可修改</em>,不能为其添加元素.<br>无效的值会用0来代替.如将字符串放入定型数组中,值会变0<br>concat,shitf,pop等等需要修改定型数组长度的方法都没有.</p>
-<p>特有方法:set()和subarray()<br>set接受两个参数,1是需要设置的数组元素,是个数组. 2是需要插入的位置</p>
+<h3><span id="定型数组和普通数组的同与不同"> 定型数组和普通数组的同与不同</span></h3>
+<p><code>相同:</code><br>
+可访问length属性,copyWithin,map,find等等方法<br>
+迭代器相同<br>
+Int16Array.of()和Int16Array.from()方法也是有的.<br>
+<code>不同:</code><br>
+定型数组不是普通数组,不可用instanceof或者Array.isArray()来判定.<br>
+<em>length不可修改</em>,不能为其添加元素.<br>
+无效的值会用0来代替.如将字符串放入定型数组中,值会变0<br>
+concat,shitf,pop等等需要修改定型数组长度的方法都没有.</p>
+<p>特有方法:set()和subarray()<br>
+set接受两个参数,1是需要设置的数组元素,是个数组. 2是需要插入的位置</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> init = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">4</span>)</span><br><span class="line">	init.set([<span class="number">25</span>,<span class="number">50</span>])</span><br><span class="line">	init.set([<span class="number">75</span>,<span class="number">100</span>],<span class="number">2</span>) </span><br><span class="line">    <span class="comment">//init.set([75,100150],2) //只是没有150还是连75,100都没有了?直接报错,source is too large</span></span><br><span class="line">	<span class="built_in">console</span>.log(init.toString()) [<span class="number">25</span>,<span class="number">50</span>,<span class="number">75</span>,<span class="number">100</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 
         </div>
       </div>

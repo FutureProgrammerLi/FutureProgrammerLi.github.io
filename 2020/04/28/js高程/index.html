@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-04-28</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,7 +126,8 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="location对象">location对象</span></h2><ul>
+          <h2><span id="location对象"> location对象</span></h2>
+<ul>
 <li>提供与当前窗口加载的文档有关的信息</li>
 <li>URL解析, 导航功能</li>
 <li>window.location , document.location 引用的是同一个对象</li>
@@ -149,24 +150,34 @@
 <li>assign([URL])  <strong>必须有http, www可以没有</strong></li>
 </ol>
 <ul>
-<li>location.assign(“<a href="http://baidu.com&quot;" target="_blank" rel="noopener">http://baidu.com&quot;</a>)<br>等价于: window.location = “<a href="http://baidu.com&quot;" target="_blank" rel="noopener">http://baidu.com&quot;</a><pre><code>location.href = &quot;http://baidu.com&quot;</code></pre></li>
+<li>location.assign(“<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”)<br>
+等价于: window.location = “<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”<br>
+location.href = “<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”</li>
 </ul>
 <ol start="2">
-<li><p>replace([URL])<br>位置改变而不生成新纪录,无法后退到被替代的页面.</p>
+<li>
+<p>replace([URL])<br>
+位置改变而不生成新纪录,无法后退到被替代的页面.</p>
 </li>
-<li><p>reload() 接收true/false为参数,默认为false<br>重新加载当前页面. 设置为true,则强制从服务器重新加载.</p>
-<pre><code>设置为false,则可能会从缓存中重新加载(没有变化的情况下)</code></pre></li>
+<li>
+<p>reload() 接收true/false为参数,默认为false<br>
+重新加载当前页面. 设置为true,则强制从服务器重新加载.<br>
+设置为false,则可能会从缓存中重新加载(没有变化的情况下)</p>
+</li>
 </ol>
-<h2><span id="history对象">History对象</span></h2><p>属性: </p>
+<h2><span id="history对象"> History对象</span></h2>
+<p>属性:</p>
 <ul>
 <li>length: 历史记录的数量,是个number.</li>
 </ul>
-<p>方法:<br>1.go([String/Number]): </p>
+<p>方法:<br>
+1.go([String/Number]):</p>
 <ul>
 <li>Number: 正数是向前,负数是向后退</li>
-<li>String: <strong>跳转到历史记录中包含该字符串的第一个位置</strong> </li>
+<li>String: <strong>跳转到历史记录中包含该字符串的第一个位置</strong><br>
+<em>Chrome里面字符串无效?(用的H5 history)</em><br>
+2.forward() / back() 向前进或后退. 接受负数,但自动转为正数(?)</li>
 </ul>
-<p><em>Chrome里面字符串无效?(用的H5 history)</em><br>2.forward() / back() 向前进或后退. 接受负数,但自动转为正数(?)</p>
 
         </div>
       </div>

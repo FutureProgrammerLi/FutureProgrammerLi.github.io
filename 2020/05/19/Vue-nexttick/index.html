@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-05-19</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,28 +126,31 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="nexttick">$nextTick</span></h3><h4><span id="初步了解顺序">初步了解顺序：</span></h4><p>1.执行主线程同步代码 (==&gt; 2.将异步队列的任务推入栈执行 ==&gt;3.执行nextTick里的异步函数)</p>
+          <h3><span id="nexttick"> $nextTick</span></h3>
+<h4><span id="初步了解顺序"> 初步了解顺序：</span></h4>
+<p>1.执行主线程同步代码 (==&gt; 2.将异步队列的任务推入栈执行 ==&gt;3.执行nextTick里的异步函数)</p>
 <p>​                                    (==&gt; 再查找异步队列并执行 ===&gt; 再执行新的nextTick()                 )</p>
 <p>DOM更新可能是在2和3之间,即执行完异步队列的任务后更新DOM,所以nextTick可以对更新后的DOM进行操作.</p>
-<p> Vue的异步渲染怎么理解?</p>
+<p>Vue的异步渲染怎么理解?</p>
 <p>主线程中执行修改DOM的操作=&gt;在2中渲染=&gt;则3为更新完的DOM展示</p>
-<h4><span id="应用场景使用原因vue中的dom是异步渲染的">应用场景（使用原因）：Vue中的DOM是异步渲染的.</span></h4><ol>
-<li><p>在created里对DOM进行操作(???),还没挂载,直接操作是无用的,需要使用Vue.nextTick()里的回调函数.</p>
+<h4><span id="应用场景使用原因vue中的dom是异步渲染的"> 应用场景（使用原因）：Vue中的DOM是异步渲染的.</span></h4>
+<ol>
+<li>
+<p>在created里对DOM进行操作(???),还没挂载,直接操作是无用的,需要使用Vue.nextTick()里的回调函数.</p>
 </li>
-<li><p>在mounted里也可能用nextTick, 父组件不确保子组件都已被挂载</p>
-<p><strong>Question:?????不是子组件都已经mounted才会触发父组件的mounted吗????</strong></p>
+<li>
+<p>在mounted里也可能用nextTick, 父组件不确保子组件都已被挂载</p>
+<p><strong>Question:???不是子组件都已经mounted才会触发父组件的mounted吗???</strong></p>
 <p>Answer: 同步加载才是.异步加载子组件时有可能父组件先mounted</p>
 </li>
-<li><p>需要对数据更新之后的DOM进行操作.</p>
+<li>
+<p>需要对数据更新之后的DOM进行操作.</p>
 <p>(默认用的Promise和MessageChannel,如果不支持则转用setTimeout() )</p>
 </li>
 </ol>
-<h4><span id="例子">例子</span></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">"msgDiv"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg1"</span>&gt;</span>Message got outside $nextTick: &#123;&#123;msg1&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg2"</span>&gt;</span>Message got inside $nextTick: &#123;&#123;msg2&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg3"</span>&gt;</span>Message got outside $nextTick: &#123;&#123;msg3&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"changeMsg"</span>&gt;</span></span><br><span class="line">    Change the Message</span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
+<h4><span id="例子"> 例子</span></h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">"msgDiv"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg1"</span>&gt;</span>Message got outside $nextTick: &#123;&#123;msg1&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg2"</span>&gt;</span>Message got inside $nextTick: &#123;&#123;msg2&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"msg3"</span>&gt;</span>Message got outside $nextTick: &#123;&#123;msg3&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"changeMsg"</span>&gt;</span></span><br><span class="line">    Change the Message</span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'.app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg: <span class="string">'Hello Vue.'</span>,</span><br><span class="line">    msg1: <span class="string">''</span>,</span><br><span class="line">    msg2: <span class="string">''</span>,</span><br><span class="line">    msg3: <span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeMsg() &#123;</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">"Hello world."</span></span><br><span class="line">      <span class="keyword">this</span>.msg1 = <span class="keyword">this</span>.$refs.msgDiv.innerHTML  <span class="comment">//DOM还没更新时的msg</span></span><br><span class="line">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.msg2 = <span class="keyword">this</span>.$refs.msgDiv.innerHTML <span class="comment">//DOM更新之后的msg</span></span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">this</span>.msg3 = <span class="keyword">this</span>.$refs.msgDiv.innerHTML</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <p>点击按钮之前:</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3985563-b6bb266285e8d232.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/152/format/webp" alt="img"></p>
 <p>点击之后:</p>

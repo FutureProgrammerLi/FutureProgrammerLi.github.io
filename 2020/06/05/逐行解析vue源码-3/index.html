@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-06-05</span>
-            <span class="time">00:32:40</span>
+            <span class="time">00:35:36</span>
           </span>
           
           <!--  Categories  -->
@@ -126,23 +126,24 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="vue的生命周期">Vue的生命周期</span></h2><p>四个阶段：</p>
+          <h2><span id="vue的生命周期"> Vue的生命周期</span></h2>
+<p>四个阶段：</p>
 <ol>
 <li>初始化阶段 （created之前）</li>
 <li>模板编译阶段 （created 到beforeMount）  <strong>created(),中间点</strong></li>
 <li>挂载阶段 （beforeMount到mounted. 包括了beforeUpdate 和updated)</li>
 <li>销毁阶段  (beforeDestroy 到destroyed)</li>
 </ol>
-<h3><span id="1初始化阶段">1.初始化阶段</span></h3><p>new Vue 就做了_init及new的提醒.</p>
+<h3><span id="1初始化阶段"> 1.初始化阶段</span></h3>
+<p>new Vue 就做了_init及new的提醒.</p>
 <p>options merge : 用户传入的options,当前构造函数的options和父级构造函数的options合并.(? 构造函数?)</p>
 <blockquote>
-<p>options merge的优先级? </p>
+<p>options merge的优先级?</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//经典顺序,optionsMerge之后</span></span><br><span class="line">initLifecycle(vm)  </span><br><span class="line">initEvents(vm)   <span class="comment">//初始化实例方法. vm.set,vm.on,vm.delete等等</span></span><br><span class="line">initRender(vm)</span><br><span class="line">callhooks(vm,<span class="string">'beforeCreated'</span>)  <span class="comment">//注入vuex</span></span><br><span class="line">initInjections(vm)</span><br><span class="line">initState(vm)   <span class="comment">//!!!!     重中之重*1 !!!  </span></span><br><span class="line">initProvide(vm)</span><br><span class="line">callhooks(vm,<span class="string">'created'</span>)</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initState</span>(<span class="params">vm</span>)</span>&#123;</span><br><span class="line">    initProps()</span><br><span class="line">    initMethods()</span><br><span class="line">    initData()            <span class="comment">//!!!! 重中之重*2 !!!!</span></span><br><span class="line">    initComputed()</span><br><span class="line">    initWatch()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>不在new Vue里传入el,则不会进入beforeMount,(还是mounted?不知道挂载到哪个元素上).可以自己执行vm.$mount这个方法挂载元素</p>
-<p>问:beforeMount和mounted之间做了什么? </p>
-<p>答:$mount挂载啊,挂载前和挂载后你问我做了什么!!?? 挂载中吧..(白眼)</p>
+<p>问:beforeMount和mounted之间做了什么?</p>
+<p>答:$mount挂载啊,挂载前和挂载后你问我做了什么??? 挂载中吧…(白眼)</p>
 <p>(执行render functions生成VNodes并挂载到元素上)</p>
 <hr>
 <p>在mergeOptions里面,把一些内置的组件,指令以及过滤器融合到当前组件上.(forEach,extends)</p>
@@ -160,13 +161,12 @@
 <p><strong>钩子函数很可能是数组,(父子),也可能只是父组件定义.callhooks就是遍历这个数组并执行.</strong></p>
 <hr>
 <ol>
-<li><p>initLifeHooks()  设置$root,$parent,$children,$refs等,默认属性_isMounted等等</p>
+<li>
+<p>initLifeHooks()  设置<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>o</mi><mi>t</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">root,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mpunct">,</span></span></span></span>parent,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mi>r</mi><mi>e</mi><mi>n</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">children,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mpunct">,</span></span></span></span>refs等,默认属性_isMounted等等</p>
 </li>
-<li><p>initEvents() 浏览器原生事件在父组件中处理,父组件给子组件注册的自定义事件(v-/@)在子组件的initEvents中处理</p>
+<li>
+<p>initEvents() 浏览器原生事件在父组件中处理,父组件给子组件注册的自定义事件(v-/@)在子组件的initEvents中处理</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;child @select=<span class="string">"selectHandler"</span> @click.native=<span class="string">"clickHandler"</span> /&gt;</span><br><span class="line">    <span class="comment">//addHandlers:</span></span><br><span class="line">    el.events = &#123;</span><br><span class="line">    select:&#123;</span><br><span class="line">        value:<span class="string">'selectHandler'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    el.nativeEvents = &#123;</span><br><span class="line">        click:&#123;</span><br><span class="line">            value:<span class="string">'clickHandler'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//之后的genData生成VNode时,就变成:</span></span><br><span class="line">&#123;</span><br><span class="line">    on:&#123;<span class="string">"select"</span>:selectHandler&#125;,</span><br><span class="line">    nativeOn:&#123;<span class="string">"click"</span>,clickHandler&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
 <ul>
@@ -175,27 +175,29 @@
 <li>initEvents: 首先建立_events空对象属性,之后通过调用updateComponentListeners,将父向子组件注册的自定义事件注册到子组件实例中的_events属性中.</li>
 </ul>
 <ol start="3">
-<li><p>initInjections():</p>
+<li>
+<p>initInjections():</p>
 <p>provide可以是<code>对象或是一个返回对象的函数</code>;inject可以是<code>一个数组或一个对象(?)</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">provide:&#123;</span><br><span class="line">    foo:<span class="string">'bar'</span></span><br><span class="line">&#125;</span><br><span class="line">provide()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        test:<span class="string">'hello'</span>  <span class="comment">//可以使用symbol属性  不是响应式的.</span></span><br><span class="line">        reactiveTest:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">this</span>.name       <span class="comment">//响应式的</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name:<span class="string">'haha'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">inject:[<span class="string">'foo'</span>,<span class="string">'reactiveTest'</span>];</span><br><span class="line">inject:&#123;test&#125; </span><br><span class="line">inject:&#123;</span><br><span class="line">    <span class="string">'foo'</span>:&#123;</span><br><span class="line">        <span class="keyword">default</span>:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//全都会被转化成</span></span><br><span class="line">inject:&#123;</span><br><span class="line">    foo:&#123;                     <span class="comment">//这foo是在当前组件使用时的名字</span></span><br><span class="line">        <span class="keyword">from</span>:<span class="string">'foo'</span>,           <span class="comment">//这里的foo是祖先里provide的名字</span></span><br><span class="line">        <span class="keyword">default</span>:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//template中</span></span><br><span class="line">&#123;&#123;name&#125;&#125;</span><br><span class="line">computed:&#123;</span><br><span class="line">    name()&#123;</span><br><span class="line">    <span class="keyword">return</span> reactiveTest()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">&#123;&#123;reativeTest()&#125;&#125;  <span class="comment">//未实际用过,好像可以.</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p><strong>inject的所有东西,都可以在data/methods/computed等options里面使用.(先执行的initInjections()后再执行initState())</strong></p>
+<li>
+<p><strong>inject的所有东西,都可以在data/methods/computed等options里面使用.(先执行的initInjections()后再执行initState())</strong></p>
 </li>
-<li><p>provide和inject里的都不是响应式的(!!!???).但传入可观察对象,那么它的属性还是可响应的.</p>
+<li>
+<p>provide和inject里的都不是响应式的(!!!???).但传入可观察对象,那么它的属性还是可响应的.</p>
 </li>
-<li><p>provide的值可能被data/methods/computed等处理过.所以initInjections和initProvide之间插了个initState.</p>
+<li>
+<p>provide的值可能被data/methods/computed等处理过.所以initInjections和initProvide之间插了个initState.</p>
 <p>(因果是不是反了?为了在data/…中获取injections,所以要先initInjections,再initState)</p>
 </li>
-<li><p>injections顺序是拿着key不断往父级找,找不到就看自己的default,全都找不到就抛出错误.</p>
+<li>
+<p>injections顺序是拿着key不断往父级找,找不到就看自己的default,全都找不到就抛出错误.</p>
 </li>
 </ul>
 </li>
-</ol>
-<ol start="4">
-<li><p>initState()</p>
+<li>
+<p>initState()</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主线</span></span><br><span class="line">initProps()</span><br><span class="line">initMethods()</span><br><span class="line">initData()</span><br><span class="line">initComputed()</span><br><span class="line">initWatch()</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>在data中可以用props,在watch中可以用data和props.</p>
 <p>初始化才能使用的话,methods为什么能用data?定义和实际执行时机不同吗?定义的时候不会undefined吗?</p>
@@ -203,47 +205,50 @@
 </li>
 </ol>
 <ul>
-<li><p>initProps(): 三种写法,数组,对象,对象里面套对象. 前两种在normalize的时候,值统一变成{type:null}</p>
+<li>
+<p>initProps(): 三种写法,数组,对象,对象里面套对象. 前两种在normalize的时候,值统一变成{type:null}</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">props:[<span class="string">'foo'</span>];</span><br><span class="line">props:&#123;foo&#125;;</span><br><span class="line">props:&#123;</span><br><span class="line">    foo:&#123;</span><br><span class="line">        type:<span class="built_in">String</span>,</span><br><span class="line">        required:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//前两种都变成</span></span><br><span class="line">props:&#123;</span><br><span class="line">    foo:&#123;</span><br><span class="line">        type:<span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>vm._provided, vm._props</p>
 </li>
-<li><p>initMethods():  //有没有? 重没重? 挂载</p>
+<li>
+<p>initMethods():  //有没有? 重没重? 挂载</p>
 <ol>
 <li>options里有没有methods?</li>
 <li>methods的函数名是否跟props同名?是否跟已有的method重名?//是则警告</li>
 <li>挂载到实例上(bind(methods[key],vm))  //key就是定义在methods里的方法名.</li>
 </ol>
 </li>
-<li><p>initData():(最终都要是一个对象?)</p>
+<li>
+<p>initData():(最终都要是一个对象?)</p>
 <ol>
 <li>options里有没有data?</li>
-<li>data中是否跟methods,prop有重名?   </li>
-<li>通过代理,直接通过this.xxx获取,而不是this._data.xxx获取. (proxy(vm,’_data’)) </li>
+<li>data中是否跟methods,prop有重名?</li>
+<li>通过代理,直接通过this.xxx获取,而不是this._data.xxx获取. (proxy(vm,’_data’))</li>
 </ol>
 </li>
-<li><p>initComputed(): <em>可以是函数,直接return,直接设置为getter;</em>或是一个对象,在里面设置getter/setter</p>
+<li>
+<p>initComputed(): *可以是函数,直接return,直接设置为getter;*或是一个对象,在里面设置getter/setter</p>
 <p>用的大部分是直接函数,即return =&gt; getter  | 对象形式的set(){}都比较少见</p>
-<p>const getter = typeof userDef === ‘ function’?userDef : userDef.getter      //userDef就是计算属性的名字 </p>
+<p>const getter = typeof userDef === ’ function’?userDef : userDef.getter      //userDef就是计算属性的名字</p>
 <p>只判定了computed里是否有两个同名的计算属性,没有检验跟data/props的重叠性(?)</p>
 <p>在SSR的情况下,computed<strong>没有缓存作用</strong>. 需要用createComputedGetter劫持一下userDef实现缓存功能.</p>
 <p>也可以手动关闭</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    add:&#123;</span><br><span class="line">        cache:<span class="literal">false</span>,       <span class="comment">//重点.函数形式可以实现吗?</span></span><br><span class="line">        <span class="keyword">get</span>()&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.sth</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//以下两个等价</span></span><br><span class="line">    sub()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.count--</span><br><span class="line">    &#125;,</span><br><span class="line">    sub:&#123;</span><br><span class="line">        <span class="keyword">get</span>()&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.count--</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//set()&#123;&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sharedPropertyDefinition.get = userDef.get</span><br><span class="line">      ? shouldCache &amp;&amp; userDef.cache !== <span class="literal">false</span></span><br><span class="line">        ? createComputedGetter(key)      <span class="comment">//缓存.返回结果是一个函数.</span></span><br><span class="line">        : userDef.get                    <span class="comment">//不缓存</span></span><br><span class="line">      : noop;                            <span class="comment">//不操作.no operations</span></span><br><span class="line">sharedPropertyDefinition.set = userDef.set</span><br><span class="line">    ? userDef.set</span><br><span class="line">	: noop</span><br></pre></td></tr></table></figure>
-
 <p>主要属性是dirty,为true时通知watcher重新执行get(),并通知其依赖. evaluate() / update()/ getAndInvoke()</p>
 <p>//详细不太懂</p>
 </li>
-<li><p>initWatch()</p>
+<li>
+<p>initWatch()</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">    a:&#123;</span><br><span class="line">        handler:<span class="string">'somemethod'</span>,</span><br><span class="line">        deep:<span class="literal">true</span>,         <span class="comment">//深度侦察</span></span><br><span class="line">        immediate:<span class="literal">true</span>     <span class="comment">//开始侦听就立即执行handler</span></span><br><span class="line">    &#125;,</span><br><span class="line">    b:[                    <span class="comment">//执行多个回调</span></span><br><span class="line">        <span class="string">'handler1'</span>,</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">handler2</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">        &#123;<span class="attr">handler</span>:<span class="function"><span class="keyword">function</span> <span class="title">handler3</span>(<span class="params"></span>)</span>&#123;&#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <hr>
-<h3><span id="2模板编译阶段">2.模板编译阶段</span></h3><p>created到beforeMount是模板编译阶段</p>
+<h3><span id="2模板编译阶段"> 2.模板编译阶段</span></h3>
+<p>created到beforeMount是模板编译阶段</p>
 <p>vue有两个版本: runtime-only 和runtime+compiler,前者比后者小大约30%.</p>
-<p>runtime-only要么直接写render functions, 要么借助vue-loader而不是内置的compiler实现编译.  </p>
+<p>runtime-only要么直接写render functions, 要么借助vue-loader而不是内置的compiler实现编译.</p>
 <p>(vue-loader比compiler还要小还是什么?有内置的反而要用插件?)</p>
 <p>vue-cli用的是runtime-only(?),借助webpack的vue-loader实现模板预编译,从而减小生产环境代码体积</p>
 <p><strong>关键是vm.$mount这个方法的差异</strong></p>
-<p>挂载用的其实都是一个函数,但完整版需要经过模板编译阶段再调用$mount;运行时环境直接调用$mount进行挂载.</p>
+<p>挂载用的其实都是一个函数,但完整版需要经过模板编译阶段再调用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo separator="true">;</mo><mi mathvariant="normal">运</mi><mi mathvariant="normal">行</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">环</mi><mi mathvariant="normal">境</mi><mi mathvariant="normal">直</mi><mi mathvariant="normal">接</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">用</mi></mrow><annotation encoding="application/x-tex">mount;运行时环境直接调用</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">运</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">环</span><span class="mord cjk_fallback">境</span><span class="mord cjk_fallback">直</span><span class="mord cjk_fallback">接</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span></span></span></span>mount进行挂载.</p>
 </li>
 </ul>
 <blockquote>
@@ -256,19 +261,21 @@
 </ol>
 <p>template可以是id选择器,也可以是HTML字符串</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    template:<span class="string">'#root'</span>                       <span class="comment">//id selector</span></span><br><span class="line">    <span class="comment">//template:'&lt;div&gt;Hello&lt;/div&gt;'         //template.innerHTML</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//不传template,就拿el外部当模板(?)</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="3挂载阶段">3.挂载阶段</span></h3><blockquote>
-<p> 创建vm.$el并用其代替el</p>
+<h3><span id="3挂载阶段"> 3.挂载阶段</span></h3>
+<blockquote>
+<p>创建vm.$el并用其代替el</p>
 </blockquote>
-<p>vm.$mount方法会调用callHook(vm,’beforeMount’)</p>
-<p>vm.$mount -&gt; mountComponent() -&gt; callHook(vm,’beforeMount’)</p>
+<p>vm.$mount方法会调用callHook(vm,‘beforeMount’)</p>
+<p>vm.$mount -&gt; mountComponent() -&gt; callHook(vm,‘beforeMount’)</p>
 <p>而$mount方法就做了两件事,获取el元素,返回mountComponent().</p>
 <p>挂载的细节其实在mountComponent方法中</p>
-<p>做了两件事: </p>
+<p>做了两件事:</p>
 <ol>
-<li><p>updateComponent, 里面实际调用的vm._update(vm._render(),hydrating) 就是实际的patch操作.</p>
+<li>
+<p>updateComponent, 里面实际调用的vm._update(vm._render(),hydrating) 就是实际的patch操作.</p>
 </li>
-<li><p>开启状态观测</p>
+<li>
+<p>开启状态观测</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Watcher(</span><br><span class="line">  vm,</span><br><span class="line">  updateComponent,</span><br><span class="line">  noop,</span><br><span class="line">  &#123;</span><br><span class="line">      before()&#123;</span><br><span class="line">          <span class="keyword">if</span>(vm._isMounted)&#123;</span><br><span class="line">              callHook(vm,<span class="string">'beforeCreate'</span>)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span>)</span><br></pre></td></tr></table></figure></li>
 </ol>
 
