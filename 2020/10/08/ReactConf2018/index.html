@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Future Li">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="BOM"/>
+  <meta property="og:title" content="ReactConf2018"/>
   <meta property="og:description" content="What is this?" />
   <meta property="og:site_name" content="Hello!"/>
   <meta property="og:type" content="article" />
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">BOM</p>
+          <p class="title">ReactConf2018</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -103,14 +103,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2020-04-28</span>
+            <span class="date">2020-10-08</span>
             <span class="time">18:51:12</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/%E4%B9%A6%E6%9C%AC/">书本</a>
+<a href="/categories/React/">React</a>
 </span>
           
         </div>
@@ -119,65 +119,41 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Javascript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">#Javascript高级程序设计</a>
+<a class="tag" href="/tags/hooks/">#hooks</a> <a class="tag" href="/tags/React-Conference/">#React Conference</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h2><span id="location对象"> location对象</span></h2>
-<ul>
-<li>提供与当前窗口加载的文档有关的信息</li>
-<li>URL解析, 导航功能</li>
-<li>window.location , document.location 引用的是同一个对象</li>
-</ul>
-<p>属性列举(由长到短,由左到右)</p>
-<ol>
-<li>href: 返回<code>完整URL</code>,包括哈希值. location.toString方法也返回这个值</li>
-<li>origin: 协议名和主机名 (<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>)</li>
-<li>protocol: 页面使用的协议, 一般为http / https</li>
-<li>host: 主机名和端口号(如果有的话,否则仅返回主机名)</li>
-<li>hostname: 主机名</li>
-<li>port: 端口号</li>
-<li>pathname: 请求路径 /user/xxx</li>
-<li>search: 请求参数, 包括问号</li>
-<li>hash: 哈希值, 包括井号</li>
-</ol>
-<p><strong>修改任意一个值都可以实际操作URL,发出HTTP请求</strong></p>
-<p>方法列举:</p>
-<ol>
-<li>assign([URL])  <strong>必须有http, www可以没有</strong></li>
-</ol>
-<ul>
-<li>location.assign(“<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”)<br>
-等价于: window.location = “<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”<br>
-location.href = “<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>”</li>
-</ul>
-<ol start="2">
-<li>
-<p>replace([URL])<br>
-位置改变而不生成新纪录,无法后退到被替代的页面.</p>
+          <p>Original Source : <a href="https://www.youtube.com/watch?v=dpw9EHDh2bM&amp;feature=emb_title" target="_blank" rel="noopener">https://www.youtube.com/watch?v=dpw9EHDh2bM&amp;feature=emb_title</a></p>
+<h2><span id="class-components-cons">Class components cons:</span></h2><ol>
+<li><p>Poor logic reuse</p>
 </li>
-<li>
-<p>reload() 接收true/false为参数,默认为false<br>
-重新加载当前页面. 设置为true,则强制从服务器重新加载.<br>
-设置为false,则可能会从缓存中重新加载(没有变化的情况下)</p>
+<li><p>Giant Components(Wrapper Hell)(Solutions:HOC or Render Props)</p>
+</li>
+<li><p>Confusing classes, like <code>this</code>(Hard not only for humans,but also for machines)</p>
+<p>(You have to put all logics into the lifecycle methods even they’re not relevant)</p>
 </li>
 </ol>
-<h2><span id="history对象"> History对象</span></h2>
-<p>属性:</p>
-<ul>
-<li>length: 历史记录的数量,是个number.</li>
-</ul>
-<p>方法:<br>
-1.go([String/Number]):</p>
-<ul>
-<li>Number: 正数是向前,负数是向后退</li>
-<li>String: <strong>跳转到历史记录中包含该字符串的第一个位置</strong><br>
-<em>Chrome里面字符串无效?(用的H5 history)</em><br>
-2.forward() / back() 向前进或后退. 接受负数,但自动转为正数(?)</li>
-</ul>
+<h2><span id="hooks">Hooks</span></h2><p>Introduction order: </p>
+<ol>
+<li><p>useState( name/surname, setName/setSurname)</p>
+</li>
+<li><p>useContext(  const theme = useContext( LocaleContext );const locale = useContext(ThemeContext);)</p>
+<p>To replace Context.Provider / Context.Consumer</p>
+</li>
+</ol>
+<p><strong>You have to call hooks in the same order between different renders of the same component</strong></p>
+<ol start="3">
+<li><p>useEffect(Change the browser’s titile when the page was mounted/updated,and unsubscribe the event handler when the page was unmounted.)</p>
+<p>Explaining how to replace three lifecylce methods with useEffect(componentDidMount/componentDidUpdate/componentWillUnmount)</p>
+<p><strong>How to reuse logic?</strong></p>
+<p>Components are just functions and hooks are just function calls.You can extract any function out of the comonent to reuse it , like :</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useWindowWidth</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [width,setWidth] = useState(windows.innerWidth);</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> handleResize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            setWidth(<span class="built_in">window</span>.innerWidth);</span><br><span class="line">        &#125;;</span><br><span class="line">        windows.addEventListener(<span class="string">'resize'</span>,handleResize);</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            windows.removeEventListener(<span class="string">'resize'</span>,handleResize);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> width; <span class="comment">//expose what you wanna give from the function.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//In the component:</span></span><br><span class="line"><span class="keyword">const</span> width = useWindowWidth(); <span class="comment">//Then the hook is extracted and reusable!</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
         </div>
       </div>
