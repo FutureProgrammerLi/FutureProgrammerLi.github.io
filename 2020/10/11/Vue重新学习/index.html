@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-10-11</span>
-            <span class="time">00:26:29</span>
+            <span class="time">22:38:05</span>
           </span>
           
           <!--  Categories  -->
@@ -372,7 +372,99 @@
 <p>#header, #main, #footer就是具名插槽,没有到作用域插槽.</p>
 <p>具名插槽和作用域插槽是可以一起出现的!  (匿名/具名插槽一组,        作用域插槽自己一组);</p>
 <hr>
-<p>TO BE CONTINUED… Provide / inject</p>
+<p>Provide/ Inject , 跨级传props, 不过不用知道由谁provide, 有谁会inject.</p>
+<ul>
+<li><p>直接provide实例的数据是不行的，因为内部先实现provide再初始化实例的data。</p>
+<p>如果要provide实例的数据，要用函数返回一个对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"> export default&#123;</span><br><span class="line">     data()&#123;</span><br><span class="line">         value:1</span><br><span class="line">     &#125;,</span><br><span class="line">     provide()&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">          value: this.value</span><br><span class="line">      &#125;   </span><br><span class="line">     &#125;</span><br><span class="line">     &#x2F;&#x2F;直接返回非实例的数据:</span><br><span class="line">     &#x2F;&#x2F;provide:&#123;</span><br><span class="line">     &#x2F;&#x2F; user: &#39;John&#39;</span><br><span class="line">     &#x2F;&#x2F;&#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>provide实例的数据，它不是响应式的。（默认行为。问题：为什么不把provide处理成reactive呢？）</p>
+<p>要用ref / reactive 或者computed 对数据进行包裹（返回一个用ref/reactive包裹的对象，或者单一属性的话，直接用computed进行包裹.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">provide()&#123;</span><br><span class="line">   return &#123;</span><br><span class="line">     todoLength: Vue.computed(() &#x3D;&gt; todo.length);</span><br><span class="line">   &#125;;</span><br><span class="line"> &#x2F;&#x2F; return ref(&#123;          &#x2F;&#x2F;这样吗？</span><br><span class="line"> &#x2F;&#x2F;   todo: todo.length,</span><br><span class="line"> &#x2F;&#x2F;   somthing: something.a        </span><br><span class="line"> &#x2F;&#x2F;&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<p>动态组件， :is做了一个tabs-list,但切换的时候没有保持之前的状态, 所以要用&lt;keep-alive&gt;维持组件的状态.否则每次切换回来都会创建新的组件实例.</p>
+<p>异步组件, defineAsyncComponent</p>
+<blockquote>
+<p>Promise’ <code>resolve</code> callback should be called when you have retrieved your component definition from the server.</p>
+</blockquote>
+<p>组件的定义从服务器中返回?返回来了才进行注册?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    const app &#x3D; Vue.createApp(&#123;&#125;);</span><br><span class="line">    const AsyncComp &#x3D; Vue.defineAsyncComponent(</span><br><span class="line">     () &#x3D;&gt; new Promise((resolve,reject))&#123;</span><br><span class="line">        resolve(&#123;</span><br><span class="line">         template:&#39;I am async! And I\&#39;m server&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        &#x2F;&#x2F;if(condition)reject(reason)  &#x2F;&#x2F;try...catch...mix them in</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#x2F;&#x2F;或者用Webpack&#x2F; ES2015</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import &#123; defineAsyncComponent &#125; from &#39;vue&#39;;</span><br><span class="line">    const AsyncComponent &#x3D; defineAsyncComponent(&#123;</span><br><span class="line">        import(&#39;.&#x2F;components&#x2F;AsyncComponent.vue&#39;)</span><br><span class="line">    &#125;);</span><br><span class="line">    app.component(&#39;async-com&#39;,AsyncComponent);</span><br><span class="line">    components:&#123;</span><br><span class="line">        &#39;async-com&#39;: defineAsyncComponent(()&#x3D;&gt;</span><br><span class="line">          import(&#39;.&#x2F;components&#x2F;AsyncComponent.vue&#39;)</span><br><span class="line">     )</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>用defineAsyncComponent和&lt;Suspense&gt;作用是一致的.如果定义时用了Suspense来包裹组件,你可以在option里面用suspensible:false来控制它的加载状况.</p>
+<p>(?suspense包裹了为什么还要suspensible:false? 疑惑?)</p>
+</li>
+</ul>
+<hr>
+<p>refs,直接拿到某个元素.</p>
+<ul>
+<li>不要在template利用用$refs, DOM都挂载好了这个属性才会有值.</li>
+<li>vue2里面直接给元素加个ref属性,然后OptionsAPI里就可以this.$refs.xxx了.(时机至少是mounted.)</li>
+<li>vue3里创建个空ref, //TODO 问题</li>
+</ul>
+<hr>
+<p>Edge Cases: Forcing updates and prevent UNNACESSARY updates.</p>
+<p>$forceUpdate(问题: 实现原理) v-once. Try not to use them unless you falls into those rare use cases.</p>
+<hr>
+<p>先跳过动画.理解一些可能用到的概念先:</p>
+<p>Reusability &amp; Composition</p>
+<p>Mixin, 将另外的Options Object 混入到当前的实例</p>
+<ul>
+<li>数据冲突时,** 实例内的优先级高**</li>
+<li>生命周期, 放在一个数组内,先执行混入进来的先,再执行实例本身的.</li>
+<li>Options 是对象的,比如methods,computed(区别于data或provide是函数),会合并成一个对象.实例内的优先级高.(问题:用的什么策略合并?手写的深拷贝吗?Object.assign肯定是不行的.)</li>
+</ul>
+<p>全局混入,app.mixin({options}); 谨慎使用.整个应用每个组件都会受到影响.可以用Plugins来代替这个功能.</p>
+<p>改变混入策略,在全局中加个函数,针对某个混入值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是默认的行为,custom这个属性,用实例自身而不是混入进来的.</span></span><br><span class="line">app.config.optionMergeStrategies.custom = <span class="function">(<span class="params">toVal,fromVal</span>) =&gt;</span> fromVal || toVal;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这是修改后的行为,用混入进来的而不是实例本身的</span></span><br><span class="line">app.config.optionMergeStrategies.custom = <span class="function">(<span class="params">toVal,fromVal</span>) =&gt;</span> toVal || fromVal;</span><br></pre></td></tr></table></figure>
+
+<p>Cautions:</p>
+<ol>
+<li>大杂烩,你要知道混了些什么进来,哪个变量方法可能会被覆盖或重名.</li>
+<li>可重用性差,混了就混了,不能选择的混,不能函数式的混</li>
+</ol>
+<p>——&gt; Solution: Composition API~</p>
+<hr>
+<p>自定义指令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局注册</span></span><br><span class="line">app.directives(<span class="string">'focus'</span>,&#123;</span><br><span class="line">    mounted(el)&#123;</span><br><span class="line">        el.focus();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//局部注册</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    directives:&#123;</span><br><span class="line">        focus:&#123;</span><br><span class="line">            mounted(el)&#123;</span><br><span class="line">                el.focus();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;input v-focus /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令有指令自己的生命周期, beforeMount,mounted,beforeUpdate,updated,beforeUnmount,unmounted</p>
+<p>问题: checkout the parameters for each hook.(<a href="https://v3.vuejs.org/api/application-api.html#directive" target="_blank" rel="noopener">指路</a>) </p>
+<p>粗略: el ,binding(对象,很多属性) , vNode,  prevNode(仅beforeUpdate和updated有这个属性)</p>
+<p>el使用了指令的元素.</p>
+<p>binding.instance,      使用该指令的组件实例,跟el不同(废话). (问题:一个组件所有的自定义指令这个值都相同吗?Try it out! 一个组件两个自定义指令,分别读取它的binding.instance)</p>
+<p>binding.value, 双引号里的值. v-slot:default=”slotProps”,这里的slotProps</p>
+<p><img src="/.com//C:%5CUsers%5Clwj%5CDesktop%5CHexo%5Csource_posts%5Cbinding-value.png" alt="binding-value"></p>
+<p>binding.oldValue,(仅beforeUpdate和updated有这个属性)</p>
+<p>binding.arg,  v-slot:default=”slotProps”, 这里的default.可以是动态的[something]</p>
+<p><img src="/.com//C:%5CUsers%5Clwj%5CDesktop%5CHexo%5Csource_posts%5Cbindg-arg.png" alt="bindg-arg"></p>
+<p>binding.modifiers,指令修饰符 </p>
+<p>binding.dir, 指令自身描述,类似函数拿到自身定义</p>
+<ul>
+<li>app.directives()第二个参数传个函数, 默认在mounted和updated两个hooks里执行.(合理!)</li>
+</ul>
+<p>Vue3中,由于根节点可以多个,自定义指令可能会有丢丢问题?(问题是我完全看不懂…单词都会连起来怎么就不会了?)</p>
+<hr>
+<p>watchEffect, watch, { flush: ‘sync’/‘pre’/‘post’}</p>
+<p>Vue不允许直接添加在实例外往data内新增属性. <strong>Vue.set也不可以</strong></p>
+<p>Vue.set是在data里已有的某个对象,添加可响应式的属性.<strong>前提是已存在某个对象</strong></p>
+<p>所以,提前将要新增的数据放在data里面,尽管值是null或者undefined.(别管有没有值,reactive了再说)</p>
+<p><code>this.$set(this.someObject,propertyName,value)</code></p>
+<p>同时往某个对象添加多个属性</p>
+<p><code>this.someObject = Object.assign({} , this.someObject, { a:1, b:2});</code></p>
+<p>注意是赋给了一个新的对象地址</p>
+<p><strong>数组, 1.直接通过索引改值是检测不到的; 2.直接改数组长度也检测不到</strong></p>
+<p>第一个可以用Vue.set(vm.arr,indexOfItem,value);或者vm.items.splice(indexOfItem,1,value);</p>
+<p>第二个可以vm.items.splice(newLength);</p>
+<p>用splice肯定可以规避数组的caveats.</p>
+<p>回调形式的$nextTick比async await形式的$nextTick更好理解</p>
+<hr>
+<p>Teleport起有部分内容要消化, 明天再看一遍.</p>
+<p>Composition API另起一篇文章吧~</p>
+<p>TO BE CONTINUED~</p>
 
         </div>
       </div>
