@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="理解Vue3"/>
+  <meta property="og:description" content="What is this?" />
+  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hello!</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">理解Vue3</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-10-18</span>
+            <span class="time">23:17:07</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vue/">#Vue</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>原文地址：<a href="https://dev.to/jinjiang/understanding-reactivity-in-vue-3-0-1jni" target="_blank" rel="noopener">https://dev.to/jinjiang/understanding-reactivity-in-vue-3-0-1jni</a></p>
+<p>作者： Jinjiang  (Devto)</p>
+<p>译者: Li</p>
+<p>PS： 初读了一遍，简要介绍了Vue2之前，及Vue3的响应式系统，以及一些新的Composition API。个人认为对学习API有帮助。</p>
+</blockquote>
+<h1><span id="理解vue-30-中的响应式">理解Vue 3.0 中的响应式</span></h1><p>这篇文章是我对Vue的一些知识点整合，以及对Vue中最酷的响应式系统的一些理解。</p>
+<h2><span id="背景">背景</span></h2><p>我们都知道，Vue团队已经努力开发3.0版本了一段时间。最近他们放了第一个Beta版本出来，说明框架的一些主要技术已经是足够稳定的了。我觉得是时候过一遍Vue3.0里面的一些东西了，就是我最喜欢的，响应式系统了。</p>
+<h3><span id="什么是响应式">什么是响应式？</span></h3><p>简而言之，响应式就是，一些依赖于其它数据的结果值，当这些“其它数据改变的时候，这个结果值也会跟着被改变。</p>
+<p>现代网页开发中，我们经常需要渲染一些数据或状态相关的视图。所以很显然，将数据变得具有响应式能够给我们带来诸多好处。在Vue中，响应式系统从一出来的时候就有了。我认为这也是Vue能够变得如此流行的巨大因素之一。</p>
+<p>首先我们来看看之前的Vue版本中是怎么实现响应式系统的。</p>
+<h3><span id="0x到1x">0.x到1.x</span></h3><p>我第一次接触Vue是在2014年，大概那时Vue是0.10版本吧。那时你只可以将一个原始JS对象，传给Vue组件内的data选项。之后你就可以在一个代码片段里面使用这些数据，这就是有响应式的template了（和Vue2的有什么不同？）。一旦data option改变了，视图也会被自动更新。而且你还能再这个对象里面用<code>computed</code>和<code>watch</code>来灵活地实现一些效果和处理。之后的Vue1.x也是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  el:&#39;#app&#39;,</span><br><span class="line">  template:&#39;&lt;div @click&#x3D;&quot;x++&quot;&gt;</span><br><span class="line">      &#123;&#123;x&#125;&#125; + &#123;&#123;y&#125;&#125; &#x3D; &#123;&#123;z&#125;&#125;</span><br><span class="line">     &lt;&#x2F;div&gt;&#39;,</span><br><span class="line">  data()&#123;</span><br><span class="line">   return &#123; x:1, y:2&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed()&#123;</span><br><span class="line">   z()&#123; return this.x + this.y &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">   x(newVal,oldVal)&#123;</span><br><span class="line">    console.log(&#96;x is changed from $&#123;oldVal&#125; to $&#123;newVal&#125;&#96;);</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>你可能发现了，这些API并没有改变太多。确实，之后的版本也能用这些API，背后的原理可能都是一样的（？）。</p>
+<p>所以实现的原理是什么呢？怎么让一个JS对象自动地变得响应式呢？</p>
+<p>有幸，JS里面有个API，叫<code>Object.defineProperty()</code>,它可以让我们重写对象属性地getter/setter属性。所以，让一个对象变得响应式，需要三个步骤：</p>
+<ol>
+<li>递归地用<code>Object.defineProperty()</code>来重写data返回的那个对象里的每个属性。除了让这个对象像普通对象一样表现，Vue还为每个属性在修改和获取时注入了一些特殊机制，就是trigger和trackers.修改时触发trigger,获取时触发trackers.而且，它每次都会在内部创建一个<code>Dep</code>实例来记录那些依赖于某个其它属性，计算当前属性的操作（依赖项和被依赖项，记录有哪些被依赖项，被依赖项改变时，触发依赖项的操作从而更新。）（每个属性都有一个Dep?也太浪费了？）</li>
+<li>我们每次修改data的某个属性值，它就会调用这个属性的setter.重新计算依赖于这个被修改值的其它属性。(其它属性存在于这个属性的Dep实例中)（依赖别人的是Subscriber，存在于别人的Dep中）之后你可能就会问了，“所有的这些相关计算是怎么被记录起来的？”答案是，每当我们定义一种改变数据的方式，比如<code>watch</code>或者更新DOM的函数，内部会先运行一次-有时在初始化时运行，有时会干运行这个函数。这次运行之后它就会触发对应的getter方法，将这个改变的函数track到对应属性的Dep里了。</li>
+<li>所以当下一次我们的数据改变的时候，Vue就能在相应的Dep实例里面找到要执行的函数了，之后运行它们就行了。(怎么找的Dep？)所以这些计算的副作用也就自动被更新了。</li>
+</ol>
+<p>（给个流程？初始化之后Dep就非空了？track怎么找到它的dependencies？）</p>
+<p>（修改：data.value = 1; ,setter =&gt; trigger() =&gt; Dep.forEach(fn=&gt;fn.call()); -&gt; update related data successfully)</p>
+<p>我们用<code>Object.defineProperty()</code>来简易实现一下数据劫持：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>&#125;; <span class="comment">//Object returned from Option</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> realX = data.x;    <span class="comment">//Immutability?</span></span><br><span class="line"><span class="keyword">let</span> realY = data.y;    <span class="comment">//copied</span></span><br><span class="line"><span class="keyword">const</span> realDepsX = [];   <span class="comment">//repective dep</span></span><br><span class="line"><span class="keyword">const</span> realDepsY = [];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(data,<span class="string">'x'</span>,&#123;</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">        trackX();</span><br><span class="line">        <span class="keyword">return</span> realX;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(v)&#123;</span><br><span class="line">        realX = v;</span><br><span class="line">        triggerX();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(data,<span class="string">'y'</span>,&#123;</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">        trackY();</span><br><span class="line">        <span class="keyword">return</span> realY;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(v)&#123;</span><br><span class="line">        realY = v;</span><br><span class="line">        triggerY();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在其它属性/方法中用到这个值的时候，就会触发getter。就会把这个其它属性push到X的Dep数组中</span></span><br><span class="line"><span class="comment">//******currentDep是函数****** (为什么？不可以是属性名吗？)</span></span><br><span class="line"><span class="keyword">const</span> trackX = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(isDryRun &amp;&amp; currentDep)&#123;</span><br><span class="line">        realDepsX.push(currentDep);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> trackY = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(isDryRun &amp;&amp; currentDep)&#123;</span><br><span class="line">        realDepsY.push(currentDep);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置的时候就逐一执行Dep里的函数</span></span><br><span class="line"><span class="keyword">const</span> triggerX = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  realDepsX.forEach(<span class="function"><span class="params">dep</span> =&gt;</span> dep())</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> triggerY = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  realDepsY.forEach(<span class="function"><span class="params">dep</span> =&gt;</span> dep())</span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isDryRun = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> currentDep = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> observe = <span class="function"><span class="params">fn</span> =&gt;</span> &#123;</span><br><span class="line">  isDryRun = <span class="literal">true</span></span><br><span class="line">  currentDep = fn</span><br><span class="line">  fn()</span><br><span class="line">  currentDep = <span class="literal">null</span></span><br><span class="line">  isDryRun = <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> depA = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`x = <span class="subst">$&#123;data.x&#125;</span>`</span>)</span><br><span class="line"><span class="keyword">const</span> depB = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`y = <span class="subst">$&#123;data.y&#125;</span>`</span>)</span><br><span class="line"><span class="keyword">const</span> depC = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`x + y = <span class="subst">$&#123;data.x + data.y&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Imitation of data change ? </span></span><br><span class="line">observe(depA);</span><br><span class="line">observe(depB);</span><br><span class="line">observe(depC);</span><br><span class="line"></span><br><span class="line">data.x = <span class="number">3</span></span><br><span class="line"><span class="comment">// output: x = 3, x + y = 5</span></span><br><span class="line">data.y = <span class="number">4</span></span><br><span class="line"><span class="comment">// output: y = 4, x + y = 7</span></span><br></pre></td></tr></table></figure>
+
+<p>Vue 2及之前版本的响应式原理简略版如上,具体实现还是更抽象、更加设计完善的。</p>
+<p>像一些复杂的操作，比如数组、嵌套属性或者同时修改对象的两个属性，Vue内部还是有一些具体实现及优化的，但大体就是如此。</p>
+<h3><span id="vue2的响应式">Vue2的响应式</span></h3><p>从1.x到2.x,修改的部分不少（原文直接rewrite?)。Vue2也推出了一些新特性，比如虚拟DOM，服务器渲染，渲染函数等等。有趣的是，响应式系统并没改变太多，不过以上的用法变得完全不同了。（什么用法？usage）</p>
+<ol>
+<li>从0.x到1.x版本，渲染的逻辑是依赖于维护文档片段的(document fragement)。每一个片段内都有一些属性、更新DOM的方法、以及一些文本内容。所以响应式从大体上讲就是，这个data object和更新DOM的方法互相协作。因为这些方法都是直接操作DOM的所以性能表现并不太好。Vue2.x中，这种组件的渲染逻辑变成了一种单纯的JS函数。所以这种函数会先返回虚拟的DOM节点而不是真是的DOM节点。DIFF算法会很快的找出虚拟DOM的不同，之后再将对比的结果作用到真实的DOM上。</li>
+<li>Vue2.6推出了一个新的API,<code>Vue.observable(obj)</code>,它可以用来将JS对象转变成响应式对象。所以你可以在<code>render</code>或<code>computed</code>里面使用它。这样灵活多了。</li>
+</ol>
+<p>同时，Vue社区一些人提出将这个响应式系统抽离出来，以适用于更多的使用场景。不过那时还没实现。</p>
+<h3><span id="30之前响应式系统的一些约束">3.0之前，响应式系统的一些约束</span></h3><p>其实，据我了解，Vue2的响应式还是有些缺点的：</p>
+<ul>
+<li>由于Object.defineProperty这个API的实现约束，它检测不了以下这些数据变化:<ol>
+<li>直接通过索引来修改数组项，比如arr[0]=value</li>
+<li>直接修改数组的长度, arr.length = 0 l</li>
+<li>直接向data里的对象添加属性（要用Vue.$set(obj,newKey,value),否则是检测不到的）</li>
+</ol>
+</li>
+<li>由于原生JS的数据结构限制，每一个响应式对象都有一个无法枚举的属性<code>__ob__</code>，在一些极端情况下会有一些冲突</li>
+<li>不支持像Map和Set这些数据结构，一些非原生JS对象（指Date和Math这些？）也是不支持的。</li>
+<li>性能有点问题。当数据过于庞大时，将data object变得响应式就会浪费可察觉到的时间了。要减少这种时间浪费的话你需要会些技巧，(Object.froze()?)</li>
+</ul>
+<h2><span id="vue-30的响应式系统">Vue 3.0的响应式系统</span></h2><p>（直接快进到区别）</p>
+<h4><span id="1向已有数据对象添加新属性">1.向已有数据对象添加新属性</span></h4><p>前文提过，Vue2直接向已有数据对象添加新属性，Vue是检测不了的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data: () &#x3D;&gt; (&#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">      given: &#39;Jinjiang&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">  methods: &#123;</span><br><span class="line">    update() &#123;</span><br><span class="line">      this.name.family &#x3D; &#39;Zhao&#39;; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>update方法是没有用的，更新不了data对象。触发这个方法不会导致页面重渲染。你要在Vue2中实现，用Vue.$set(this.name,’family’,’Zhao’);</p>
+<p>在Vue3中，你可以不用这个另外的API了。</p>
+<h4><span id="索引修改数组">索引修改数组</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      list: [</span><br><span class="line">        &#39;Client meeting&#39;,</span><br><span class="line">        &#39;Plan webinar&#39;,</span><br><span class="line">        &#39;Email newsletter&#39;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    edit(index) &#123; &#x2F;&#x2F;index由li里面传进来,用的for渲染 (item,index) in list</span><br><span class="line">      const newItem &#x3D; prompt(&#39;Input a new item&#39;)</span><br><span class="line">      if (newItem) &#123;</span><br><span class="line">        this.list[index] &#x3D; newItem</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简单说，edit方法也是没用的，因为它用索引方法修改了数组，而Vue检测不到。你要用<code>Vue.$set(this.list,index,newItem)</code>。同样，Vue3也不用手动使用这个方法了。</p>
+<h4><span id="3直接修改数组的长度">3.直接修改数组的长度</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clean() &#123; this.list.length &#x3D; 0 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>要实现功能, this.list = [].Vue 3还是不用担心这些操作错误了。</p>
+<h4><span id="4-使用setmap数据结构">4. 使用Set/Map数据结构</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-for&#x3D;&quot;item, index in list&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">        &#123;&#123; item &#125;&#125;</span><br><span class="line">        &lt;button @click&#x3D;&quot;remove(item)&quot;&gt;remove&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;li&gt;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;add&quot;&gt;add&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;clean&quot;&gt;clean&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data: () &#x3D;&gt; (&#123;</span><br><span class="line">    list: new Set([</span><br><span class="line">      &#39;Client meeting&#39;,</span><br><span class="line">      &#39;Plan webinar&#39;,</span><br><span class="line">      &#39;Email newsletter&#39;</span><br><span class="line">    ])</span><br><span class="line">  &#125;),</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(this.list)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    remove(item) &#123;</span><br><span class="line">      this.list.delete(item)</span><br><span class="line">    &#125;,</span><br><span class="line">    add() &#123;</span><br><span class="line">      const newItem &#x3D; prompt(&#39;Input a new item&#39;)</span><br><span class="line">      if (newItem) &#123;</span><br><span class="line">        this.list.add(newItem)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    clean() &#123;</span><br><span class="line">      this.list.clear()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里用Set代替了上面的数组。在首次渲染时是没有错的，但对这个数组进行一些操作之后，页面并不会重渲染，数据不会被更新，因为它并有被跟踪(tracked)。所以3之前的版本，直接不用Map和Set。而Vue3，也还是不用担心这个问题。</p>
+<h4><span id="5使用非响应式的对象属性">5.使用非响应式的对象属性</span></h4><p>如果我们在data里有些一次性的数据，而且数据量庞大，那么它可能就不需要变得响应式了。数据多，不用变，还要遍历，不就浪费大量时间了吗？在Vue2中要想避免这个问题，还是需要些技巧的。</p>
+<p>在Vue3中，它提供了一个专门的API来避免这个问题（数据量大，无需改变）–<code>markRaw</code></p>
+<p>(我认为escape更好理解，躲避Vue的遍历)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    Hello &#123;&#123; test.name &#125;&#125;</span><br><span class="line">    &lt;button @click&#x3D;&quot;update&quot;&gt;should not update&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; markRaw &#125; from &#39;vue&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  data: () &#x3D;&gt; (&#123;</span><br><span class="line">    test: markRaw(&#123; name: &#39;Vue&#39; &#125;)</span><br><span class="line">  &#125;),</span><br><span class="line">  methods: &#123;</span><br><span class="line">    update()&#123;</span><br><span class="line">      this.test.name &#x3D; &#39;Jinjiang&#39;</span><br><span class="line">      console.log(this.test); &#x2F;&#x2F;&#123;name:&#39;vue&#39;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>markRaw</code>告诉Vue，这个值不需要被跟踪，（没有track,自然就不会trigger啦。）之后对这个属性的更新都不会导致页面重渲染。</p>
+<p>除此，还有个孪生API–<code>readonly</code>,这个API阻止数据被修改。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; readonly &#125; from &#39;vue&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data: () &#x3D;&gt; (&#123;</span><br><span class="line">    test: readonly(&#123; name: &#39;Vue&#39; &#125;)</span><br><span class="line">  &#125;),</span><br><span class="line">  methods: &#123;</span><br><span class="line">    update()&#123;</span><br><span class="line">      this.test.name &#x3D; &#39;Jinjiang&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里直接改test的任何属性，都是直接报错了(?).</p>
+<p>到这，我们就知道Vue3是怎么实现响应式系统的了。(?有吗)我觉得没有，先深入一下吧..</p>
+<h2><span id="底层实现">底层实现</span></h2><p>简而言之，3.0的响应式系统跟上潮流，用上了ES6（… wow)</p>
+<h4><span id="首先简单的数据检测">首先，简单的数据检测</span></h4><p>ES6中，有一对API– Proxy和Reflect。它们就是为响应式而诞生的!Vue3就是根据这对API搭建起来的。</p>
+<p>有了<code>Proxy</code>我们可以为特定的JS对象设置trap, 陷阱。</p>
+<p>这个trap就是handler啦。劫持变成了代理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// all behaviors of a proxy by operation types</span></span><br><span class="line"><span class="keyword">const</span> handlers = &#123;</span><br><span class="line">  <span class="keyword">get</span>(data, propName, proxy) &#123;       <span class="comment">//具体代理(劫持)操作</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Get <span class="subst">$&#123;propName&#125;</span>: <span class="subst">$&#123;data[propName]&#125;</span>!`</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(data, propName, proxy)</span><br><span class="line">  &#125;,</span><br><span class="line">  has(data, propName) &#123; ... &#125;,</span><br><span class="line">  <span class="keyword">set</span>(data, propName, value, proxy) &#123; <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(...args) &#125;,</span><br><span class="line">  deleteProperty(data, propName) &#123; ... &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a proxy object for the data</span></span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, handlers)</span><br><span class="line"></span><br><span class="line"><span class="comment">// print: 'Get x: 1' and return `1`</span></span><br><span class="line">proxy.x</span><br></pre></td></tr></table></figure>
+
+<p>这种检测方式比<code>Object.defineProperty</code>更加无死角。而且，整个数组对象，你只需要为它创建一个对象就可以了。（问题：是吗？整个data一个proxy,还是data里的每个对象每个proxy?)</p>
+<p>这只是简易实现，Proxy可以处理一切(ALL)作用于对象上的操作。具体实现还是复杂很多的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">const track &#x3D; (...args) &#x3D;&gt; console.log(&#39;track&#39;, ...args)</span><br><span class="line"></span><br><span class="line">const trigger &#x3D; (...args) &#x3D;&gt; console.log(&#39;trigger&#39;, ...args)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; all behaviors of a proxy by operation types</span><br><span class="line">const handlers &#x3D; &#123;</span><br><span class="line">  get(...args) &#123; track(&#39;get&#39;, ...args); return Reflect.get(...args) &#125;,</span><br><span class="line">  has(...args) &#123; track(&#39;has&#39;, ...args); return Reflect.set(...args) &#125;,</span><br><span class="line">  set(...args) &#123; Reflect.set(...args); trigger(&#39;set&#39;, ...args) &#125;,</span><br><span class="line">  deleteProperty(...args) &#123;</span><br><span class="line">    Reflect.set(...args);</span><br><span class="line">    trigger(&#39;delete&#39;, ...args)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; create a proxy object for the data</span><br><span class="line">const data &#x3D; &#123; x: 1, y: 2 &#125;</span><br><span class="line">const proxy &#x3D; new Proxy(data, handlers)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; will call &#96;trigger()&#96; in &#96;set()&#96;</span><br><span class="line">proxy.z &#x3D; 3</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; create a proxy object for an array</span><br><span class="line">const arr &#x3D; [1,2,3]</span><br><span class="line">const arrProxy &#x3D; new Proxy(arr, handlers)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; will call &#96;track()&#96; &amp; &#96;trigger()&#96; when get&#x2F;set by index</span><br><span class="line">arrProxy[0]</span><br><span class="line">arrProxy[1] &#x3D; 4</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; will call &#96;trigger()&#96; when set &#96;length&#96;</span><br><span class="line">arrProxy.length &#x3D; 0;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>比如我们执行arrProxy.push(10),proxy就会触发set handler，3作为属性名，10作为值。不过我们不知道这个索引是不是新的，所以我们要实现这个操作，我们就要多跟踪arrProxy.length这个属性，(precise determination),在set或deleteProperty检测是否会修改数组的长度。</p>
+<p>而且，基于Proxy的响应式还允许你使用Map和Set这两种数据结构。get/set/has/delete/clear这些专属的操作也是响应式的。</p>
+<h4><span id="其次更多的响应式api">其次，更多的响应式API</span></h4><p>在3.0，我们除了<code>markRaw</code>和<code>readonly</code>,还有一些其它的API。实现readOnly,直接改proxy handler的<code>set</code>和<code>deleteProperty</code>就行了。</p>
+<p>而<code>markRaw</code>,Vue会对对应对象添加一个__v_skip属性，有这个属性的对象直接跳过就好了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set an invisible skip flag to raw data</span></span><br><span class="line"><span class="keyword">const</span> markRaw = <span class="function"><span class="params">data</span> =&gt;</span> <span class="built_in">Object</span>.defineProperty(</span><br><span class="line">  data,</span><br><span class="line">  <span class="string">'__v_skip'</span>,</span><br><span class="line">  &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a proxy only when there is no skip flag on the data</span></span><br><span class="line"><span class="keyword">const</span> reactive = <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (data.__v_skip) &#123;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, reactiveHandlers)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="此外简单用weakmap来记录deps和flags">此外，简单用WeakMap来记录deps和flags</span></h4><p>Vue3最终没有使用这种记录方式，不过它用的是其它的，也是ES6的新数据结构,Set 和Map。</p>
+<p>用Set和Map，我们可以在数据之外维护它们的联系。然后我们就可以不为对象添加flag了。其它的flag还有<code>__isReactive</code>和<code>is_Readonly</code>。配合上Reflect API，整体的看起来是这样的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a Map to record dependets</span></span><br><span class="line"><span class="keyword">const</span> dependentMap = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// track and trigger a property</span></span><br><span class="line"><span class="keyword">const</span> track = <span class="function">(<span class="params">type, data, propName</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (isDryRun &amp;&amp; currentFn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!dependentMap.has(data)) &#123;</span><br><span class="line">      dependentMap.set(data, <span class="keyword">new</span> <span class="built_in">Map</span>())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!dependentMap.get(data).has(propName)) &#123;</span><br><span class="line">      dependentMap.get(data).set(propName, <span class="keyword">new</span> <span class="built_in">Set</span>())</span><br><span class="line">    &#125;</span><br><span class="line">    dependentMap.get(data).get(propName).add(currentFn)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> trigger = <span class="function">(<span class="params">type, data, propName</span>) =&gt;</span> &#123;</span><br><span class="line">  dependentMap.get(data).get(propName).forEach(<span class="function"><span class="params">fn</span> =&gt;</span> fn())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// observe</span></span><br><span class="line"><span class="keyword">let</span> isDryRun = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> currentFn = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> observe = <span class="function"><span class="params">fn</span> =&gt;</span> &#123;</span><br><span class="line">  isDryRun = <span class="literal">true</span></span><br><span class="line">  currentFn = fn</span><br><span class="line">  fn()</span><br><span class="line">  currentFn = <span class="literal">null</span></span><br><span class="line">  isDryRun = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//data object</span></span><br><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, handlers)</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> arrProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(arr, handlers)</span><br><span class="line"></span><br><span class="line"><span class="comment">// observe functions</span></span><br><span class="line"><span class="keyword">const</span> depA = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`x = <span class="subst">$&#123;proxy.x&#125;</span>`</span>)</span><br><span class="line"><span class="keyword">const</span> depB = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`y = <span class="subst">$&#123;proxy.y&#125;</span>`</span>)</span><br><span class="line"><span class="keyword">const</span> depC = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`x + y = <span class="subst">$&#123;proxy.x + proxy.y&#125;</span>`</span>)</span><br><span class="line"><span class="keyword">const</span> depD = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arrProxy.length; i++) &#123;</span><br><span class="line"> sum += arrProxy[i]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">`sum = <span class="subst">$&#123;sum&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// dry-run all dependents</span></span><br><span class="line">observe(depA)</span><br><span class="line">observe(depB)</span><br><span class="line">observe(depC)</span><br><span class="line">observe(depD)</span><br><span class="line"><span class="comment">// output: x = 1, y = 2, x + y = 3, sum = 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// mutate data</span></span><br><span class="line">proxy.x = <span class="number">3</span></span><br><span class="line"><span class="comment">// output: x = 3, x + y = 5</span></span><br><span class="line">arrProxy[<span class="number">1</span>] = <span class="number">4</span></span><br><span class="line"><span class="comment">// output: sum = 8</span></span><br></pre></td></tr></table></figure>
+
+<p>其实早期的3.0 beta版本的Vue用的<code>WeakMap</code>而不是<code>Map</code>来存储依赖项，这样就不用担心内存泄漏的问题了。不过，当数据过大的时候用WeakMap性能不太乐观,所以之后又改为为属性做标记这种方式了.</p>
+<p>顺道说句,有些flag用的是Symbol类型.它能减少一些极端情况的出现.不过同样的,性能也有点问题,不如直接使用字符串作为标记名.</p>
+<p>尽管一些实验性操作最后没得到保留,但你可以自己试试用这些数据结构建一个让数据变响应式的系统呀,看一下具体性能有多大区别.这里我觉得提到这就够了,数据结构方面的优化看你多大本事啦.</p>
+<h4><span id="小总结">小总结</span></h4><p>无论怎样,我们都要先将数据对象变成响应式,观察哪些函数对哪些数据进行了依赖.之后当我们修改这些响应式数据时,就能运行到相关联的函数了.</p>
+<p>以上所有的特性都在Vue3中借助ES6得到实现了.一些问题也解决掉了.</p>
+<p>到这我们就懂得了Vue的基础用法了–把数据对象传到Vue组件的data选项内,之后你就可以在其它选项如computed,watch或者template中用到这些响应式数据了.不过,Vue3不只有markRaw, readonly这些API,我们看看其它的新的API吧.</p>
+<h2><span id="封装">封装</span></h2><h3><span id="1对象代理">1.对象代理</span></h3><h4><span id="1基础-reactivedatareadonlydatamarkrawdata">1.基础: reactive(data),readonly(data),markRaw(data)</span></h4><p>我们先说说reactive(data).I(Interface)如其名,(作用就跟它名字一样),这个API为数据创建一个响应式代理.不过你可能无须直接使用,因为你用data返回的对象里自动就会被API处理.</p>
+<p>如果你想:</p>
+<ul>
+<li>部分数据不可更改,用readonly(data)</li>
+<li>部分数据是非响应式的,用markRaw(data)</li>
+</ul>
+<p>比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, readonly, markRaw &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ComponentFoo = &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      reactiveX: &#123; <span class="attr">x</span>: <span class="number">1</span> &#125;,  </span><br><span class="line">      reactiveXInAnotherWay: reactive(&#123; <span class="attr">x</span>: <span class="number">1</span> &#125;),  <span class="comment">//还有必要用reactive包装吗?</span></span><br><span class="line">      immutableY: readonly(&#123; <span class="attr">y</span>: <span class="number">2</span> &#125;),</span><br><span class="line">      needntChangeReactivelyZ: markRaw(&#123; <span class="attr">z</span>: <span class="number">3</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>reactiveX和reactiveXinAnotherWay(就是前两个对象)的x属性变了的话,都会导致模板重渲染</li>
+<li>如果你改immutableY对象的y属性,别,<strong>会报错的</strong>(并不,会警告).当然,<strong>模板也不会被重渲染</strong>.</li>
+<li>如果你改最后needntChangeReactivelyZ,就是最后那个对象的z,对象是变了,<strong>模板不会重渲染</strong></li>
+</ul>
+<p>用markRaw包裹的对象,它们是全等的.用它包裹了之后你就可以在其它地方用这个对象了(?)</p>
+<h4><span id="12-工具函数-isreactivedata-isreadonlydata-isproxydatatorawdata">1.2 工具函数: isReactive(data), isReadonly(data), isProxy(data),toRaw(data)</span></h4><p>有了这些函数,你可以更方便一点:</p>
+<ul>
+<li>具有相应是的数据代理,isReactive和isProxy都返回true</li>
+<li>只读的数据代理,isReadonly和isProxy返回true</li>
+<li>无论是否被标记了的原始数据, isProxy,isReactive和isReadonly都返回false</li>
+<li>对于用reactive或readonly包裹的对象,你可以用toRaw将对象变回非响应式的.</li>
+</ul>
+<h4><span id="13-高级函数-shallowreactivedata-shallowreadonlydata">1.3 高级函数: shallowReactive(data), shallowReadonly(data)</span></h4><p>这两个API可以创建”轻度”代理(shallow proxy),就是说它不会深度代理这个对象的属性.只有这个对象的第一层属性是响应式或只读的.比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; shallowReactive, shallowReadonly &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ComponentFoo = &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      x: shallowReactive(&#123; <span class="attr">a</span>: &#123; <span class="attr">b</span>: <span class="number">1</span> &#125; &#125;),</span><br><span class="line">      y: shallowReadonly(&#123; <span class="attr">a</span>: &#123; <span class="attr">b</span>: <span class="number">1</span> &#125; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里,this.x.a是响应式的, this.x.b不是; this.y.a是只读的,this.y.b也不是.(b既不响应式又不只读)</p>
+<p>如果你只在自己的组件内使用响应式数据,我想以上的API足够了.不过,现实中我们可能要在组件之间共享状态,或者将组件的某个状态抽出来以便维护.所以,我们还需要额外的APIs.</p>
+<h3><span id="2-用ref包裹原始值">2. 用Ref包裹原始值</span></h3><p>ref可以让你保持对一个响应式的值的引用.多数情况下,ref()这个API用来包裹原始值.比如我们在ES模块内有个counter变量,以下这段代码是不会如期执行的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//这样也不会:</span></span><br><span class="line"><span class="keyword">import</span> &#123; reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> anotherCounter = reactive(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--其它组件内--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;counter++&quot;&gt;increment&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; counter &#125; from &#39;.&#x2F;store.js&#39;</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123; counter &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>因为原始值是不能被修改的.当我们引入或者导出原始值时,我们就没对这个值进行跟踪了(lose the track).我们可以用ref来解决这个问题.</p>
+<h4><span id="21-基础-refdata">2.1 基础: ref(data)</span></h4><p>为了解决以上的问题,我们介绍以下ref(data)这个API:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> counter = ref(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样就能正常工作了.</p>
+<p>值得注意的时:如果你要在模板以外访问这个用ref包裹的值,你需要访问这个值的value属性.(ref返回一个仅有valu属性的对象).比如如果我们要在store.js外,修改这个counter值.我们要用counter.value++:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- bar.vue  --&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;increment&quot;&gt;increment&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; counter &#125; from &#39;.&#x2F;store.js&#39;</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment() &#123; counter.value++ &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>还有一些注意点之后再说(?).</p>
+<h4><span id="22-工具函数-isrefdata-unrefdata">2.2 工具函数: isRef(data), unref(data)</span></h4><p>很容易理解, isRef判断data是否被ref包裹; unref, 返回ref包裹的对象的value值.</p>
+<h4><span id="23-代理对象到ref对象-torefdatakey-torefsdata">2.3 代理对象到ref对象: toRef(data,key), toRefs(data)</span></h4><p>这两个API用来从被代理的对象中获取引用(get refs from proxy data):</p>
+<p>(将reactive对象里某个特定属性转为ref对象)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, toRef, toRefs &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy = reactive(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> refX = toRef(proxy, <span class="string">'x'</span>)</span><br><span class="line">proxy.x = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(refX.value) <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> refs = toRefs(proxy)</span><br><span class="line">proxy.y = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(refs.x.value) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(refs.y.value) <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>正如例子所示,这两个API典型的用法就是将reactive对象的属性分离出来的同时,保持响应式(toRef抽单个,toRefs抽整个)</p>
+<h4><span id="24-高级-shallowrefdata">2.4 高级: shallowRef(data)</span></h4><p>仅当ref.value指向其它地址时才会触发更新(assigned by another value)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; shallowRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;</span><br><span class="line"><span class="keyword">const</span> ref = shallowRef(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">// won't trigger update</span></span><br><span class="line">ref.value.x = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// will trigger update</span></span><br><span class="line">ref.value = &#123; <span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="案例-computed">案例: computed(…)</span></h4><p>跟Option API的computed差不多.如果你想在组件间共享状态,我建议你使用这个API.</p>
+<p><strong>computed参数返回的那个东西,也有value属性.</strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstName = ref(<span class="string">'Li'</span>);</span><br><span class="line"><span class="keyword">const</span> computedFirstName = computed(<span class="function"><span class="params">()</span>=&gt;</span> firstName);</span><br><span class="line">firstName.value === computedFirstName;     <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="案例-自定义ref-customref">案例: 自定义ref: customRef()</span></h4><p>这是Vue3中我最喜欢的API.有了它,你可以自定义什么时候track/trigger.跟踪和触发更新.</p>
+<p>比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input v-model&#x3D;&quot;email&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; customRef &#125; from &#39;vue&#39;</span><br><span class="line">import &#123; validate &#125; from &#39;isemail&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      email: customRef((track, trigger) &#x3D;&gt; &#123;</span><br><span class="line">        const value &#x3D; &#39;&#39;</span><br><span class="line">        return &#123;</span><br><span class="line">          get() &#123;</span><br><span class="line">            track()</span><br><span class="line">            return value</span><br><span class="line">          &#125;,</span><br><span class="line">          set(v) &#123;</span><br><span class="line">            if (validate(v)) &#123;</span><br><span class="line">              value &#x3D; v</span><br><span class="line">              trigger()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">    &#x2F;&#x2F;当用户输入有效邮箱地址时才触发更新</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="3-检测副作用">3. 检测副作用</span></h3><p><code>watchEffect(function)</code>, <code>watch(deps,callback)</code></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
