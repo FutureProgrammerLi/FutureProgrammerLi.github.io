@@ -9,19 +9,19 @@
   <meta name="author" content="Future Li">
   <!-- Open Graph Data -->
   <meta property="og:title" content="composition-api-rfc"/>
-  <meta property="og:description" content="What is this?" />
-  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
   <meta property="og:type" content="article" />
   <meta property="og:image" content="http://yoursite.com"/>
   
-    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
 
   <!-- Site Title -->
-  <title>Hello!</title>
+  <title>CodingLiveLi</title>
 
   <!-- Bootstrap CSS -->
   
@@ -104,8 +104,14 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-10-21</span>
-            <span class="time">12:22:57</span>
+            <span class="time">23:46:00</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/vue/">vue</a>
+</span>
           
         </div>
         <!-- Tags -->
@@ -190,7 +196,48 @@
 <p><code>this</code> keyword in setup does not act the same as that of other options.Be careful of using it.</p>
 <p><strong>setup can return a render function , with the same usage of any other composition API</strong></p>
 <hr>
-<p>TO BE CONTINUED… lifecycle hooks.</p>
+<p>Only add ways to invoke lifecycle hooks inside setup().</p>
+<p><strong><code>beforeDestroy</code> and <code>destroyed</code> are changed into <code>beforeUnmount</code> and <code>unmounted</code></strong></p>
+<p>Options ways of invoking lifecycle is still accessible.(Lifecycle hooks like beforeCreate and created stay the same outside of the setup function.)</p>
+<p><strong>Inside setup()</strong>, no need for <code>beforeCreate</code> and <code>created</code>, the setup function is invoked at this timing.</p>
+<p>Similar to react, only mount, update, and unmount hooks are remained.</p>
+<p><strong>List of lifecycle hooks inside setup():</strong></p>
+<ol>
+<li>onBeforeMount</li>
+<li>onMounted</li>
+<li>onBeforeUpdate</li>
+<li>onUpdated</li>
+<li>onBeforeUnmount</li>
+<li>onUnmounted</li>
+<li>(2 hooks for debugging) onRenderChecked</li>
+<li>onRenderTriggered</li>
+<li>onErrorCaptured</li>
+</ol>
+<p><strong>You can invoke the same function outside setup, by removing the prefix <code>on</code>.</strong></p>
+<hr>
+<p><strong>Provide and inject inside setup()</strong>, ways to sharing states through the components tree from top to bottom.</p>
+<p>grammar: <code>provide(&#39;propertyName&#39;,&#39;value&#39;);</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  import &#123; provide &#125; from &#39;vue&#39;;</span><br><span class="line">  export default&#123;</span><br><span class="line">      setup()&#123;</span><br><span class="line">          provide(&#39;location&#39;,&#39;North Pole&#39;);</span><br><span class="line">          provide(&#39;randomObj&#39;,&#123;</span><br><span class="line">              a:&#39;provide&#39;,</span><br><span class="line">              b:&#39;object&#39;</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F;Only provide one state down to the tree for each provide function invocation.</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>As for inject, same need to explicitly import from vue , and , one invocation, one property.</p>
+<p>grammar:<code>inject(&#39;propertyName&#39;,&#39;defaultValue&#39;);</code></p>
+<p>The second param is optional, indicating the defalut value once it is not passed down.</p>
+<p><strong>To make the provided reactive, you need to wrap it up with ref() or reactive() before you provide it down;Otherwise, it is not reactive.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  import &#123; provide , ref, reactive &#125; from &#39;vue&#39;;</span><br><span class="line">    export default&#123;</span><br><span class="line">        setup()&#123;</span><br><span class="line">            const val1 &#x3D; ref(0);</span><br><span class="line">            const val2 &#x3D; reactive(&#123;a:1,b:2&#125;);</span><br><span class="line">            provide(&#39;val1&#39;,val1);</span><br><span class="line">            provide(&#39;val2&#39;,val2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The params in provide() can’t be shortened or ignored.You can renaming the value instead of ignoring it.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">provide(val1);  <span class="comment">//wrong</span></span><br><span class="line">provide(<span class="string">'renameVal1'</span>, val1); <span class="comment">//right</span></span><br></pre></td></tr></table></figure>
+
+<p>It’s recommended to also <strong>inject a mutating way</strong> for some injection property because of its reactivity.Or, inject a <code>readonly()</code> property for child components.</p>
+<p><strong>Once a value is passed through <code>provide()</code>, wrap it in readonly(), or pass along with a way of mutating it.</strong></p>
+<hr>
+<p>Using template refs in composition API.</p>
+<p>Declare a ref with the same name of template ref, and it will be bound to the element.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div ref&#x3D;&quot;root&quot;&gt;</span><br><span class="line">      Whatever</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import &#123; ref &#125; from &#39;vue&#39;;</span><br><span class="line">  export default &#123;</span><br><span class="line">      setup()&#123;</span><br><span class="line">          const root &#x3D; ref(null);</span><br><span class="line">          return &#123;</span><br><span class="line">              root</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Self convention: A ref with default value of null indicates that a same ref name exists in the template ref.</p>
+<p>(Won’t this make any contradictions?)</p>
 
         </div>
       </div>

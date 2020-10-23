@@ -9,19 +9,19 @@
   <meta name="author" content="Future Li">
   <!-- Open Graph Data -->
   <meta property="og:title" content="LeetCode"/>
-  <meta property="og:description" content="What is this?" />
-  <meta property="og:site_name" content="Hello!"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
   <meta property="og:type" content="article" />
   <meta property="og:image" content="http://yoursite.com"/>
   
-    <link rel="alternate" href="/atom.xml" title="Hello!" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
 
   <!-- Site Title -->
-  <title>Hello!</title>
+  <title>CodingLiveLi</title>
 
   <!-- Bootstrap CSS -->
   
@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-10-19</span>
-            <span class="time">12:22:57</span>
+            <span class="time">23:46:00</span>
           </span>
           
         </div>
@@ -207,6 +207,16 @@
 <p>10元买啤酒,2元1瓶，4个盖换1瓶，2空瓶换1瓶。总共可以获得多少瓶啤酒？</p>
 </blockquote>
 <p>15瓶，剩余1空瓶，3盖。跟踪已买、盖数量、空瓶数量、额外数量..没用程序写出来，全程手写跟踪..</p>
+<h3><span id="10拿硬币">10.拿硬币</span></h3><blockquote>
+<p>桌上有 n 堆力扣币，每堆的数量保存在数组 coins 中。我们每次可以选择任意一堆，拿走其中的一枚或者两枚，求拿完所有力扣币的最少次数。</p>
+<p>示例 1：</p>
+<p>输入：[4,2,1]</p>
+<p>输出：4</p>
+<p>解释：第一堆力扣币最少需要拿 2 次，第二堆最少需要拿 1 次，第三堆最少需要拿 1 次，总共 4 次即可拿完。</p>
+</blockquote>
+<p>思路： 降级版买啤酒。遍历数组，能除以2的就直接除以2，不能的除以二后取整。主要用Math.ceil和reduce。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> minCount = <span class="function"><span class="keyword">function</span>(<span class="params">coins</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = coins.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> acc += <span class="built_in">Math</span>.ceil(cur/<span class="number">2</span>);      </span><br><span class="line">    &#125;,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//不是整数的直接向上取整。是整数的 cur/2 === Math.ceil(cur/2), 就不用额外判断了。</span></span><br><span class="line"><span class="comment">//为了容易看就不直接return coins.reduce了。</span></span><br></pre></td></tr></table></figure>
+
 
         </div>
       </div>
