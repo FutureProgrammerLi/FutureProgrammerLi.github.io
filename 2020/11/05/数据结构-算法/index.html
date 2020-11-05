@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="数据结构-算法"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>CodingLiveLi</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">数据结构-算法</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-11-05</span>
+            <span class="time">23:49:11</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/">算法</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1><span id="前言">前言</span></h1><p>每天一两道简单leetcode，到现在是22道。虽然是基础中的基础了，但从中还是学到一点点的逻辑思考的。这些题大部分都是单纯的逻辑，跟算法/数据结构扯上的，最多就链表，栈，哈希表这些了。显然算法和数据结构没那么简单，就顺着兴趣去回顾了一下大学的知识了。这里看了些树和动态规划的一些内容，再次看，还是越看越懵（不愧是我）。不过回想起一丢丢大学的知识，不会正常，理解多了一丢丢就血赚。算法和数据结构的运用在实际中确实有效，不过你确定你知道什么时候可以用？很蓝的辣。</p>
+<p>回顾的内容大概是树的一些基本概念，遍历 / 还有动态规划的一些基础</p>
+<p>//TODO 性能优化</p>
+<h2><span id="树">树</span></h2><p>基本概念： 是由有限节点组成的一个具有层次关系的集合。*维基</p>
+<ol>
+<li><p>节点的度： 该节点的孩子数量，直接点就是这个节点的直接子节点的个数。比如一个二叉树，根节点度数为2，最底层的节点的度是0（必然），只有左孩子或只有右孩子的度是1.即二叉树度的取值为0，1，2. 非二叉树不一定。</p>
+</li>
+<li><p>树的度：整颗树中节点的度的最大值，比如上例中，树的度就是2.</p>
+</li>
+<li><p>叶节点/终端节点： 度为0的节点</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li><p>树的高度/深度/层次：高度和深度的概念有不同，如果把它们将层次同等看待，会很好理解。</p>
+<p>根节点的高度/深度有的说是1，有的说是0，但层次是1肯定是没错了，没有第0层。</p>
+<p>（有说法是根的高度/深度为0更好计算）</p>
+</li>
+</ol>
+<hr>
+<p>根据这些概念来的，一些二叉树的性质：</p>
+<ol>
+<li><p>一个i层的二叉树，节点个数最多为(2^i)-1. （三层二叉树最多7个节点, 2(^3)-1）        <strong>整棵树而言</strong></p>
+</li>
+<li><p>一个深度为k的二叉树，第k层的节点数最多为2^(k-1); （三层二叉树第三层最多4个节点，2^(3-1))  <strong>树的单层而言</strong></p>
+</li>
+<li><p>包含n个节点的二叉树高度至少为log2(n+1)。    （反过来的第一条）</p>
+<p> 用JS理解就是，一个（非满）二叉树，知道二叉树的节点个数，求高度</p>
+<p>Math.floor(Math.log(节点个数) / Math.log(2)) + 1;</p>
+</li>
+</ol>
+<hr>
+<p>树有很多，用得最多的是二叉树。其它的包括：</p>
+<ul>
+<li>无序树</li>
+<li>有序树<ul>
+<li>二叉树<ul>
+<li>完全二叉树<ul>
+<li>满二叉树</li>
+</ul>
+</li>
+<li>平衡二叉树</li>
+<li>排序二叉树</li>
+</ul>
+</li>
+<li>霍夫曼树/最优二叉树</li>
+<li>B树</li>
+</ul>
+</li>
+</ul>
+<p>后两个听过就行，霍夫曼树用来找最佳路径。大学算法好像考过，不难，忘了。</p>
+<hr>
+<p>二叉树的遍历： </p>
+<ul>
+<li>前序遍历(Preorder Traversal, VLR)</li>
+<li>中序遍历(Inorder Traversal,LDR)</li>
+<li>后序遍历(Postorder Traversal, LRD) (???这什么缩写???)</li>
+</ul>
+<p>还有另外的分类：深度优先搜索(Depth First Search, DFS)和广度优先搜索（Breadth First Search, BFS)。</p>
+<p>个人认为只有前序遍历可以称为深度优先搜索，而网上的说法是前中后序都属于深度优先搜索。</p>
+<p>个人理解：</p>
+<ul>
+<li>前序读到哪个输出哪个，左边的路走完了回头一步找右边的路</li>
+<li>中序先把左边的路走完再输出路的尽头那个，之后回头一步，再输出回头那个，最后才找右边的路</li>
+<li>后序也是把左边的路走完，输出尽头的那个，之后回头一步找右边的路，输出右边路的那个，最后才输出刚刚回头的那步</li>
+</ul>
+<p>JS实现的方法分为递归和非递归的方法。递归的方法很好理解，非递归则利用了栈结构。</p>
+<p>递归版本的深度优先搜索:(顺序是前序-》中序-》后序)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preorderTraversal</span>(<span class="params">root,arr = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root)&#123;</span><br><span class="line">        arr.push(root.val);</span><br><span class="line">        preorderTraversal(root.left);</span><br><span class="line">        preorderTraversal(root.right);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTraversal</span>(<span class="params">root,arr = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root)&#123;</span><br><span class="line">        inorderTraversal(root.left);</span><br><span class="line">        arr.push(root.val);</span><br><span class="line">        inorderTraversal(root.right);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">postorderTraversal</span>(<span class="params">root,arr = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root)&#123;</span><br><span class="line">        postorderTraversal(root.left);</span><br><span class="line">        postorderTraversal(root.right);</span><br><span class="line">        arr.push(root.val);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>//TODO, 非递归版本的深度优先，广度优先</p>
+<p>BFS:个人认为好理解的版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepFirstSearch</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> nodeList = [];</span><br><span class="line">    <span class="keyword">if</span>(node !== <span class="literal">null</span>)&#123;</span><br><span class="line">        nodeList.push(node);</span><br><span class="line">        <span class="keyword">let</span> children = node.children;</span><br><span class="line">        children.forEach(<span class="function"><span class="params">child</span>=&gt;</span>&#123;</span><br><span class="line">            nodeList = nodeList.concat(deepFirstSearch(child));</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> nodeList;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

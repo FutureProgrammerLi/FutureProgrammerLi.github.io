@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="typescript-2"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>CodingLiveLi</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">typescript-2</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-10-27</span>
+            <span class="time">23:49:11</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#学习笔记</a> <a class="tag" href="/tags/TypeScript/">#TypeScript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>原文地址: <a href="https://juejin.im/post/6876981358346895368" target="_blank" rel="noopener">https://juejin.im/post/6876981358346895368</a></p>
+<p>作者：FESKY</p>
+</blockquote>
+<h3><span id="1-微妙区别">1. 微妙区别</span></h3><h4><span id="1-any和unknown">1. any和unknown</span></h4><p>any是所有类型的顶级类型，任何类型都可以赋值给any类型的值。可出现在左，可出现在右，用了跟没用没什么区别。</p>
+<p>unknown的值只能赋值给unknown和any的值，也是任何类型都可以赋值给unknown。</p>
+<ol>
+<li>出现在右边，左边只能是unknown或者any；</li>
+<li>出现在左边，右边可以是任意类型</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uncertain: unknown = <span class="string">'hello!'</span> <span class="comment">//OK  情况2</span></span><br><span class="line"><span class="keyword">let</span> str: string = uncertain; <span class="comment">//ERROR, 不能将未知类型的赋值给已知类型的。</span></span><br><span class="line"><span class="keyword">let</span> anyType: any | unknown = uncertain; <span class="comment">//OK   情况1</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="2-vs-object-vs-object">2. {} vs object vs Object</span></h4><p>object代表常规的JavaScript对象，即非基础数据类型。（函数呢？）</p>
+<p>{}代表非null，非undefined的任意类型。</p>
+<p>Object类似{}，但要求类型不修改Object.prototype上的方法。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">createo</span>(<span class="params">o: object</span>): <span class="title">void</span></span>;</span><br><span class="line">createo(&#123;props:<span class="number">0</span>&#125;); <span class="comment">//OK</span></span><br><span class="line">create(<span class="number">12</span>); <span class="comment">//error</span></span><br><span class="line">create(&#123;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);  <span class="comment">//OK</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">o:<span class="built_in">Object</span></span>): <span class="title">void</span></span>;</span><br><span class="line">createObj(&#123;props:<span class="number">3</span>&#125;); <span class="comment">//OK</span></span><br><span class="line">createObj(<span class="literal">null</span>);  <span class="comment">//ERROR</span></span><br><span class="line">createObj(<span class="literal">undefined</span>); <span class="comment">//ERROR</span></span><br><span class="line">createObj(&#123;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5</span>;      <span class="comment">//ERROR</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">createBrackets</span>(<span class="params">o:&#123;&#125;</span>): <span class="title">void</span></span>;</span><br><span class="line">createBrackets(&#123;props:<span class="number">0</span>&#125;); <span class="comment">//OK</span></span><br><span class="line">createBrackets(<span class="literal">null</span>);  <span class="comment">//ERROR</span></span><br><span class="line">createBrackets(<span class="literal">undefined</span>); <span class="comment">//ERROR</span></span><br><span class="line">createBrackets(<span class="number">42</span>); <span class="comment">//OK</span></span><br><span class="line">createBrackets(&#123;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;); <span class="comment">//OK</span></span><br></pre></td></tr></table></figure>
+
+<p>范围 object&lt; Object &lt; {}</p>
+<p>对对象属性无要求的，用object。Object如果修改了内置方法，是会报错的。{}非null非undefined就行。</p>
+<h4><span id="3-type和interface">3. type和interface</span></h4><p>type类似JS里的const，有块级作用域， 用来声明类型，可以理解为“类型变量”。多次声明同名变量的后果是会被覆盖。可以是单个类型，也可以是对象类型。声明对象时不支持声明合并</p>
+<p>interface自带extends，多次声明同名interface，会整合成一个interface。只能是对象类型。（支持声明合并）</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> a = <span class="built_in">string</span> | <span class="built_in">boolean</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">type</span> a = <span class="built_in">number</span>;</span><br><span class="line">    <span class="comment">//const num: a = true;//报错</span></span><br><span class="line">    <span class="keyword">const</span> num:a = <span class="number">2</span>;  <span class="comment">//OK</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> b = &#123;</span><br><span class="line">    name:<span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">type</span> b = &#123;</span><br><span class="line">        id:<span class="built_in">number</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">console</span>.log(b.id);</span><br><span class="line">    <span class="built_in">console</span>.log(b.name);      <span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
