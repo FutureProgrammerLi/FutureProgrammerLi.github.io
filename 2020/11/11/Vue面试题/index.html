@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Vue面试题"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>CodingLiveLi</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Vue面试题</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-11-11</span>
+            <span class="time">00:16:59</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Vue/">Vue</a> / <a href="/categories/Vue/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vue/">#Vue</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>先用自己的语言答一下会的题目吧,27题,明确会的15题左右.</p>
+<ol>
+<li>
+<p>Vue.use是干什么的?原理是什么?</p>
+<p>个人理解是插件的注册,比如Vuex,Vue-router这些.可以是官方也可以是自定义的插件.</p>
+<p>原理是调用install方法.Vue.use()可以接收一个函数或者对象作为参数.传函数,那么默认就把这个函数视为install方法.而传对象进去,就会执行这个对象的install方法.</p>
+</li>
+<li>
+<p>请说一下响应式数据的理解?</p>
+<p>JS引擎默认是单线程的.如果没有响应式,当某一数据改变时,依赖该数据的值是不会重新计算.而响应式则在Vue实例化的时候,利用Object.defineProperty, Vue2劫持组件的数据,收集数据的依赖项,采用发布-订阅模式,实现被依赖数据更新时,通知依赖该变化数据的其它数据,实现重新计算,从而达到响应式的效果.(Watcher类,observe,dep.depend?, dep.notify,2.x添加依赖的方法忘了.3.x版本是effect,track,trigger,数据结构也从类变成WeakMap,map,set了)</p>
+</li>
+<li>
+<p>Vue如何检测数组变化?(模糊)</p>
+<p>利用方法劫持.先保留一些修改原数组的方法,在Vue实例里调用这些方法时,就会在实际调用这些方法之前添加依赖?触发视图更新?</p>
+</li>
+<li>
+<p>Vue.set方法是如何实现的?</p>
+<p>该方法是一个fallback,数组直接通过下标或修改长度,或者对象新增属性,Vue是检测不到的.原因是新增的属性没有被劫持,数组这样的修改方式也没有被劫持.</p>
+<p>对于数组,内部是用了splice方法,因为该方法已经被劫持,所以它能够触发视图更新.</p>
+<p>对于对象,主要是defineReactive,将该属性设置为响应式的.(没有__ob__这属性的数据对象,直接设置就行.)</p>
+</li>
+<li>
+<p>Proxy与Object.defineProperty的优劣对比?</p>
+<p>Proxy是ES6新特性,兼容性没那么好,IE11以下的都不支持了.</p>
+<p>defineProperty是在创建实例的时候要递归遍历,数据庞大或层次够深的话效率会低.</p>
+<p>Proxy优点是解决了defineProperty的一些缺点,比如利用Proxy.handle的一些特性可以解决数组下标改变,或修改数组长度Vue检测不到的问题.而且Proxy是懒代理,用到的时候才代理.</p>
+<p>后者的优点?(模糊)兼容性好吧,毕竟原生的API</p>
+</li>
+<li>
+<p>Vue3.x的响应式原理.</p>
+<p>WeakMap存储管理数据对象,属性名是对象名,值是一个Map;</p>
+<p>Map存储管理对象属性,属性名是属性名,值是一个Set;</p>
+<p>Set是存储依赖项,effects.</p>
+</li>
+<li>
+<p>Vue的声明周期方法有哪些?一般在哪一步发起请求及原因?</p>
+<p>beforeCreate,created,beforeMount,mounted,beforeUpdate,updated,beforeDestroy,</p>
+<p>destroyed.</p>
+<p>Vue3, setup代替了beforeCreate和created.onBeforeUpdate,onUpdated,onBeforeMount,onBeforeMounted,onBeforeUnmount,onUnmounted,onErrorCaptured, onTrack?(还有两个调试的声明周期)</p>
+<p>一般在created或mounted里请求数据;created时组件的数据已经是可用了,可以给实例数据赋值.mounted里甚至可以操作DOM.</p>
+</li>
+<li>
+<p>Vue的父组件和子组件声明周期钩子执行顺序?</p>
+<p>父子beforeCreated,子父created,父子beforeMounted,子父mounted,beforeDestroyed子父,destroyed子父.(子生后于父,毁先于父)</p>
+</li>
+<li>
+<p>Vue中的组件的data为什么是一个函数?</p>
+<p>组件的data为了可以复用,利用函数返回一个对象,使组件的数据独立开来,而不是修改一个组件的数据,另一个相同组件的对应数据也被修改.(对象数据地址同不同的问题.对象就同,函数返回就不同)</p>
+</li>
+<li>
+<p>Vue组件间的通信有几种方式?</p>
+<p>常用的是props和emit.其它的provide/inject, this.<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>o</mi><mi>t</mi><mo separator="true">,</mo><mi>t</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">root, this.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span>children. this.$refs.更宏观的, EventBus, Vuex, Redux等三方库</p>
+</li>
+<li>
+<p>keep-alive平时在哪里使用?原理是?</p>
+<p>组件数据在组件切换时不被修改.一般为了数据重用或提高性能而使用.原理时使用缓存.利用key在缓存数组中对比.keep-alive数组长度好像有限定,利用LRU清缓存.(?模糊)</p>
+</li>
+<li>
+<p>Vue-router两种模式区别?</p>
+<p>哈希模式和历史模式.前者更为常见.后者需要后端的支持,容易出现请求不到页面的情况.</p>
+</li>
+<li>
+<p>nextTick在哪里使用?原理是?</p>
+<p>created里对DOM进行操作,或方法里需要对数据更新后页面进行操作.</p>
+<p>原理…flushCallbacks执行清空队列, timerFunc能力检测,nextTick调用timerFunc,将任务推入到队列.</p>
+</li>
+<li>
+<p>Vue为什么需要虚拟DOM?虚拟DOM的优劣如何?</p>
+<p>一为性能,抽象真实DOM,只操作必要的属性方法;利用DIFF算法,高效对比实际改变的DOM,精准修改对应DOM.</p>
+<p>二为可用性,将真实DOM抽离,可将虚拟DOM应用到浏览器,移动端等平台.</p>
+</li>
+<li>
+<p>Vue中key的作用和工作原理,说说你对它的理解</p>
+<p>key是虚拟DOM的唯一标识,可以提高组件复用效率.列表组件一般都需要提供key,而且它也能避免Vue自带的重用逻辑,避免出现比如列表项对应不上的错误.用在子组件上可以重新调用子组件的声明周期(?)</p>
+</li>
+<li>
+<p>v-if和v-for的优先级</p>
+<p>Vue2 v-for优先级高, Vue3 v-if优先级高</p>
+</li>
+<li>
+<p>v-if和v-show的区别</p>
+<p>v-if控制渲不渲染,条件为假直接不渲染,v-show控制组件的display属性,如果条件为false,则将display属性设置为none.应用场景看渲染成本和切换频率.切换频率高建议用v-show</p>
+</li>
+<li>
+<p>computed和watch的区别和运用的场景?</p>
+<p>computed会自动收集依赖,当对应依赖变化时才重新进行计算,否则返回缓存值.</p>
+<p>watch显式声明相应属性或对象,功能性更强,deep / immediate, (newVal,oldVal)等.更符合&quot;监控&quot;的概念</p>
+</li>
+<li>
+<p>如何理解自定义指令?</p>
+<p>有全局注册和局部指令.有自己的声明周期,Vue2的指令周期有el,bind,inserted等.Vue3为了更好理解和记忆,将相应周期变得和组件声明周期相似</p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

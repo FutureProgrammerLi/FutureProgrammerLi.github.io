@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-10-24</span>
-            <span class="time">23:49:11</span>
+            <span class="time">00:16:59</span>
           </span>
           
         </div>
@@ -120,22 +120,23 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3><span id="setup语法糖">setup语法糖</span></h3><p>整个组件只有setup这个方法的话，直接在script里面加上setup就行</p>
+          <h3><span id="setup语法糖"> setup语法糖</span></h3>
+<p>整个组件只有setup这个方法的话，直接在script里面加上setup就行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&#x3D;&quot;props, &#123;attrs, slots, emit&#125;&quot;&gt;   </span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
 <p>示例:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&#x3D;&quot;props, &#123; emit &#125;&quot;&gt;</span><br><span class="line">    import &#123; watchEffect &#125; from &#39;vue&#39;</span><br><span class="line">    watchEffect(() &#x3D;&gt; console.log(props.msg))</span><br><span class="line">    emit(&#39;foo&#39;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;编译之后变成:</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import &#123; watchEffect &#125; from &#39;vue&#39;</span><br><span class="line">    &#x2F;&#x2F; setup is exported as a named export so it can be imported and tested</span><br><span class="line">    export function setup(props, &#123; emit &#125;) &#123;</span><br><span class="line">      watchEffect(() &#x3D;&gt; console.log(props.msg))</span><br><span class="line">      emit(&#39;foo&#39;)</span><br><span class="line">      return &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    export default &#123;</span><br><span class="line">      setup,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
 <p>如果组件内有props等一些Option API， 那么还是要export default的。（就是存在跟setup同级的那些方法，你只写在script setup 里面就不生效了。）（实际作用好像没那么明显，只是为了方便？）</p>
-<h3><span id="data和setup定义名字的数据">data和setup定义名字的数据</span></h3><p><strong>setup里的数据优先级高。</strong>就是data有个msg, setup里也有个msg的ref，是拿来显示的。最终显示的是ref的内容</p>
+<h3><span id="data和setup定义名字的数据"> data和setup定义名字的数据</span></h3>
+<p>**setup里的数据优先级高。**就是data有个msg, setup里也有个msg的ref，是拿来显示的。最终显示的是ref的内容</p>
 <p>猜测是data执行时机先于setup，data数据被覆盖了。</p>
-<h3><span id="在css里用vue实例里的变量">在CSS里用Vue实例里的变量</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">      data()&#123;</span><br><span class="line">          return &#123;</span><br><span class="line">              colorFromIns:red</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style vars&#x3D;&quot;&#123;colorFromIns&#125;&quot;&gt;</span><br><span class="line">    .text&#123;</span><br><span class="line">        color:var(--colorFromIns);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
+<h3><span id="在css里用vue实例里的变量"> 在CSS里用Vue实例里的变量</span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">      data()&#123;</span><br><span class="line">          return &#123;</span><br><span class="line">              colorFromIns:red</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style vars&#x3D;&quot;&#123;colorFromIns&#125;&quot;&gt;</span><br><span class="line">    .text&#123;</span><br><span class="line">        color:var(--colorFromIns);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
 <p>顺便解释（回顾）一下style scoped的原理:</p>
 <p>往该类的元素上添加一个唯一的随机数据属性，仅作标记用。样式编译后，通过属性选择器实现组件作用域。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&#39;text&#39;&gt;</span><br><span class="line">      Some content...</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    .text&#123;</span><br><span class="line">        color:green;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;编译之后:</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div class&#x3D;&#39;text&#39; data-v-5558831a&gt;  &lt;!--重点是这个data-v-*****--&gt;</span><br><span class="line">    Some content...</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .text[data-v-5558831a]&#123;</span><br><span class="line">        color:green;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="vue问题">vue问题</span></h3><h4><span id="1-virtual-dom-有什么作用">1. Virtual DOM 有什么作用</span></h4><ol>
+<h3><span id="vue问题"> vue问题</span></h3>
+<h4><span id="1-virtual-dom-有什么作用"> 1. Virtual DOM 有什么作用</span></h4>
+<ol>
 <li>对真实DOM的一层抽象.实际的DOM节点上有很多节点，而VNODE则将必要的属性抽离出来，从而减少操作的成本</li>
 <li>操作实际DOM的成本很高。VDOM TREE可以利用DIFF算法，对比OLD VDOM和NEW VDOM，找出具体修改部分，之后才将操作施加到真实DOM上。从而实现更高效地更新DOM。</li>
 </ol>
@@ -145,42 +146,46 @@
 <li>兼容：抽象出来的JS对象可以用到不同的环境中。</li>
 </ol>
 <hr>
-<p>（”把数据变化后生成的VNODE与前一次缓存下来的VNODE进行对比”？数据变化之后会生成新的VNODE？）</p>
+<p>（“把数据变化后生成的VNODE与前一次缓存下来的VNODE进行对比”？数据变化之后会生成新的VNODE？）</p>
 <p>差异是用什么存储下来的？作用到真实DOM上？</p>
 <p><strong>一个VNODE最多有22个属性</strong>，通过属性的不同搭配来描述不同的真实DOM节点。</p>
 <p>VNODE的种类</p>
 <ol>
-<li><p>comment 2.text 3.cloned -&gt; 三个都在vnode.js里，跟VNODE类定义在同一个文件.text加个isComment属性true就是注释节点(雾)</p>
+<li>
+<p>comment 2.text 3.cloned -&gt; 三个都在vnode.js里，跟VNODE类定义在同一个文件.text加个isComment属性true就是注释节点(雾)</p>
 </li>
-<li><p>element   5.component 6.functional-component        -》三种NODE，三个js文件.</p>
+<li>
+<p>element   5.component 6.functional-component        -》三种NODE，三个js文件.</p>
 </li>
 </ol>
-<h4><span id="2-nexttick的作用是什么-原理呢">2. nextTick的作用是什么？ 原理呢？</span></h4><p>nextTick接收一个回调函数，该函数可以对下一次更新后的DOM进行操作。即如果需要操作更新后的DOM，则可以把这些操作放在nextTick里的回调里。</p>
+<h4><span id="2-nexttick的作用是什么-原理呢"> 2. nextTick的作用是什么？ 原理呢？</span></h4>
+<p>nextTick接收一个回调函数，该函数可以对下一次更新后的DOM进行操作。即如果需要操作更新后的DOM，则可以把这些操作放在nextTick里的回调里。</p>
 <p>原理大概是,DOM的更新是异步的。当在实例中修改数据后并不会立即反应到视图上，而是Vue收集依赖，在下一次eventLoop之前才进行DOM的更新，执行patch()函数。</p>
 <p>别人的总结:</p>
 <blockquote>
 <p>由于Vue DOM更新是异步执行的，即修改数据时视图不会立即更新，而是会监听数据变化，并缓存在同一事件循环中，等同一数据循环中的所有数据变化完成之后，再统一进行视图更新。为了确保得到更新后的DOM，所以设置了<code>Vue.nextTick()</code>方法 – __青春的Smile</p>
 <p>在下次DOM更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的DOM。</p>
-<p> –官网</p>
+<p>–官网</p>
 </blockquote>
 <p>问题:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.a = <span class="number">1</span>;</span><br><span class="line">vm.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;<span class="comment">/**操作数据a**/</span>&#125;);</span><br><span class="line">vm.a = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-
 <p>nextTick里操作的a,是1还是3?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fN = ref(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  fN.value = <span class="number">1</span>;</span><br><span class="line">  nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(fN.value);</span><br><span class="line">    fN.value = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(fN.value);</span><br><span class="line">  &#125;);</span><br><span class="line">  fN.value = <span class="number">3</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(fN.value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行顺序：最外层的-&gt;nextTick的第一个console-&gt;nextTick的第二个console</span></span><br><span class="line"><span class="comment">//即打印3,3,2</span></span><br></pre></td></tr></table></figure>
-
 <p>实现了“异步”， 主线程执行完了才执行nextTick的内容。</p>
 <p>源码上，单独文件 src/core/util/next-tick.js, 主要是能力检测和根据能力具体实现两部分。</p>
 <p>使用的策略，按优先级/能力分是,<strong>Promise -&gt; MutationObserver -&gt; setImmediate -&gt; setTimeout</strong></p>
-<p>能微任务就利用微任务，不能才使用宏任务。 </p>
-<p>关键函数： </p>
+<p>能微任务就利用微任务，不能才使用宏任务。</p>
+<p>关键函数：</p>
 <ol>
-<li><p><code>flushCallbacks()</code>: 执行并清空任务队列。（就是nextTick里面的cb?）</p>
+<li>
+<p><code>flushCallbacks()</code>: 执行并清空任务队列。（就是nextTick里面的cb?）</p>
 </li>
-<li><p><code>timerFunc</code>:根据能力检测得到不同的实现定义</p>
+<li>
+<p><code>timerFunc</code>:根据能力检测得到不同的实现定义</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> timerFunc;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">Promise</span>)  <span class="comment">//伪，检测是否能实现Promise，实际用了typeof 和isNative来检验是否Promise是否可用</span></span><br><span class="line">    <span class="comment">//下同</span></span><br><span class="line">&#123;timerFunc = <span class="built_in">Promise</span>.resolve().then(flushCallbacks);&#125;</span><br><span class="line"><span class="keyword">if</span>(setImmediate)&#123;</span><br><span class="line">    timerFunc = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">    	setImmediate(flushCallbacks);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><code>nextTick()</code>,将cb推入callbacks,调用timerFunc</p>
+<li>
+<p><code>nextTick()</code>,将cb推入callbacks,调用timerFunc</p>
 </li>
 </ol>
 <p>总结：flushCallbacks,执行并清空callbacks；timerFunc根据能力实现不同方式的时机调用；nextTick构建callbacks数组，调用timerFunc. || 如果不传cb,还可以then,(是另一种方式的用法了),   nextTick().then(…)</p>
@@ -193,10 +198,25 @@
 <p>以上， 原文地址: <a href="https://segmentfault.com/a/1190000020499713" target="_blank" rel="noopener">https://segmentfault.com/a/1190000020499713</a></p>
 <p>作者:  __青春的Smile</p>
 </blockquote>
-<h4><span id="3-vueset的原理">3. Vue.set的原理？</span></h4><h4><span id="4-diff算法做了什么">4. DIFF算法做了什么？</span></h4><p>简单说，patch了新旧VNODE TREE。</p>
-<p>创建、删除或更新了VNODE。被处理的VNODE还只有三种，comment / text / element. 主要的就是element.  </p>
-<p> (clone/component/functional-component更偏向功能函数)</p>
-<p>如何判断三种是哪种？ 有tag且合法就是element，有isComment就是comment, 不然就是text….(猫猫震惊)</p>
+<h4><span id="3-vueset的原理"> 3. Vue.set的原理？</span></h4>
+<ol>
+<li>针对数组：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(target) &amp;&amp; isValidIndex(key))&#123;</span><br><span class="line">    target.length = <span class="built_in">Math</span>.max(target.length, key);</span><br><span class="line">    target.splice(key,<span class="number">1</span>,val);</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//splice已经被劫持，所以用它修改可以触发视图的更新。</span></span><br><span class="line"><span class="comment">//而第一句则判断新设置的索引值已有数组的长度哪个大。比如[1,2,3]要设置a[5]=1,则需要扩充数组。</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>针对data里的已有对象:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(key <span class="keyword">in</span> target &amp;&amp; !(key <span class="keyword">in</span> <span class="built_in">Object</span>.prototype))&#123;</span><br><span class="line">    target[key] = val;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//直接设置就可以了，因为它本身就是响应式的。</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>针对对象属性:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!__ob__)&#123;</span><br><span class="line">    target[key] = val;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;;</span><br><span class="line">defineReactive(ob.value,key,val);</span><br><span class="line">ob.dep.notify();</span><br><span class="line"><span class="keyword">return</span> val;</span><br><span class="line"><span class="comment">//data里的对象属性都会有__ob__这个标识，如果没有表明它一开始就不是响应式的。用了set它还是 不是响应式的，直接设置就可以了。</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<p>所以Vue.set的操作基础是data里已有的对象？为data里的对象设置新的响应式属性而不是新增对象（？</p>
+<h4><span id="4-diff算法做了什么"> 4. DIFF算法做了什么？</span></h4>
+<p>简单说，patch了新旧VNODE TREE。</p>
+<p>创建、删除或更新了VNODE。被处理的VNODE还只有三种，comment / text / element. 主要的就是element.</p>
+<p>(clone/component/functional-component更偏向功能函数)</p>
+<p>如何判断三种是哪种？ 有tag且合法就是element，有isComment就是comment, 不然就是text…(猫猫震惊)</p>
 <p>DIFF主要针对的是<strong>包含子节点的元素节点</strong>。</p>
 <p>对比更新子节点数组。关键点是循环新旧子节点数组，不是单纯的双循环。</p>
 <p>新旧VNODE数组，先头头 -&gt;尾尾-&gt;尾头-&gt;头尾这样比较,都不相同再循环.</p>
