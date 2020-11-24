@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Functional-Light-JS"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>CodingLiveLi</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Functional-Light-JS</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-11-19</span>
+            <span class="time">13:19:32</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Javascript/">Javascript</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Javascript/">#Javascript</a> <a class="tag" href="/tags/%E5%87%BD%E6%95%B0/">#函数</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>最近看functional-light-JS这本书到递归的时候，发现看不懂了。想起B站上有作者跟书同名的课程，就想对比和总结一下从视频和从书本上，学到的东西。</p>
+<p>觉得书本讲的东西更多，但视频讲的更容易懂，以下基本是从视频中记到的一些内容。</p>
+</blockquote>
+<p>Imperative vs. Declarative</p>
+<p><strong>The former focuses more on “how to do that”.</strong></p>
+<p><strong>While the latter one focuses more on “why we do this?”</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0</span>;</span><br><span class="line">a+=<span class="number">2</span>; </span><br><span class="line"><span class="comment">//Imperative exaplanation: a equals a plus two;</span></span><br><span class="line"><span class="comment">//Decalrative: Iterate the even numbers in the array but not every num.</span></span><br></pre></td></tr></table></figure>
+
+<p>Comments are always explaining why we do this way but not what the code is doing.</p>
+<p>Like, “Why we add one but not two or three to this number?”</p>
+<p>Functional Programing does jobs of comment by code itself.</p>
+<p>Once you know 1+1=2, you can benefit from it and do any sumation.In other sense, once you follow the principles of FP, you will benefit from it and no need to prove it.</p>
+<p>(Yep, you may not know how to prove 1+1=2, right?)(No bb, just follow.)</p>
+<hr>
+<p><strong>f(x) = 2(x^3)+1</strong></p>
+<p>FP is not always about the <code>function</code> keyword.</p>
+<p>A function call, always receive paramters, do something with the params, and finally output the results.</p>
+<p>Functions that don’t return anything are not functions but procedure.”Procedure Programming” rather than “Functional Programming”.</p>
+<p>A procedure used in a function, can contaminate the function, resulting the two things both become procedures.</p>
+<hr>
+<p>Pure function: </p>
+<ol>
+<li>Same input, same output.(not strictly)</li>
+<li>A function does nothing with any variables outside of the scope of the function.(same as the above,not strictly enough)</li>
+</ol>
+<p>Do you think the following <code>addAnother</code> is a pure function?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> z = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//const z = 1;//using const do help,but this is not the key.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAnother</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> addTwo(x,y) + z;</span><br><span class="line">&#125;</span><br><span class="line">addAnother(<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>It can be, though it accesses <code>z</code>, which is in the global scope.</p>
+<p>Directly looking at the function definition, we may easily consider it a impure function because of  the variable <code>z</code>.</p>
+<p>We have to mentally run all the code before the function call to judge whether the function is pure.</p>
+<p>And, what about re-defining the definition of <code>addTwo</code>? Can you still assert that <code>addAnother</code> is pure?</p>
+<p>If you are sure that any variables accessed outside of the function scope are immutable throughout all the programme, you can say that this function will not make mistakes.*<em>Are you sure about that? *</em></p>
+<p>Pure function is judged throughout the piece of programming.Maybe in the function scope, or the block, or even the global scope.It all depends.</p>
+<p><strong>Side effects are almost impossible to be eliminated, but we can reduce them, make them obvious and then, traceable.</strong></p>
+<hr>
+<p>Two ways to reduce side effect / make them obvious.</p>
+<ol>
+<li><p>Extract the impurtiy.</p>
+<p>Side effects poluting the global scope is bad, but you can wrap them in another scope, so that they can affect as fewer as possible.(like, wrapping them in a function).</p>
+</li>
+<li><p>Containing the impurity</p>
+<p>Make copies of the variables, do with the copied ones, and <strong>restore the ones that are passed in.</strong></p>
+<p>(You can the output, and nothing outside of the scope is changed.)</p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
