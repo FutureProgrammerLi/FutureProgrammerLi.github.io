@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Future Li">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Vuex"/>
+  <meta property="og:description" content="Hello World!" />
+  <meta property="og:site_name" content="CodingLiveLi"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="CodingLiveLi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>CodingLiveLi</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Vuex</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:617612567@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Future Li</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-11-30</span>
+            <span class="time">20:08:33</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Vuex/">#Vuex</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>Vuex和Vue-router,从一开始的会怎么用，到现在，可能稍微深入学习一下也没那么难理解了吧。毕竟用是会用了，背后怎么实现的，迟早也是要学习的啦。而且对于Vuex而言，好像还有很多不会的用法。（这叫懂吗！？Vuex基本属性的s都能漏的也能叫懂！？）</p>
+<p>好吧，稍微dive deep 一丢丢吧…明明不懂还觉得自己很懂的自己好像还有点好笑。</p>
+<hr>
+<h2><span id="vuex使用的一些问题">Vuex使用的一些问题:</span></h2><ol>
+<li><p>组件内直接修改store的数据和用this.$store.commit/ mutation来修改有什么区别吗？</p>
+<p>一般情况下建议使用commit,虽然直接修改,store里的状态还是会响应式的,但这并不明显.</p>
+<p>而且用mutation修改还可以起到复用的效果.就是将一系列mutation的操作封装成函数,以便其它地方也可以使用,而直接修改则不可以.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> store = createStore(&#123;</span><br><span class="line">    strict:<span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>严格模式可以避免直接修改store的状态,直接报错.而强制要求使用commit修改.</p>
+<p><strong>不要在生产环境使用严格模式,深度检测会带来性能影响</strong></p>
+</li>
+<li><p>getters的两个参数?(光看很简单,后来发现我自己并不知道)</p>
+<p>第一个参数是state,第二个是getters,用来获取当前模块的其它属性值.(依赖其它state或getters)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">createStore(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        counter:<span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    getter:&#123;</span><br><span class="line">        mul2:<span class="function">(<span class="params">state</span>) =&gt;</span> state.counter * <span class="number">2</span>,</span><br><span class="line">        minus1: <span class="function">(<span class="params">state,getters</span>) =&gt;</span> getters.mul2 - <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//strict: true,     //会报错但不会阻止</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//in components //</span></span><br><span class="line"><span class="keyword">import</span> &#123; useStore &#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</span><br><span class="line">setup()&#123;</span><br><span class="line">    <span class="keyword">const</span> store = useStore();</span><br><span class="line">    <span class="comment">//const &#123; state, getters &#125; = store; </span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(store.state.counter)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        click</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>(插曲:为什么mutations必须同步,actions可以是同步?)</p>
+<ol start="3">
+<li><p>actions的函数有哪些参数?mutations的呢?</p>
+<p>mutations的有两个,一个state,一个要改变的数据参数(toParam)</p>
+<p>actions第一个是context,其中包含以下属性,主要分为状态(state&amp;getters)和操作(commit&amp;dispatch)两类.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    state,</span><br><span class="line">    rootState,</span><br><span class="line">    getters,</span><br><span class="line">    rootGetters,</span><br><span class="line">    commit,</span><br><span class="line">    dispatch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用actions可以有两种方法,我比较用得多的是第一种:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(<span class="string">'actionName'</span>,&#123;<span class="attr">param1</span>:<span class="number">10</span>,<span class="attr">param2</span>:<span class="number">20</span>&#125;);</span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">    type:<span class="string">'actionName'</span>,</span><br><span class="line">    param1:<span class="number">10</span>,</span><br><span class="line">    param2:<span class="number">20</span>, <span class="comment">//存疑</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//第二种默认就是对象,不能像第一种那样可以是单一值</span></span><br></pre></td></tr></table></figure>
+
+<p>插曲2:mutation的第一个参数,state不可以解构?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不会相应到页面 //</span></span><br><span class="line">state: &#123;</span><br><span class="line">    counter:<span class="number">1</span>,</span><br><span class="line">&#125;,</span><br><span class="line">mutations:&#123;</span><br><span class="line">    increment(&#123;counter&#125;,data)&#123;</span><br><span class="line">        counter+=data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//改正 //</span></span><br><span class="line">increment(state,data)&#123;</span><br><span class="line">    state.counter+=data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Actions的thennable, 直接return一个promise.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">actions:&#123;</span><br><span class="line">    thennable: (&#123; commit &#125;, payload )&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                commit(<span class="string">'increment'</span>,payload.data);</span><br><span class="line">                resolve();</span><br><span class="line">            &#125;,payload.waitTime);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// in components //</span></span><br><span class="line">store.dispatch(<span class="string">'thennable'</span>,&#123;<span class="attr">data</span>:<span class="number">1</span>,<span class="attr">waitTime</span>:<span class="number">2000</span>&#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Haha'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同理,两个actions, A和B, 执行完A后再执行B.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">actions:&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">actionA</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">actionB</span>(<span class="params">&#123;dispatch&#125;</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//await actionA(); //这是错的.都是actions你为什么要直接调用?还是同意用回dispatch好吧?</span></span><br><span class="line">        <span class="keyword">await</span> dispatch(<span class="string">'actionA'</span>)</span><br><span class="line">        <span class="comment">//do something else</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mutations和getters(里的值)第一个参数都是state,它们是全局的还是局部的?</p>
+<p>都是局部的,mutations不应该改回自己当前模块的状态还想去跨模块修改?!</p>
+</li>
+</ol>
+<p>插曲3:怎么在Vuex的Index里整合模块? 而不是每个文件都是export {state,mutations,actions,getters} ?</p>
+<ol start="6">
+<li><p>getters还真能获取/修改/加工根状态.怎么修改?</p>
+<p>getters里的函数都有四个参数: { state, getters, rootState, rootGetters }. 说是定义在模块里的Store才有?!</p>
+</li>
+<li><p>在带命名空间的模块内<strong>调用全局的mutation和action</strong>?(注意是调用不是注册!)</p>
+<p>利用commit和dispatch的第三个参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">store.commit(<span class="string">'mutationA'</span>,<span class="literal">null</span>,&#123; <span class="attr">root</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">store.dispatch(<span class="string">'actionA'</span>,<span class="literal">null</span>,&#123; <span class="attr">root</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">//表明这两方法要传参,要么原始值,要么整合到一个对象里面.(数组呢?</span></span><br><span class="line"><span class="comment">//第三个参数已经被使用了,不能是自己的参数.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>插曲4:总结一下各个属性都有哪些参数?和commit和dispatch的参数?</p>
+<p>总结commit和dispatch的方法,主要是VScode的类型推导</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">commit(mutationName:string, payload?:any, options?: CommitOptions ) =&gt; <span class="keyword">void</span></span><br><span class="line">dispatch(actionName: string, payload?:any, options?: DispatchOptions)=&gt; <span class="built_in">Promise</span>&lt;any&gt;</span><br><span class="line"><span class="comment">//mutationName和actionName原本都可以叫type</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mutations:&#123;</span><br><span class="line">    increment: (moduleState: <span class="built_in">Object</span> ,<span class="attr">payload</span>: any)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">actions:&#123;</span><br><span class="line">    asynInc: (context: <span class="built_in">Object</span> ,<span class="attr">payload</span>: any)&#123;...&#125;</span><br><span class="line">&#125;,</span><br><span class="line">getters:&#123;</span><br><span class="line">    getter: (state,getters,rootState,rootGetters)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以commit和dispatch的CommitOptions和DispatchOptions除了root还有什么?</p>
+<hr>
+<p>题外,除了strict设置是否为严格模式外,还可以以下这些值.(啰嗦点把strict也弄进去了)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: <span class="built_in">Array</span>[Funciton],  </span><br><span class="line">strict: boolean,</span><br><span class="line">devtools: boolean,  <span class="comment">//为某个特定的Store实例打开或关闭devtools</span></span><br></pre></td></tr></table></figure>
+
+<p>一些冷门的方法.有的类似钩子函数,有的用于持久化,(为什么不直接插件呢?)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">replaceState(state: <span class="built_in">Object</span>);  <span class="comment">//替换store的根状态? //</span></span><br><span class="line">watch(<span class="function">(<span class="params">state,getter</span>) =&gt;</span> state.a, </span><br><span class="line">      (newVal) =&gt; &#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(newVal)</span><br><span class="line">&#125;);     <span class="comment">//Vuex实例的watch,直接用Vue实例的watch也可以实现//</span></span><br><span class="line">subscribe(<span class="function">(<span class="params">mutation,state</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(mutation.type);</span><br><span class="line">	<span class="built_in">console</span>.log(mutation.payload);</span><br><span class="line">&#125;     <span class="comment">//调用某个mutation的时候执行某些操作 //</span></span><br><span class="line">subscribeAction(<span class="function">(<span class="params">action,state</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(action.type);</span><br><span class="line">    <span class="built_in">console</span>.log(action.payload);</span><br><span class="line">&#125;);  <span class="comment">//调用某个action是执行的操作 interceptor</span></span><br><span class="line"><span class="comment">//这两个方法都回返回一个停止订阅的方法,存一下,调用一下就能unsubscribe. //</span></span><br><span class="line">subscribeAction(&#123;</span><br><span class="line">    before: <span class="function">(<span class="params">action,type</span>) =&gt;</span> &#123;...&#125;,</span><br><span class="line">    after: <span class="function">(<span class="params">action,type</span>) =&gt;</span> &#123;...&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//更直接的action钩子</span></span><br><span class="line">registerModule();</span><br><span class="line">unregisterModule();</span><br><span class="line">hasModule();</span><br><span class="line">hotUpdate();</span><br><span class="line">mapState/Mutations/Actions/Getters</span><br></pre></td></tr></table></figure>
+
+<p>以上我认为是一些基础的用法.之后,就学写原理性的吧.</p>
+<hr>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
