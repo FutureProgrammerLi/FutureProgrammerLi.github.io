@@ -1,32 +1,32 @@
 <!DOCTYPE html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="LeetCode"><meta name="author" content="Future Li"><meta name="keywords" content="算法"><meta name="copyright" content="copyright.liscense_type"><title>LeetCode</title><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]><script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://cdn.bootcss.com/respond/1.4.2/respond.min.js"></script><![endif]--><link rel="icon" href="/compass/imgs/favicon.ico"><link rel="stylesheet" href="/compass/stylesheets/font-awesome.min.css"><script>var algoliaConfig = {"on":false}</script><link rel="stylesheet" href="/compass/stylesheets/screen.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div id="body-inner-wrapper"><header id="page-header"><nav id="nav"><div id="site-name">CodingLiveLi</div><i class="fa fa-bars fa-2x" id="nav-icon" aria-hidden="true"></i><div id="nav-expanded"><a class="nav-word-item" href="/">Home</a><a class="nav-word-item" href="/archives">Archives</a></div><div id="nav-list"><ul><li><a class="nav-list-item" href="/">Home</a></li><li><a class="nav-list-item" href="/archives">Archives</a></li></ul></div></nav><div id="banner-wrapper"><div id="banner-pagetype-dependent-info"><h1 id="post-title">LeetCode</h1><span id="post-description"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-19</span><span id="word-count">The total word count - 8098</span><span id="time-count">Estimated time of reading - 27 mins</span></div></div><a title="Back to Top"><i class="fa fa-arrow-up" id="to-Top" aria-hidden="true"></i></a><a title="Click to Toggle off"><i class="fa fa-toggle-on" id="toggle-on-Toc" aria-hidden="true"></i></a><a title="Click to Toggle on"><i class="fa fa-toggle-off" id="toggle-off-Toc" aria-hidden="true"></i></a></header><aside id="toc-column"><div id="toc-column-inner-wrapper"><div id="post-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1.比较含退格的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.一维数组的动态和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3.字符串左旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4.好数对的数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5.拥有最多糖果的孩子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">6.重排数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">7.删除中间节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">8.宝石与石头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">9.猜数字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">番外：买啤酒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">10.拿硬币</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">11.整数的各位积和之差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">12.括号的最大嵌套深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">13.按既定顺序创建目标函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">14.解压缩编码列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">15.所有奇数长度子数组的和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">16.独一无二的出现次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">17 统计位数为偶数的数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">18 求矩阵对角线的和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">19 二进制链表转整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">20.重新排列字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">21.分割平衡字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">22.二叉树的深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">23.二叉树的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">24.链表中倒数第k个节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">25. 合并二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">26.打印从1到最大的n位数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">27.旅行终点站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">28.删除最外层的括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">29.计算汉明距离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">30.唯一元素的和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">31.数组中两元素的最大乘积</span></a></div></div></aside><main id="main-content-column"><div id="main-content-wrapper"><div id="post-full-content"><blockquote>
-<p>每天一题简单算法题吧，不知能坚持多久。But , small changes count :) </p>
+<!--[if lt IE 9]><script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://cdn.bootcss.com/respond/1.4.2/respond.min.js"></script><![endif]--><link rel="icon" href="/compass/imgs/favicon.ico"><link rel="stylesheet" href="/compass/stylesheets/font-awesome.min.css"><script>var algoliaConfig = {"on":false}</script><link rel="stylesheet" href="/compass/stylesheets/screen.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div id="body-inner-wrapper"><header id="page-header"><nav id="nav"><div id="site-name">CodingLiveLi</div><i class="fa fa-bars fa-2x" id="nav-icon" aria-hidden="true"></i><div id="nav-expanded"><a class="nav-word-item" href="/">Home</a><a class="nav-word-item" href="/archives">Archives</a></div><div id="nav-list"><ul><li><a class="nav-list-item" href="/">Home</a></li><li><a class="nav-list-item" href="/archives">Archives</a></li></ul></div></nav><div id="banner-wrapper"><div id="banner-pagetype-dependent-info"><h1 id="post-title">LeetCode</h1><span id="post-description"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-19</span><span id="word-count">The total word count - 8596</span><span id="time-count">Estimated time of reading - 29 mins</span></div></div><a title="Back to Top"><i class="fa fa-arrow-up" id="to-Top" aria-hidden="true"></i></a><a title="Click to Toggle off"><i class="fa fa-toggle-on" id="toggle-on-Toc" aria-hidden="true"></i></a><a title="Click to Toggle on"><i class="fa fa-toggle-off" id="toggle-off-Toc" aria-hidden="true"></i></a></header><aside id="toc-column"><div id="toc-column-inner-wrapper"><div id="post-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 1.比较含退格的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 2.一维数组的动态和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 3.字符串左旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 4.好数对的数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 5.拥有最多糖果的孩子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 6.重排数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 7.删除中间节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 8.宝石与石头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 9.猜数字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text"> 番外：买啤酒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 10.拿硬币</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 11.整数的各位积和之差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 12.括号的最大嵌套深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 13.按既定顺序创建目标函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 14.解压缩编码列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 15.所有奇数长度子数组的和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 16.独一无二的出现次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 17 统计位数为偶数的数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 18 求矩阵对角线的和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 19 二进制链表转整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 20.重新排列字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 21.分割平衡字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 22.二叉树的深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 23.二叉树的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 24.链表中倒数第k个节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 25. 合并二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 26.打印从1到最大的n位数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 27.旅行终点站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 28.删除最外层的括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text"> 29.计算汉明距离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> 30.唯一元素的和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> 31.数组中两元素的最大乘积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> 32.唯一摩斯密码词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> 33. 数组拆分</span></a></div></div></aside><main id="main-content-column"><div id="main-content-wrapper"><div id="post-full-content"><blockquote>
+<p>每天一题简单算法题吧，不知能坚持多久。But , small changes count 😃</p>
 </blockquote>
-<h3><span id="1比较含退格的字符串">1.比较含退格的字符串</span></h3><blockquote>
+<h3><span id="1比较含退格的字符串"> 1.比较含退格的字符串</span></h3>
+<blockquote>
 <p>给定 <code>S</code> 和 <code>T</code> 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 <code>#</code> 代表退格字符。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：S &#x3D; &quot;ab#c&quot;, T &#x3D; &quot;ad#c&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：S 和 T 都会变成 “ac”。</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>思路： 一开始我找井号的索引，然后连续删除这个索引及之前的两个数。发现过不了’ab##’这个测试用例。之后用<strong>栈</strong>，遇到井号就弹出，不是则推到另外的数组里面，返回数组的join(‘’)</p>
+<p>思路： 一开始我找井号的索引，然后连续删除这个索引及之前的两个数。发现过不了’ab##‘这个测试用例。之后用<strong>栈</strong>，遇到井号就弹出，不是则推到另外的数组里面，返回数组的join(’’)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findPound</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> strArr = str.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> stack = [];  <span class="comment">//新建一个栈，就不怕pop,push影响原来的字符串数组了。</span></span><br><span class="line">    strArr.forEach(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</span><br><span class="line">        item === <span class="string">'#'</span> ? stack.pop() : stack.push(item);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> stack.join(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> backspaceCompare = <span class="function"><span class="keyword">function</span> (<span class="params">S,T</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> findPound(S) === findPound(T);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="2一维数组的动态和">2.一维数组的动态和</span></h3><blockquote>
+<h3><span id="2一维数组的动态和"> 2.一维数组的动态和</span></h3>
+<blockquote>
 <p>给你一个数组 nums 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。</p>
 <p>请返回 nums 的动态和。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1,2,3,4]</span><br><span class="line">输出：[1,3,6,10]</span><br><span class="line">解释：动态和计算过程为 [1, 1+2, 1+2+3, 1+2+3+4] 。</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路: 求和第一反应就想到reduce, 不过里面逻辑应该可以优化.我的做法是根据当前索引,如果索引大于等于0,就将对应索引的值相加,之后索引值减1,直到索引值为0.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> runningSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">const</span> result = nums.reduce(<span class="function">(<span class="params">acc,cur,index,whole</span>) =&gt;</span> &#123;</span><br><span class="line">       <span class="keyword">let</span> sum = <span class="number">0</span>;  <span class="comment">//结果数组的每一项</span></span><br><span class="line">       <span class="keyword">while</span>(index &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">           sum = sum + whole[index]; </span><br><span class="line">           index--;</span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="comment">//如索引index为2,以上逻辑就是nums[2]+nums[1]+nums[0];到index===-1时跳出循环</span></span><br><span class="line">       acc.push(sum);</span><br><span class="line">       <span class="keyword">return</span> acc;</span><br><span class="line">   &#125;,[]);</span><br><span class="line">   <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//40%</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单实现</span></span><br><span class="line"><span class="keyword">var</span> runningSum = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        nums[i] = nums[i<span class="number">-1</span>] + nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//作者：shou-wang-20</span></span><br><span class="line"><span class="comment">//来源：力扣（LeetCode）</span></span><br><span class="line"><span class="comment">//思路:从数组第二项开始,结果的下一项是前一项和当前项的和.</span></span><br><span class="line"><span class="comment">//95%</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="3字符串左旋转">3.字符串左旋转</span></h3><blockquote>
-<p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串”abcdefg”和数字2，该函数将返回左旋转两位得到的结果”cdefgab”。</p>
+<h3><span id="3字符串左旋转"> 3.字符串左旋转</span></h3>
+<blockquote>
+<p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串&quot;abcdefg&quot;和数字2，该函数将返回左旋转两位得到的结果&quot;cdefgab&quot;。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s &#x3D; &quot;abcdefg&quot;, k &#x3D; 2</span><br><span class="line">输出: &quot;cdefgab&quot;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路: 围绕字符串的slice,substr, substring方法,结合实现.根据k截取前k位和后面部分,再拼接即可.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reverseLeftWords = <span class="function"><span class="keyword">function</span>(<span class="params">s, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.substr(n,s.length) + s.slice(<span class="number">0</span>,n);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//substr(from,length)</span></span><br><span class="line"><span class="comment">//substring(start,end)</span></span><br><span class="line"><span class="comment">//slice(start,end)</span></span><br><span class="line"><span class="comment">//64%</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="4好数对的数目">4.好数对的数目</span></h3><blockquote>
+<h3><span id="4好数对的数目"> 4.好数对的数目</span></h3>
+<blockquote>
 <p>给你一个整数数组 nums 。</p>
 <p>如果一组数字 (i,j) 满足 nums[i] == nums[j] 且 i &lt; j ，就可以认为这是一组 好数对 。</p>
 <p>返回好数对的数目。</p>
@@ -34,59 +34,57 @@
 </blockquote>
 <p>思路： 两个索引,i和j。i代表当前，j代表i之后的所有。i逐渐右移，变大，j扫描次数（对比次数）逐渐缩小。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numIdenticalPairs = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;= nums.length - <span class="number">2</span>; i++)&#123;  <span class="comment">//注意这里的等号。nums[nums.length-1]是最后一个</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt;= nums.length <span class="number">-1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] === nums[j])&#123;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//60%</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//哈希表解法，元素只是作为属性名，结果依赖属性值。</span></span><br><span class="line"><span class="keyword">var</span> numIdenticalPairs = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>, map = &#123;&#125;;</span><br><span class="line">    nums.forEach(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">       <span class="keyword">if</span>(map[num])&#123;    <span class="comment">//已经出现过的元素</span></span><br><span class="line">           count += map[num];   <span class="comment">//累计和, 1+2+3+4 ...</span></span><br><span class="line">           map[num]++;          <span class="comment">//出现次数+1(?)</span></span><br><span class="line">       &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">           map[num] = <span class="number">1</span>;  <span class="comment">//第一次扫描到的元素</span></span><br><span class="line">       &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>哈希表统计元素出现次数?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countTimes</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = arr.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(cur <span class="keyword">in</span> acc)&#123;</span><br><span class="line">           acc[cur]++;</span><br><span class="line">       &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">           acc[cur] = <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,&#123;&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="5拥有最多糖果的孩子">5.拥有最多糖果的孩子</span></h3><blockquote>
+<h3><span id="5拥有最多糖果的孩子"> 5.拥有最多糖果的孩子</span></h3>
+<blockquote>
 <p>给你一个数组 candies 和一个整数 extraCandies ，其中 candies[i] 代表第 i 个孩子拥有的糖果数目。</p>
 <p>对每一个孩子，检查是否存在一种方案，将额外的 extraCandies 个糖果分配给孩子们之后，此孩子有 最多 的糖果。注意，允许有多个孩子同时拥有 最多 的糖果数目。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：candies &#x3D; [2,3,5,1,3], extraCandies &#x3D; 3</span><br><span class="line">输出：[true,true,true,false,true] </span><br><span class="line">解释：</span><br><span class="line">孩子 1 有 2 个糖果，如果他得到所有额外的糖果（3个），那么他总共有 5 个糖果，他将成为拥有最多糖果的孩子。</span><br><span class="line">孩子 2 有 3 个糖果，如果他得到至少 2 个额外糖果，那么他将成为拥有最多糖果的孩子。</span><br><span class="line">孩子 3 有 5 个糖果，他已经是拥有最多糖果的孩子。</span><br><span class="line">孩子 4 有 1 个糖果，即使他得到所有额外的糖果，他也只有 4 个糖果，无法成为拥有糖果最多的孩子。</span><br><span class="line">孩子 5 有 3 个糖果，如果他得到至少 2 个额外糖果，那么他将成为拥有最多糖果的孩子。</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：找出数组的最大值；遍历数组，单项的值加上所有的extracandies大于等于最大值的话，返回true，否则返回false。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> kidsWithCandies = <span class="function"><span class="keyword">function</span>(<span class="params">candies, extraCandies</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> max = <span class="built_in">Math</span>.max(...candies);</span><br><span class="line">    <span class="keyword">let</span> result = candies.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        cur + extraCandies &gt;= max? acc.push(<span class="literal">true</span>) : acc.push(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,[]);</span><br><span class="line">    <span class="keyword">return</span> result; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//直接map</span></span><br><span class="line"><span class="comment">//return candies.map(item=&gt;item + extraCandies &gt;= max );</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="6重排数组">6.重排数组</span></h3><blockquote>
+<h3><span id="6重排数组"> 6.重排数组</span></h3>
+<blockquote>
 <p>给你一个数组 nums ，数组中有 2n 个元素，按 [x1,x2,…,xn,y1,y2,…,yn] 的格式排列。</p>
 <p>请你将数组按 [x1,y1,x2,y2,…,xn,yn] 格式重新排列，返回重排后的数组。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [2,5,1,3,4,7], n &#x3D; 3</span><br><span class="line">输出：[2,3,5,4,1,7] </span><br><span class="line">解释：由于 x1&#x3D;2, x2&#x3D;5, x3&#x3D;1, y1&#x3D;3, y2&#x3D;4, y3&#x3D;7 ，所以答案为 [2,3,5,4,1,7]</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>思路：毫无效率的暴力算法。2n个数要执行n次。新数组, push索引为0 ,n , 1, n+1 ,2,n+2的值..</p>
+<p>思路：毫无效率的暴力算法。2n个数要执行n次。新数组, push索引为0 ,n , 1, n+1 ,2,n+2的值…</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shuffle = <span class="function"><span class="keyword">function</span>(<span class="params">nums, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> j = n + i;</span><br><span class="line">        result.push(nums[i],nums[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//64%</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="7删除中间节点">7.删除中间节点</span></h3><blockquote>
+<h3><span id="7删除中间节点"> 7.删除中间节点</span></h3>
+<blockquote>
 <p>实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：单向链表a-&gt;b-&gt;c-&gt;d-&gt;e-&gt;f中的节点c</span><br><span class="line">结果：不返回任何数据，但该链表变为a-&gt;b-&gt;d-&gt;e-&gt;f</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：只能访问被删除的节点。将当前节点复制一份，node始终为实际链表中被删除的那个节点。用复制来的那个节点操作node.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deleteNode = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = node; <span class="comment">//复制, 更好理解。其实可以不复制</span></span><br><span class="line">    <span class="comment">//操作实际链表上的那个节点</span></span><br><span class="line">    node.val = current.next.val;</span><br><span class="line">    node.next = current.next.next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="8宝石与石头">8.宝石与石头</span></h3><blockquote>
-<p> 给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
-<p>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。</p>
+<h3><span id="8宝石与石头"> 8.宝石与石头</span></h3>
+<blockquote>
+<p>给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
+<p>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此&quot;a&quot;和&quot;A&quot;是不同类型的石头。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: J &#x3D; &quot;aA&quot;, S &#x3D; &quot;aAAbbbb&quot;</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：拆成数组，利用includes方法遍历已有宝石，返回true则统计加1.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newJewelsInStones = <span class="function"><span class="keyword">function</span>(<span class="params">J,S</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> splitedJ = J.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> splitedS = S.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    splitedS.forEach(<span class="function"><span class="params">owned</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(splitedJ.includes(owned)) sum++;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//53%</span></span><br><span class="line"><span class="comment">//一定要遍历已有的数组吗?</span></span><br></pre></td></tr></table></figure>
-
 <p>法力浮桥的解法：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newJewelsInStones = <span class="function"><span class="keyword">function</span>(<span class="params">J,S</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> jewelsSet = <span class="keyword">new</span> <span class="built_in">Set</span>(J.split(<span class="string">''</span>));</span><br><span class="line">    <span class="keyword">return</span> S.split(<span class="string">''</span>).reduce(<span class="function">(<span class="params">prev,cur</span>)=&gt;</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> prev + jewelsSet.has(cur);</span><br><span class="line">    &#125;,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//哈希集合？</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="9猜数字">9.猜数字</span></h3><blockquote>
+<h3><span id="9猜数字"> 9.猜数字</span></h3>
+<blockquote>
 <p>小A 和 小B 在玩猜数字。小B 每次从 1, 2, 3 中随机选择一个，小A 每次也从 1, 2, 3 中选择一个猜。他们一共进行三次这个游戏，请返回 小A 猜对了几次？</p>
 <p>输入的guess数组为 小A 每次的猜测，answer数组为 小B 每次的选择。guess和answer的长度都等于3。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：guess &#x3D; [1,2,3], answer &#x3D; [1,2,3]</span><br><span class="line">输出：3</span><br><span class="line">解释：小A 每次都猜对了。</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：就是数组的每项对比，统计相等的个数。我用的reduce,实际用filter也是可以的。借助reduce的index参数，用当前遍历值跟answer数组的index值对比，相同则加一。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> game = <span class="function"><span class="keyword">function</span>(<span class="params">guess, answer</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">let</span> result = guess.reduce(<span class="function">(<span class="params">acc,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> cur === answer[index]? ++acc : acc;  <span class="comment">//这里必须++acc, 不能acc++.有点迷惑性</span></span><br><span class="line">   &#125;,<span class="number">0</span>);</span><br><span class="line">   <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//优化, 参考Louise用户的解答.</span></span><br><span class="line"><span class="comment">//PS: single liner也太难理解了..</span></span><br><span class="line"><span class="keyword">var</span> game = <span class="function"><span class="keyword">function</span>(<span class="params">guess,answer</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> guess.reduce(<span class="function">(<span class="params">acc,cur,index</span>)=&gt;</span>acc + (cur === answer[index]),<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//统计新思路，利用隐式转换，直接数字和条件进行相加。</span></span><br><span class="line"><span class="comment">//filter方法，参考静呆呆用户的解答。</span></span><br><span class="line"><span class="keyword">var</span> game = <span class="function"><span class="keyword">function</span>(<span class="params">guess, answer</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> guess.filter(<span class="function">(<span class="params">item,index</span>)=&gt;</span>item === answer[index]).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4><span id="番外买啤酒">番外：买啤酒</span></h4><blockquote>
+<h4><span id="番外买啤酒"> 番外：买啤酒</span></h4>
+<blockquote>
 <p>10元买啤酒,2元1瓶，4个盖换1瓶，2空瓶换1瓶。总共可以获得多少瓶啤酒？</p>
 </blockquote>
-<p>15瓶，剩余1空瓶，3盖。跟踪已买、盖数量、空瓶数量、额外数量..没用程序写出来，全程手写跟踪..</p>
-<h3><span id="10拿硬币">10.拿硬币</span></h3><blockquote>
+<p>15瓶，剩余1空瓶，3盖。跟踪已买、盖数量、空瓶数量、额外数量…没用程序写出来，全程手写跟踪…</p>
+<h3><span id="10拿硬币"> 10.拿硬币</span></h3>
+<blockquote>
 <p>桌上有 n 堆力扣币，每堆的数量保存在数组 coins 中。我们每次可以选择任意一堆，拿走其中的一枚或者两枚，求拿完所有力扣币的最少次数。</p>
 <p>示例 1：</p>
 <p>输入：[4,2,1]</p>
@@ -95,92 +93,133 @@
 </blockquote>
 <p>思路： 降级版买啤酒。遍历数组，能除以2的就直接除以2，不能的除以二后取整。主要用Math.ceil和reduce。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> minCount = <span class="function"><span class="keyword">function</span>(<span class="params">coins</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = coins.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> acc += <span class="built_in">Math</span>.ceil(cur/<span class="number">2</span>);      </span><br><span class="line">    &#125;,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//不是整数的直接向上取整。是整数的 cur/2 === Math.ceil(cur/2), 就不用额外判断了。</span></span><br><span class="line"><span class="comment">//为了容易看就不直接return coins.reduce了。</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="11整数的各位积和之差">11.整数的各位积和之差</span></h3><blockquote>
-<p> 给你一个整数 <code>n</code>，请你帮忙计算并返回该整数「各位数字之积」与「各位数字之和」的差。</p>
+<h3><span id="11整数的各位积和之差"> 11.整数的各位积和之差</span></h3>
+<blockquote>
+<p>给你一个整数 <code>n</code>，请你帮忙计算并返回该整数「各位数字之积」与「各位数字之和」的差。</p>
 <p>示例 1：</p>
-<p>输入：n = 234<br>输出：15<br>解释：<br>各位数之积 = 2 * 3 * 4 = 24<br>各位数之和 = 2 + 3 + 4 = 9<br>结果 = 24 - 9 = 15</p>
+<p>输入：n = 234<br>
+输出：15<br>
+解释：<br>
+各位数之积 = 2 * 3 * 4 = 24<br>
+各位数之和 = 2 + 3 + 4 = 9<br>
+结果 = 24 - 9 = 15</p>
 </blockquote>
 <p>思路： 暴力解法，先将数字转成字符串（用于分离），再将字符串转成数字（用于计算），然后数组求积，求和，返回结果差。（过于暴力，毫无想法）</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> subtractProductAndSum = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> splitedNumber = n.toString().split(<span class="string">''</span>).map(<span class="function"><span class="params">i</span>=&gt;</span><span class="built_in">parseInt</span>(i));</span><br><span class="line">    <span class="keyword">let</span> pro = splitedNumber.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        acc *= cur;</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> sub = splitedNumber.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        acc += cur;</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> pro - sub;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>有意思的解法:利用eval，参考MuddledKami的写法:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> subtractProductAndSum = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = n.toString().split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> a = <span class="built_in">eval</span>(arr.join(<span class="string">'*'</span>));</span><br><span class="line">    <span class="keyword">let</span> b = <span class="built_in">eval</span>(arr.join(<span class="string">'+'</span>));</span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="12括号的最大嵌套深度">12.括号的最大嵌套深度</span></h3><blockquote>
+<h3><span id="12括号的最大嵌套深度"> 12.括号的最大嵌套深度</span></h3>
+<blockquote>
 <p>描述一大堆，就是求最深的括号是多少层</p>
-<p>例如：””、”()()”、”()(()())” 都是 有效括号字符串（嵌套深度分别为 0、1、2），而 “)(“ 、”(()” 都不是 有效括号字符串 。</p>
+<p>例如：&quot;&quot;、&quot;()()&quot;、&quot;()(()())&quot; 都是 有效括号字符串（嵌套深度分别为 0、1、2），而 “)(” 、&quot;(()&quot; 都不是 有效括号字符串 。</p>
 <p>给你一个 有效括号字符串 s，返回该字符串的 s 嵌套深度 。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;(1+(2*3)+((8)&#x2F;4))+1&quot;</span><br><span class="line">输出：3</span><br><span class="line">解释：数字 8 在嵌套的 3 层括号中。</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路： 利用栈，遇到左括号，入栈，修改一次最大深度；遇到右括号，出栈，深度不变。<strong>利用好栈的最大长度</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maxDepth = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> maxDep = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] === <span class="string">'('</span>)&#123;</span><br><span class="line">            stack.push(s[i]);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(s[i] === <span class="string">')'</span>)&#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        maxDep = <span class="built_in">Math</span>.max(maxDep,stack.length);   <span class="comment">//关键点</span></span><br><span class="line">        <span class="comment">//一个左括号都没有就取maxDep,遇到一个就取stack.length</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> maxDep;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//stack.length有增有减，增的峰值就是最大深度。</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="13按既定顺序创建目标函数">13.按既定顺序创建目标函数</span></h3><blockquote>
+<h3><span id="13按既定顺序创建目标函数"> 13.按既定顺序创建目标函数</span></h3>
+<blockquote>
 <p>给你两个整数数组 nums 和 index。你需要按照以下规则创建目标数组：</p>
-<p>目标数组 target 最初为空。<br>按从左到右的顺序依次读取 nums[i] 和 index[i]，在 target 数组中的下标 index[i] 处插入值 nums[i] 。<br>重复上一步，直到在 nums 和 index 中都没有要读取的元素。<br>请你返回目标数组。</p>
+<p>目标数组 target 最初为空。<br>
+按从左到右的顺序依次读取 nums[i] 和 index[i]，在 target 数组中的下标 index[i] 处插入值 nums[i] 。<br>
+重复上一步，直到在 nums 和 index 中都没有要读取的元素。<br>
+请你返回目标数组。</p>
 <p>题目保证数字插入位置总是存在。</p>
-<p>输入：nums = [0,1,2,3,4], index = [0,1,2,2,1]<br>输出：[0,4,1,3,2]<br>解释：<br>nums       index     target<br>0            0        [0]<br>1            1        [0,1]<br>2            2        [0,1,2]<br>3            2        [0,1,3,2]<br>4            1        [0,4,1,3,2]</p>
+<p>输入：nums = [0,1,2,3,4], index = [0,1,2,2,1]<br>
+输出：[0,4,1,3,2]<br>
+解释：<br>
+nums       index     target<br>
+0            0        [0]<br>
+1            1        [0,1]<br>
+2            2        [0,1,2]<br>
+3            2        [0,1,3,2]<br>
+4            1        [0,4,1,3,2]</p>
 </blockquote>
-<p>思路： 概括题目就是，新创建数组，在index[i]的索引下插入nums[i]这个值.利用splice就行。一开始我还判断该索引下是否有值，没值的时候才赋值,担心只用splice会覆盖..结果..多虑了</p>
+<p>思路： 概括题目就是，新创建数组，在index[i]的索引下插入nums[i]这个值.利用splice就行。一开始我还判断该索引下是否有值，没值的时候才赋值,担心只用splice会覆盖…结果…多虑了</p>
 <p>一个重要的先要条件是, nums.length === index.length;</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> createTargetArray = <span class="function"><span class="keyword">function</span>(<span class="params">nums, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> target = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> realIndex = index[i];</span><br><span class="line">        <span class="keyword">let</span> realNum = nums[i];</span><br><span class="line">        <span class="comment">//if(target[realIndex] === 0 || target[realIndex])&#123;  //这里的if/else是多余的</span></span><br><span class="line">            target.splice(realIndex,<span class="number">0</span>,realNum);</span><br><span class="line">        <span class="comment">//&#125;else&#123;</span></span><br><span class="line">        <span class="comment">//    target[realIndex] = realNum;</span></span><br><span class="line">        <span class="comment">//&#125;;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="14解压缩编码列表">14.解压缩编码列表</span></h3><blockquote>
+<h3><span id="14解压缩编码列表"> 14.解压缩编码列表</span></h3>
+<blockquote>
 <p>给你一个以行程长度编码压缩的整数列表 nums 。</p>
 <p>考虑每对相邻的两个元素 [freq, val] = [nums[2<em>i], nums[2</em>i+1]] （其中 i &gt;= 0 ），每一对都表示解压后子列表中有 freq 个值为 val 的元素，你需要从左到右连接所有子列表以生成解压后的列表。</p>
 <p>请你返回解压后的列表。</p>
-<p>输入：nums = [1,2,3,4]<br>输出：[2,4,4,4]<br>解释：第一对 [1,2] 代表着 2 的出现频次为 1，所以生成数组 [2]。<br>第二对 [3,4] 代表着 4 的出现频次为 3，所以生成数组 [4,4,4]。<br>最后将它们串联到一起 [2] + [4,4,4] = [2,4,4,4]。</p>
+<p>输入：nums = [1,2,3,4]<br>
+输出：[2,4,4,4]<br>
+解释：第一对 [1,2] 代表着 2 的出现频次为 1，所以生成数组 [2]。<br>
+第二对 [3,4] 代表着 4 的出现频次为 3，所以生成数组 [4,4,4]。<br>
+最后将它们串联到一起 [2] + [4,4,4] = [2,4,4,4]。</p>
 </blockquote>
 <p>题目理解：将数组拆成若干元组，键为值出现在新数组中的次数，值就是新数组的值。</p>
 <p>思路：双循环，一个控制元组分割，一个控制新数组值的push.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> decompressRLElist = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;nums.length; i+=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt;nums[i]; j++)&#123;</span><br><span class="line">            result.push(nums[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>有意思（花里胡哨）的解法: 解构，fill</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> decompressRLElist = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;nums.length; i+=<span class="number">2</span>)&#123;</span><br><span class="line">        res.push(...Array(nums[i].fill(nums[i+<span class="number">1</span>])));</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//个人认为不好理解..没双循环直观</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="15所有奇数长度子数组的和">15.所有奇数长度子数组的和</span></h3><blockquote>
+<h3><span id="15所有奇数长度子数组的和"> 15.所有奇数长度子数组的和</span></h3>
+<blockquote>
 <p>给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。</p>
 <p>子数组 定义为原数组中的一个连续子序列。</p>
 <p>请你返回 arr 中 所有奇数长度子数组的和 。</p>
-<p>输入：arr = [1,4,2,5,3]<br>输出：58<br>解释：所有奇数长度子数组和它们的和为：<br>[1] = 1<br>[4] = 4<br>[2] = 2<br>[5] = 5<br>[3] = 3<br>[1,4,2] = 7<br>[4,2,5] = 11<br>[2,5,3] = 10<br>[1,4,2,5,3] = 15<br>我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p>
+<p>输入：arr = [1,4,2,5,3]<br>
+输出：58<br>
+解释：所有奇数长度子数组和它们的和为：<br>
+[1] = 1<br>
+[4] = 4<br>
+[2] = 2<br>
+[5] = 5<br>
+[3] = 3<br>
+[1,4,2] = 7<br>
+[4,2,5] = 11<br>
+[2,5,3] = 10<br>
+[1,4,2,5,3] = 15<br>
+我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p>
 </blockquote>
 <p>题目： 很好理解，取出奇数项的子数组，将所有的子数组求和。</p>
 <p>思路：第一反应是slice和reduce,但自己没想到如何控制好外层的循环，一个循环控制步长，一个控制子数组的长度。最后参考了喜个阳阳的写法。主要是外层的两个循环问题。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sumOddLengthSubarrays = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= arr.length; i+=<span class="number">2</span>)&#123;   <span class="comment">//控制步长</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span> ; j + i &lt;= arr.length; j++)&#123;   <span class="comment">//控制求和，遍历子数组</span></span><br><span class="line">            sum += arr.slice(j,i).reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>acc+cur,<span class="number">0</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//个人认为是没想到 j+i &lt;= arr.length这个条件</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="16独一无二的出现次数">16.独一无二的出现次数</span></h3><blockquote>
+<h3><span id="16独一无二的出现次数"> 16.独一无二的出现次数</span></h3>
+<blockquote>
 <p>给你一个整数数组 <code>arr</code>，请你帮忙统计数组中每个数的出现次数。</p>
 <p>如果每个数的出现次数都是独一无二的，就返回 <code>true</code>；否则返回 <code>false</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr &#x3D; [1,2,2,1,1,3]</span><br><span class="line">输出：true</span><br><span class="line">解释：在该数组中，1 出现了 3 次，2 出现了 2 次，3 只出现了 1 次。没有两个数的出现次数相同。</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路： 我利用了两次reduce,一次统计每个元素出现的次数，一次统计出现的次数是否唯一。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">acc,cur</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(acc[cur])&#123;</span><br><span class="line">        acc[cur]++;  <span class="comment">//已出现一次，能走到这的起码在数组中出现了两次</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        acc[cur] = <span class="number">1</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> acc;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> uniqueOccurrences = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> hashOne = arr.reduce(reducer,&#123;&#125;);  <span class="comment">//统计每个元素出现的次数,属性为项，值为次数</span></span><br><span class="line">  <span class="keyword">let</span> times = <span class="built_in">Object</span>.values(hashOne);    <span class="comment">//单独将次数取出来</span></span><br><span class="line">  <span class="keyword">let</span> hashTwo = times.reduce(reducer,&#123;&#125;);  </span><br><span class="line">  <span class="keyword">let</span> result = <span class="built_in">Object</span>.values(hashTwo).every(<span class="function"><span class="params">i</span>=&gt;</span> i === <span class="number">1</span>); <span class="comment">//判断出现的次数都只为1次</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//60%</span></span><br></pre></td></tr></table></figure>
-
-<p>收获： </p>
+<p>收获：</p>
 <ol>
-<li><p>哈希表统计元素出现的次数</p>
+<li>
+<p>哈希表统计元素出现的次数</p>
 </li>
-<li><p>判断元素在数组中是否唯一(Object.values(hashMap).every(i=&gt;i ===1);)</p>
+<li>
+<p>判断元素在数组中是否唯一(Object.values(hashMap).every(i=&gt;i ===1)😉</p>
 </li>
-<li><p>用Set去重后，判断和原来的出现次数的数组的长度是否相同。相同则独一无二。</p>
+<li>
+<p>用Set去重后，判断和原来的出现次数的数组的长度是否相同。相同则独一无二。</p>
 <p>比如出现的次数为[1,2,2,3]. new Set(…arr) =&gt; [1,2,3], arr.length !== set.size,长度不等,即出现次数不是唯一。</p>
 </li>
 </ol>
-<h3><span id="17-统计位数为偶数的数字">17 统计位数为偶数的数字</span></h3><blockquote>
+<h3><span id="17-统计位数为偶数的数字"> 17 统计位数为偶数的数字</span></h3>
+<blockquote>
 <p>给你一个整数数组 <code>nums</code>，请你返回其中位数为 <strong>偶数</strong> 的数字的个数。</p>
-<p>输入：nums = [12,345,2,6,7896]<br>输出：2<br>解释：<br>12 是 2 位数字（位数为偶数）<br>345 是 3 位数字（位数为奇数）<br>2 是 1 位数字（位数为奇数）<br>6 是 1 位数字 位数为奇数）<br>7896 是 4 位数字（位数为偶数）<br>因此只有 12 和 7896 是位数为偶数的数字</p>
+<p>输入：nums = [12,345,2,6,7896]<br>
+输出：2<br>
+解释：<br>
+12 是 2 位数字（位数为偶数）<br>
+345 是 3 位数字（位数为奇数）<br>
+2 是 1 位数字（位数为奇数）<br>
+6 是 1 位数字 位数为奇数）<br>
+7896 是 4 位数字（位数为偶数）<br>
+因此只有 12 和 7896 是位数为偶数的数字</p>
 </blockquote>
 <p>思路： 转成字符串，统计字符串的长度，能整除2则统计+1.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findNumbers = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = nums.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> strNum = cur.toString().split(<span class="string">''</span>);</span><br><span class="line">        strNum.length % <span class="number">2</span> === <span class="number">0</span>? acc++ : <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="18-求矩阵对角线的和">18 求矩阵对角线的和</span></h3><blockquote>
+<h3><span id="18-求矩阵对角线的和"> 18 求矩阵对角线的和</span></h3>
+<blockquote>
 <p>示例 [[1,2,3],[4,5,6],[7,8,9]]。n*n矩阵，对角线的和则为1+5+9 +3+7 = 25.中心元素只加一次。</p>
 </blockquote>
 <p>思路：双指针，以矩阵的单行为单位，判断是否为中心元素，是的话只加一次，否则正方形，四个四个地加。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> diagonalSum = <span class="function"><span class="keyword">function</span> (<span class="params">mat</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">0</span>, b = mat.length - <span class="number">1</span>;    <span class="comment">//矩阵长度等价于每个数组的长度</span></span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a&lt;=b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a === b)&#123;</span><br><span class="line">            sum += mat[a][a];   <span class="comment">//中心元素，下标无所谓</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            sum += mat[a][a]+mat[a][b]+mat[b][a]+mat[b][b];</span><br><span class="line">        &#125;;</span><br><span class="line">        a++;</span><br><span class="line">        b--;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="19-二进制链表转整数">19 二进制链表转整数</span></h3><blockquote>
+<h3><span id="19-二进制链表转整数"> 19 二进制链表转整数</span></h3>
+<blockquote>
 <p>给你一个单链表的引用结点 head。链表中每个结点的值不是 0 就是 1。已知此链表是一个整数数字的二进制表示形式。</p>
 <p>请你返回该链表所表示数字的 十进制值 。</p>
 <p>链表Node是对象，Node{this.val = val; this.next = null;}</p>
@@ -188,8 +227,8 @@
 </blockquote>
 <p>思路:遍历链表，将每个节点的值通过字符串连接起来，之后利用parseInt的两个参数将字符串转化为10进制数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getDecimalValue = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cur = head;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">while</span>(cur !== <span class="literal">null</span>)&#123;</span><br><span class="line">        result += cur.val;</span><br><span class="line">        cur = cur.next;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(result,<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="20重新排列字符串">20.重新排列字符串</span></h3><blockquote>
+<h3><span id="20重新排列字符串"> 20.重新排列字符串</span></h3>
+<blockquote>
 <p>给你一个字符串 s 和一个 长度相同 的整数数组 indices 。</p>
 <p>请你重新排列字符串 s ，其中第 i 个字符需要移动到 indices[i] 指示的位置。</p>
 <p>返回重新排列后的字符串。</p>
@@ -197,50 +236,81 @@
 </blockquote>
 <p>思路：关键点是 indices[i]为结果字符串s[i]所在的位置。可以用hashMap，也可以直接用数组。我认为map好理解，数组更加直观。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> restoreString = <span class="function"><span class="keyword">function</span>(<span class="params">s,indices</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++)&#123;  <span class="comment">//s.length === indices.length , 所以用哪个无所谓</span></span><br><span class="line">        map[indices[i]] = s[i];    <span class="comment">//属性为结果字符串的位置，值为对应字符</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.values(map).join(<span class="string">''</span>);  <span class="comment">//较数组比较麻烦了的一步</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//对象自动排序了属性名</span></span><br><span class="line"><span class="keyword">var</span> restoreString = <span class="function"><span class="keyword">function</span>(<span class="params">s,indices</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;s.length; i++)&#123;</span><br><span class="line">        arr[indices[i]] = s[i];       <span class="comment">//意思是一样的</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.join(<span class="string">''</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="21分割平衡字符串">21.分割平衡字符串</span></h3><blockquote>
-<p>在一个「平衡字符串」中，’L’ 和 ‘R’ 字符的数量是相同的。</p>
+<h3><span id="21分割平衡字符串"> 21.分割平衡字符串</span></h3>
+<blockquote>
+<p>在一个「平衡字符串」中，‘L’ 和 ‘R’ 字符的数量是相同的。</p>
 <p>给出一个平衡字符串 <code>s</code>，请你将它分割成尽可能多的平衡字符串。</p>
-<p>返回可以通过分割得到的平衡字符串的最大数量<strong>。</strong></p>
+<p>返回可以通过分割得到的平衡字符串的最大数量**。**</p>
 <p>示例 1：</p>
-<p>输入：s = “RLRRLLRLRL”<br>输出：4<br>解释：s 可以分割为 “RL”, “RRLL”, “RL”, “RL”, 每个子字符串中都包含相同数量的 ‘L’ 和 ‘R’。</p>
+<p>输入：s = “RLRRLLRLRL”<br>
+输出：4<br>
+解释：s 可以分割为 “RL”, “RRLL”, “RL”, “RL”, 每个子字符串中都包含相同数量的 ‘L’ 和 ‘R’。</p>
 </blockquote>
 <p>思路： 原本以为用栈解决，细想发现并不需要，不过思想是类似的。一个哨兵，指示当前是R还是L，R则+1，</p>
 <p>L则-1，哨兵等于零，则代表遇到一个平衡字符串，统计数+1.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> balancedStringSplit = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> char <span class="keyword">of</span> s)&#123;</span><br><span class="line">        char === <span class="string">'R'</span> &amp;&amp; index++;</span><br><span class="line">        char === <span class="string">'L'</span> &amp;&amp; index--;</span><br><span class="line">        index === <span class="number">0</span> &amp;&amp; count++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//问题: RRL这个用例应该返回1还是0？</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="22二叉树的深度">22.二叉树的深度</span></h3><blockquote>
+<h3><span id="22二叉树的深度"> 22.二叉树的深度</span></h3>
+<blockquote>
 <p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
 <p>例如：</p>
 <p>给定二叉树 [3,9,20,null,null,15,7]，</p>
 <p>​    3</p>
-<p>   / <br>  9  20<br>    /  <br>   15   7<br>返回它的最大深度 3 。</p>
+<p>/ <br>
+9  20<br>
+/  <br>
+15   7<br>
+返回它的最大深度 3 。</p>
 </blockquote>
 <p>思路: 左右子树最大深度加上根节点的1.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maxDepth = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> left = maxDepth(root.left);</span><br><span class="line">    <span class="keyword">let</span> right = maxDepth(root.right);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right) + <span class="number">1</span>; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果只给了树节点个数(一般不可能,而是给根节点让你遍历下去)</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.log(tree.length) / <span class="built_in">Math</span>.log(<span class="number">2</span>)) + <span class="number">1</span>;</span><br><span class="line"><span class="comment">//原理: 深度为k的树总节点数最多为(2^k)-1</span></span><br><span class="line"><span class="comment">//另外常识: 二叉树第i层节点数最多为2^(i-1)个</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="23二叉树的镜像">23.二叉树的镜像</span></h3><blockquote>
+<h3><span id="23二叉树的镜像"> 23.二叉树的镜像</span></h3>
+<blockquote>
 <p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。</p>
 <p>例如输入：</p>
-<pre><code>4</code></pre><p>   /   <br>  2     7<br> / \   / <br>1   3 6   9<br>镜像输出：</p>
-<pre><code>4</code></pre><p>   /   <br>  7     2<br> / \   / <br>9   6 3   1</p>
+<pre><code> 4
+</code></pre>
+<p>/   <br>
+2     7<br>
+/ \   / <br>
+1   3 6   9<br>
+镜像输出：</p>
+<pre><code> 4
+</code></pre>
+<p>/   <br>
+7     2<br>
+/ \   / <br>
+9   6 3   1</p>
 <p>示例 1：</p>
-<p>输入：root = [4,2,7,1,3,6,9]<br>输出：[4,7,2,9,6,3,1]</p>
+<p>输入：root = [4,2,7,1,3,6,9]<br>
+输出：[4,7,2,9,6,3,1]</p>
 </blockquote>
 <p>思路：递归.借助临时变量交换左右节点，然后递归</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mirrorTree = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> tmp = root.left;</span><br><span class="line">    root.left = root.right;</span><br><span class="line">    root.right = temp;</span><br><span class="line">    </span><br><span class="line">    mirrorTree(root.left);</span><br><span class="line">    mirrorTree(root.right);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mirrorTree = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    [root.left, root.right] = [mirrorTree(root.right),mirrorTree(root.left)];</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//神奇解法</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="24链表中倒数第k个节点">24.链表中倒数第k个节点</span></h3><blockquote>
+<h3><span id="24链表中倒数第k个节点"> 24.链表中倒数第k个节点</span></h3>
+<blockquote>
 <p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k &#x3D; 2.</span><br><span class="line"></span><br><span class="line">返回链表 4-&gt;5.</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：如题，数组能解决的问题为什么要用链表？栈方法为什么还要出栈一说？（？</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getKthFromEnd = <span class="function"><span class="keyword">function</span>(<span class="params">head, k</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [];</span><br><span class="line">    <span class="keyword">while</span>(head !== <span class="literal">null</span>)&#123;</span><br><span class="line">        arr.push(head);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> arr[arr.length - k];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getKthFromEnd = <span class="function"><span class="keyword">function</span>(<span class="params">head,k</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">let</span> ans = [];</span><br><span class="line">    <span class="keyword">while</span>(head)&#123;</span><br><span class="line">        stack.push(head);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">while</span>(k&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        ans = stack.pop();</span><br><span class="line">        k--;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//参考用户胡云英的写法</span></span><br><span class="line"><span class="comment">//ans: Array -&gt; ans:ListNode. 这初始化有什么用？</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="25-合并二叉树">25. 合并二叉树</span></h3><blockquote>
+<h3><span id="25-合并二叉树"> 25. 合并二叉树</span></h3>
+<blockquote>
 <p>给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。</p>
 <p>你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。</p>
-<p>输入:<br>    Tree 1                     Tree 2<br>          1                         2<br>         / \                       / \<br>        3   2                     1   3<br>       /                           \   \<br>      5                             4   7<br>输出:<br>合并后的树:<br>         3<br>        / <br>       4   5<br>      / \   \<br>     5   4   7</p>
+<p>输入:<br>
+Tree 1                     Tree 2<br>
+1                         2<br>
+/ \                       / \<br>
+3   2                     1   3<br>
+/                           \   \<br>
+5                             4   7<br>
+输出:<br>
+合并后的树:<br>
+3<br>
+/ <br>
+4   5<br>
+/ \   \<br>
+5   4   7</p>
 </blockquote>
 <p>思路：三种情况,递归是肯定的了</p>
 <ol>
@@ -249,59 +319,104 @@
 <li>两棵树都没有，返回null;</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span> (<span class="params">t1,t2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!t1 || !t2)&#123;</span><br><span class="line">        <span class="keyword">return</span> t1 || t2;</span><br><span class="line">    &#125;;</span><br><span class="line">    t1.val += t2.val;</span><br><span class="line">    t1.left = mergeTrees(t1.left,t2.left);</span><br><span class="line">    t1.right = mergeTrees(t1.right,t2.right);</span><br><span class="line">    <span class="keyword">return</span> t1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//if包括了情况2和3</span></span><br><span class="line"><span class="comment">//之后的递归就是值相加。</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="26打印从1到最大的n位数">26.打印从1到最大的n位数</span></h3><blockquote>
+<h3><span id="26打印从1到最大的n位数"> 26.打印从1到最大的n位数</span></h3>
+<blockquote>
 <p>输入数字 <code>n</code>，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n &#x3D; 1</span><br><span class="line">输出: [1,2,3,4,5,6,7,8,9]</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>思路：题目不难，考察效率。最直接的是Math.pow + 循环。优化就是移位符求10的n次方。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> printNumbers = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">Math</span>.pow(<span class="number">10</span>,n); i++)&#123;</span><br><span class="line">        result.push(i);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> printNumbers = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> max = <span class="number">1</span>, base = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &amp; <span class="number">1</span>)&#123;</span><br><span class="line">            max = max * base;</span><br><span class="line">        &#125;;</span><br><span class="line">        base = base * base;</span><br><span class="line">        n = n &gt; <span class="number">1</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; max; i++)&#123;</span><br><span class="line">        result.push(i);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="27旅行终点站">27.旅行终点站</span></h3><blockquote>
+<h3><span id="27旅行终点站"> 27.旅行终点站</span></h3>
+<blockquote>
 <p>给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] = [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线路的城市。</p>
 <p>题目数据保证线路图会形成一条不存在循环的线路，因此只会有一个旅行终点站。</p>
-<p>输入：paths = [[“B”,”C”],[“D”,”B”],[“C”,”A”]]<br>输出：”A”<br>解释：所有可能的线路是：<br>“D” -&gt; “B” -&gt; “C” -&gt; “A”.<br>“B” -&gt; “C” -&gt; “A”.<br>“C” -&gt; “A”.<br>“A”.<br>显然，旅行终点站是 “A” 。</p>
+<p>输入：paths = [[“B”,“C”],[“D”,“B”],[“C”,“A”]]<br>
+输出：“A”<br>
+解释：所有可能的线路是：<br>
+“D” -&gt; “B” -&gt; “C” -&gt; “A”.<br>
+“B” -&gt; “C” -&gt; “A”.<br>
+“C” -&gt; “A”.<br>
+“A”.<br>
+显然，旅行终点站是 “A” 。</p>
 </blockquote>
 <p>思路： 将起点站/中转站放在一个数组，将终点站放在另一个数组，查找终点站有而起点站数组没有的项即为终点站（？）。总觉得缺失了点逻辑？</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> destCity = <span class="function"><span class="keyword">function</span>(<span class="params">paths</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> startPoints = paths.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        acc.push(cur[<span class="number">0</span>]);</span><br><span class="line">    	<span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,[]);</span><br><span class="line">    <span class="keyword">let</span> endPoints = paths.reduce(<span class="function">(<span class="params">acc,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        acc.push(cur[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,[]);</span><br><span class="line">    <span class="keyword">let</span> result = endPoints.find(<span class="function"><span class="params">item</span> =&gt;</span> !startPoints.includes(item));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="28删除最外层的括号">28.删除最外层的括号</span></h3><blockquote>
-<p>有效括号字符串为空 (“”)、”(“ + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，””，”()”，”(())()” 和 “(()(()))” 都是有效的括号字符串。</p>
+<h3><span id="28删除最外层的括号"> 28.删除最外层的括号</span></h3>
+<blockquote>
+<p>有效括号字符串为空 (&quot;&quot;)、&quot;(&quot; + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，&quot;&quot;，&quot;()&quot;，&quot;(())()&quot; 和 “(()(()))” 都是有效的括号字符串。</p>
 <p>如果有效字符串 S 非空，且不存在将其拆分为 S = A+B 的方法，我们称其为原语（primitive），其中 A 和 B 都是非空有效括号字符串。</p>
 <p>给出一个非空有效字符串 S，考虑将其进行原语化分解，使得：S = P_1 + P_2 + … + P_k，其中 P_i 是有效括号字符串原语。</p>
 <p>对 S 进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 S 。</p>
-<p>输入：”(()())(())”<br>输出：”()()()”<br>解释：<br>输入字符串为 “(()())(())”，原语化分解得到 “(()())” + “(())”，<br>删除每个部分中的最外层括号后得到 “()()” + “()” = “()()()”。</p>
+<p>输入：&quot;(()())(())&quot;<br>
+输出：&quot;()()()&quot;<br>
+解释：<br>
+输入字符串为 “(()())(())”，原语化分解得到 “(()())” + “(())”，<br>
+删除每个部分中的最外层括号后得到 “()()” + “()” = “()()()”。</p>
 </blockquote>
 <p>思路：正反统计，遇左括号+1，遇右括号-1，字符串拼接。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> removeOuterParentheses = <span class="function"><span class="keyword">function</span>(<span class="params">S</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> S)&#123;</span><br><span class="line">        i === <span class="string">'('</span> &amp;&amp; ++count &gt; <span class="number">1</span>? res+=i : <span class="literal">null</span>;</span><br><span class="line">        i === <span class="string">')'</span> &amp;&amp; --count &gt; <span class="number">0</span>? res+=i : <span class="literal">null</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//自己的思路困在了栈，复杂了很多:</span></span><br><span class="line"><span class="comment">//一开始错在了 for(let i of S) i == ( -&gt; stack.push() ;  i == ) -&gt; res += stack.pop() + i;</span></span><br><span class="line"><span class="comment">//这样出来的都是()()(),不会有((()))这样的嵌套;</span></span><br><span class="line"><span class="comment">//想统计pop的次数，再用padEnd来填充), 但发现统计的次数依赖栈的高度，一个会变的数,而且也不知道在哪里填充。</span></span><br></pre></td></tr></table></figure>
-
-<h3><span id="29计算汉明距离">29.计算汉明距离</span></h3><blockquote>
+<h3><span id="29计算汉明距离"> 29.计算汉明距离</span></h3>
+<blockquote>
 <p>两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。</p>
 <p>给出两个整数 x 和 y，计算它们之间的汉明距离。</p>
-<p>注意：<br>0 ≤ x, y &lt; 2^31.</p>
+<p>注意：<br>
+0 ≤ x, y &lt; 2^31.</p>
 <p>输入: x = 1, y = 4</p>
 <p>输出: 2</p>
-<p>解释:<br>1   (0 0 0 1)<br>4   (0 1 0 0)<br>       ↑   ↑</p>
+<p>解释:<br>
+1   (0 0 0 1)<br>
+4   (0 1 0 0)<br>
+↑   ↑</p>
 <p>上面的箭头指出了对应二进制位不同的位置。</p>
 </blockquote>
 <p>思路： 看不懂移位的操作，就用字符串和数组操作了。主要利用toString转二进制，padStart补充零，用数组比较找出不同。限制性有点强。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hammingDisatance = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> binX = x.toString(<span class="number">2</span>).padStart(<span class="number">32</span>,<span class="number">0</span>).split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> binY = y.toString(<span class="number">2</span>).padStart(<span class="number">32</span>,<span class="number">0</span>).split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; binX.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(binX[i] !== binY[i]) count++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <p>2021.3.22,  repick这个习惯.还是简单.</p>
-<h2><span id="30唯一元素的和">30.唯一元素的和</span></h2><blockquote>
+<h2><span id="30唯一元素的和"> 30.唯一元素的和</span></h2>
+<blockquote>
 <p>给你一个整数数组 <code>nums</code> 。数组中唯一元素是那些只出现 <strong>恰好一次</strong> 的元素。</p>
 <p>请你返回 <code>nums</code> 中唯一元素的 <strong>和</strong> 。</p>
 </blockquote>
 <p>思路: 遍历一次,利用哈希统计元素出现次数；再遍历一次哈希,求和.(trick,要字符串转数字)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sumOfUnique = <span class="function">(<span class="params">nums</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> hash = nums.reduce(<span class="function">(<span class="params">acc,cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(!acc[cur])&#123;</span><br><span class="line">            acc[cur] = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            acc[cur] = <span class="number">0</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,&#123;&#125;);</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> hash)&#123;</span><br><span class="line">        hash[key] === <span class="number">1</span> ? sum += <span class="built_in">Number</span>(key) : <span class="literal">null</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2><span id="31数组中两元素的最大乘积">31.数组中两元素的最大乘积</span></h2><blockquote>
+<h2><span id="31数组中两元素的最大乘积"> 31.数组中两元素的最大乘积</span></h2>
+<blockquote>
 <p>给你一个整数数组 nums，请你选择数组的两个不同下标 i 和 j，使 (nums[i]-1)*(nums[j]-1) 取得最大值。</p>
 <p>请你计算并返回该式的最大值。</p>
 </blockquote>
 <p>思路: 找数组最大和第二大的数(可以重复)，各减一后相乘。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一开始的做法</span></span><br><span class="line"><span class="keyword">var</span> maxProduct = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    nums.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> b - a); <span class="comment">//降序;</span></span><br><span class="line">    <span class="keyword">return</span> (nums[<span class="number">0</span>] - <span class="number">1</span>) * (nums[<span class="number">1</span>] - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="keyword">var</span> bubble = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> b = nums[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a &gt; b)&#123;</span><br><span class="line">            nums[i] &gt; b &amp;&amp; (b = nums[i]);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            nums[i] &gt; a &amp;&amp; (a = nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//三个指针</span></span><br><span class="line">    <span class="keyword">return</span> (a<span class="number">-1</span>) * (b<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2><span id="32唯一摩斯密码词"> 32.唯一摩斯密码词</span></h2>
+<blockquote>
+<p>给个单词数组,将其都翻译成摩斯密码,求翻译出来的结果有多少种.</p>
+<p>(不同单词的翻译可能会有相同的结果)</p>
+<p>例如:<br>
+输入: words = [“gin”, “zen”, “gig”, “msg”]<br>
+输出: 2<br>
+解释:<br>
+各单词翻译如下:<br>
+“gin” -&gt; “–…-.”<br>
+“zen” -&gt; “–…-.”<br>
+“gig” -&gt; “–…--.”<br>
+“msg” -&gt; “–…--.”</p>
+<p>共有 2 种不同翻译, “–…-.” 和 “–…--.”.</p>
+</blockquote>
+<p>思路:双重循环,外层循环以单词为单位,内层循环以字母为单位.翻译出结果后去重统计即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uniqueMorseRepresentations = <span class="function"><span class="keyword">function</span> (<span class="params">words</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> morse = [<span class="string">".-"</span>,<span class="string">"-..."</span>,<span class="string">"-.-."</span>,<span class="string">"-.."</span>,<span class="string">"."</span>,<span class="string">"..-."</span>,<span class="string">"--."</span>,<span class="string">"...."</span>,<span class="string">".."</span>,<span class="string">".---"</span>,<span class="string">"-.-"</span>,<span class="string">".-.."</span>,<span class="string">"--"</span>,<span class="string">"-."</span>,<span class="string">"---"</span>,<span class="string">".--."</span>,<span class="string">"--.-"</span>,<span class="string">".-."</span>,<span class="string">"..."</span>,<span class="string">"-"</span>,<span class="string">"..-"</span>,<span class="string">"...-"</span>,<span class="string">".--"</span>,<span class="string">"-..-"</span>,<span class="string">"-.--"</span>,<span class="string">"--.."</span>];  <span class="comment">//题目给的翻译表</span></span><br><span class="line">	<span class="keyword">let</span> morseResult = words.reduce(<span class="function">(<span class="params">acc,cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> splited = cur.split(<span class="string">""</span>); <span class="comment">//单词分成字母</span></span><br><span class="line">        <span class="keyword">let</span> wordMorse;</span><br><span class="line">        splited.forEach(<span class="function"><span class="params">letter</span> =&gt;</span> &#123;</span><br><span class="line">            wordMorse += morse[letter.charCodeAt() - <span class="number">97</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">       	acc.push(wordMorse);</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;,[]);</span><br><span class="line">    <span class="keyword">return</span> morseResult.filter(<span class="function">(<span class="params">val,idx,arr</span>) =&gt;</span> arr.indexOf(val) === idx).length; <span class="comment">//去重</span></span><br><span class="line">    <span class="comment">//filter的去重原理是利用indexOf总是找到第一个匹配的index之后就会返回.之后的相同元素因为index不同,而都会为false.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="33-数组拆分"> 33. 数组拆分</span></h2>
+<blockquote>
+<p>给定长度为 <code>2n</code> 的整数数组 <code>nums</code> ，你的任务是将这些数分成 <code>n</code> 对, 例如 <code>(a1, b1), (a2, b2), ..., (an, bn)</code> ，使得从 <code>1</code> 到 <code>n</code> 的 <code>min(ai, bi)</code> 总和最大。</p>
+<p>返回该 <strong>最大总和</strong> 。</p>
+<p>输入：nums = [1,4,3,2]<br>
+输出：4<br>
+解释：所有可能的分法（忽略元素顺序）为：</p>
+<ol>
+<li>(1, 4), (2, 3) -&gt; min(1, 4) + min(2, 3) = 1 + 2 = 3</li>
+<li>(1, 3), (2, 4) -&gt; min(1, 3) + min(2, 4) = 1 + 2 = 3</li>
+<li>(1, 2), (3, 4) -&gt; min(1, 2) + min(3, 4) = 1 + 3 = 4<br>
+所以最大总和为 4</li>
+</ol>
+</blockquote>
+<p>思路: 题目很有迷惑性.引导你去自由组合.实际就是Math.min(a,b), a和b尽可能大即可.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrayPairSum = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>)</span>&#123;</span><br><span class="line">    nums.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> a-b);</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;nums.length; i+=<span class="number">2</span>)&#123;</span><br><span class="line">        res += nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div><div id="post-tags-container"><i class="fa fa-tags"></i> <a class="post-tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></div></div></main><div id="pagination-wrapper"><a id="page-prev" href="/2020/10/21/composition-api-rfc/"><i class="fa fa-chevron-left"></i> composition-api-rfc</a><a id="page-next" href="/2020/10/19/Atomic-Habits/">Atomic-Habits <i class="fa fa-chevron-right"></i></a></div><footer id="page-footer"><div id="footer-wrapper"><div id="blog-meta">&copy;2017-2021 By Future Li | Theme - <a id='theme-name' href="https://github.com/huan555/lemon-lime" target="_blank" rel="noopener"> Lemon-Lime</a> | Power By <a id='theme-powered-by' href=http://hexo.io> Hexo</a></div><div id="viewed-record"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-eye" aria-hidden="true"></i> <span id="busuanzi_value_page_pv"></span></span></div><div id="copyright-wrapper"><i class="fa fa-cc" aria-hidden="true"></i><div id="copyright">Except where otherwise noted, content on this blog is licensed under <a rel="license" href=http://creativecommons.org/licenses/by-nc-sa/4.0/>CC BY-NC-SA 4.0</a>.</div></div><div id="contact-me"><div id="rss"><a href="/atom.xml" type="application/atom+xml" rel="alternate" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div><span id="github"><a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener"><i class="fa fa-github" aria-hidden="true"></i></a></span><span id="weibo"><a href="https://weibo.com/1903816767/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" target="_blank" rel="noopener"><i class="fa fa-weibo" aria-hidden="true"></i></a></span></div></div></footer><script src="/compass/js/blog.js"></script></div></body>
