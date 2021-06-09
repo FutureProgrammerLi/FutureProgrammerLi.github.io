@@ -1,0 +1,60 @@
+<!DOCTYPE html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="面试复盘"><meta name="author" content="Future Li"><meta name="keywords" content="面试题"><meta name="copyright" content="copyright.liscense_type"><title>面试复盘</title><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]><script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://cdn.bootcss.com/respond/1.4.2/respond.min.js"></script><![endif]--><link rel="icon" href="/compass/imgs/favicon.ico"><link rel="stylesheet" href="/compass/stylesheets/font-awesome.min.css"><script>var algoliaConfig = {"on":false}</script><link rel="stylesheet" href="/compass/stylesheets/screen.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div id="body-inner-wrapper"><header id="page-header"><nav id="nav"><div id="site-name">CodingLiveLi</div><i class="fa fa-bars fa-2x" id="nav-icon" aria-hidden="true"></i><div id="nav-expanded"><a class="nav-word-item" href="/">Home</a><a class="nav-word-item" href="/archives">Archives</a></div><div id="nav-list"><ul><li><a class="nav-list-item" href="/">Home</a></li><li><a class="nav-list-item" href="/archives">Archives</a></li></ul></div></nav><div id="banner-wrapper"><div id="banner-pagetype-dependent-info"><h1 id="post-title">面试复盘</h1><span id="post-description"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-04-06</span><span id="word-count">The total word count - 1708</span><span id="time-count">Estimated time of reading - 6 mins</span></div></div><a title="Back to Top"><i class="fa fa-arrow-up" id="to-Top" aria-hidden="true"></i></a><a title="Click to Toggle off"><i class="fa fa-toggle-on" id="toggle-on-Toc" aria-hidden="true"></i></a><a title="Click to Toggle on"><i class="fa fa-toggle-off" id="toggle-off-Toc" aria-hidden="true"></i></a></header><aside id="toc-column"><div id="toc-column-inner-wrapper"><div id="post-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">第一家</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">第二家</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">第三家</span></a></li></ol></div></div></aside><main id="main-content-column"><div id="main-content-wrapper"><div id="post-full-content"><p>3月中到现在4月初，面了三家。一家过了，两家没后文。记录一下印象比较深刻的一些面试题，作为错题本吧。</p>
+<h2><span id="第一家">第一家</span></h2><p>笔试方面，我只记得我不会的那道，是Vue Router的钩子函数有哪些。</p>
+<p>总共7个。 3 + 1 + 3</p>
+<p>全局钩子(global): beforeEach, beforeResolve,afterEach;</p>
+<p>路由前置的钩子(pre-component): beforeEnter.</p>
+<p>组件内的钩子(in-components):beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave.</p>
+<p>面试方面，我认为公司是当时很缺人的，以至于不需要选择。尽管HR开出了比我预期高的工资，不过最终我还是拒绝了offer，原因有三：</p>
+<ol>
+<li>需要出差，我接受不了。</li>
+<li>试用期3个月，转正前不购买社保。</li>
+<li>工作地点我不太感冒，随说搭公交可以到，但是是由公交的开始搭到末尾，前后也需要一个多小时。</li>
+</ol>
+<h1><span id="第二家">第二家</span></h1><p>公司离家很近，起初自己也比较希望能进去，不过后来了解后，也有点庆幸没有通过这次面试。</p>
+<p>面试流程是笔试70分钟，之后有三次面试，技术、HR、BOSS。</p>
+<p>我很不解，我认为我笔试题答得并不好，空了几道选择题（逻辑推断题），和一道算法题，最终还是通过了（？）。技术面的时候，我发现自己的缺点是，自认为的想法/做法，并没有用实践去验证，自己认为的了解，到说出口、动起手来时，才觉得自己并不是真正的懂。</p>
+<p>简单地说，我之前一直认为，路由跳转需要携带的参数，最好直接写到url上,通过加密的方法也好，单纯暴露参数也好。这样做的好处是当用户需要保存当前，携带上一页面带过来的参数的页面时，不会因为参数的缺失而显示错误。</p>
+<p>通过与面试官的交流，我知道了Vue router也可以实现这一功能，甚至不把参数暴露到URL中（？）。不过由于他明确告诉了我vue router可以实现，我当时的想法被否定了，我就没有深入问下去了，因为已经暴露了自己，可能认为熟悉的东西，实际并不是那样的。</p>
+<p>HR/BOSS面是比较偏个人的。从中我也发现了，自认为的一些亮点，在别人眼中可能什么也不是。</p>
+<p>“你期望的工资是多少?””6-7k”</p>
+<p>“你现在的工作能力要拿到这个工资可能有点难啊(小声)” “…”</p>
+<p>自认为，熟悉vue2,react, 有vue3+vite的实际开发项目,就算是亮点了。而实际，面试官想听到的不是这些，而是你遇到了什么问题，当时是怎么想的，最终是怎么解决的。这样才是体现能力的”亮点“。可能当中牵涉到了技术的具体细节，不过，面试官不需要听懂，你能将这些细节说清楚，有这一过程，可能就够了。</p>
+<p>这次面试以”后续协商再决定“作为结果告终了。也是在最后的面试中，我才知道这个职位也是需要出差的。</p>
+<p>以下是自己不会的一些面试题：</p>
+<ol>
+<li>先序、中序、后续的方法，遍历二叉树。（清楚地知道自己并不熟悉它们之间的区别）</li>
+<li>怎么知道这个月的最后一天是几号？（还是星期几来着？）</li>
+</ol>
+<h2><span id="第三家">第三家</span></h2><p>从家出发30分钟就能到公司，虽说要搭地铁，但只需三个站，是很近的。</p>
+<p>笔试题都是场景预设，是在实际开发中可能遇到的一些问题。我认为我很多都答不上来，一是可能实际开发经验并不足1年，很多场景都没有遇见过，二是我准备的，自己知道的，更多是偏框架/偏js的知识，<strong>自己也很少对实际业务开发中所遇到的困难进行总结归纳。这是我的缺点。</strong>因此笔试，面试的问题我基本都答不上来。在此作为一次失败面试的记录，反思一下我对实际开发中的难题的一些态度吧。</p>
+<p>另外，面试中提问了我两个问题，我认为是当时面试官实际开发中遇到的，暂未解决，希望问我获取一些头绪，或者方法的问题。回头想一下，这可能也是体现你能力的时候。</p>
+<p>回想一下，我之前所在的公司，面试我的时候也是这样的。<strong>在面试时提问的问题，很有可能你正式入职后，需要你实际去解决的。只从语言上如果你都不能回答上来，那么更不用说实操了。</strong>而且，作为面试官，最简单直接的面试问题，就是提问自己当时实际开发遇到的困难（之后也从好朋友那印证了这一做法）。我不会的，你会了，这就是能力的体现。可能不需要完整的解决细节实施，但你必须有自己的思路。</p>
+<p>以下是笔试/面试题目，不会的比较多，所以都记录下来了。</p>
+<ol>
+<li>展示表格，包含详情，操作按钮。第一页转到第二页，点击详情后导致路由跳转，此时后退，怎么维持表格在第二页，以及一些其它数据的不变，而不是后退到第一页呢？</li>
+<li>一个大的vue项目，怎么共用其它子项目的vue实例，或是其它的js库呢？（把其它vue/js库加入到大的vue项目中）</li>
+<li>vue3和vue2的区别？ref和reactive的区别？watchEffect和watch的区别？</li>
+<li>如何优化vue项目首次打开白屏时间长的问题？</li>
+<li>不同域的页面，怎么通过iframe进行信息交换呢？</li>
+<li>vue组件的通信方式有哪些？</li>
+</ol>
+<p>面试提到的问题：</p>
+<ol>
+<li>有现成的Vue3项目，想用vue2的插件，要怎么实现呢？</li>
+<li>无关的两个vue组件，要怎么在a组件里触发b组件的事件呢？</li>
+</ol>
+<hr>
+<p>自己尝试重新解答：</p>
+<ol>
+<li><p>先序、中序、后序遍历：</p>
+<p>先序（根左右）深度优先遍历，从顶出发，读到哪个取哪个。</p>
+<p>中序（左根右）</p>
+<p>后序（左右根）</p>
+</li>
+<li><p>怎么获取当前月份的最后一天?</p>
+<p>(知道答案前:wc,这是什么新奇算法？要不要遍历逐个查呢？)</p>
+<p>(知道答案后:就这?)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> y = date.getFullYear();</span><br><span class="line"><span class="keyword">let</span> m = date.getMonth() + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> d = date.getDate();         <span class="comment">//注意不是getDay(),getDay返回1,2,3,4,5,6,7,指星期几.</span></span><br><span class="line"><span class="keyword">let</span> lastDay = <span class="keyword">new</span> <span class="built_in">Date</span>(y,m,<span class="number">0</span>);</span><br><span class="line"><span class="comment">//Fri Apr 30 2021 00:00:00 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><div id="post-tags-container"><i class="fa fa-tags"></i> <a class="post-tag" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a></div></div></main><div id="pagination-wrapper"><a id="page-prev" href="/2021/06/09/%E8%BF%91%E6%9C%9F/"><i class="fa fa-chevron-left"></i> 近期</a><a id="page-next" href="/2021/03/22/vscode-shorthand/">vscode-shorthand <i class="fa fa-chevron-right"></i></a></div><footer id="page-footer"><div id="footer-wrapper"><div id="blog-meta">&copy;2017-2021 By Future Li | Theme - <a id='theme-name' href="https://github.com/huan555/lemon-lime" target="_blank" rel="noopener"> Lemon-Lime</a> | Power By <a id='theme-powered-by' href=http://hexo.io> Hexo</a></div><div id="viewed-record"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-eye" aria-hidden="true"></i> <span id="busuanzi_value_page_pv"></span></span></div><div id="copyright-wrapper"><i class="fa fa-cc" aria-hidden="true"></i><div id="copyright">Except where otherwise noted, content on this blog is licensed under <a rel="license" href=http://creativecommons.org/licenses/by-nc-sa/4.0/>CC BY-NC-SA 4.0</a>.</div></div><div id="contact-me"><div id="rss"><a href="/atom.xml" type="application/atom+xml" rel="alternate" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div><span id="github"><a href="https://github.com/FutureProgrammerLi" target="_blank" rel="noopener"><i class="fa fa-github" aria-hidden="true"></i></a></span><span id="weibo"><a href="https://weibo.com/1903816767/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" target="_blank" rel="noopener"><i class="fa fa-weibo" aria-hidden="true"></i></a></span></div></div></footer><script src="/compass/js/blog.js"></script></div></body>
